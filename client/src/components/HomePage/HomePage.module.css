@@ -1,0 +1,15 @@
+.containerHome {
+    width: 99%;
+    height: 2000px;
+    margin: 5px;
+    display: flex;
+}
+.home {
+    width: 100%;
+    background-image: url(../../assets/fondoHome.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
