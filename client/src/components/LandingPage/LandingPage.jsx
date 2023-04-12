@@ -1,9 +1,11 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
-import NavVertical from '../NavVertical/NavVertical'
+import NavVertical from "../NavVertical/NavVertical";
+import SectionLogIn from "../SectionLogIn/SectionLogIn";
+import SectionRegister from "../SectionRegister/SectionRegister";
 import styles from "./LandingPage.module.css";
 import logoPage from "../../assets/logoPage.png";
 import tablaSurf from "../../assets/tablasurf.png";
+import { Link } from "react-router-dom";
 import { TfiMenu } from "react-icons/tfi";
 import { useState } from "react";
 
@@ -20,7 +22,7 @@ const LandingPage = () => {
 
   return (
     <div className={styles.containerLanding}>
-      <NavVertical/>
+      <NavVertical />
       <div className={styles.landing}>
         <div className={styles.navHome}>
           <div className={styles.containerItems}>
@@ -84,7 +86,9 @@ const LandingPage = () => {
                   The best page of nautical products, discover what is in our
                   stores
                 </p>
-                <button>Explorer</button>
+                <Link to={"/HomePage"}>
+                  <button>Explorer</button>
+                </Link>
               </div>
               <div className={styles.imgTabla}>
                 <img src={tablaSurf} alt="" />
@@ -116,18 +120,8 @@ const LandingPage = () => {
               </p>
             </div>
           )}
-          {selectedNavItem === "Log in" && (
-            <div className={styles.titulo}>
-              <h1>Log in</h1>
-              {/* ... */}
-            </div>
-          )}
-          {selectedNavItem === "Register" && (
-            <div className={styles.titulo}>
-              <h1>Register</h1>
-              {/* ... */}
-            </div>
-          )}
+          {selectedNavItem === "Log in" && <SectionLogIn />}
+          {selectedNavItem === "Register" && <SectionRegister />}
         </div>
       </div>
     </div>
