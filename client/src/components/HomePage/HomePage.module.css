@@ -1,0 +1,29 @@
+.containerHome {
+    width: 99%;
+    height: 2000px;
+    margin: 5px;
+    display: flex;
+}
+.home {
+    width: 100%;
+    background-image: url(../../assets/fondoHome.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+.containerNav {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.156);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 15px;
+    padding: 19.5px;
+}
+
+.col {
+    display: flex;
+    font-size: 1.50em;
+    gap: 150px;
+}

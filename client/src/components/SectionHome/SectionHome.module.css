@@ -1,0 +1,34 @@
+.containerPublicidad {
+    margin-top: 30px;
+    height: 350px;
+    background-color: rgba(240, 248, 255, 0.509);
+    display: flex;
+    justify-content: space-between;
+}
+
+.col1 {
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.col2{
+    display: flex;
+    justify-content: center;
+}
+.col3 {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 2em;
+    color: #5b5b5c;
+}
+
+.productosDestacados {
+    margin-top: 20px;
+    margin-left: 20px;
+    font-size: 1.50em;
+}
+hr {
+    background: #5b5b5c;
+}
