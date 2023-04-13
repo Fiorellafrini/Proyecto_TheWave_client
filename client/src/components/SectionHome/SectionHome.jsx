@@ -3,7 +3,7 @@ import styles from "../SectionHome/SectionHome.module.css";
 import hurley from "../../assets/hurley.png";
 import tablaPublicidad from "../../assets/tablaPublicidad.png";
 import { ImArrowRight } from "react-icons/im";
-
+import Infinite from "../InfiniteScroll/InfiniteScroll.jsx";
 const SectionHome = () => {
   return (
     <>
@@ -20,6 +20,7 @@ const SectionHome = () => {
       </div>
       <div className={styles.productosDestacados}>
           <p>PRODUCTOS DESTACADOS</p>
+          <Infinite/>
           <hr />
       </div>
     </>
