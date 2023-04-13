@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@200&display=swap');
+.containerCard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cuadrado1 {
+    background-color: #224145;
+    width: 450px;
+    height: 550px;
+    border-radius: 40px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.imgCuadrado1 {
+    margin: 20px;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imgCuadrado1 img {
+    width: 100px;
+}
+
+.cuadrado2 {
+    height: 450px;
+    width: 650px;
+    background-color: #868080;
+    border-radius: 40px;
+    margin-left: -220px;
+    display: flex;
+    box-shadow: 7px 14px 12px 0px rgba(0,0,0,0.37);
+    -webkit-box-shadow: 7px 14px 12px 0px rgba(0,0,0,0.37);
+    -moz-box-shadow: 7px 14px 12px 0px rgba(0,0,0,0.37);
+}
+
+.col1 img {
+    width: 145px;
+    transform: rotate(348deg) translate(-19px, -10px);
+    -webkit-transform: rotate(348deg) translate(-19px, -10px);
+    -moz-transform: rotate(348deg) translate(-19px, -10px);
+}
+
+.col2 {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 25px;
+}
+.fila1 {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.fila1 h1{
+    font-family: 'Work Sans';
+    font-weight: 100;
+    color: white;
+}
+.fila1 p {
+    font-family: 'Work Sans';
+    font-size: 2em;
+    font-weight: 100;
+    color: white;
+}
+.fila2 {
+    display: flex;
+    justify-content: space-around;
+}
+.size {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.size p {
+    font-size: 1.80em;
+}
+.fila2 img {
+    width: 150px;
+}
+.fila2 h1{
+    font-family: 'Work Sans';
+    font-size: 1.50em;
+    font-weight: 500;
+    color: black;
+}
+.fila3 button {
+    width: 200px;
+    height: 60px;
+    margin: 10px;
+    border-radius: 40px;
+    background-color: #224145;
+    border: none;
+    color: aliceblue;
+    font-family: 'Work Sans';
+    font-size: 1.20em;
+    box-shadow: 7px 14px 12px 0px rgba(0,0,0,0.37);
+    -webkit-box-shadow: 7px 14px 12px 0px rgba(0,0,0,0.37);
+    -moz-box-shadow: 7px 14px 12px 0px rgba(0,0,0,0.37);
+}

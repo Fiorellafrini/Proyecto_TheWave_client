@@ -12,8 +12,8 @@ const NavVertical = () => {
           <img src={menu} alt="" />
         </div>
         <div className={styles.item2}>
-          <p className={styles.marcador1}>•</p>
-          <p className={styles.marcador1}>•</p>
+          <p>•</p>
+          <p>•</p>
         </div>
         <div className={styles.item3}>
           <img src={scrollDown} alt="" />
