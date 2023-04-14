@@ -22,7 +22,7 @@ const LandingPage = () => {
 
   return (
     <div className={styles.containerLanding}>
-      <NavVertical />
+      <NavVertical/>
       <div className={styles.landing}>
         <div className={styles.navHome}>
           <div className={styles.containerItems}>

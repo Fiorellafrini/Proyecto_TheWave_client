@@ -1,0 +1,128 @@
+.wrap{
+    font-family: 'Shantell Sans', cursive;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    background-color: #cc0000;
+}
+.wrap h4 {
+    color: #ffde00;
+
+}
+.wrap label{
+    color: #ffde00;
+}
+.tp{
+    display: flex;
+    align-items: center;
+
+
+}
+.tp h1{
+display: block;
+}
+.tp button{
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    margin-right: 30px;
+    font-size: 16px;
+    text-align: center ;
+    background: #ffde00;
+    color: #3b4cca;
+    border: 3px solid #b3a125;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.colum1 {
+    display: flex;
+    flex-direction: column;
+}
+.colum1 input{
+    cursor: pointer;
+}
+.colum2{
+    display: flex;
+    flex-direction:  column;
+    margin-bottom: 33px;
+    margin-left: 30px;
+
+margin-right: 40px;
+}
+.rows {
+    display: flex;
+    align-items: center;
+}
+
+.box{
+    display: flex;
+    flex-direction: column;
+}
+.box label {
+    margin-right: 9px;
+}
+.box input{
+    margin: 9px;
+    border-radius: 15px;
+    border: transparent 0px solid
+}
+.name{
+    display: flex;
+    flex-direction: column;
+}
+.img{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.stats{
+    display: flex;
+    flex-direction: column;
+    width: 66px;
+}
+.renderTypes{
+    display: flex;
+    width: 160px;
+    height: 99px;
+    flex-flow: row wrap;
+}.renderTypes span { 
+
+    color:#ffde00;
+    font-size: 16px;
+}
+.renderTypes button {
+    display: flex;
+    color:#ffde00;
+    background: #cc0000;
+    width: 20px;
+    height: 20px;
+    border-radius:3px;
+    font-size:12px;
+    text-align: center;
+}
+.type{
+    display: flex;
+    flex-flow: wrap row;;
+}
+.submit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.submit button{
+    background: #313131;
+    border-radius: 9px;
+    width: 90px;
+    color: #ffde00;
+}
+.error{
+    color:#ffde00;
+    font-size: 18px;
+    margin:15px;
+
+}
+form{
+    background: rgba(255,255,255,0.3);
+}
