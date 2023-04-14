@@ -7,8 +7,8 @@
 
 .cuadrado1 {
     background-color: #224145;
-    width: 450px;
-    height: 550px;
+    width: 400px;
+    height: 500px;
     border-radius: 40px;
     display: flex;
     justify-content: flex-start;
@@ -28,8 +28,9 @@
 }
 
 .cuadrado2 {
-    height: 450px;
-    width: 650px;
+   padding: 10px;
+    height: 400px;
+    width: 600px;
     background-color: #868080;
     border-radius: 40px;
     margin-left: -220px;

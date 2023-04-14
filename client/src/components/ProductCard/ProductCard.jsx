@@ -3,7 +3,9 @@ import durability from "../../assets/durability.png";
 import styles from "../ProductCard/ProductCard.module.css";
 import hurleyCard from "../../assets/hurleyCard.png";
 
-const ProductCard = ({name,size,price}) => {
+const ProductCard = ({ name, size, price, imagen }) => {
+  const [imageSrc, setImageSrc] = useState(imagen[0]);
+
 
   return (
     <div className={styles.containerCard}>
@@ -14,6 +16,10 @@ const ProductCard = ({name,size,price}) => {
       </div>
       <div className={styles.cuadrado2}>
         <div className={styles.col1}>
+          <img
+            src={imageSrc}
+            alt={name}
+          />
         </div>
         <div className={styles.col2}>
           <div className={styles.fila1}>

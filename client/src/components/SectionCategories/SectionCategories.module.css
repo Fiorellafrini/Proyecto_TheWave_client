@@ -2,3 +2,11 @@
     color: white;
     font-size: 3em;
 }
+.containerProducts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+}

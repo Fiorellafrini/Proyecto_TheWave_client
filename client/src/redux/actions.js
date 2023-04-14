@@ -11,13 +11,15 @@ export const createProduct = body => async dipatch => {
         payload: data
     })
 };
-export const listProducts = () => async dispatch =>{
-    const {data} = await axios('http://localhost:3001/Product');
-    return dispatch({
-        type: 'GET_All_PRODUCTS',
-        payload: data
-    })
-};
+export function listProducts() {
+    return async function (dispatch) {
+      var json = await axios.get("http://localhost:3001/product");
+      return dispatch({
+        type: "GET_ALL_PRODUCTS",
+        payload: json.data,
+      });
+    };
+  }
 
 export const listTypes = () => async dispatch => {
     const {data} = await axios('http://localhost:3001/type');
