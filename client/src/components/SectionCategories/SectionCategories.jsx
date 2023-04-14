@@ -17,14 +17,13 @@ const SectionCategories = () => {
       <div className={styles.containerProducts}>
         {allProducts?.map((product, i) => {
           return (
-            <>
               <ProductCard
                 key={i}
                 name={product.name}
                 price={product.price}
                 size={product.size}
+                imagen={product.imagen}
               />
-            </>
           );
         })}
       </div>
