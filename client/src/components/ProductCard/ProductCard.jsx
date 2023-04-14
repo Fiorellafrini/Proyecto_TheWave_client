@@ -3,16 +3,8 @@ import durability from "../../assets/durability.png";
 import styles from "../ProductCard/ProductCard.module.css";
 import hurleyCard from "../../assets/hurleyCard.png";
 
-const ProductCard = ({name,imagen,size,price}) => {
-  const [imageSrc, setImageSrc] = useState(imagen[0]);
+const ProductCard = ({name,size,price}) => {
 
-  const handleMouseOver = () => {
-    setImageSrc(imagen[1]);
-  };
-
-  const handleMouseOut = () => {
-    setImageSrc(imagen[0]);
-  };
   return (
     <div className={styles.containerCard}>
       <div className={styles.cuadrado1}>
@@ -22,12 +14,6 @@ const ProductCard = ({name,imagen,size,price}) => {
       </div>
       <div className={styles.cuadrado2}>
         <div className={styles.col1}>
-        <img
-            src={imageSrc}
-            alt={name}
-            onMouseOver={handleMouseOver}
-            onMouseOut={handleMouseOut}
-          />
         </div>
         <div className={styles.col2}>
           <div className={styles.fila1}>
