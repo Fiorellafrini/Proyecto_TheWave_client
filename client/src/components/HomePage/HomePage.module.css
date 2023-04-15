@@ -20,6 +20,9 @@
     gap: 15px;
     padding: 19.5px;
 }
+.containerNav:hover {
+backdrop-filter: blur(10px);
+}
 
 .col {
     display: flex;
