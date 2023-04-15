@@ -124,17 +124,4 @@ export function filterByPriceDesc() {
 
 
 
-export const listTypes = () => async (dispatch) => {
-  const { data } = await axios("http://localhost:3001/type");
-  return dispatch({
-    type: "GET_All_TYPES",
-    payload: data,
-  });
-};
-export const listBrands = () => async (dispatch) => {
-  const { data } = await axios("http://localhost:3001/brand");
-  return dispatch({
-    type: "GET_ALL_BRANDS",
-    payload: data,
-  });
-};
+

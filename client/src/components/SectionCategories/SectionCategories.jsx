@@ -11,6 +11,8 @@ import {
   filterByPriceDesc,
 } from "../../redux/actions";
 
+import Infinite from "../InfiniteScroll/InfiniteScroll";
+
 const SectionCategories = () => {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.products);
