@@ -72,6 +72,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         brands: action.payload,
       };
+      
     default:
       return state;
   }

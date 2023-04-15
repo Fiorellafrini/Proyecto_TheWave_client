@@ -1,128 +1,165 @@
-.wrap{
-    font-family: 'Shantell Sans', cursive;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-content: center;
-    background-color: #cc0000;
-}
-.wrap h4 {
-    color: #ffde00;
-
-}
-.wrap label{
-    color: #ffde00;
-}
-.tp{
-    display: flex;
-    align-items: center;
-
-
-}
-.tp h1{
-display: block;
-}
-.tp button{
-    font-family: 'Inter', sans-serif;
-    display: flex;
-    margin-right: 30px;
-    font-size: 16px;
-    text-align: center ;
-    background: #ffde00;
-    color: #3b4cca;
-    border: 3px solid #b3a125;
-    border-radius: 6px;
-    cursor: pointer;
-}
-.colum1 {
-    display: flex;
-    flex-direction: column;
-}
-.colum1 input{
-    cursor: pointer;
-}
-.colum2{
-    display: flex;
-    flex-direction:  column;
-    margin-bottom: 33px;
-    margin-left: 30px;
-
-margin-right: 40px;
-}
-.rows {
-    display: flex;
-    align-items: center;
+* {
+	box-sizing: border-box;
 }
 
-.box{
-    display: flex;
-    flex-direction: column;
+body {
+	font-family: 'Roboto', sans-serif;
+	background: #E5E5E5;
 }
-.box label {
-    margin-right: 9px;
+
+main {
+	max-width: 800px;
+	width: 90%;
+	margin: auto;
+	padding: 40px;
 }
-.box input{
-    margin: 9px;
-    border-radius: 15px;
-    border: transparent 0px solid
+
+.formulario {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
 }
-.name{
-    display: flex;
-    flex-direction: column;
+
+.formulario__label {
+	display: block;
+	font-weight: 700;
+	padding: 10px;
+	cursor: pointer;
 }
-.img{
-    display: flex;
-    flex-direction: column;
+
+.formulario__grupo-input {
+	position: relative;
+}
+
+.formulario__input {
+	width: 100%;
+	background: #fff;
+	border: 3px solid transparent;
+	border-radius: 3px;
+	height: 45px;
+	line-height: 45px;
+	padding: 0 40px 0 10px;
+	transition: .3s ease all;
+}
+
+.formulario__input:focus {
+	border: 3px solid #0075FF;
+	outline: none;
+	box-shadow: 3px 0px 30px rgba(163,163,163, 0.4);
+}
+
+.formulario__input-error {
+	font-size: 12px;
+	margin-bottom: 0;
+	display: none;
+}
+
+.formulario__input-error-activo {
+	display: block;
+}
+
+.formulario__validacion-estado {
+	position: absolute;
+	right: 10px;
+	bottom: 15px;
+	z-index: 100;
+	font-size: 16px;
+	opacity: 0;
+}
+
+.formulario__checkbox {
+	margin-right: 10px;
+}
+
+.formulario__grupo-terminos, 
+.formulario__mensaje,
+.formulario__grupo-btn-enviar {
+	grid-column: span 2;
+}
+
+.formulario__mensaje {
+	height: 45px;
+	line-height: 45px;
+	background: #F66060;
+	padding: 0 15px;
+	border-radius: 3px;
+	display: none;
+}
+
+.formulario__mensaje-activo {
+	display: block;
+}
+
+.formulario__mensaje p {
+	margin: 0;
+}
+
+.formulario__grupo-btn-enviar {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.formulario__btn {
+	height: 45px;
+	line-height: 45px;
+	width: 30%;
+	background: #000;
+	color: #fff;
+	font-weight: bold;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	transition: .1s ease all;
+}
+
+.formulario__btn:hover {
+	box-shadow: 3px 0px 30px rgba(163,163,163, 1);
+}
+
+.formulario__mensaje-exito {
+	font-size: 14px;
+	color: #119200;
+	display: none;
+}
+
+.formulario__mensaje-exito-activo {
+	display: block;
+}
+
+/* ----- -----  Estilos para Validacion ----- ----- */
+.formulario__grupo-correcto .formulario__validacion-estado {
+	color: #1ed12d;
+	opacity: 1;
+}
+
+.formulario__grupo-incorrecto .formulario__label {
+	color: #bb2929;
+}
+
+.formulario__grupo-incorrecto .formulario__validacion-estado {
+	color: #bb2929;
+	opacity: 1;
+}
+
+.formulario__grupo-incorrecto .formulario__input {
+	border: 3px solid #bb2929;
 }
 
 
+/* ----- -----  Mediaqueries ----- ----- */
+@media screen and (max-width: 800px) {
+	.formulario {
+		grid-template-columns: 1fr;
+	}
 
-.stats{
-    display: flex;
-    flex-direction: column;
-    width: 66px;
-}
-.renderTypes{
-    display: flex;
-    width: 160px;
-    height: 99px;
-    flex-flow: row wrap;
-}.renderTypes span { 
+	.formulario__grupo-terminos, 
+	.formulario__mensaje,
+	.formulario__grupo-btn-enviar {
+		grid-column: 1;
+	}
 
-    color:#ffde00;
-    font-size: 16px;
-}
-.renderTypes button {
-    display: flex;
-    color:#ffde00;
-    background: #cc0000;
-    width: 20px;
-    height: 20px;
-    border-radius:3px;
-    font-size:12px;
-    text-align: center;
-}
-.type{
-    display: flex;
-    flex-flow: wrap row;;
-}
-.submit{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.submit button{
-    background: #313131;
-    border-radius: 9px;
-    width: 90px;
-    color: #ffde00;
-}
-.error{
-    color:#ffde00;
-    font-size: 18px;
-    margin:15px;
-
-}
-form{
-    background: rgba(255,255,255,0.3);
+	.formulario__btn {
+		width: 100%;
+	}
 }
