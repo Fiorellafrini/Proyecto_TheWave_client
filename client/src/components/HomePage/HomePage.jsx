@@ -25,7 +25,7 @@ const HomePage = () => {
         <div className={styles.containerNav}>
           <div className={styles.col}>
             <p onClick={() => handleNavItemClick("Home")}>Home</p>
-            <p onClick={() => handleNavItemClick("Categories")}>Categories</p>
+            <p onClick={() => handleNavItemClick("Categories")}>Products</p>
             <p onClick={() => handleNavItemClick("Courses")}>Courses</p>
           </div>
           <div className={styles.col}>
