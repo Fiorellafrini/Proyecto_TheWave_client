@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@200&display=swap');
+.cuadrado1 {
+    background-color: #224145;
+    width:100%;
+    height:1500px;
+    top: 460px;
+}
+/* cuadro principal de la imagenes  */
+.imag{
+    width: 1500px;
+    height: 1300px;
+    background: #868080;
+    border-radius:5px;
+    position: relative;
+    top: 50px;
+    left: 100px;
+}
+
+/* visor de imagen lateral  */
+.imagenT {
+    width: 180px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.74);
+    border-radius: 3px;
+    position: relative;
+    top: 90px;
+    left: 70px;
+    
+}
+.imagenT img {
+    width: 100px; 
+    height: 100px;
+    border: 1px solid black;
+    position: absolute;
+    top: 95px;
+    left: 30px;
+}
+
+/* recuadro donde se visualiza la imagen mas grande */
+.granImagen{
+    width: 600px;
+    height: 600px;
+    background: rgba(255, 255, 255, 0.74);
+    border-radius: 4px;
+    position: absolute;
+    top: 90px;
+    left: 300px;
+}
+
+/* recuadro de pagos */
+.pago{
+    width: 520px;
+    height: 1150px;
+    background: rgba(255, 255, 255, 0.74);
+    border-radius: 4px;
+    position: absolute;
+    top: 90px;
+    left: 950px;
+}
+.pago button {
+    background: rgb(20, 163, 144);
+    margin: 10px;
+    border-radius: 10px;
+    border: none;
+    color: rgb(22, 25, 27);
+    font-family: 'Work Sans';
+    font-size: 1.5em;
+    -webkit-box-shadow: 7px 14px 12px 0px rgba(0,0,0,0.37);
+    -moz-box-shadow: 7px 14px 12px 0px rgba(0,0,0,0.37);
+}
+
+
+.pago h1 {
+     position:relative;
+     left:20px !important;
+     font-family: 'Work Sans';
+    font-weight: 100;
+    font-size:2.5rem;
+    color: rgb(0, 0, 0);
+}
+
+.cuadrado1 .pago span {
+     top:230px;
+     left:256px !important;
+    font-family: 'Work Sans';
+    font-weight: 100;
+    font-size:2rem;
+    color: rgb(0, 0, 0);
+}
+
+.cuadrado1 .pago .metodo img{
+    position:relative;
+    top:212px;
+    left:30px;
+    padding: 5px;
+    width: 100px;
+    height: 100px;
+}
+.cuadrado1 .pago .metodo p {
+    top: 300px;
+    left: 30px;
+    font-family: 'Work Sans';
+    font-weight: 100;
+    font-size:2rem;
+    color: rgb(0, 0, 0);
+}
+.cuadrado1 .pago  #name {
+    top:20px;
+
+}
+.cuadrado1 .pago  #megusta {
+    top:10px;
+    left: 450px;
+}
+.cuadrado1 .pago  #precio {
+    top:230px;
+    left: 24px;
+    font-family: 'Work Sans';
+    font-weight: 100;
+    font-size: 2rem;
+    color: rgb(10, 10, 10);
+}
+
+.cuadrado1 .pago p{
+    font-family: 'Work Sans';
+    font-size: 1.5rem;
+    left:50px;
+}
+.cuadrado1 .pago  #envio {
+    top:484px;
+    color: rgb(33, 177, 103);
+}
+.cuadrado1 .pago  #devolucion {
+    top:550px;
+    color: rgb(33, 177, 103);
+}
+.cuadrado1 .pago  #dias {
+    top:600px;
+    color: rgb(10, 10, 10);
+}
+
+.cuadrado1 .pago  #protegida {
+    top:950px;
+    color: rgb(10, 10, 10);
+}
+.cuadrado1 .pago  #garantia {
+    top:1050px;
+    color: rgb(10, 10, 10);
+}
+.pago #carrito {
+    position: absolute;
+    top: 800px;
+    left: -2px;
+    height: 60px;
+    width: 500px;
+}
+.pago #comprar {
+    position: absolute;
+    top: 700px;
+    left: -2px;
+    height: 60px;
+    width: 500px;
+}
+
+
+
+.imag p{
+    font-family: 'Work Sans';
+    font-size: 2rem;
+    color: rgb(10, 10, 10);
+    position:absolute;
+    top: 750px;
+    left: 330px;
+}
+.imag span{
+    font-family: 'Work Sans';
+    font-size: 2rem;
+    color: rgb(10, 10, 10);
+    position:absolute;
+    top: 750px;
+    left: 700px;
+}
+/* espacio para comentarios y calificacion del producto */
+.comentario{
+    width: 835px;
+    height: 500px;
+    background: rgba(255, 255, 255, 0.74);
+    border-radius: 4px;
+    position: absolute;
+    top: 790px;
+    left: 173px;
+}

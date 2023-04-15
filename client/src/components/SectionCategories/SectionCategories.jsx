@@ -11,7 +11,7 @@ import {
   filterByPriceDesc,
 } from "../../redux/actions";
 
-import Infinite from "../InfiniteScroll/InfiniteScroll";
+// import Infinite from "../InfiniteScroll/InfiniteScroll";
 
 const SectionCategories = () => {
   const dispatch = useDispatch();
@@ -61,7 +61,8 @@ const SectionCategories = () => {
                   name={product.name}
                   price={product.price}
                   size={product.size}
-                  // imagen={product.imagen}
+                  imagen={product.imagen}
+                  id={product.id}
                 />
               );
             })}
