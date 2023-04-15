@@ -1,34 +1,32 @@
-.containerPublicidad {
-    margin-top: 30px;
-    height: 350px;
-    background-color: rgba(240, 248, 255, 0.509);
-    display: flex;
-    justify-content: space-between;
-}
-
-.col1 {
-    padding: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.col2{
-    display: flex;
-    justify-content: center;
-}
-.col3 {
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    font-size: 2em;
-    color: #5b5b5c;
-}
-
 .productosDestacados {
     margin-top: 20px;
     margin-left: 20px;
     font-size: 1.50em;
 }
+
 hr {
     background: #5b5b5c;
+}
+
+.containerSpinner {
+    height: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 9px solid;
+    border-color: #dbdcef;
+    border-right-color: #224145;
+    text-align: center;
+    animation: spinner-d3wgkg 1s infinite linear;
+}
+@keyframes spinner-d3wgkg {
+    to {
+        transform: rotate(1turn);
+    }
 }

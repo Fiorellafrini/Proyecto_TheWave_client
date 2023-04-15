@@ -1,0 +1,35 @@
+
+.filters input {
+    width: 400px;
+    height: 60px;
+    border: 1px solid #224145;
+    border-radius: 15px;
+    background-color: transparent;
+    text-decoration: none;
+    padding-left: 10px;
+    font-family: 'Work Sans';
+    font-size: 1.23em;
+    font-weight: 700;
+    outline: none;
+}
+.filters input:hover {
+
+}
+
+.filters button {
+    width: 150px;
+    height: 60px;
+    border: none;
+    border-radius: 15px;
+    background-color: #224145;
+    color: white;
+    padding: 10px;
+    font-family: 'Work Sans';
+    font-size: 1.23em;
+    outline: none;
+    text-decoration: none;
+    margin-left: 5px;
+}
+.filters button:hover {
+
+}
