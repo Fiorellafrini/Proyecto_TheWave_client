@@ -5,6 +5,7 @@ import {useParams} from 'react-router'
 import styles from './Detail.module.css'
 import visa from './iconos/visa.png' 
 import master from './iconos/master.png'
+import pago from './iconos/pago.png'
 
 function Detail() {
 const dispatch = useDispatch()
@@ -20,27 +21,34 @@ const {id} = useParams()
   return (
     <div className={styles.cuadrado1}>
       <div className={styles.imag}>
-        {detalle.imagen?.map((imagen) => (
+        {detalle.imagen?.map((imagen, i) => (
           <div className={styles.imagenT}>
-            <img key={detalle.id} src={imagen} alt="imagen" />
+            <img key={detalle.id} src={i === 0 ? imagen : null} alt="imagen" />
           </div>
         ))}
-        <div className={styles.granImagen}>"imagen selecionada"</div>
+        <div className={styles.granImagen}>
+          {detalle.imagen?.map((imagen, i) => (
+            <img key={detalle.id} src={i === 0 ? imagen : null} alt="" />
+          ))}
+        </div>
         <div className={styles.pago}>
           <h2 id={styles.megusta}>❤️</h2>
           <h1 id={styles.name}>
             <b>{detalle?.name}</b>
           </h1>
           <p id={styles.precio}>
-            <b>$ {detalle?.price}</b>
+            <b>$ {detalle?.price} ARS</b>
           </p>
           <span>
             <b>Talla {detalle?.size}</b>
           </span>
           <div className={styles.metodo}>
-            <p id={styles.cuotas}>Hasta 48 cuotas</p>
+            <p id={styles.cuotas}>
+              <b>Metodos de pago</b>
+            </p>
             <img src={visa} alt="visa" />
             <img src={master} alt="card" />
+            <img src={pago} alt="card" />
           </div>
           <p id={styles.envio}>Envío gratis a nivel nacional</p>
           <p id={styles.devolucion}>Devolución gratis</p>
@@ -56,7 +64,32 @@ const {id} = useParams()
           </p>
         </div>
       </div>
-      <div className={styles.comentario}></div>
+      <div className={styles.comentario}>
+        <h2>
+          <b>Sobre este artículo</b>
+        </h2>
+        <ul>
+          <li>
+            Dimensiones: 8 pies x 22 1/2 x 3 1/4 <br />
+            peso 11.5 libras Volumen de 86 litros de capacidad de peso sugerida{" "}
+            <br />
+            de hasta 200 libras
+          </li>
+          <li>
+            Incluye almohadilla de tracción para <br />
+            correa de tobillo y cubierta suave para calcetines para protección.{" "}
+            <br />
+            Correa de poliuretano de alta calidad
+          </li>
+          <li>
+            Soft Webs-IXL Water Barrier Skin Crosslink
+            <br />
+            Top Deck and Rils High density HDPE PE Skin <br />
+            Slick Bottom Skin <br />
+            Exclusive Brushed Color Graphic Art Deck
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }
