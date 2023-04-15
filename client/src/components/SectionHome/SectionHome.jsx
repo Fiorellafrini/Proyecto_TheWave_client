@@ -1,30 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../SectionHome/SectionHome.module.css";
-import hurley from "../../assets/hurley.png";
-import tablaPublicidad from "../../assets/tablaPublicidad.png";
-import { ImArrowRight } from "react-icons/im";
-// import Infinite from "../InfiniteScroll/InfiniteScroll.jsx";
+import Publicidad from "../Publicidad/Publicidad";
+import CarruselProducts from "../CarruselProducts/CarruselProducts";
+
 const SectionHome = () => {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
+
   return (
     <>
-      <div className={styles.containerPublicidad}>
-        <div className={styles.col1}>
-          <img src={hurley} alt="" />
+      {loading ? (
+        <div className={styles.containerSpinner}>
+          <div className={styles.spinner}></div>
         </div>
-        <div className={styles.col2}>
-          <img src={tablaPublicidad} alt="" />
-        </div>
-        <div className={styles.col3}>
-          <ImArrowRight />
-        </div>
-      </div>
-      <div className={styles.productosDestacados}>
-          {/* <p>PRODUCTOS DESTACADOS</p>
-          <Infinite/>
-          <hr /> */}
-      </div>
+      ) : (
+        <>
+        <Publicidad/>
+        <CarruselProducts/>
+        </>
+      )}
     </>
   );
 };
 
 export default SectionHome;
+
+
+
+
+
+

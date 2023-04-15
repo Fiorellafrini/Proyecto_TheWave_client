@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+.productosDestacados {
+    margin-top: 20px;
+    margin-left: 20px;
+    font-size: 1.50em;
+}
+
+hr {
+    background: #5b5b5c;
+}
+
+.carruselItems {
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    margin: auto;
+    max-width: 1750px;
+}
+
+.carruselItem {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    object-fit: cover;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.carruselItem img {
+    width: 150px;
+}
+
+.carruselItem:hover {
+    transform: scale(1.03);
+}

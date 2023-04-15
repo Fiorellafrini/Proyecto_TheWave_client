@@ -2,11 +2,39 @@
     color: white;
     font-size: 3em;
 }
-.containerProducts {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 30px;
+.products {
     padding: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    border: 1px solid red;
 }
+
+.products img {
+    border-radius: 20px;
+}
+
+/* ----------------------------------------Spinner---------------------------------------- */
+.containerSpinner {
+    height: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 9px solid;
+    border-color: #dbdcef;
+    border-right-color: #224145;
+    text-align: center;
+    animation: spinner-d3wgkg 1s infinite linear;
+}
+@keyframes spinner-d3wgkg {
+    to {
+        transform: rotate(1turn);
+    }
+}
+/* ----------------------------------------Spinner---------------------------------------- */
