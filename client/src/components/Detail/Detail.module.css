@@ -9,6 +9,30 @@
     height:1500px;
     top: 460px;
 }
+
+.cuadrado1 a img{
+ width:40px;
+ height:41px;
+ position:relative;
+ top:121px;
+ left:500px;
+ cursor: pointer;
+}
+
+.cuadrado1 .cerrar a{
+    width: 100px;
+    height: 100px;
+    font-family: 'Work Sans';
+    font-size:3rem;
+    cursor: pointer;
+    position:relative ;
+    left:300px ;
+    top:120px ;
+    background: rgba(3, 42, 43, 0.4);
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+}
 /* cuadro principal de la imagenes  */
 .imag{
     width: 1540px;
@@ -49,6 +73,7 @@
     position: absolute;
     top: 90px;
     left: 300px;
+    cursor: zoom-in;
 }
 .cuadrado1 .granImagen img{
     width: 280px;
@@ -68,7 +93,7 @@
     left: 950px;
 }
 .pago button {
-    background: rgba(17, 65, 66);
+    background: rgb(3, 42, 43);
     margin: 10px;
     border-radius: 10px;
     border: none;
@@ -77,7 +102,9 @@
     font-size: 1.5em;
     -webkit-box-shadow: 7px 14px 12px 0px rgbaa(0,0,0,0.37);
     -moz-box-shadow: 7px 14px 12px 0px rgbaa(0,0,0,0.37);
+    cursor: pointer;
 }
+
 
 
 .pago h1 {
@@ -102,7 +129,7 @@
     position:relative;
     top:232px;
     left:30px;
-    padding: 5px;
+    margin: 20px;
     width: 100px;
     height: 100px;
 }
@@ -137,17 +164,17 @@
     left:50px;
 }
 .cuadrado1 .pago  #envio {
-    top:484px;
+    top:540px;
     color: rgba(226, 235, 241);
     font-size: 2rem;
 }
 .cuadrado1 .pago  #devolucion {
-    top:550px;
+    top:590px;
     color: rgba(226, 235, 241);
     font-size: 2rem;
 }
 .cuadrado1 .pago  #dias {
-    top:600px;
+    top:630px;
     color: rgba(226, 235, 241);
 }
 
@@ -199,7 +226,7 @@
     background: rgba(17, 65, 66, 0.6);
     border-radius: 4px;
     position: absolute;
-    top: 790px;
+    top: 840px;
     left: 550px;
 }
 

@@ -6,11 +6,13 @@ import styles from './Detail.module.css'
 import visa from './iconos/visa.png' 
 import master from './iconos/master.png'
 import pago from './iconos/pago.png'
+import {Link} from 'react-router-dom'
 
 function Detail() {
 const dispatch = useDispatch()
 const detalle = useSelector((state) => state.detail);
 const {id} = useParams()
+
 
 
 
@@ -20,10 +22,13 @@ const {id} = useParams()
 
   return (
     <div className={styles.cuadrado1}>
+      <div className={styles.cerrar}>
+        <Link to="/HomePage">Volver</Link>
+      </div>
       <div className={styles.imag}>
         {detalle.imagen?.map((imagen, i) => (
           <div className={styles.imagenT}>
-            <img key={detalle.id} src={i === 0 ? imagen : null} alt="imagen" />
+            <img key={detalle.id} src={imagen} alt="imagen" />
           </div>
         ))}
         <div className={styles.granImagen}>
@@ -32,7 +37,7 @@ const {id} = useParams()
           ))}
         </div>
         <div className={styles.pago}>
-          <h2 id={styles.megusta}>❤️</h2>
+          <h2 id={styles.megusta}>.</h2>
           <h1 id={styles.name}>
             <b>{detalle?.name}</b>
           </h1>
