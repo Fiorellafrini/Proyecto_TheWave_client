@@ -1,15 +1,14 @@
-import React, {useState} from "react";
+import React from "react";
 import durability from "../../assets/durability.png";
 import styles from "../ProductCard/ProductCard.module.css";
 import hurleyCard from "../../assets/hurleyCard.png";
-import {Link} from "react-router-dom";
+// import {Link} from "react-router-dom";
 
-const ProductCard = ({ name, size, price, id, imagen }) => {
-  const [imageSrc] = useState(imagen[0] || imagen[1]);
+const ProductCard = ({ name, size, price }) => {
+  // const [imageSrc] = useState(imagen[0]);
 
   return (
     <div className={styles.containerCard}>
-      <Link to={`/detail/${id}`}>
         <div className={styles.cuadrado1}>
           <div className={styles.imgCuadrado1}>
             <img src={hurleyCard} alt="#" />
@@ -17,7 +16,7 @@ const ProductCard = ({ name, size, price, id, imagen }) => {
         </div>
         <div className={styles.cuadrado2}>
           <div className={styles.col1}>
-            <img src={imageSrc} alt={name} />
+            {/* <img src={imageSrc} alt={name} /> */}
           </div>
           <div className={styles.col2}>
             <div className={styles.fila1}>
@@ -39,7 +38,6 @@ const ProductCard = ({ name, size, price, id, imagen }) => {
             </div>
           </div>
         </div>
-      </Link>
     </div>
   );
 };
