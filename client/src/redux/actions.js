@@ -8,7 +8,7 @@ export const FILTER_BY_ASC = "FILTER_BY_ASC";
 export const FILTER_BY_DESC = "FILTER_BY_DESC";
 export const FILTER_BY_PRICE_ASC = "FILTER_BY_PRICE_ASC";
 export const FILTER_BY_PRICE_DESC = "FILTER_BY_PRICE_DESC";
-
+export const DETAIL_PRODUCT = "DETAIL_PRODUCT";
 export const createProduct = (body) => async (dipatch) => {
   const { data } = await axios.post("http://localhost:3001/Product", body);
   return dipatch({
@@ -103,12 +103,24 @@ export function filterByPriceDesc() {
   };
 }
 
+// -------------------DETAIL----------------------------------
 
 
 
 
-
-
+export function productsById(id) {
+  return async function (dispatch) {
+    try {
+      var json = await axios.get(`http://localhost:3001/Product/${id}`);
+      return dispatch({
+        type: "DETAIL_PRODUCT",
+        payload: json.data,
+      });
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+}
 
 
 

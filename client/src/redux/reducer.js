@@ -8,6 +8,7 @@ import {
   FILTER_BY_DESC,
   FILTER_BY_PRICE_ASC,
   FILTER_BY_PRICE_DESC,
+  DETAIL_PRODUCT
 } from "./actions";
 
 const initialState = {
@@ -72,7 +73,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         brands: action.payload,
       };
-      
+    case DETAIL_PRODUCT:
+      return {
+        ...state,
+        detail: action.payload,
+      }
     default:
       return state;
   }
