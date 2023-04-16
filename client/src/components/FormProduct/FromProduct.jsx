@@ -35,7 +35,6 @@ const FormProduct = () => (
             if(values.price === 0){
                 errors.price = "Please enter a price for this product"; 
             }
-
             return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
