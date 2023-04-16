@@ -2,14 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import ProductCard from "../ProductCard/ProductCard";
-import { useDispatch, useSelector } from "react-redux";
+
 
 const Infinite = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [products, setProducts] = useState([]);
   const [totalProducts, setTotalProducts] = useState(0);
- 
-    const dispatch = useDispatch();
+
     async function fetchItems(page) {
       await fetch(`http://localhost:3001/product?page=${page}&size=5`)
         .then((response) => response.json())
@@ -21,7 +20,7 @@ const Infinite = () => {
     }
   
     useEffect(() => {
-     fetchItems(currentPage);
+      fetchItems(currentPage);
     }, [currentPage]);
   
   return (
