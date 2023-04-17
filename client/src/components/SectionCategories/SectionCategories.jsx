@@ -11,7 +11,8 @@ import {
 } from "../../redux/actions";
 
 import Infinite from "../InfiniteScroll/InfiniteScroll";
-
+import Filtro_Marca from "../Filtros/Filtro_Marca";
+import Filtro_Type from "../Filtros/Filtro_Type";
 const SectionCategories = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
@@ -46,8 +47,10 @@ const SectionCategories = () => {
               descendente
             </button>
           </div>
+            <Filtro_Marca className={styles.filtros}></Filtro_Marca>
+            <Filtro_Type className={styles.filtros}></Filtro_Type>
           <div className={styles.containerProducts}>
-            <Infinite/>
+            <Infinite />
           </div>
         </div>
       )}
