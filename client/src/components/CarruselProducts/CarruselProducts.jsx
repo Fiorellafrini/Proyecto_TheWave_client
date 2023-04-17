@@ -56,11 +56,11 @@ const CarruselProducts = () => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        {diets.length !== 0 ? diets.map((element, i) => (
+        {diets.map((element, i) => (
           <div key={i} className={styles.carruselItem}>
             <img className={styles.img} src={element.src} alt="" />
           </div>
-        )) : <Error404/>}
+        ))}
       </div>
     </div>
   );
