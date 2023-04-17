@@ -1,7 +1,6 @@
 import styles from "../CarruselProducts/CarruselProducts.module.css";
 import { useState, useEffect, useRef } from "react";
 import diets from "./img";
-import Error404 from "../Error404/Error404";
 
 const CarruselProducts = () => {
   const carruselRef = useRef(null);
