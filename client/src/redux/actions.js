@@ -6,6 +6,7 @@ export const GET_ALL_BRANDS = "GET_ALL_BRANDS";
 export const FILTER_BY_NAME = "FILTER_BY_NAME";
 export const FILTER_BY_ASC = "FILTER_BY_ASC";
 export const FILTER_BY_DESC = "FILTER_BY_DESC";
+export const FILTER_ALL = "FILTER_ALL";
 export const FILTER_BY_PRICE_ASC = "FILTER_BY_PRICE_ASC";
 export const FILTER_BY_PRICE_DESC = "FILTER_BY_PRICE_DESC";
 export const DETAIL_PRODUCT = "DETAIL_PRODUCT";
@@ -61,6 +62,8 @@ export function filterByNameAsc() {
     }
   };
 }
+
+
 export function filterByNameDesc() {
   return async function (dispatch) {
     try {
@@ -104,9 +107,6 @@ export function filterByPriceDesc() {
 
 // -------------------DETAIL----------------------------------
 
-
-
-
 export function productsById(id) {
   return async function (dispatch) {
     try {
@@ -121,7 +121,6 @@ export function productsById(id) {
   };
 }
 
-
 export function productsData(page) {
   return async function (dispatch) {
     try {
@@ -130,14 +129,13 @@ export function productsData(page) {
       );
       return dispatch({
         type: "INFINITY",
-        payload: json.data.products 
+        payload: json.data.products,
       });
     } catch (error) {
       alert(error.message);
     }
   };
 }
-
 
 export const setCurrentPage = (payload) => {
   return {
@@ -146,15 +144,10 @@ export const setCurrentPage = (payload) => {
   };
 };
 
-
-
-
 export function filterBrand(id) {
   return async function (dispatch) {
     try {
-      var json = await axios.get(
-        `http://localhost:3001/filter/brands/${id}`
-      );
+      var json = await axios.get(`http://localhost:3001/filter/brands/${id}`);
       return dispatch({
         type: "FILTER_BRAND",
         payload: json.data,
@@ -164,9 +157,6 @@ export function filterBrand(id) {
     }
   };
 }
-
-
-
 
 export function filterType(id) {
   return async function (dispatch) {
@@ -181,3 +171,56 @@ export function filterType(id) {
     }
   };
 }
+
+//-----------------------------------------------------
+// export const filterAll = () => (dispatch, getState) => {//getState es un método de Redux que permite acceder al estado actual
+//   const allProducts = getState().allProduct; 
+//   dispatch({
+//     type: FILTER_ALL,
+//     payload: allProducts,
+//   });
+// };
+
+
+
+export function filterAll(filters, orderBy) {
+  return async function (dispatch) {
+    try {
+      let url = "http://localhost:3001/product?";
+      let params = {};
+
+      // Construir los parámetros de la URL a partir de los filtros y orden recibidos
+      if (filters.brand) params.brand = filters.brand;
+      if (filters.type) params.type = filters.type;
+      if (orderBy === "nameAsc") url += "orderBy=name&sort=asc";
+      if (orderBy === "nameDesc") url += "orderBy=name&sort=desc";
+      if (orderBy === "priceAsc") url += "orderBy=price&sort=asc";
+      if (orderBy === "priceDesc") url += "orderBy=price&sort=desc";
+
+
+      if (orderBy) {
+        url += `orderBy=${orderBy}&`;
+      }
+      if (params) {
+        url += new URLSearchParams(params);
+      }
+      
+      // Concatenar los parámetros de la URL
+      const queryString = Object.keys(params)
+        .map((key) => key + "=" + params[key])
+        .join("&");
+      if (queryString !== "") {
+        url += "&" + queryString;
+      }
+
+      const response = await axios.get(url);
+      return dispatch({
+        type: FILTER_ALL,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
