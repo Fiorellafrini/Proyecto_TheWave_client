@@ -15,7 +15,9 @@ export const FILTER_BRAND = "FILTER_BRAND";
 export const FILTER_TYPE = "FILTER_TYPE";
 
 export const createProduct = (body) => async (dipatch) => {
-  const { data } = await axios.post("http://localhost:3001/Product", body);
+  const { data } = await axios.post("http://localhost:3001/product", body);
+  console.log(data);
+  console.log(body);
   return dipatch({
     type: "POST_PRODUCT",
     payload: data,
