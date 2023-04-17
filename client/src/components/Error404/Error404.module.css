@@ -21,7 +21,7 @@ height: 100vh;
 */
 
 .container h3 {
-    color: rgb(255, 255, 255);
+    color: rgb(232, 230, 230);
     font-size: 2em;
     font-family: 'Work Sans';
     font-weight: bold;
@@ -32,7 +32,7 @@ height: 100vh;
 }
 
 .container h5 {
-    color: rgb(255, 255, 255);
+    color: rgb(233, 231, 231);
     font-size: 2em;
     font-family: 'Work Sans';
     font-weight: bold;
