@@ -22,12 +22,19 @@ const SectionHome = () => {
           <div className={styles.containerTrasparent}>
             <Publicidad />
             <div className={styles.aboutPage}>
-              <div className={styles.img1}><h1>Stand Up Paddle</h1></div>
-              <div className={styles.img2}><h1>Surf</h1></div>
-              <div className={styles.img3}><h1>WakeBoard</h1></div>
+              <div className={styles.img1}>
+                <h1>Stand Up Paddle</h1>
+              </div>
+              <div className={styles.img2}>
+                <h1>Surf</h1>
+              </div>
+              <div className={styles.img3}>
+                <h1>WakeBoard</h1>
+              </div>
             </div>
           </div>
-          <div className={styles.containerColor}>      
+          <div className={styles.containerColor}>
+            <div className={styles.coursesHome}></div>
             <CarruselProducts />
           </div>
         </>

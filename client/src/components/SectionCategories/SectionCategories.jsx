@@ -9,14 +9,20 @@ import {
   filterByNameDesc,
   filterByPriceAsc,
   filterByPriceDesc,
+  filterByType,
 } from "../../redux/actions";
 
-import Infinite from "../InfiniteScroll/InfiniteScroll";
+// import Infinite from "../InfiniteScroll/InfiniteScroll";
 
 const SectionCategories = () => {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.products);
+  const filterProducts = useSelector((state) => state.allProduct);
   const [loading, setLoading] = useState(true);
+
+  const filterByTypes = (e) => {
+    dispatch(filterByType(e.target.value));
+  };
 
   useEffect(() => {
     dispatch(listProducts());
@@ -52,6 +58,15 @@ const SectionCategories = () => {
             <button onClick={() => dispatch(filterByPriceDesc())}>
               descendente
             </button>
+            <p>byType</p>
+            <select name="" id="" onChange={(e) => filterByTypes(e)}>
+              <option value="1">Aletas de buceo</option>
+              <option value="2">Traje De Neopreno</option>
+              <option value="3">Tabla de Stand Up Paddle</option>
+              <option value="4">Tabla de Surf</option>
+              <option value="5">Tabla de WakeBoard</option>
+              <option value="allTypes">All Types</option>
+            </select>
           </div>
           <div className={styles.containerProducts}>
             {allProducts?.map((product, i) => {
