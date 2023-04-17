@@ -172,55 +172,12 @@ export function filterType(id) {
   };
 }
 
+
 //-----------------------------------------------------
-// export const filterAll = () => (dispatch, getState) => {//getState es un método de Redux que permite acceder al estado actual
-//   const allProducts = getState().allProduct; 
-//   dispatch({
-//     type: FILTER_ALL,
-//     payload: allProducts,
-//   });
-// };
-
-
-
-export function filterAll(filters, orderBy) {
-  return async function (dispatch) {
-    try {
-      let url = "http://localhost:3001/product?";
-      let params = {};
-
-      // Construir los parámetros de la URL a partir de los filtros y orden recibidos
-      if (filters.brand) params.brand = filters.brand;
-      if (filters.type) params.type = filters.type;
-      if (orderBy === "nameAsc") url += "orderBy=name&sort=asc";
-      if (orderBy === "nameDesc") url += "orderBy=name&sort=desc";
-      if (orderBy === "priceAsc") url += "orderBy=price&sort=asc";
-      if (orderBy === "priceDesc") url += "orderBy=price&sort=desc";
-
-
-      if (orderBy) {
-        url += `orderBy=${orderBy}&`;
-      }
-      if (params) {
-        url += new URLSearchParams(params);
-      }
-      
-      // Concatenar los parámetros de la URL
-      const queryString = Object.keys(params)
-        .map((key) => key + "=" + params[key])
-        .join("&");
-      if (queryString !== "") {
-        url += "&" + queryString;
-      }
-
-      const response = await axios.get(url);
-      return dispatch({
-        type: FILTER_ALL,
-        payload: response.data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-}
-
+export const filterAll = () => (dispatch, getState) => {//getState es un método de Redux que permite acceder al estado actual
+  const allProducts = getState().allProduct; 
+  dispatch({
+    type: "FILTER_ALL",
+    payload: allProducts,
+  });
+};
