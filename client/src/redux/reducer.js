@@ -8,6 +8,11 @@ import {
   FILTER_BY_DESC,
   FILTER_BY_PRICE_ASC,
   FILTER_BY_PRICE_DESC,
+  DETAIL_PRODUCT,
+  INFINITY,
+  SET_CURRENTPAGE,
+  FILTER_BRAND,
+  FILTER_TYPE
 } from "./actions";
 
 const initialState = {
@@ -15,6 +20,8 @@ const initialState = {
   types: [],
   detail: [],
   brands: [],
+  Infinity: [],
+  setPage: 0,
 };
 
 const reducer = (state = initialState, action) => {
@@ -61,7 +68,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         products: action.payload,
       };
-      
+
     case GET_All_TYPES:
       return {
         ...state,
@@ -72,7 +79,31 @@ const reducer = (state = initialState, action) => {
         ...state,
         brands: action.payload,
       };
-      
+    case DETAIL_PRODUCT:
+      return {
+        ...state,
+        detail: action.payload,
+      };
+    case INFINITY:
+      return {
+        ...state,
+        Infinity: action.payload,
+      };
+    case SET_CURRENTPAGE:
+      return {
+        ...state,
+        setPage: action.payload,
+      };
+    case FILTER_BRAND:
+      return{
+        ...state,
+        products : action.payload
+      }
+    case FILTER_TYPE:
+      return{
+        ...state,
+        products: action.payload
+      }
     default:
       return state;
   }
