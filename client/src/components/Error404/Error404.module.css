@@ -1,0 +1,41 @@
+.container{
+    background-size: cover;
+    
+}
+
+/*
+padding-bottom: 100%;
+width: 100%;
+position: absolute;
+display: flex;
+align-items: center;
+justify-content: center;
+height: 100vh;
+*/
+/*
+.img{
+    z-index: 10;
+    width: 250px;
+    height: 250px;
+}
+*/
+
+.container h3 {
+    color: rgb(232, 230, 230);
+    font-size: 2em;
+    font-family: 'Work Sans';
+    font-weight: bold;
+    margin-top: 30px;
+    text-align: left;
+    display: block;
+
+}
+
+.container h5 {
+    color: rgb(233, 231, 231);
+    font-size: 2em;
+    font-family: 'Work Sans';
+    font-weight: bold;
+    text-align: left;
+    display: block;
+    }
