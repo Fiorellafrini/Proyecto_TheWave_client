@@ -72,3 +72,20 @@ formulario {
 .formulario input[type="radio"] {
 	width: auto;
 }
+.cntd{
+	display: flex;
+	justify-content: center;
+	background-color: rgba(0, 0, 0, 0.16) ;
+	width: 600px;
+	height: 500px;
+	transform:translatex(541px) translatey(0px);
+}
+.formulario select  {
+	margin: 5px;
+}
+.selets{
+	display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr ;
+	
+	
+}

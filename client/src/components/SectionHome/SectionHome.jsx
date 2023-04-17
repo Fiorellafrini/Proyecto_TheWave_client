@@ -6,9 +6,8 @@ import CarruselProducts from "../CarruselProducts/CarruselProducts";
 const SectionHome = () => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+    setLoading(false);
+  
   }, []);
 
   return (
