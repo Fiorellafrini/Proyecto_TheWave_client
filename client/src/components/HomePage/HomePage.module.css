@@ -19,6 +19,7 @@
     justify-content: space-around;
     gap: 15px;
     padding: 19.5px;
+    cursor: pointer;
 }
 .containerNav:hover {
 backdrop-filter: blur(10px);

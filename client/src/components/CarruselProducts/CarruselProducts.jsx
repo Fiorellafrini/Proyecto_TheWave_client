@@ -1,6 +1,7 @@
 import styles from "../CarruselProducts/CarruselProducts.module.css";
 import { useState, useEffect, useRef } from "react";
 import diets from "./img";
+import Error404 from "../Error404/Error404";
 
 const CarruselProducts = () => {
   const carruselRef = useRef(null);
@@ -56,11 +57,11 @@ const CarruselProducts = () => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        {diets.map((element, i) => (
+        {diets.length !== 0 ? diets.map((element, i) => (
           <div key={i} className={styles.carruselItem}>
             <img className={styles.img} src={element.src} alt="" />
           </div>
-        ))}
+        )) : <Error404/>}
       </div>
     </div>
   );
