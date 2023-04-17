@@ -6,6 +6,7 @@ import Error404 from "../Error404/Error404";
 const CarruselProducts = () => {
   const carruselRef = useRef(null);
   const [isPaused, setIsPaused] = useState(false);
+  
 
   useEffect(() => {
     const carrusel = carruselRef.current;

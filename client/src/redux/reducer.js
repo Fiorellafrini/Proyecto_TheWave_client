@@ -17,6 +17,7 @@ import {
 
 const initialState = {
   products: [],
+  allProduct: [],
   types: [],
   detail: [],
   brands: [],

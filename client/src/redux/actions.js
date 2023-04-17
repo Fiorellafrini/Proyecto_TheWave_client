@@ -51,9 +51,7 @@ export function filterByName(payload) {
 export function filterByNameAsc() {
   return async function (dispatch) {
     try {
-      var json = await axios.get(
-        "http://localhost:3001/order/name/asc"
-      );
+      var json = await axios.get("http://localhost:3001/order/name/asc");
       return dispatch({
         type: "FILTER_BY_ASC",
         payload: json.data,
@@ -66,9 +64,7 @@ export function filterByNameAsc() {
 export function filterByNameDesc() {
   return async function (dispatch) {
     try {
-      var json = await axios.get(
-        "http://localhost:3001/order/name/desc"
-      );
+      var json = await axios.get("http://localhost:3001/order/name/desc");
       return dispatch({
         type: "FILTER_BY_DESC",
         payload: json.data,
@@ -82,9 +78,7 @@ export function filterByNameDesc() {
 export function filterByPriceAsc() {
   return async function (dispatch) {
     try {
-      var json = await axios.get(
-        "http://localhost:3001/order/price/less"
-      );
+      var json = await axios.get("http://localhost:3001/order/price/less");
       return dispatch({
         type: "FILTER_BY_PRICE_ASC",
         payload: json.data,
@@ -97,9 +91,7 @@ export function filterByPriceAsc() {
 export function filterByPriceDesc() {
   return async function (dispatch) {
     try {
-      var json = await axios.get(
-        "http://localhost:3001/order/price/higher"
-      );
+      var json = await axios.get("http://localhost:3001/order/price/higher");
       return dispatch({
         type: "FILTER_BY_PRICE_DESC",
         payload: json.data,
