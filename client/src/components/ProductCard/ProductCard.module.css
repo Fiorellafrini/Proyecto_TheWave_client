@@ -42,10 +42,7 @@
 }
 
 .col1 img {
-    width: 145px;
-    transform: rotate(348deg) translate(-19px, -10px);
-    -webkit-transform: rotate(348deg) translate(-19px, -10px);
-    -moz-transform: rotate(348deg) translate(-19px, -10px);
+    width: 180px;
 }
 
 .col2 {

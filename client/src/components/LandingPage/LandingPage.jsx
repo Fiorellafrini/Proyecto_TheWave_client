@@ -53,7 +53,7 @@ const LandingPage = () => {
           </div>
           <div className={styles.user}>
             <img src={logoPage} alt="" />
-            <p>Federico</p>
+            <p>Autentificacion</p>
             <div className={styles.dropdown}>
               <button
                 className={styles.dropdownToggle}
@@ -70,7 +70,7 @@ const LandingPage = () => {
                     </li>
                     <li onClick={() => handleNavItemClick("Log in")}>Log in</li>
                     <li onClick={() => handleNavItemClick("Shop")}>Register</li>
-                    <li>Federico</li>
+                    <li>Autentificacion</li>
                   </ul>
                 </div>
               )}
@@ -86,7 +86,7 @@ const LandingPage = () => {
                   The best page of nautical products, discover what is in our
                   stores
                 </p>
-                <Link to={"/HomePage"}>
+                <Link to={"/SectionHome"}>
                   <button>Explorer</button>
                 </Link>
               </div>

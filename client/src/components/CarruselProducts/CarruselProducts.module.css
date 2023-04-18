@@ -2,6 +2,8 @@
     display: flex;
     flex-direction: column;
     margin-top: 50px;
+    border-radius: 42px;
+
 }
 .productosDestacados {
     margin-top: 20px;

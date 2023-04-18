@@ -1,4 +1,41 @@
-.videoBackground {
-    border: 1px solid green;
+.containerCoursesBanner {
+    position: relative;
+    /* Asegura que la posición del botón sea relativa a este contenedor */
+margin: 20px;
+}
+
+.buttonCourses {
+    position: absolute;
+    width: 200px;
+    height: 70px;
+    bottom: 0;
+    right: 0;
+    padding: 10px 20px;
+    margin: 40px;
+    border: none;
+    color: white;
+    font-family: 'Work Sans';
+    font-size: 2em;
+    background-color: #33cc99ca;
+    border-radius: 15px;
+}
+.buttonCourses:hover {
+    box-shadow: 10px 10px 13px 0px rgba(0, 0, 0, 0.396);
+}
+
+
+.containerCoursesBanner img {
     width: 100%;
+}
+
+.courses {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    font-size: 1.50em;
+}
+
+.courses p {
+    color: black;
+    font-weight: 700;
 }
