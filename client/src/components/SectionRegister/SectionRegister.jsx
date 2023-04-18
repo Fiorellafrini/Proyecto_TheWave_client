@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "../SectionRegister/SectionRegister.module.css";
+import Navigation from "../Navigation/Navigation";
+
 
 const SectionRegister = () => {
   const [loading, setLoading] = useState(true);
@@ -17,9 +19,10 @@ const SectionRegister = () => {
           <div className={styles.spinner}></div>
         </div>
       ) : (
-        <>
+          <div className={styles.container}>
+          <Navigation/>
           <h1 className={styles.titulo}>Section Register</h1>
-        </>
+        </div>
       )}
     </>
   );
