@@ -3,7 +3,7 @@ import { filterType, setCurrentPage } from "../../redux/actions.js";
 import { useDispatch } from "react-redux";
 import styles from "./Filtro.module.css";
 
-function Filtro_Type() {
+function FiltroType() {
   const dispatch = useDispatch();
 
   const handleOnchange = (e) => {
@@ -25,4 +25,4 @@ function Filtro_Type() {
   );
 }
 
-export default Filtro_Type;
+export default FiltroType;

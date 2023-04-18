@@ -4,15 +4,17 @@ import {
   GET_All_TYPES,
   GET_ALL_BRANDS,
   FILTER_BY_NAME,
-  FILTER_BY_ASC,
-  FILTER_BY_DESC,
-  FILTER_BY_PRICE_ASC,
-  FILTER_BY_PRICE_DESC,
+  // FILTER_BY_ASC,
+  // FILTER_BY_DESC,
+  ORDER_BY_NAME,
+  // FILTER_BY_PRICE_ASC,
+  // FILTER_BY_PRICE_DESC,
+  ORDER_BY_PRICE,
   DETAIL_PRODUCT,
   INFINITY,
   SET_CURRENTPAGE,
   FILTER_BRAND,
-  FILTER_TYPE
+  FILTER_TYPE,
 } from "./actions";
 
 const initialState = {
@@ -21,7 +23,7 @@ const initialState = {
   types: [],
   detail: [],
   brands: [],
-  Infinity: [],
+  infinity: [],
   setPage: 0,
 };
 
@@ -46,30 +48,42 @@ const reducer = (state = initialState, action) => {
         products: action.payload,
       };
     //--------------------------------FILTER_BY_NAME_ASC--------------------------------\\
-    case FILTER_BY_ASC:
-      return {
-        ...state,
-        products: action.payload,
-      };
+    // case FILTER_BY_ASC:
+    //   return {
+    //     ...state,
+    //     products: action.payload,
+    //   };
     //--------------------------------FILTER_BY_NAME_DESC--------------------------------\\
-    case FILTER_BY_DESC:
+    // case FILTER_BY_DESC:
+    //   return {
+    //     ...state,
+    //     products: action.payload,
+    //   };
+    //--------------------------------ORDER_BY_NAME--------------------------------\\
+    case ORDER_BY_NAME:
       return {
         ...state,
         products: action.payload,
       };
     //--------------------------------FILTER_BY_PRICE_ASC--------------------------------\\
-    case FILTER_BY_PRICE_ASC:
-      return {
-        ...state,
-        products: action.payload,
-      };
+    // case FILTER_BY_PRICE_ASC:
+    //   return {
+    //     ...state,
+    //     products: action.payload,
+    //   };
     //--------------------------------FILTER_BY_PRICE_DESC--------------------------------\\
-    case FILTER_BY_PRICE_DESC:
+    // case FILTER_BY_PRICE_DESC:
+    //   return {
+    //     ...state,
+    //     products: action.payload,
+    //   };
+    //--------------------------------ORDER_BY_PRICE--------------------------------\\
+    case ORDER_BY_PRICE:
       return {
         ...state,
-        products: action.payload,
-      };
-
+        products: action.payload
+      }
+      //----------------------------//
     case GET_All_TYPES:
       return {
         ...state,
@@ -88,7 +102,7 @@ const reducer = (state = initialState, action) => {
     case INFINITY:
       return {
         ...state,
-        Infinity: action.payload,
+        infinity: action.payload,
       };
     case SET_CURRENTPAGE:
       return {
@@ -96,15 +110,15 @@ const reducer = (state = initialState, action) => {
         setPage: action.payload,
       };
     case FILTER_BRAND:
-      return{
+      return {
         ...state,
-        products : action.payload
-      }
+        products: action.payload,
+      };
     case FILTER_TYPE:
-      return{
+      return {
         ...state,
-        products: action.payload
-      }
+        products: action.payload,
+      };
     default:
       return state;
   }

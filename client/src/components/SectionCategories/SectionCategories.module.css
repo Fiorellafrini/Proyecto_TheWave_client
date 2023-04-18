@@ -14,7 +14,7 @@
 }
 
 
-.filters button {
+.filters select {
     width: 150px;
     height: 60px;
     border: none;
@@ -28,6 +28,7 @@
     text-decoration: none;
     margin-left: 5px;
     cursor: pointer;
+    text-align: center;
 }
 
 

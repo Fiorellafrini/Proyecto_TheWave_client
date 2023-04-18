@@ -2,7 +2,7 @@ import React from 'react'
 import {filterBrand, setCurrentPage} from '../../redux/actions.js'
 import {useDispatch} from 'react-redux'
 import styles from'./Filtro.module.css'
-function Filtro_Marca() {
+function FiltroMarca() {
     const dispatch = useDispatch()
 
     const handleOnchange =(e)=>{
@@ -33,4 +33,4 @@ function Filtro_Marca() {
   );
 }
 
-export default Filtro_Marca
+export default FiltroMarca

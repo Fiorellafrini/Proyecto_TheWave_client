@@ -4,10 +4,12 @@ export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const GET_All_TYPES = "GET_ALL_TYPES";
 export const GET_ALL_BRANDS = "GET_ALL_BRANDS";
 export const FILTER_BY_NAME = "FILTER_BY_NAME";
-export const FILTER_BY_ASC = "FILTER_BY_ASC";
-export const FILTER_BY_DESC = "FILTER_BY_DESC";
-export const FILTER_BY_PRICE_ASC = "FILTER_BY_PRICE_ASC";
-export const FILTER_BY_PRICE_DESC = "FILTER_BY_PRICE_DESC";
+// export const FILTER_BY_ASC = "FILTER_BY_ASC";
+// export const FILTER_BY_DESC = "FILTER_BY_DESC";
+export const ORDER_BY_NAME = "ORDER_BY_NAME"
+// export const FILTER_BY_PRICE_ASC = "FILTER_BY_PRICE_ASC";
+// export const FILTER_BY_PRICE_DESC = "FILTER_BY_PRICE_DESC";
+export const ORDER_BY_PRICE = "ORDER_BY_PRICE"
 export const DETAIL_PRODUCT = "DETAIL_PRODUCT";
 export const INFINITY = "INFINITY";
 export const SET_CURRENTPAGE = "SET_CURRENTPAGE";
@@ -48,58 +50,88 @@ export function filterByName(payload) {
     }
   };
 }
-export function filterByNameAsc() {
+// export function filterByNameAsc() {
+//   return async function (dispatch) {
+//     try {
+//       var json = await axios.get("http://localhost:3001/order/name/asc");
+//       return dispatch({
+//         type: "FILTER_BY_ASC",
+//         payload: json.data,
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// }
+// export function filterByNameDesc() {
+//   return async function (dispatch) {
+//     try {
+//       var json = await axios.get("http://localhost:3001/order/name/desc");
+//       return dispatch({
+//         type: "FILTER_BY_DESC",
+//         payload: json.data,
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// }
+
+export function orderByName(order, type, id) {
   return async function (dispatch) {
     try {
-      var json = await axios.get("http://localhost:3001/order/name/asc");
+      const response = await axios.get(`http://localhost:3001/product?sort=${order}&${type}=${id}`)
+      const orderByName = response.data
       return dispatch({
-        type: "FILTER_BY_ASC",
-        payload: json.data,
-      });
+        type: "ORDER_BY_NAME",
+        payload: orderByName
+      })
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
-}
-export function filterByNameDesc() {
-  return async function (dispatch) {
-    try {
-      var json = await axios.get("http://localhost:3001/order/name/desc");
-      return dispatch({
-        type: "FILTER_BY_DESC",
-        payload: json.data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  }
 }
 // -----------------------------------FILTER_BY_PRICE-----------------------------------
-export function filterByPriceAsc() {
+// export function filterByPriceAsc() {
+//   return async function (dispatch) {
+//     try {
+//       var json = await axios.get("http://localhost:3001/order/price/less");
+//       return dispatch({
+//         type: "FILTER_BY_PRICE_ASC",
+//         payload: json.data,
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// }
+// export function filterByPriceDesc() {
+//   return async function (dispatch) {
+//     try {
+//       var json = await axios.get("http://localhost:3001/order/price/higher");
+//       return dispatch({
+//         type: "FILTER_BY_PRICE_DESC",
+//         payload: json.data,
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// }
+
+export function orderByPrice(order, type, id) {
   return async function (dispatch) {
     try {
-      var json = await axios.get("http://localhost:3001/order/price/less");
+      const response = await axios.get(`http://localhost:3001/product?sort=${order}&${type}=${id}`)
+      const orderByPrice = response.data
       return dispatch({
-        type: "FILTER_BY_PRICE_ASC",
-        payload: json.data,
-      });
+        type: "ORDER_BY_PRICE",
+        payload: orderByPrice
+      })
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
-}
-export function filterByPriceDesc() {
-  return async function (dispatch) {
-    try {
-      var json = await axios.get("http://localhost:3001/order/price/higher");
-      return dispatch({
-        type: "FILTER_BY_PRICE_DESC",
-        payload: json.data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  }
 }
 
 // -------------------DETAIL----------------------------------
