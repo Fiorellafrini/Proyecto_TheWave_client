@@ -1,27 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-import styles from "../SectionLogIn/SectionLogIn.module.css";
+// import styles from "../SectionLogIn/SectionLogIn.module.css";
+import Login from "../Login/Login";
 
 const SectionLogIn = () => {
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
+   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
+   const toggleModal = () => {
+     setIsOpen(!isOpen);
+   };
 
   return (
     <>
-      {loading ? (
-        <div className={styles.containerSpinner}>
-          <div className={styles.spinner}></div>
-        </div>
-      ) : (
-        <>
-          <h1 className={styles.titulo}>Section Login</h1>
-        </>
-      )}
+      <button onClick={toggleModal}>Login</button>
+      {isOpen && <Login isOpen={isOpen} onClose={toggleModal} />}
     </>
   );
 };

@@ -6,31 +6,34 @@ import { SiFacebook, SiGoogle } from "react-icons/si";
 // import { createUsers } from "../../redux/actions";
 import { Popstyled } from "./loginstyle";
 
-function Register() {
-//   const dispatch = useDispatch();
+function Register({ isOpen, onClose }) {
+  //   const dispatch = useDispatch();
   const [sendForm, setSendForm] = useState(false);
 
+ 
   return (
     <Popstyled>
       <div className="Form">
-        <span>
+        <button onClick={onClose}>
           <BiX className="btn-close" size={25} />
-        </span>
+        </button>
         <h2>registrate</h2>
         <p>Bienvenido</p>
 
         <Formik
           initialValues={{
             name: "",
+            direccion: "",
             email: "",
             password: "",
+            confirmar_password: "",
           }}
           validate={(values) => {
             let errors = {};
             // Validación de nombre
             if (!values.name) {
               errors.name = "Ingrese su nombre";
-            } else if (/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.name)) {
+            } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.name)) {
               errors.name = "El nombre solo puede contener letras";
             }
             // Validación de email
@@ -44,10 +47,23 @@ function Register() {
               errors.email = "Correo invalido";
             }
             // validacion de password
-            if(!values.password){
-              errors.password = "Correo invalido";
-            }else if(!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(values.password)){
-              errors.password = "la contraseña debe contener Una letra en mayúscula Una letra minúscula Un número  Un carácter especial";
+            if (!values.password) {
+              errors.password = "Ingrese contraseña";
+            } else if (
+              !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/.test(
+                values.password
+              )
+            ) {
+              errors.password =
+                "La contraseña debe contener al menos una letra en mayúscula, una letra minúscula, un número y un carácter especial y debe tener al menos 8 caracteres de longitud.";
+            }
+            if (!values.confirmar_password) {
+              errors.confirmar_password = "Ingrese contraseña";
+            } else if (values.password !== values.confirmar_password) {
+              errors.confirmar_password = "la contraseña no coinciden";
+            }
+            if (!values.direccion) {
+              errors.direccion = "ingrese un direccion";
             }
             return errors;
           }}
@@ -77,6 +93,21 @@ function Register() {
                 <Field
                   className="inputs"
                   type="text"
+                  id="direccion"
+                  name="direccion"
+                  placeholder="Direccion"
+                />
+                <ErrorMessage
+                  name="direccion"
+                  component={() => (
+                    <div className="error">{errors.direccion}</div>
+                  )}
+                />
+              </div>
+              <div>
+                <Field
+                  className="inputs"
+                  type="text"
                   id="email"
                   name="email"
                   placeholder="Email"
@@ -96,7 +127,24 @@ function Register() {
                 />
                 <ErrorMessage
                   name="password"
-                  component={() => <div className="error">{errors.password}</div>}
+                  component={() => (
+                    <div className="error">{errors.password}</div>
+                  )}
+                />
+              </div>
+              <div>
+                <Field
+                  className="inputs"
+                  type="password"
+                  id="confirmar_password"
+                  name="confirmar_password"
+                  placeholder="Confirmar Password"
+                />
+                <ErrorMessage
+                  name="confirmar_password"
+                  component={() => (
+                    <div className="error">{errors.confirmar_password}</div>
+                  )}
                 />
               </div>
               <button

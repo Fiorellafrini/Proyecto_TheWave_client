@@ -5,8 +5,8 @@ export const Popstyled = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 1);
-  opacity: 0.5;
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
   z-index: 999;
   display: flex;
   justify-content: center;

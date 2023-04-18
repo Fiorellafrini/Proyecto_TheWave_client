@@ -6,17 +6,17 @@ import { SiFacebook, SiGoogle } from "react-icons/si";
 // import { createUsers } from "../../redux/actions";
 import { Popstyled } from "./loginstyle";
 
-function Login() {
+function Login({ isOpen, onClose }) {
   //   const dispatch = useDispatch();
   const [sendForm, setSendForm] = useState(false);
 
   return (
     <Popstyled>
       <div className="Form">
-        <span>
+        <button onClick={onClose}>
           <BiX className="btn-close" size={25} />
-        </span>
-        <h2>Inicia sesion o registrate</h2>
+        </button>
+        <h2>Inicia sesion</h2>
         <p>Bienvenido</p>
 
         <Formik

@@ -1,26 +1,17 @@
-import React, { useState, useEffect } from "react";
-import styles from "../SectionRegister/SectionRegister.module.css";
-
+import React, { useState } from "react";
+// import styles from "../SectionRegister/SectionRegister.module.css";
+import Register from "../Login/Register";
 const SectionRegister = () => {
-  const [loading, setLoading] = useState(true);
+   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
+   const toggleModal = () => {
+     setIsOpen(!isOpen);
+   };
 
   return (
     <>
-      {loading ? (
-        <div className={styles.containerSpinner}>
-          <div className={styles.spinner}></div>
-        </div>
-      ) : (
-        <>
-          <h1 className={styles.titulo}>Section Register</h1>
-        </>
-      )}
+      <button onClick={toggleModal}>Registrarse</button>
+      {isOpen && <Register isOpen={isOpen} onClose={toggleModal} />}
     </>
   );
 };
