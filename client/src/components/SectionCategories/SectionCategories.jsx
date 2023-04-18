@@ -30,7 +30,7 @@ const SectionCategories = () => {
       ) : (
         <div className={styles.products}>
           <div className={styles.filters}>
-            <h1>Products</h1>
+
             <SearchBar />
             <p>byName</p>
             <button onClick={() => dispatch(filterByNameAsc())}>
