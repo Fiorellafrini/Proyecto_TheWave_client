@@ -3,12 +3,16 @@ import { useDispatch } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import styles from "./FromProduct.module.css";
 import { createProduct } from "../../redux/actions";
+import Navigation from "../Navigation/Navigation";
+
 
 const FormProduct = () => {
   const [isSent, setIsSent] = useState(false);
   const dispatch = useDispatch();
 
   return (
+    <div className={styles.container}>
+    <Navigation/>
     <div>
       <Formik
         initialValues={{
@@ -167,6 +171,8 @@ const FormProduct = () => {
         )}
       </Formik>
     </div>
+    </div>
+
   );
 };
 export default FormProduct;
