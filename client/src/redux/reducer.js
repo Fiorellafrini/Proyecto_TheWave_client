@@ -40,15 +40,15 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         products: action.payload,
-        // allProduct: action.payload
+        allProduct: action.payload
       };
     //--------------------------------FILTER_BY_NAME--------------------------------\\
     case FILTER_BY_NAME:
       return {
         ...state,
         products: action.payload,
-      };
     // filters: { ...state.filters, name: action.payload }
+      };
     //--------------------------------FILTER_BY_NAME_ASC--------------------------------\\
     case FILTER_BY_ASC:
       return {
