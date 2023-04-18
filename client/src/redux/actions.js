@@ -174,6 +174,8 @@ export function filterType(id) {
 
 
 //-----------------------------------------------------
+
+
 export const filterAll = () => (dispatch, getState) => {//getState es un método de Redux que permite acceder al estado actual
   const allProducts = getState().allProduct; 
   dispatch({
