@@ -2,7 +2,7 @@ import React from "react";
 import NavVertical from "../NavVertical/NavVertical";
 import SectionHome from "../SectionHome/SectionHome";
 import SectionCategories from "../SectionCategories/SectionCategories";
-import SectionCourses from "../SectionCourses/SectionCourses";
+import FormProduct from "../FormProduct/FromProduct";
 import SectionCarrito from "../SectionCarrito/SectionCarrito";
 import SectionLogIn from "../SectionLogIn/SectionLogIn";
 import SectionRegister from "../SectionRegister/SectionRegister";
@@ -26,7 +26,7 @@ const HomePage = () => {
           <div className={styles.col}>
             <p onClick={() => handleNavItemClick("Home")}>Home</p>
             <p onClick={() => handleNavItemClick("Categories")}>Products</p>
-            {/* <p onClick={() => handleNavItemClick("Courses")}>Courses</p> */}
+            <p onClick={() => handleNavItemClick("Add")}>Add Item</p>
           </div>
           <div className={styles.col}>
             <img src={logoPage} alt="" />
@@ -46,7 +46,7 @@ const HomePage = () => {
         <div className={styles.section}>
           {selectedNavItem === "Home" && <SectionHome />}
           {selectedNavItem === "Categories" && <SectionCategories/>}
-          {selectedNavItem === "Courses" && <SectionCourses/>}
+          {selectedNavItem === "Add" && <FormProduct/>}
           {selectedNavItem === "Log in" && <SectionLogIn/>}
           {selectedNavItem === "Register" && <SectionRegister/>}
           {selectedNavItem === "Carrito" && <SectionCarrito/>}

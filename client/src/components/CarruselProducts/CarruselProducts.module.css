@@ -9,6 +9,11 @@
     font-size: 1.50em;
 }
 
+.productosDestacados p {
+    color: black;
+    font-weight: 700;
+}
+
 hr {
     background: #5b5b5c;
 }

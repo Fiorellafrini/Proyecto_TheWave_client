@@ -5,6 +5,7 @@ import diets from "./img";
 const CarruselProducts = () => {
   const carruselRef = useRef(null);
   const [isPaused, setIsPaused] = useState(false);
+  
 
   useEffect(() => {
     const carrusel = carruselRef.current;
