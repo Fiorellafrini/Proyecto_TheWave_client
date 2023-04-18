@@ -44,7 +44,7 @@ export function filterByName(payload) {
         payload: json.data,
       });
     } catch (error) {
-      console.log(error);
+      alert("Dont exits...Are you lost?");
     }
   };
 }
