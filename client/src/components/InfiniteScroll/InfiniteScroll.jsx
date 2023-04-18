@@ -80,7 +80,7 @@ const Infinite = () => {
       <Paginado total={productos.length} />
       {/* <InfiniteScroll
         dataLength={productos.length}
-        next={() => dispatch(setCurrentPage(currentPage))}
+        next={() => dispatch(setCurrentPage(currentPage + 1))}
         hasMore={true}
         loader={productos.length >= productos ? "" : <h4>Loading...</h4>}
       > */}
