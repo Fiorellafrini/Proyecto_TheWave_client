@@ -11,8 +11,16 @@ import SectionLogIn from "./components/SectionLogIn/SectionLogIn";
 import SectionRegister from "./components/SectionRegister/SectionRegister";
 import SectionCarrito from "./components/SectionCarrito/SectionCarrito";
 import HomeDashboard from "./review/dashboard/HomeDashboard";
+import React from 'react'
+import {Cloudinary} from "@cloudinary/url-gen";
+
 
 function App() {
+  const cld = new Cloudinary({
+    cloud: {
+      cloudName: 'djngalumm'
+    }
+  });
   const location = useLocation();
   return (
     <div className="App">
