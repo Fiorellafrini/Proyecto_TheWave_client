@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styles from "../SectionCategories/SectionCategories.module.css";
 import SearchBar from "../SearchBar/SearchBar";
+// import Navigation from "../Navigation/Navigation";
 import { useDispatch } from "react-redux";
 import {
   // filterByNameAsc,
   // filterByNameDesc,
-  orderByName,
   // filterByPriceAsc,
   // filterByPriceDesc,
+  orderByName,
   orderByPrice,
 } from "../../redux/actions";
 
@@ -20,18 +21,18 @@ const SectionCategories = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 1000);
   }, []);
-  function handlerOrder(e, id_type) {
+  function handlerOrder(e,) {
     const order = e.target.value;
     if (order === "nameAsc") {
-      dispatch(orderByName("nameAsc", id_type));
+      dispatch(orderByName("nameAsc"));
     } else if (order === "nameDesc") {
-      dispatch(orderByName("nameDesc", id_type));
+      dispatch(orderByName("nameDesc"));
     } else if (order === "priceAsc") {
-      dispatch(orderByPrice("priceAsc", id_type));
+      dispatch(orderByPrice("priceAsc"));
     } else if (order === "priceDesc") {
-      dispatch(orderByPrice("priceDesc", id_type));
+      dispatch(orderByPrice("priceDesc"));
     }
   }
   return (

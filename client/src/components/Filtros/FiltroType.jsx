@@ -13,8 +13,8 @@ function FiltroType() {
 
   return (
     <div className={styles.filtros}>
-      <select className="" onChange={(e) => handleOnchange(e)}>
-        <option value="All">All</option>
+      <select className="" onChange={handleOnchange}>
+        <option value="">All</option>
         <option value="1">Aletas de buceo</option>
         <option value="2">Traje De Neopreno</option>
         <option value="3">Tabla de Stand Up Paddle</option>

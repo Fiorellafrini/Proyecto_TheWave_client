@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import Navigation from "../Navigation/Navigation";
 import styles from "../SectionLogIn/SectionLogIn.module.css";
 
 const SectionLogIn = () => {
@@ -18,9 +18,10 @@ const SectionLogIn = () => {
           <div className={styles.spinner}></div>
         </div>
       ) : (
-        <>
+          <div className={styles.container}>
+          <Navigation/>
           <h1 className={styles.titulo}>Section Login</h1>
-        </>
+        </div>
       )}
     </>
   );

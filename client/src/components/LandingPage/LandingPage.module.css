@@ -60,6 +60,7 @@
     justify-content: center;
     align-items: center;
     margin-top: 18px;
+    cursor: pointer;
 }
 
 .navItems:hover {
@@ -103,10 +104,14 @@
     margin-top: 40px;
     border-radius: 40px;
     border: none;
-    color: white;
     font-family: 'Work Sans';
     font-size: 1.50em;
     background-color: #1e5b5b9b;
+    cursor: pointer;
+}
+
+.titulo a{
+    color: white;
 }
 
 .imgTabla {

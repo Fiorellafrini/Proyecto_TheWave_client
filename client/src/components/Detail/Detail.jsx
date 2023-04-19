@@ -23,7 +23,7 @@ const {id} = useParams()
   return (
     <div className={styles.cuadrado1}>
       <div className={styles.cerrar}>
-        <Link to="/HomePage">Volver</Link>
+        <Link to="/SectionCategories">Volver</Link>
       </div>
       <div className={styles.imag}>
         {detalle.imagen?.map((imagen, i) => (
