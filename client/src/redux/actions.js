@@ -16,7 +16,7 @@ export const FILTER_BRAND = "FILTER_BRAND";
 export const FILTER_TYPE = "FILTER_TYPE";
 
 export const createProduct = (body) => async (dipatch) => {
-  const { data } = await axios.post("http://localhost:3001/product", body);
+  const { data } = await axios.post("/product", body);
   console.log(data);
   console.log(body);
   return dipatch({
@@ -26,7 +26,7 @@ export const createProduct = (body) => async (dipatch) => {
 };
 export function listProducts() {
   return async function (dispatch) {
-    var json = await axios.get("http://localhost:3001/product");
+    var json = await axios.get("/product");
     return dispatch({
       type: "GET_ALL_PRODUCTS",
       payload: json.data,
@@ -38,7 +38,7 @@ export function filterByName(payload) {
   return async function (dispatch) {
     try {
       var json = await axios.get(
-        "http://localhost:3001/product?name=" + payload
+        "/product?name=" + payload
       );
       return dispatch({
         type: "FILTER_BY_NAME",
@@ -52,7 +52,7 @@ export function filterByName(payload) {
 export function filterByNameAsc() {
   return async function (dispatch) {
     try {
-      var json = await axios.get("http://localhost:3001/order/name/asc");
+      var json = await axios.get("/order/name/asc");
       return dispatch({
         type: "FILTER_BY_ASC",
         payload: json.data,
@@ -67,7 +67,7 @@ export function filterByNameAsc() {
 export function filterByNameDesc() {
   return async function (dispatch) {
     try {
-      var json = await axios.get("http://localhost:3001/order/name/desc");
+      var json = await axios.get("order/name/desc");
       return dispatch({
         type: "FILTER_BY_DESC",
         payload: json.data,
@@ -81,7 +81,7 @@ export function filterByNameDesc() {
 export function filterByPriceAsc() {
   return async function (dispatch) {
     try {
-      var json = await axios.get("http://localhost:3001/order/price/less");
+      var json = await axios.get("/order/price/less");
       return dispatch({
         type: "FILTER_BY_PRICE_ASC",
         payload: json.data,
@@ -94,7 +94,7 @@ export function filterByPriceAsc() {
 export function filterByPriceDesc() {
   return async function (dispatch) {
     try {
-      var json = await axios.get("http://localhost:3001/order/price/higher");
+      var json = await axios.get("/order/price/higher");
       return dispatch({
         type: "FILTER_BY_PRICE_DESC",
         payload: json.data,
@@ -110,7 +110,7 @@ export function filterByPriceDesc() {
 export function productsById(id) {
   return async function (dispatch) {
     try {
-      var json = await axios.get(`http://localhost:3001/Product/${id}`);
+      var json = await axios.get(`/Product/${id}`);
       return dispatch({
         type: "DETAIL_PRODUCT",
         payload: json.data,
@@ -125,7 +125,7 @@ export function productsData(page) {
   return async function (dispatch) {
     try {
       var json = await axios.get(
-        `http://localhost:3001/product?page=${page}&size=30`
+        `product?page=${page}&size=30`
       );
       return dispatch({
         type: "INFINITY",
@@ -147,7 +147,7 @@ export const setCurrentPage = (payload) => {
 export function filterBrand(id) {
   return async function (dispatch) {
     try {
-      var json = await axios.get(`http://localhost:3001/filter/brands/${id}`);
+      var json = await axios.get(`/filter/brands/${id}`);
       return dispatch({
         type: "FILTER_BRAND",
         payload: json.data,
@@ -161,7 +161,7 @@ export function filterBrand(id) {
 export function filterType(id) {
   return async function (dispatch) {
     try {
-      var json = await axios.get(`http://localhost:3001/filter/type/${id}`);
+      var json = await axios.get(`/filter/type/${id}`);
       return dispatch({
         type: "FILTER_TYPE",
         payload: json.data,
