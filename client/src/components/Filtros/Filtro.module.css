@@ -10,4 +10,6 @@
     font-size:1rem;
     cursor: pointer;
     text-align: center;
+    border: none;
+    outline: none;
 }

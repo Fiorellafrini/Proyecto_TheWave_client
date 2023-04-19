@@ -6,15 +6,15 @@ export const GET_ALL_BRANDS = "GET_ALL_BRANDS";
 export const FILTER_BY_NAME = "FILTER_BY_NAME";
 // export const FILTER_BY_ASC = "FILTER_BY_ASC";
 // export const FILTER_BY_DESC = "FILTER_BY_DESC";
-export const ORDER_BY_NAME = "ORDER_BY_NAME";
 // export const FILTER_BY_PRICE_ASC = "FILTER_BY_PRICE_ASC";
 // export const FILTER_BY_PRICE_DESC = "FILTER_BY_PRICE_DESC";
+export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
+export const FILTER_BRAND = "FILTER_BRAND";
+export const FILTER_TYPE = "FILTER_TYPE";
 export const DETAIL_PRODUCT = "DETAIL_PRODUCT";
 export const INFINITY = "INFINITY";
 export const SET_CURRENTPAGE = "SET_CURRENTPAGE";
-export const FILTER_BRAND = "FILTER_BRAND";
-export const FILTER_TYPE = "FILTER_TYPE";
 
 export const createProduct = (body) => async (dipatch) => {
   const { data } = await axios.post("http://localhost:3001/product", body);
@@ -77,25 +77,31 @@ export function filterByName(payload) {
 //   };
 // }
 
-export function orderByName(order) {
-  return async function (dispatch) {
-    try {
-      const response = await axios.get(
-        `http://localhost:3001/product?sort=${order}`
-      );
-      const orderByName = response.data;
-      return dispatch({
-        type: "ORDER_BY_NAME",
-        payload: orderByName,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-}
-// export const orderByName = (criteria) => {
-//   return { type: ORDER_BY_NAME, payload: criteria };
-// };
+// export function orderByName(order) {
+//   return async function (dispatch) {
+//     try {
+//       const response = await axios.get(
+//         `http://localhost:3001/product?sort=${order}`
+//       );
+//       const orderByName = response.data;
+//       return dispatch({
+//         type: "ORDER_BY_NAME",
+//         payload: orderByName,
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// }
+
+// ----------------------------------
+
+export const orderByName = (criteria) => {
+  return { type: ORDER_BY_NAME, payload: criteria };
+};
+
+// ----------------------------------
+
 // -----------------------------------FILTER_BY_PRICE-----------------------------------
 // export function filterByPriceAsc() {
 //   return async function (dispatch) {
@@ -124,26 +130,30 @@ export function orderByName(order) {
 //   };
 // }
 
-export function orderByPrice(order) {
-  return async function (dispatch) {
-    try {
-      const response = await axios.get(
-        `http://localhost:3001/product?sort=${order}`
-      );
-      const orderByPrice = response.data;
-      return dispatch({
-        type: "ORDER_BY_PRICE",
-        payload: orderByPrice,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-}
+// export function orderByPrice(order) {
+//   return async function (dispatch) {
+//     try {
+//       const response = await axios.get(
+//         `http://localhost:3001/product?sort=${order}`
+//       );
+//       const orderByPrice = response.data;
+//       return dispatch({
+//         type: "ORDER_BY_PRICE",
+//         payload: orderByPrice,
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// }
 
-// export const orderByPrice = (criteria) => {
-//   return { type: ORDER_BY_PRICE, payload: criteria };
-// };
+// ----------------------------------
+
+export const orderByPrice = (criteria) => {
+  return { type: ORDER_BY_PRICE, payload: criteria };
+};
+
+// ----------------------------------
 
 // -------------------DETAIL----------------------------------
 
@@ -160,6 +170,8 @@ export function productsById(id) {
     }
   };
 }
+
+// -------------------PAGE----------------------------------
 
 export function productsData(page) {
   return async function (dispatch) {
@@ -183,6 +195,8 @@ export const setCurrentPage = (payload) => {
     payload,
   };
 };
+
+// -------------------FILTER-BRAND----------------------------------
 
 // export function filterBrand(id) {
 //   return async function (dispatch) {
@@ -217,9 +231,15 @@ export function filterBrand(id) {
   };
 }
 
+// ----------------------------------
+
 // export const filterBrand = (brand) => {
 //   return { type: FILTER_BRAND, payload: brand };
 // };
+
+// ----------------------------------
+
+// -------------------FILTER-TYPE----------------------------------
 
 // export function filterType(id) {
 //   return async function (dispatch) {
@@ -234,6 +254,7 @@ export function filterBrand(id) {
 //     }
 //   };
 // }
+
 export function filterType(id) {
   return async function (dispatch) {
     try {
@@ -251,6 +272,10 @@ export function filterType(id) {
   };
 }
 
+// ----------------------------------
+
 // export const filterType = (type) => {
 //   return { type: FILTER_TYPE, payload: type };
 // };
+
+// ----------------------------------

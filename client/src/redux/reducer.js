@@ -60,10 +60,26 @@ const reducer = (state = initialState, action) => {
     //     products: action.payload,
     //   };
     //--------------------------------ORDER_BY_NAME--------------------------------\\
+    // case ORDER_BY_NAME:
+    //   return {
+    //     ...state,
+    //     products: action.payload,
+    //   };
+
     case ORDER_BY_NAME:
+      console.log("reducer", action.payload)
       return {
         ...state,
-        products: action.payload,
+        products: [...state.products].sort((a, b) => {
+          if(action.payload === "nameAsc"){
+            if(a.name < b.name) return -1
+            return 0
+          }else if(action.payload ===  "nameDesc"){
+            if(a.name > b.name) return -1
+            return 0
+          }
+          return 0
+        }),
       };
     //--------------------------------FILTER_BY_PRICE_ASC--------------------------------\\
     // case FILTER_BY_PRICE_ASC:
@@ -78,12 +94,30 @@ const reducer = (state = initialState, action) => {
     //     products: action.payload,
     //   };
     //--------------------------------ORDER_BY_PRICE--------------------------------\\
+    // case ORDER_BY_PRICE:
+    //   return {
+    //     ...state,
+    //     products: action.payload,
+    //   };
+
     case ORDER_BY_PRICE:
+      console.log(action.payload)
+      const sortName = [...state.products].sort((a,b) =>{
+        if(action.payload === "priceAsc"){
+          if(a.price < b.price) return -1
+          return 0
+        }else if(action.payload === "priceDesc"){
+          if(a.price > b.price) return -1
+          return 0
+        }else {
+          return 0
+        }
+      })
       return {
         ...state,
-        products: action.payload
-      }
-      //----------------------------//
+        products: sortName
+      };
+    //-----------------------------------------------------------------------------\\
     case GET_All_TYPES:
       return {
         ...state,
