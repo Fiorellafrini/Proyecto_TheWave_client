@@ -69,7 +69,7 @@ const LandingPage = () => {
                       About Us
                     </li>
                     <li onClick={() => handleNavItemClick("Log in")}>Log in</li>
-                    <li onClick={() => handleNavItemClick("Shop")}>Register</li>
+                    <li onClick={() => handleNavItemClick("Register")}>Register</li>
                     <li>Autentificacion</li>
                   </ul>
                 </div>

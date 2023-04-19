@@ -18,6 +18,7 @@ margin: 20px;
     font-size: 2em;
     background-color: #33cc99ca;
     border-radius: 15px;
+    cursor: pointer;
 }
 .buttonCourses:hover {
     box-shadow: 10px 10px 13px 0px rgba(0, 0, 0, 0.396);

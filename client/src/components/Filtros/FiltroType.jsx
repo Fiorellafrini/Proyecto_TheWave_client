@@ -7,13 +7,14 @@ function FiltroType() {
   const dispatch = useDispatch();
 
   const handleOnchange = (e) => {
-    dispatch(filterType(e.target.value));
+    e.preventDefault();
+    e.target.name === "filterType" && dispatch(filterType(e.target.value));
     setCurrentPage(1);
   };
 
   return (
     <div className={styles.filtros}>
-      <select className="" onChange={handleOnchange}>
+      <select name="filterType" onChange={handleOnchange}>
         <option value="">All</option>
         <option value="1">Aletas de buceo</option>
         <option value="2">Traje De Neopreno</option>
