@@ -1,17 +1,16 @@
 import React from "react";
-import NavVertical from "../NavVertical/NavVertical";
-import SectionHome from "../SectionHome/SectionHome";
-import SectionCategories from "../SectionCategories/SectionCategories";
-import FormProduct from "../FormProduct/FromProduct";
-import SectionCarrito from "../SectionCarrito/SectionCarrito";
-import SectionLogIn from "../SectionLogIn/SectionLogIn";
-import SectionRegister from "../SectionRegister/SectionRegister";
+import NavVertical from "../../components/NavVertical/NavVertical";
+import SectionCategories from "../../components/SectionCategories/SectionCategories";
+import FormProduct from "../../components/FormProduct/FromProduct";
+import SectionCarrito from "../../components/SectionCarrito/SectionCarrito";
+import SectionLogIn from "../../components/SectionLogIn/SectionLogIn";
+import SectionRegister from "../../components/SectionRegister/SectionRegister";
 import logoPage from "../../assets/logoPage.png";
 import carrito from "../../assets/carrito.png";
-import styles from "../HomePage/HomePage.module.css";
+import styles from "../../components/HomePage/HomePage.module.css";
 import { useState } from "react";
 
-const HomePage = () => {
+const Admin = () => {
   const [selectedNavItem, setSelectedNavItem] = useState("Home");
 
   const handleNavItemClick = (item) => {
@@ -24,7 +23,6 @@ const HomePage = () => {
       <div className={styles.home}>
         <div className={styles.containerNav}>
           <div className={styles.col}>
-            <p onClick={() => handleNavItemClick("Home")}>Home</p>
             <p onClick={() => handleNavItemClick("Categories")}>Products</p>
             <p onClick={() => handleNavItemClick("Add")}>Add Item</p>
           </div>
@@ -44,7 +42,6 @@ const HomePage = () => {
           </div>
         </div>
         <div className={styles.section}>
-          {selectedNavItem === "Home" && <SectionHome />}
           {selectedNavItem === "Categories" && <SectionCategories/>}
           {selectedNavItem === "Add" && <FormProduct/>}
           {selectedNavItem === "Log in" && <SectionLogIn/>}
@@ -56,4 +53,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default Admin;

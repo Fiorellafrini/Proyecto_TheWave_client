@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import Navigation from "../Navigation/Navigation";
 import styles from "../SectionCarrito/SectionCarrito.module.css";
 
 const SectionCarrito = () => {
@@ -18,9 +18,10 @@ const SectionCarrito = () => {
           <div className={styles.spinner}></div>
         </div>
       ) : (
-        <>
+        <div className={styles.container}>
+          <Navigation />
           <h1 className={styles.titulo}>Section Carrito</h1>
-        </>
+        </div>
       )}
     </>
   );
