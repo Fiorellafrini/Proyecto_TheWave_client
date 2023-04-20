@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage } from "../../redux/actions.js";
 import "./paginado.css";
 function Paginado({total }) {
-  const setPage = useSelector((state) => state.setPage);
+  const setPage = useSelector((state) => state.products.setPage);
   const dispatch = useDispatch();
   const numeroPagina = [];
   for (let i = 1; i <= Math.ceil(total / 8); i++) {

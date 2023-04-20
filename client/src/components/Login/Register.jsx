@@ -2,12 +2,12 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { BiX } from "react-icons/bi";
 import { SiFacebook, SiGoogle } from "react-icons/si";
-// import { useDispatch } from "react-redux";
-// import { createUsers } from "../../redux/actions";
+import { useDispatch } from "react-redux";
+import { registro } from "../../redux/actions";
 import { Popstyled } from "./loginstyle";
 
 function Register({ isOpen, onClose }) {
-  //   const dispatch = useDispatch();
+    const dispatch = useDispatch();
   const [sendForm, setSendForm] = useState(false);
 
  
@@ -23,10 +23,11 @@ function Register({ isOpen, onClose }) {
         <Formik
           initialValues={{
             name: "",
-            direccion: "",
+            lastName: "",
+            address: "",
             email: "",
             password: "",
-            confirmar_password: "",
+            // confirmar_password: "",
           }}
           validate={(values) => {
             let errors = {};
@@ -35,6 +36,11 @@ function Register({ isOpen, onClose }) {
               errors.name = "Ingrese su nombre";
             } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.name)) {
               errors.name = "El nombre solo puede contener letras";
+            }
+            if (!values.lastName) {
+              errors.lastName = "Ingrese su nombre";
+            } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.lastName)) {
+              errors.lastName = "El nombre solo puede contener letras";
             }
             // Validación de email
             if (!values.email) {
@@ -49,32 +55,30 @@ function Register({ isOpen, onClose }) {
             // validacion de password
             if (!values.password) {
               errors.password = "Ingrese contraseña";
-            } else if (
-              !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/.test(
-                values.password
-              )
-            ) {
+            } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.password)) {
               errors.password =
                 "La contraseña debe contener al menos una letra en mayúscula, una letra minúscula, un número y un carácter especial y debe tener al menos 8 caracteres de longitud.";
             }
-            if (!values.confirmar_password) {
-              errors.confirmar_password = "Ingrese contraseña";
-            } else if (values.password !== values.confirmar_password) {
-              errors.confirmar_password = "la contraseña no coinciden";
-            }
-            if (!values.direccion) {
-              errors.direccion = "ingrese un direccion";
+            // if (!values.confirmar_password) {
+            //   errors.confirmar_password = "Ingrese contraseña";
+            // } else if (values.password !== values.confirmar_password) {
+            //   errors.confirmar_password = "la contraseña no coinciden";
+            // }
+            if (!values.address) {
+              errors.address = "ingrese un address";
             }
             return errors;
           }}
-          onSubmit={(values, { resetForm }) => {
-            // dispatch(createUsers(values));
+          onSubmit={(values, { resetForm, setSubmitting }) => {
+            console.log(values);
+            dispatch(registro(values));
             setSendForm(true);
             setTimeout(() => setSendForm(false), 5000);
             resetForm();
+            setSubmitting(false);
           }}
         >
-          {({ errors }) => (
+          {({ errors, isSubmitting }) => (
             <Form className="formulario">
               <div>
                 <Field
@@ -93,14 +97,27 @@ function Register({ isOpen, onClose }) {
                 <Field
                   className="inputs"
                   type="text"
-                  id="direccion"
-                  name="direccion"
-                  placeholder="Direccion"
+                  id="lastName"
+                  name="lastName"
+                  placeholder="Apellido"
                 />
                 <ErrorMessage
-                  name="direccion"
+                  name="lastName"
+                  component={() => <div className="error">{errors.lastName}</div>}
+                />
+              </div>
+              <div>
+                <Field
+                  className="inputs"
+                  type="text"
+                  id="address"
+                  name="address"
+                  placeholder="address"
+                />
+                <ErrorMessage
+                  name="address"
                   component={() => (
-                    <div className="error">{errors.direccion}</div>
+                    <div className="error">{errors.address}</div>
                   )}
                 />
               </div>
@@ -132,7 +149,7 @@ function Register({ isOpen, onClose }) {
                   )}
                 />
               </div>
-              <div>
+              {/* <div>
                 <Field
                   className="inputs"
                   type="password"
@@ -146,11 +163,11 @@ function Register({ isOpen, onClose }) {
                     <div className="error">{errors.confirmar_password}</div>
                   )}
                 />
-              </div>
+              </div> */}
               <button
                 className="btn-submit"
                 type="submit"
-                disabled={Object.keys(errors).length === 0 ? false : true}
+                disabled={isSubmitting}
               >
                 Enviar
               </button>

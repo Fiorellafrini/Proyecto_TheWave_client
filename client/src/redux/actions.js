@@ -13,11 +13,11 @@ export const INFINITY = "INFINITY";
 export const SET_CURRENTPAGE = "SET_CURRENTPAGE";
 export const FILTER_BRAND = "FILTER_BRAND";
 export const FILTER_TYPE = "FILTER_TYPE";
+export const REGISTRO = "REGISTRO";
+export const LOGIN = "LOGIN";
 
 export const createProduct = (body) => async (dipatch) => {
   const { data } = await axios.post("http://localhost:3001/product", body);
-  console.log(data);
-  console.log(body);
   return dipatch({
     type: "POST_PRODUCT",
     payload: data,
@@ -181,3 +181,23 @@ export function filterType(id) {
     }
   };
 }
+
+
+
+//---------------------LOGIN---------------------------------------------//
+
+export const registro = (body) => async (dipatch) => {
+  const { data } = await axios.post("http://localhost:3001/user", body);
+  return dipatch({
+    type: "REGISTRO",
+    payload: data,
+  });
+};
+
+export const login = (body) => async (dipatch) => {
+  const { data } = await axios.post("http://localhost:3001/auth", body);
+  return dipatch({
+    type: "LOGIN",
+    payload: data,
+  });
+};

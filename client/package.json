@@ -18,6 +18,7 @@
     "react-scroll": "^1.8.9",
     "react-spinners": "^0.13.8",
     "redux": "^4.2.1",
+    "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.2",
     "spinners-react": "^1.0.7",
     "styled-components": "^5.3.9",

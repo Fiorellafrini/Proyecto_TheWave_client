@@ -45,11 +45,11 @@ const HomePage = () => {
         </div>
         <div className={styles.section}>
           {selectedNavItem === "Home" && <SectionHome />}
-          {selectedNavItem === "Categories" && <SectionCategories/>}
-          {selectedNavItem === "Add" && <FormProduct/>}
-          {selectedNavItem === "Log in" && <SectionLogIn/>}
-          {selectedNavItem === "Register" && <SectionRegister/>}
-          {selectedNavItem === "Carrito" && <SectionCarrito/>}
+          {selectedNavItem === "Categories" && <SectionCategories />}
+          {selectedNavItem === "Add" && <FormProduct />}
+          {selectedNavItem === "Log in" && <SectionLogIn />}
+          {selectedNavItem === "Register" && <SectionRegister />}
+          {selectedNavItem === "Carrito" && <SectionCarrito />}
         </div>
       </div>
     </div>

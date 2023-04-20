@@ -2,14 +2,16 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { BiX } from "react-icons/bi";
 import { SiFacebook, SiGoogle } from "react-icons/si";
-// import { useDispatch } from "react-redux";
-// import { createUsers } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../redux/actions";
 import { Popstyled } from "./loginstyle";
 
 function Login({ isOpen, onClose }) {
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [sendForm, setSendForm] = useState(false);
-
+  const token = useSelector((state) => state.user.login);
+  console.log(token)
+  window.localStorage.setItem('login', JSON.stringify(token))
   return (
     <Popstyled>
       <div className="Form">
@@ -21,16 +23,16 @@ function Login({ isOpen, onClose }) {
 
         <Formik
           initialValues={{
-            name: "",
             email: "",
+            password: "",
           }}
           validate={(values) => {
             let errors = {};
             // Validación de nombre
-            if (!values.name) {
-              errors.name = "Ingrese su nombre";
-            } else if (/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.name)) {
-              errors.name = "El nombre solo puede contener letras";
+            if (!values.password) {
+              errors.password = "Ingrese su contraseña";
+            } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.password)) {
+              errors.password = "El contraseña  solo puede contener letras minusculas o mayusculas";
             }
             // Validación de email
             if (!values.email) {
@@ -46,7 +48,8 @@ function Login({ isOpen, onClose }) {
             return errors;
           }}
           onSubmit={(values, { resetForm }) => {
-            // dispatch(createUsers(values));
+            dispatch(login(values));
+            console.log(values)
             setSendForm(true);
             setTimeout(() => setSendForm(false), 5000);
             resetForm();
@@ -58,19 +61,6 @@ function Login({ isOpen, onClose }) {
                 <Field
                   className="inputs"
                   type="text"
-                  id="name"
-                  name="name"
-                  placeholder="Nombre"
-                />
-                <ErrorMessage
-                  name="name"
-                  component={() => <div className="error">{errors.name}</div>}
-                />
-              </div>
-              <div>
-                <Field
-                  className="inputs"
-                  type="text"
                   id="email"
                   name="email"
                   placeholder="Email"
@@ -78,6 +68,19 @@ function Login({ isOpen, onClose }) {
                 <ErrorMessage
                   name="email"
                   component={() => <div className="error">{errors.email}</div>}
+                />
+              </div>
+              <div>
+                <Field
+                  className="inputs"
+                  type="text"
+                  id="password"
+                  name="password"
+                  placeholder="Password"
+                />
+                <ErrorMessage
+                  name="password"
+                  component={() => <div className="error">{errors.password}</div>}
                 />
               </div>
               <button

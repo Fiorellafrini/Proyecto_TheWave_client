@@ -12,7 +12,7 @@ import {
   INFINITY,
   SET_CURRENTPAGE,
   FILTER_BRAND,
-  FILTER_TYPE
+  FILTER_TYPE,
 } from "./actions";
 
 const initialState = {
@@ -35,6 +35,7 @@ const reducer = (state = initialState, action) => {
       };
     //--------------------------------GET_ALL_PRODUCTS--------------------------------\\
     case GET_ALL_PRODUCTS:
+      console.log(action.payload)
       return {
         ...state,
         products: action.payload,
@@ -96,15 +97,15 @@ const reducer = (state = initialState, action) => {
         setPage: action.payload,
       };
     case FILTER_BRAND:
-      return{
+      return {
         ...state,
-        products : action.payload
-      }
+        products: action.payload,
+      };
     case FILTER_TYPE:
-      return{
+      return {
         ...state,
-        products: action.payload
-      }
+        products: action.payload,
+      };
     default:
       return state;
   }

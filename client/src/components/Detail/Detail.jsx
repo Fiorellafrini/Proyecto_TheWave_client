@@ -10,7 +10,7 @@ import {Link} from 'react-router-dom'
 
 function Detail() {
 const dispatch = useDispatch()
-const detalle = useSelector((state) => state.detail);
+const detalle = useSelector((state) => state.products.detail);
 const {id} = useParams()
 
 

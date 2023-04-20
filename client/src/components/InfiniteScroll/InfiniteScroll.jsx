@@ -61,14 +61,14 @@ import { listProducts, setCurrentPage} from "../../redux/actions.js";
 import Paginado from "../Paginado/Paginado";
 import styles from './InfiniteScroll.module.css'
 import Error404 from "../Error404/Error404";
-import products from "../CarruselProducts/img";
+// import products from "../CarruselProducts/img";
 
 
 const Infinite = () => {
   const dispatch = useDispatch()
-  const productos = useSelector((state) => state.products);
-  const setPage = useSelector((state) => state.setPage);
-  // console.log(currentPage)
+  const productos = useSelector((state) => state.products.products);
+  const setPage = useSelector((state) => state.products.setPage);
+  console.log( productos)
     const lastIndex = setPage * 8;
     const firstIndex = lastIndex - 8;
 
