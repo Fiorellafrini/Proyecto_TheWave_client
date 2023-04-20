@@ -15,9 +15,10 @@ margin: 20px;
     border: none;
     color: white;
     font-family: 'Work Sans';
-    font-size: 2em;
+    font-size: 1.5em;
     background-color: #33cc99ca;
     border-radius: 15px;
+    cursor: pointer;
 }
 .buttonCourses:hover {
     box-shadow: 10px 10px 13px 0px rgba(0, 0, 0, 0.396);

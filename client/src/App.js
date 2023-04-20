@@ -10,7 +10,7 @@ import NavVertical from "./components/NavVertical/NavVertical";
 import SectionLogIn from "./components/SectionLogIn/SectionLogIn";
 import SectionRegister from "./components/SectionRegister/SectionRegister";
 import SectionCarrito from "./components/SectionCarrito/SectionCarrito";
-import HomeDashboard from "./review/dashboard/HomeDashboard";
+// import HomeDashboard from "./review/dashboard/HomeDashboard";
 import React from 'react'
 import {Cloudinary} from "@cloudinary/url-gen";
 
@@ -35,7 +35,7 @@ function App() {
         <Route path="/form" element={<FormProduct />}></Route>
         <Route path="/detail/:id" element={<Detail />}></Route>
         <Route path="*" element={<Error404 />}></Route>
-        <Route path="/admin" element={<HomeDashboard/>}></Route> 
+        {/* <Route path="/admin" element={<HomeDashboard/>}></Route>  */}
       </Routes>
     </div>
   );

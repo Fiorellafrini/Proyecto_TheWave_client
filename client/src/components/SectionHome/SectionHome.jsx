@@ -4,6 +4,7 @@ import Publicidad from "../Publicidad/Publicidad";
 import CarruselProducts from "../CarruselProducts/CarruselProducts";
 import CoursesBanner from "../CoursesBanner/CoursesBanner";
 import Navigation from "../Navigation/Navigation";
+import { Link } from "react-router-dom";
 
 const SectionHome = () => {
   const [loading, setLoading] = useState(true);
@@ -27,13 +28,19 @@ const SectionHome = () => {
             <Publicidad />
             <div className={styles.aboutPage}>
               <div className={styles.img1}>
-                <h1>Stand Up Paddle</h1>
+                <Link className={styles.link} to="/SectionCategories">
+                  <h1>Stand Up Paddle</h1>
+                </Link>
               </div>
               <div className={styles.img2}>
-                <h1>Surf</h1>
+                <Link className={styles.link} to="/SectionCategories">
+                  <h1>Surf</h1>
+                </Link>
               </div>
               <div className={styles.img3}>
-                <h1>WakeBoard</h1>
+                <Link className={styles.link} to="/SectionCategories">
+                  <h1>WakeBoard</h1>
+                </Link>
               </div>
             </div>
             <div className={styles.containerColor}>
