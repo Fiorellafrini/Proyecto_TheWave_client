@@ -58,7 +58,6 @@ import { listProducts, setCurrentPage } from "../../redux/actions.js";
 import Paginado from "../Paginado/Paginado";
 import styles from './InfiniteScroll.module.css'
 import Error404 from "../Error404/Error404";
-import products from "../CarruselProducts/img";
 
 
 const Infinite = () => {

@@ -1,18 +1,20 @@
 import {
-  POST_PRODUCT,
   GET_ALL_PRODUCTS,
+  POST_PRODUCT,
   GET_All_TYPES,
   GET_ALL_BRANDS,
   FILTER_BY_NAME,
-  FILTER_BY_ASC,
-  FILTER_BY_DESC,
-  FILTER_BY_PRICE_ASC,
-  FILTER_BY_PRICE_DESC,
+  // FILTER_BY_ASC,
+  // FILTER_BY_DESC,
+  // FILTER_BY_PRICE_ASC,
+  // FILTER_BY_PRICE_DESC,
+  ORDER_BY_NAME,
+  ORDER_BY_PRICE,
+  FILTER_BRAND,
+  FILTER_TYPE,
   DETAIL_PRODUCT,
   INFINITY,
   SET_CURRENTPAGE,
-  FILTER_BRAND,
-  FILTER_TYPE,
   ADD_TO_CART,
   DELETE_TO_CART,
   UPDATE_CART_ITEM_QUANTITY,
@@ -25,8 +27,9 @@ const initialState = {
   types: [],
   detail: [],
   brands: [],
-  Infinity: [],
+  infinity: [],
   setPage: 0,
+  filters: {},
 };
 
 const reducer = (state = initialState, action) => {
@@ -42,38 +45,86 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         products: action.payload,
+        allProduct: action.payload
       };
     //--------------------------------FILTER_BY_NAME--------------------------------\\
     case FILTER_BY_NAME:
       return {
         ...state,
         products: action.payload,
+    // filters: { ...state.filters, name: action.payload }
       };
     //--------------------------------FILTER_BY_NAME_ASC--------------------------------\\
-    case FILTER_BY_ASC:
-      return {
-        ...state,
-        products: action.payload,
-      };
+    // case FILTER_BY_ASC:
+    //   return {
+    //     ...state,
+    //     products: action.payload,
+    //   };
     //--------------------------------FILTER_BY_NAME_DESC--------------------------------\\
-    case FILTER_BY_DESC:
+    // case FILTER_BY_DESC:
+    //   return {
+    //     ...state,
+    //     products: action.payload,
+    //   };
+    //--------------------------------ORDER_BY_NAME--------------------------------\\
+    // case ORDER_BY_NAME:
+    //   return {
+    //     ...state,
+    //     products: action.payload,
+    //   };
+
+    case ORDER_BY_NAME:
+      console.log("reducer", action.payload)
       return {
         ...state,
-        products: action.payload,
+        products: [...state.products].sort((a, b) => {
+          if(action.payload === "nameAsc"){
+            if(a.name < b.name) return -1
+            return 0
+          }else if(action.payload ===  "nameDesc"){
+            if(a.name > b.name) return -1
+            return 0
+          }
+          return 0
+        }),
       };
     //--------------------------------FILTER_BY_PRICE_ASC--------------------------------\\
-    case FILTER_BY_PRICE_ASC:
-      return {
-        ...state,
-        products: action.payload,
-      };
+    // case FILTER_BY_PRICE_ASC:
+    //   return {
+    //     ...state,
+    //     products: action.payload,
+    //   };
     //--------------------------------FILTER_BY_PRICE_DESC--------------------------------\\
-    case FILTER_BY_PRICE_DESC:
+    // case FILTER_BY_PRICE_DESC:
+    //   return {
+    //     ...state,
+    //     products: action.payload,
+    //   };
+    //--------------------------------ORDER_BY_PRICE--------------------------------\\
+    // case ORDER_BY_PRICE:
+    //   return {
+    //     ...state,
+    //     products: action.payload,
+    //   };
+
+    case ORDER_BY_PRICE:
+      console.log(action.payload)
+      const sortName = [...state.products].sort((a,b) =>{
+        if(action.payload === "priceAsc"){
+          if(a.price < b.price) return -1
+          return 0
+        }else if(action.payload === "priceDesc"){
+          if(a.price > b.price) return -1
+          return 0
+        }else {
+          return 0
+        }
+      })
       return {
         ...state,
-        products: action.payload,
+        products: sortName
       };
-
+    //-----------------------------------------------------------------------------\\
     case GET_All_TYPES:
       return {
         ...state,
@@ -92,7 +143,7 @@ const reducer = (state = initialState, action) => {
     case INFINITY:
       return {
         ...state,
-        Infinity: action.payload,
+        infinity: action.payload,
       };
     case SET_CURRENTPAGE:
       return {
@@ -124,6 +175,9 @@ const reducer = (state = initialState, action) => {
         ),
       };
     //--------------------------------UPDATE_CART--------------------------------\\
+        ...state,
+        products: action.payload,
+      };
     default:
       return state;
   }
