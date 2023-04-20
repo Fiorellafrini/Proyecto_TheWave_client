@@ -11,6 +11,9 @@ export const FILTER_TYPE = "FILTER_TYPE";
 export const DETAIL_PRODUCT = "DETAIL_PRODUCT";
 export const INFINITY = "INFINITY";
 export const SET_CURRENTPAGE = "SET_CURRENTPAGE";
+export const ADD_TO_CART = "ADD_TO_CART";
+export const DELETE_TO_CART = "DELETE_TO_CART";
+
 export const LOGIN = "LOGIN";
 export const REGISTRO = "REGISTRO";
 
@@ -60,6 +63,7 @@ export const orderByName = (criteria) => {
 
 // ----------------------------------
 
+
 export const orderByPrice = (criteria) => {
   return { type: ORDER_BY_PRICE, payload: criteria };
 };
@@ -82,7 +86,9 @@ export function productsById(id) {
   };
 }
 
+
 // -------------------PAGE----------------------------------
+
 
 export function productsData(page) {
   return async function (dispatch) {
@@ -127,9 +133,6 @@ export function filterBrand(id) {
   };
 }
 
-// ----------------------------------
-
-
 export function filterType(id) {
   return async function (dispatch) {
     try {
@@ -157,6 +160,15 @@ export const registro = (body) => async (dipatch) => {
     type: "REGISTRO",
     payload: data,
   });
+};
+// ----------------------------------ADD TO CART----------------------------------
+export const addToCart = (product) => {
+  return { type: ADD_TO_CART, payload: product };
+};
+// ----------------------------------UPDATE CART----------------------------------
+// ----------------------------------DELETE TO CART----------------------------------
+export const deleteToCart = (product) => {
+  return { type: DELETE_TO_CART, payload: product };
 };
 
 export const login = (body) => async (dipatch) => {

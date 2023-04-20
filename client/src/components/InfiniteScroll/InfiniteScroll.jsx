@@ -3,7 +3,6 @@
 // import InfiniteScroll from 'react-infinite-scroll-component';
 // import ProductCard from "../ProductCard/ProductCard";
 
-
 // const Infinite = () => {
 //   const [currentPage, setCurrentPage] = useState(0);
 //   const [products, setProducts] = useState([]);
@@ -18,11 +17,11 @@
 //         })
 //         .catch((error) => console.error(error));
 //     }
-  
+
 //     useEffect(() => {
 //       fetchItems(currentPage);
 //     }, [currentPage]);
-  
+
 //   return (
 //     <InfiniteScroll
 //         dataLength={products.length}
@@ -31,7 +30,7 @@
 //         loader={products.length >= totalProducts ? "" : <h4>Loading...</h4>}
 //     >
 //         <section>
-//             { 
+//             {
 //             products.map((product) => (
 //                 <Link to={`/detail/${product.id}`} key={product.id}>
 //                   <ProductCard
@@ -43,7 +42,6 @@
 //                   />
 //                 </Link>
 
-
 //             ))}
 //         </section>
 //     </InfiniteScroll>
@@ -51,13 +49,12 @@
 // };
 // export default Infinite;
 
-
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 // import InfiniteScroll from "react-infinite-scroll-component";
 import ProductCard from "../ProductCard/ProductCard";
-import {useDispatch, useSelector} from "react-redux";
-import { listProducts, setCurrentPage} from "../../redux/actions.js";
+import { useDispatch, useSelector } from "react-redux";
+import { listProducts, setCurrentPage } from "../../redux/actions.js";
 import Paginado from "../Paginado/Paginado";
 import styles from './InfiniteScroll.module.css'
 import Error404 from "../Error404/Error404";
@@ -72,11 +69,11 @@ const Infinite = () => {
     const lastIndex = setPage * 8;
     const firstIndex = lastIndex - 8;
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(listProducts());
-    dispatch(setCurrentPage(1))
+    dispatch(setCurrentPage(1));
     // console.log(currentPage);
-  },[dispatch])
+  }, [dispatch]);
 
   return (
     <>
