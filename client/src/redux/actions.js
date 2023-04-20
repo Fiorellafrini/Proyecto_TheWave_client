@@ -15,6 +15,9 @@ export const FILTER_TYPE = "FILTER_TYPE";
 export const DETAIL_PRODUCT = "DETAIL_PRODUCT";
 export const INFINITY = "INFINITY";
 export const SET_CURRENTPAGE = "SET_CURRENTPAGE";
+export const ADD_TO_CART = "ADD_TO_CART";
+export const DELETE_TO_CART = "DELETE_TO_CART";
+
 
 export const createProduct = (body) => async (dipatch) => {
   const { data } = await axios.post("/product", body);
@@ -149,6 +152,7 @@ export const orderByName = (criteria) => {
 
 // ----------------------------------
 
+
 export const orderByPrice = (criteria) => {
   return { type: ORDER_BY_PRICE, payload: criteria };
 };
@@ -171,7 +175,9 @@ export function productsById(id) {
   };
 }
 
+
 // -------------------PAGE----------------------------------
+
 
 export function productsData(page) {
   return async function (dispatch) {
@@ -196,24 +202,6 @@ export const setCurrentPage = (payload) => {
   };
 };
 
-// -------------------FILTER-BRAND----------------------------------
-
-// export function filterBrand(id) {
-//   return async function (dispatch) {
-//     try {
-//       var json = await axios.get(
-//         `http://localhost:3001/filter/brands/${id}`
-//       );
-//       return dispatch({
-//         type: "FILTER_BRAND",
-//         payload: json.data,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// }
-
 export function filterBrand(id) {
   return async function (dispatch) {
     try {
@@ -231,30 +219,6 @@ export function filterBrand(id) {
   };
 }
 
-// ----------------------------------
-
-// export const filterBrand = (brand) => {
-//   return { type: FILTER_BRAND, payload: brand };
-// };
-
-// ----------------------------------
-
-// -------------------FILTER-TYPE----------------------------------
-
-// export function filterType(id) {
-//   return async function (dispatch) {
-//     try {
-//       var json = await axios.get(`http://localhost:3001/filter/type/${id}`);
-//       return dispatch({
-//         type: "FILTER_TYPE",
-//         payload: json.data,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// }
-
 export function filterType(id) {
   return async function (dispatch) {
     try {
@@ -271,11 +235,12 @@ export function filterType(id) {
     }
   };
 }
-
-// ----------------------------------
-
-// export const filterType = (type) => {
-//   return { type: FILTER_TYPE, payload: type };
-// };
-
-// ----------------------------------
+// ----------------------------------ADD TO CART----------------------------------
+export const addToCart = (product) => {
+  return { type: ADD_TO_CART, payload: product };
+};
+// ----------------------------------UPDATE CART----------------------------------
+// ----------------------------------DELETE TO CART----------------------------------
+export const deleteToCart = (product) => {
+  return { type: DELETE_TO_CART, payload: product };
+};
