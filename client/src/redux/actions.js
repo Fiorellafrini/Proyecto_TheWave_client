@@ -152,6 +152,7 @@ export const orderByName = (criteria) => {
 
 // ----------------------------------
 
+
 export const orderByPrice = (criteria) => {
   return { type: ORDER_BY_PRICE, payload: criteria };
 };
@@ -174,6 +175,10 @@ export function productsById(id) {
   };
 }
 
+
+// -------------------PAGE----------------------------------
+
+
 export function productsData(page) {
   return async function (dispatch) {
     try {
@@ -182,7 +187,6 @@ export function productsData(page) {
       );
       return dispatch({
         type: "INFINITY",
-        payload: json.data.products,
         payload: json.data.products,
       });
     } catch (error) {
