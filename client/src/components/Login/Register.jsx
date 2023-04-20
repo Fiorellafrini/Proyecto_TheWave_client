@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { registro } from "../../redux/actions";
 import { Popstyled } from "./loginstyle";
 
-function Register({ isOpen, onClose }) {
+function Register({ Open, onClose }) {
     const dispatch = useDispatch();
   const [sendForm, setSendForm] = useState(false);
 
@@ -17,8 +17,8 @@ function Register({ isOpen, onClose }) {
         <button onClick={onClose}>
           <BiX className="btn-close" size={25} />
         </button>
-        <h2>registrate</h2>
         <p>Bienvenido</p>
+        <h2>registrate</h2>
 
         <Formik
           initialValues={{

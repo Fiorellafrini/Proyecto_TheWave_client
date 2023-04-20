@@ -22,7 +22,7 @@ const LandingPage = () => {
 
   return (
     <div className={styles.containerLanding}>
-      <NavVertical/>
+      <NavVertical />
       <div className={styles.landing}>
         <div className={styles.navHome}>
           <div className={styles.containerItems}>
@@ -53,7 +53,7 @@ const LandingPage = () => {
           </div>
           <div className={styles.user}>
             <img src={logoPage} alt="" />
-            <p>Federico</p>
+            <p>Autentificacion</p>
             <div className={styles.dropdown}>
               <button
                 className={styles.dropdownToggle}
@@ -69,8 +69,8 @@ const LandingPage = () => {
                       About Us
                     </li>
                     <li onClick={() => handleNavItemClick("Log in")}>Log in</li>
-                    <li onClick={() => handleNavItemClick("Shop")}>Register</li>
-                    <li>Federico</li>
+                    <li onClick={() => handleNavItemClick("Register")}>Register</li>
+                    <li>Authentication</li>
                   </ul>
                 </div>
               )}
@@ -86,9 +86,9 @@ const LandingPage = () => {
                   The best page of nautical products, discover what is in our
                   stores
                 </p>
-                <Link to={"/HomePage"}>
-                  <button>Explorer</button>
-                </Link>
+                <button>
+                  <Link to={"/SectionHome"}>Explorer</Link>
+                </button>
               </div>
               <div className={styles.imgTabla}>
                 <img src={tablaSurf} alt="" />

@@ -2,9 +2,11 @@ import styled from "styled-components";
 
 import { useRef, useState } from "react";
 
-import { Link } from "react-router-dom";
+
 
 import { HiOutlineUserCircle, HiMenu } from "react-icons/hi";
+import Login from "../Login/Login";
+import Register from "../Login/Register";
 // import { useSelector } from "react-redux";
 
 const SectionRegister = () => {
@@ -12,6 +14,17 @@ const SectionRegister = () => {
   // const { user } = useSelector((state) => state.user);
   // console.log(user)
   const [active, setActive] = useState(false);
+   const [isOpen, setIsOpen] = useState(false);
+   const [Open, setOpen] = useState(false);
+
+
+      const toggleModal = () => {
+        setIsOpen(!isOpen);
+      };
+
+           const toggleModalRegister = () => {
+             setOpen(!Open);
+           };
 
   return (
     <Button ref={refMenu}>
@@ -21,21 +34,17 @@ const SectionRegister = () => {
       </div>
       <MenuHidden style={active ? null : { display: "none" }}>
         <Ul>
-          <Link to="/admin">
-            <Li>Dashboard</Li>
-          </Link>
-          <hr />
-          <hr />
-          <Li>Ayuda</Li>
           <Li>
-            <Link to="/addproperty">Mis publicaciones</Link>
+            <button onClick={toggleModal}>Login</button>
+            {isOpen && <Login isOpen={isOpen} onClose={toggleModal} />}
           </Li>
-          <Li>Cerrar Sesion</Li>
-        </Ul>
-        <Ul>
-          <Li>Iniciar Sesion</Li>
-          <Li>Registrarse</Li>
-          <hr />
+          <Li>
+            {" "}
+            <button onClick={toggleModal}>Register</button>
+            {Open && (
+              <Register isOpen={Open} onClose={toggleModalRegister} />
+            )}
+          </Li>
           <Li>
             <p>Ayuda</p>
           </Li>
@@ -60,13 +69,15 @@ const Button = styled.div`
 
 const MenuHidden = styled.div`
   position: absolute;
-  top: 3em;
+  top: 6.5em;
+  left: -9em;
   right: 0em;
-  z-index: 100;
+  z-index: 2;
 `;
 
 const Ul = styled.ul`
-  min-width: 10em;
+  min-width: 18em;
+  min-height: 18em;
   padding: 0.5em;
   display: flex;
   flex-direction: column;

@@ -1,19 +1,21 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
+  user-select: none;
+  -webkit-user-drag: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-    background-image: url(../src/assets/fondoHome.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+img {
+  -webkit-user-drag: none;
+}
+a {
+  -webkit-user-drag: none;
 }

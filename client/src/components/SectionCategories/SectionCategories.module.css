@@ -1,3 +1,34 @@
+.container {
+    width: 100%;
+    background-image: url(../../assets/fondoHome.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding-bottom: 20px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@200&display=swap');
+.cuadrado1 {
+    background-image: url("../../assets/fondoHome.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    opacity: 0.8;
+    width:100%;
+    height:100%;
+    top: 460px;
+}
+
+.containerSpinner {
+    width: 100%;
+    height: 1500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .titulo {
     color: white;
     font-size: 3em;
@@ -5,7 +36,7 @@
 .products {
     padding: 20px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 30px;
 }
 
@@ -13,8 +44,7 @@
     border-radius: 20px;
 }
 
-
-.filters button {
+.filters select {
     width: 150px;
     height: 60px;
     border: none;
@@ -28,8 +58,13 @@
     text-decoration: none;
     margin-left: 5px;
     cursor: pointer;
+    text-align: center;
 }
 
+.filtros {
+    display:  flex;
+    gap: 10px;
+}
 
 /* ----------------------------------------Spinner---------------------------------------- */
 .containerSpinner {
@@ -39,16 +74,35 @@
     align-items: center;
 }
 
+.cuadrado1 .cerrar a{
+    font-family: 'Work Sans';
+    font-size:2rem;
+    display:inline-block;
+    transform:translatex(0px) translatey(0px);
+    left:38px;
+    top:21px;
+    z-index:62;
+    width:106px;
+    height:37px;
+    cursor: pointer;
+    position:relative ;
+    background: rgba(3, 42, 43, 0.4);
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+}
+
 .spinner {
     width: 80px;
     height: 80px;
     border-radius: 50%;
     border: 9px solid;
-    border-color: #dbdcef;
+    border-color: #dbdcef37;
     border-right-color: #224145;
     text-align: center;
     animation: spinner-d3wgkg 1s infinite linear;
 }
+
 @keyframes spinner-d3wgkg {
     to {
         transform: rotate(1turn);

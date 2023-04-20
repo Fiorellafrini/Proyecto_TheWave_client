@@ -23,17 +23,17 @@ const {id} = useParams()
   return (
     <div className={styles.cuadrado1}>
       <div className={styles.cerrar}>
-        <Link to="/HomePage">Volver</Link>
+        <Link to="/SectionCategories">Back</Link>
       </div>
       <div className={styles.imag}>
         {detalle.imagen?.map((imagen, i) => (
           <div className={styles.imagenT}>
-            <img key={detalle.id} src={imagen} alt="imagen" />
+            <img key={i} src={imagen} alt="imagen" />
           </div>
         ))}
         <div className={styles.granImagen}>
           {detalle.imagen?.map((imagen, i) => (
-            <img  key={detalle.id} src={i === 0 ? imagen : null} alt="" />
+            <img  key={i} src={i === 0 ? imagen : null} alt="" />
           ))}
         </div>
         <div className={styles.pago}>
@@ -49,40 +49,40 @@ const {id} = useParams()
           </span>
           <div className={styles.metodo}>
             <p id={styles.cuotas}>
-              <b>Metodos de pago</b>
+              <b>Payment methods</b>
             </p>
             <img src={visa} alt="visa" />
             <img src={master} alt="card" />
           </div>
-          <p id={styles.envio}>Envío gratis a nivel nacional</p>
-          <p id={styles.devolucion}>Devolución gratis</p>
-          <p id={styles.dias}>Tienes 30 días desde que lo recibes.</p>
+          <p id={styles.envio}>Free shipping nationwide</p>
+          <p id={styles.devolucion}>Free return</p>
+          <p id={styles.dias}>You have 30 days from when you receive it.</p>
           <button id={styles.comprar}>Comprar ahora</button>
-          <button id={styles.carrito}>Agregar al carrito</button>
+          <button id={styles.carrito}>Add to cart</button>
           <p id={styles.protegida}>
-            <b>Compra Protegida</b>, recibe el producto que esperabas <br /> o te
-            devolvemos tu dinero.
+            <b>Protected Purchase</b>, , receive the product you expected <br /> or you
+            we return your money.
           </p>
           <p id={styles.garantia}>
-            <b>90 días de garantía de fábrica.</b>
+            <b>90 day factory warranty.</b>
           </p>
         </div>
       </div>
       <div className={styles.comentario}>
         <h2>
-          <b>Sobre este artículo</b>
+          <b>About this article</b>
         </h2>
         <ul>
           <li>
-            Dimensiones: 8 pies x 22 1/2 x 3 1/4 <br />
-            peso 11.5 libras Volumen de 86 litros de capacidad <br /> de peso
-            sugerida de hasta 200 libras
+          Dimensions: 8 pies x 22 1/2 x 3 1/4 <br />
+          weight 11.5 lbs. Volume 86 liter capacity <br /> of weight
+            suggested up to 200 pounds
           </li>
           <li>
-            Incluye almohadilla de tracción para <br />
+          Includes traction pad for<br />
             correa de tobillo y cubierta suave para calcetines <br />
             para protección. <br />
-            Correa de poliuretano de alta calidad
+            ankle strap and soft sock cover
           </li>
           <li>
             Soft Webs-IXL Water Barrier Skin Crosslink
