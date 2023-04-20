@@ -56,7 +56,10 @@ import ProductCard from "../ProductCard/ProductCard";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts, setCurrentPage } from "../../redux/actions.js";
 import Paginado from "../Paginado/Paginado";
-import styles from "./InfiniteScroll.module.css";
+import styles from './InfiniteScroll.module.css'
+import Error404 from "../Error404/Error404";
+import products from "../CarruselProducts/img";
+
 
 const Infinite = () => {
   const dispatch = useDispatch();
@@ -82,7 +85,8 @@ const Infinite = () => {
         loader={productos.length >= productos ? "" : <h4>Loading...</h4>}
       > */}
       <section className={styles.linkk}>
-        {productos
+        
+        {productos.length ? productos
           .map((product) => (
             <Link to={`/detail/${product.id}`} key={product.id}>
               <ProductCard
@@ -94,7 +98,8 @@ const Infinite = () => {
               />
             </Link>
           ))
-          .slice(firstIndex, lastIndex)}
+          .slice(firstIndex, lastIndex)
+        : <Error404/>}
       </section>
       {/* </InfiniteScroll> */}
     </>

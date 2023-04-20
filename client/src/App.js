@@ -10,6 +10,7 @@ import NavVertical from "./components/NavVertical/NavVertical";
 import SectionLogIn from "./components/SectionLogIn/SectionLogIn";
 import SectionRegister from "./components/SectionRegister/SectionRegister";
 import SectionCarrito from "./components/SectionCarrito/SectionCarrito";
+import HomeDashboard from "./review/dashboard/HomeDashboard";
 
 function App() {
   const location = useLocation();
@@ -19,16 +20,14 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="/SectionHome" element={<SectionHome />}></Route>
-        <Route
-          path="/SectionCategories"
-          element={<SectionCategories />}
-        ></Route>
+        <Route path="/SectionCategories" element={<SectionCategories />}></Route>
         <Route path="/SectionLogIn" element={<SectionLogIn />}></Route>
         <Route path="/SectionRegister" element={<SectionRegister />}></Route>
         <Route path="/SectionCarrito" element={<SectionCarrito />}></Route>
         <Route path="/form" element={<FormProduct />}></Route>
         <Route path="/detail/:id" element={<Detail />}></Route>
         <Route path="*" element={<Error404 />}></Route>
+        <Route path="/admin" element={<HomeDashboard/>}></Route> 
       </Routes>
     </div>
   );
