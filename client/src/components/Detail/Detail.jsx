@@ -6,6 +6,7 @@ import styles from './Detail.module.css'
 import visa from './iconos/visa.png' 
 import master from './iconos/master.png'
 // import pago from './iconos/pago.png'
+import back from "./iconos/arrow_navigation_icon.png"
 import {Link} from 'react-router-dom'
 
 function Detail() {
@@ -23,7 +24,9 @@ const {id} = useParams()
   return (
     <div className={styles.cuadrado1}>
       <div className={styles.cerrar}>
-        <Link to="/SectionCategories">Volver</Link>
+        <Link to="/SectionCategories">
+          <img src={back} alt="back" />
+        </Link>
       </div>
       <div className={styles.imag}>
         {detalle.imagen?.map((imagen, i) => (
