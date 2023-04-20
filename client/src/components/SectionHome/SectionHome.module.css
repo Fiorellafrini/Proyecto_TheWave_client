@@ -59,6 +59,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     box-shadow: 1px 1px 17px 1px #000;
+    transition: all 0.3s;
 }
 
 .img1 h1 {
@@ -82,6 +83,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     box-shadow: 1px 1px 17px 1px #000;
+    transition: all 0.3s;
 }
 
 .img2 h1 {
@@ -105,6 +107,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     box-shadow: 1px 1px 17px 1px #000;
+    transition: all 0.3s;
 }
 
 .img3 h1 {
@@ -128,6 +131,10 @@
     transform: scale(1.03);
 }
 
+.link {
+    color: rgb(252, 252, 252);
+    text-decoration: none;
+  }
 
 
 @keyframes spinner-d3wgkg {
