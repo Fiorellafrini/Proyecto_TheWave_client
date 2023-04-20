@@ -37,10 +37,11 @@ const FormProduct = () => {
       }
     );
     const data = await res.json();
+    console.log(data);
 
     // Actualizar los valores de imagen en el formulario
     setFieldValue("imagen[0]", data.secure_url);
-    setFieldValue("imagen[1]", data.secure_url);
+    // setFieldValue("imagen[1]", data.secure_url);
   };
 
 
