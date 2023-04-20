@@ -38,7 +38,7 @@ const SectionCarrito = () => {
               })}
             </div>
             <div className={styles.totalPay}>
-              <p>total</p>
+              <p>Total</p>
               <p>
                 {userCartShopping.reduce(
                   (total, product) => total + product.price,
@@ -47,7 +47,7 @@ const SectionCarrito = () => {
               </p>
             </div>
             <hr />
-            <button>pagar</button>
+            <button>Pay</button>
           </div>
         </div>
       )}
