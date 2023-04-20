@@ -12,12 +12,16 @@ import {
   INFINITY,
   SET_CURRENTPAGE,
   FILTER_BRAND,
-  FILTER_TYPE
+  FILTER_TYPE,
+  ADD_TO_CART,
+  DELETE_TO_CART,
+  UPDATE_CART_ITEM_QUANTITY,
 } from "./actions";
 
 const initialState = {
   products: [],
   allProduct: [],
+  shoppingCart: [],
   types: [],
   detail: [],
   brands: [],
@@ -96,15 +100,30 @@ const reducer = (state = initialState, action) => {
         setPage: action.payload,
       };
     case FILTER_BRAND:
-      return{
+      return {
         ...state,
-        products : action.payload
-      }
+        products: action.payload,
+      };
     case FILTER_TYPE:
-      return{
+      return {
         ...state,
-        products: action.payload
-      }
+        products: action.payload,
+      };
+    //--------------------------------ADD_TO_CART--------------------------------\\
+    case ADD_TO_CART:
+      return {
+        ...state,
+        shoppingCart: [...state.shoppingCart, action.payload],
+      };
+    //--------------------------------DELETE_TO_CART--------------------------------\\
+    case DELETE_TO_CART:
+      return {
+        ...state,
+        shoppingCart: state.shoppingCart.filter(
+          (product) => product !== action.payload
+        ),
+      };
+    //--------------------------------UPDATE_CART--------------------------------\\
     default:
       return state;
   }

@@ -9,10 +9,32 @@
     padding-bottom: 20px;
 }
 
-.titulo {
-    color: white;
-    font-size: 3em;
+.shoppingCartContainer {
+    margin: 10px;
+    border-radius: 15px;
+    background-color: #1e1e1ed0;
+    padding: 20px;
 }
+
+.shoppingCartContainer h1 {
+    font-size: 6em;
+    margin: 10px;
+    color: white;
+}
+.shoppingCartContainer button {
+    width: 300px;
+    height: 80px;
+    font-size: 3em;
+    margin-top: 10px;
+}
+.totalPay {
+    font-size: 4em;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+
 /* ----------------------------------------Spinner---------------------------------------- */
 .containerSpinner {
     width: 100%;

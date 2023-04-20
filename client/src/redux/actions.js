@@ -13,6 +13,9 @@ export const INFINITY = "INFINITY";
 export const SET_CURRENTPAGE = "SET_CURRENTPAGE";
 export const FILTER_BRAND = "FILTER_BRAND";
 export const FILTER_TYPE = "FILTER_TYPE";
+export const ADD_TO_CART = "ADD_TO_CART";
+export const DELETE_TO_CART = "DELETE_TO_CART";
+
 
 export const createProduct = (body) => async (dipatch) => {
   const { data } = await axios.post("http://localhost:3001/product", body);
@@ -104,9 +107,6 @@ export function filterByPriceDesc() {
 
 // -------------------DETAIL----------------------------------
 
-
-
-
 export function productsById(id) {
   return async function (dispatch) {
     try {
@@ -121,7 +121,6 @@ export function productsById(id) {
   };
 }
 
-
 export function productsData(page) {
   return async function (dispatch) {
     try {
@@ -130,14 +129,13 @@ export function productsData(page) {
       );
       return dispatch({
         type: "INFINITY",
-        payload: json.data.products 
+        payload: json.data.products,
       });
     } catch (error) {
       alert(error.message);
     }
   };
 }
-
 
 export const setCurrentPage = (payload) => {
   return {
@@ -146,15 +144,10 @@ export const setCurrentPage = (payload) => {
   };
 };
 
-
-
-
 export function filterBrand(id) {
   return async function (dispatch) {
     try {
-      var json = await axios.get(
-        `http://localhost:3001/filter/brands/${id}`
-      );
+      var json = await axios.get(`http://localhost:3001/filter/brands/${id}`);
       return dispatch({
         type: "FILTER_BRAND",
         payload: json.data,
@@ -164,9 +157,6 @@ export function filterBrand(id) {
     }
   };
 }
-
-
-
 
 export function filterType(id) {
   return async function (dispatch) {
@@ -181,3 +171,12 @@ export function filterType(id) {
     }
   };
 }
+// ----------------------------------ADD TO CART----------------------------------
+export const addToCart = (product) => {
+  return { type: ADD_TO_CART, payload: product };
+};
+// ----------------------------------UPDATE CART----------------------------------
+// ----------------------------------DELETE TO CART----------------------------------
+export const deleteToCart = (product) => {
+  return { type: DELETE_TO_CART, payload: product };
+};
