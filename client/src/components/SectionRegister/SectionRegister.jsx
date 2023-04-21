@@ -1,30 +1,31 @@
 import styled from "styled-components";
-
 import { useRef, useState } from "react";
-
-
-
 import { HiOutlineUserCircle, HiMenu } from "react-icons/hi";
+import { useNavigate } from "react-router-dom";
 import Login from "../Login/Login";
 import Register from "../Login/Register";
-// import { useSelector } from "react-redux";
+
 
 const SectionRegister = () => {
   const refMenu = useRef(null);
-  // const { user } = useSelector((state) => state.user);
-  // console.log(user)
   const [active, setActive] = useState(false);
    const [isOpen, setIsOpen] = useState(false);
    const [Open, setOpen] = useState(false);
+   const navegar = useNavigate();
 
 
       const toggleModal = () => {
         setIsOpen(!isOpen);
       };
 
-           const toggleModalRegister = () => {
-             setOpen(!Open);
-           };
+      const toggleMo = () => {
+        setOpen(!Open);
+      };
+
+   const handleLogout = () => {
+     window.localStorage.removeItem("login");
+     navegar("/");
+   };
 
   return (
     <Button ref={refMenu}>
@@ -35,16 +36,18 @@ const SectionRegister = () => {
       <MenuHidden style={active ? null : { display: "none" }}>
         <Ul>
           <Li>
+            <button onClick={handleLogout}>Cerrar sesion</button>
+          </Li>
+          <hr />
+          <Li>
             <button onClick={toggleModal}>Login</button>
             {isOpen && <Login isOpen={isOpen} onClose={toggleModal} />}
           </Li>
-          <Li>
-            {" "}
-            <button onClick={toggleModal}>Register</button>
-            {Open && (
-              <Register isOpen={Open} onClose={toggleModalRegister} />
-            )}
-          </Li>
+          <hr />
+          <li>
+            <button onClick={toggleMo}>Register</button>
+            {Open && <Register isOpen={Open} onClose={toggleMo} />}
+          </li>
           <Li>
             <p>Ayuda</p>
           </Li>

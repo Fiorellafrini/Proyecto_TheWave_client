@@ -16,7 +16,9 @@ export const DELETE_TO_CART = "DELETE_TO_CART";
 
 export const LOGIN = "LOGIN";
 export const REGISTRO = "REGISTRO";
-
+export const LOGINGOOGLE = "LOGINGOOGLE";
+export const LOGINFACEBOOK = "LOGINFACEBOOK";
+export const RGOOGLE = "RGOOGLE";
 export const createProduct = (body) => async (dipatch) => {
   const { data } = await axios.post("/product", body);
   console.log(data);
@@ -172,9 +174,58 @@ export const deleteToCart = (product) => {
 };
 
 export const login = (body) => async (dipatch) => {
-  const { data } = await axios.post("/auth", body);
-  return dipatch({
-    type: "LOGIN",
-    payload: data,
-  });
+  try {
+     const { data } = await axios.post("/auth", body);
+     return dipatch({
+       type: "LOGIN",
+       payload: data,
+     });
+  } catch (error) {
+    alert(error.message);
+  }
 };
+
+
+
+export function google() {
+  return async function (dispatch) {
+    try {
+      const { data } = await axios.get(`/auth/google`);
+      return dispatch({
+        type: "LOGINGOOGLE",
+        payload: data
+      });
+    } catch (error) {
+     alert("laruta no esta autorizada");
+    }
+  };
+}
+
+
+export function facebook() {
+  return async function (dispatch) {
+    try {
+      const {data} = await axios.get(`/auth/facebook`);
+      return dispatch({
+        type: "LOGINFACEBOOK",
+        payload:data,
+      });
+    } catch (error) {
+     alert("laruta no rata autorizada");
+    }
+  };
+}
+
+export function googleR() {
+  return async function (dispatch) {
+    try {
+      const { data } = await axios.get(`/auth//google/callback`);
+      return dispatch({
+        type: "RGOOGLE",
+        payload: data,
+      });
+    } catch (error) {
+      alert("laruta no rata autorizada");
+    }
+  };
+}

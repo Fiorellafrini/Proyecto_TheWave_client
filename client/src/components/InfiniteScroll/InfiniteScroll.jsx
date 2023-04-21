@@ -65,7 +65,7 @@ const Infinite = () => {
   const dispatch = useDispatch()
   const productos = useSelector((state) => state.products.products);
   const setPage = useSelector((state) => state.products.setPage);
-  console.log( productos)
+  
     const lastIndex = setPage * 8;
     const firstIndex = lastIndex - 8;
 

@@ -5,8 +5,8 @@ function ProteccionRutas() {
 
     let isLoguin = window.localStorage.getItem("login");
 
-    if(!isLoguin){
-        return <Navigate to="/SectionLogIn" />;
+    if (!isLoguin) {
+      return <Navigate to="/SectionLogIn" />;
     }
 
   return (

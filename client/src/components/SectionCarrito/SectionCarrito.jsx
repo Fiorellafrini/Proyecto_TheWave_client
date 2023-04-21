@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 const SectionCarrito = () => {
   const [loading, setLoading] = useState(true);
-  const userCartShopping = useSelector((state) => state.shoppingCart);
+  const userCartShopping = useSelector((state) => state.products.shoppingCart);
 
   useEffect(() => {
     setTimeout(() => {

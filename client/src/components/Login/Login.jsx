@@ -3,15 +3,38 @@ import React, { useState } from "react";
 import { BiX } from "react-icons/bi";
 import { SiFacebook, SiGoogle } from "react-icons/si";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../redux/actions";
+import { login, google, facebook } from "../../redux/actions";
 import { Popstyled } from "./loginstyle";
+import { useNavigate } from "react-router-dom";
 
 function Login({ isOpen, onClose }) {
   const dispatch = useDispatch();
+  const navegar = useNavigate();
   const [sendForm, setSendForm] = useState(false);
   const token = useSelector((state) => state.user.login);
-  console.log(token)
-  window.localStorage.setItem('login', JSON.stringify(token))
+console.log(token)
+  let isLoguin = window.localStorage.getItem("login");
+
+
+  window.localStorage.setItem("login", JSON.stringify(token));
+ 
+
+  const handleGoogle = () => {
+    dispatch(google());
+    if (!isLoguin) {
+      navegar("/SectionLogIn");
+    }
+    navegar("/SectionHome");
+  };
+
+  const handlefacebook = () => {
+    dispatch(facebook());
+    if (!isLoguin) {
+      navegar("/SectionLogIn");
+    }
+    navegar("/SectionHome");
+  };
+
   return (
     <Popstyled>
       <div className="Form">
@@ -32,7 +55,8 @@ function Login({ isOpen, onClose }) {
             if (!values.password) {
               errors.password = "Ingrese su contraseña";
             } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.password)) {
-              errors.password = "El contraseña  solo puede contener letras minusculas o mayusculas";
+              errors.password =
+                "El contraseña  solo puede contener letras minusculas o mayusculas";
             }
             // Validación de email
             if (!values.email) {
@@ -49,7 +73,10 @@ function Login({ isOpen, onClose }) {
           }}
           onSubmit={(values, { resetForm }) => {
             dispatch(login(values));
-            console.log(values)
+            if (!isLoguin) {
+              navegar("/SectionLogIn");
+            }
+            navegar("/SectionHome");
             setSendForm(true);
             setTimeout(() => setSendForm(false), 5000);
             resetForm();
@@ -73,14 +100,16 @@ function Login({ isOpen, onClose }) {
               <div>
                 <Field
                   className="inputs"
-                  type="text"
+                  type="password"
                   id="password"
                   name="password"
                   placeholder="Password"
                 />
                 <ErrorMessage
                   name="password"
-                  component={() => <div className="error">{errors.password}</div>}
+                  component={() => (
+                    <div className="error">{errors.password}</div>
+                  )}
                 />
               </div>
               <button
@@ -97,9 +126,13 @@ function Login({ isOpen, onClose }) {
         <hr />
         <p>Tambien puedes registrarte con:</p>
         <div className="icons">
-          <SiGoogle size={25} />
+          <button onClick={handleGoogle}>
+            <SiGoogle size={25} />
+          </button>
           <p>Google</p>
-          <SiFacebook size={25} />
+          <button onClick={handlefacebook}>
+            <SiFacebook size={25} />
+          </button>
           <p>Facebook</p>
         </div>
       </div>
