@@ -24,6 +24,13 @@ const SectionCarrito = () => {
     setTotal(newTotal);
   }, [userCartShopping]);
 
+// useEffect(() => {
+//   const newTotal = userCartShopping.reduce((total, product) => total + product.total, 0);
+//   setTotal(newTotal);
+// }, [userCartShopping]);
+
+
+
   return (  
     <>
       {loading ? (
@@ -37,7 +44,7 @@ const SectionCarrito = () => {
             <h1>Shopping Cart</h1>
             <div className={styles.containerProducts}>
               {userCartShopping?.map((product) => {
-                // console.log("product.total: ", product.total);
+                 console.log("product.total: ", product.total);
                 return (
                   <ShoppingCartCard
                     name={product.name}
