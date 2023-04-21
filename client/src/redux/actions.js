@@ -17,6 +17,7 @@ export const INFINITY = "INFINITY";
 export const SET_CURRENTPAGE = "SET_CURRENTPAGE";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const DELETE_TO_CART = "DELETE_TO_CART";
+export const EMPTY_CART= "EMPTY CART";
 
 
 export const createProduct = (body) => async (dipatch) => {
@@ -243,4 +244,8 @@ export const addToCart = (product) => {
 // ----------------------------------DELETE TO CART----------------------------------
 export const deleteToCart = (product) => {
   return { type: DELETE_TO_CART, payload: product };
+};
+
+export const empty_cart = (product) => {
+  return { type: EMPTY_CART, payload: product };
 };

@@ -1,7 +1,59 @@
 import React from "react";
 import styles from "../ShoppingCartCard/ShoppingCartCard.module.css";
 
+
+
 import { useState } from "react";
+
+import { useDispatch } from "react-redux";
+// import { empty_cart } from "../../redux/actions";
+
+
+
+
+
+
+
+
+
+
+const ShoppingCartCard = ({ name, size, price, imagen, setTotal,}) => {
+  const [imageSrc] = useState(imagen[0]);
+  const [quantity, setQuantity] = useState(1);
+  const [total, setProductTotal] = useState(price);
+  // if(quantity < MAX_QUANTITY) //este es si quiero poner el mismo stock a todos
+
+  const dispatch = useDispatch()
+  // const handleRemove = () => {
+  //   dispatch(empty_cart(product));
+  //  };
+
+  const handleIncrement = () => {
+    if (quantity < PRODUCT_LIMIT[name]) {
+      setQuantity((prevQuantity) => {
+        const newQuantity = prevQuantity + 1;
+        const newTotal = newQuantity * price;
+        setProductTotal(newTotal);
+        setTotal(newTotal);
+        return newQuantity;
+      });
+    }
+  };
+
+  const handleDecrement = () => {
+    if (quantity > 1) {
+      setQuantity((prevQuantity) => {
+        const newQuantity = prevQuantity - 1;
+        const newTotal = newQuantity * price;
+
+        setProductTotal(newTotal);
+
+        setTotal(newTotal);
+        return newQuantity;
+      });
+    }
+  };
+
 
 // const MAX_QUANTITY =10; //la activo cuando le quiero poner el mismo limite de sotck a todos los productos
 const PRODUCT_LIMIT = {
@@ -31,37 +83,8 @@ const PRODUCT_LIMIT = {
   "Diving fins - Nude - Powerjet": 5,
 };
 
-const ShoppingCartCard = ({ name, size, price, imagen, setTotal }) => {
-  const [imageSrc] = useState(imagen[0]);
-  const [quantity, setQuantity] = useState(1);
-  const [total, setProductTotal] = useState(price);
-  // if(quantity < MAX_QUANTITY) //este es si quiero poner el mismo stock a todos
 
-  const handleIncrement = () => {
-    if (quantity < PRODUCT_LIMIT[name]) {
-      setQuantity((prevQuantity) => {
-        const newQuantity = prevQuantity + 1;
-        const newTotal = newQuantity * price;
-        setProductTotal(newTotal);
-        setTotal(newTotal);
-        return newQuantity;
-      });
-    }
-  };
 
-  const handleDecrement = () => {
-    if (quantity > 1) {
-      setQuantity((prevQuantity) => {
-        const newQuantity = prevQuantity - 1;
-        const newTotal = newQuantity * price;
-
-        setProductTotal(newTotal);
-
-        setTotal(newTotal);
-        return newQuantity;
-      });
-    }
-  };
 
   return (
     <div className={styles.containerCardShopping}>
@@ -79,6 +102,7 @@ const ShoppingCartCard = ({ name, size, price, imagen, setTotal }) => {
           <button onClick={handleIncrement}>+</button>
         </div>
         <h2>Total ${total}</h2>
+        {/* <button onClick={handleRemove}>🗑</button> */}
       </div>
     </div>
   );
