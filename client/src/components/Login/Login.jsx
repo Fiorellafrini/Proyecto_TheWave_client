@@ -11,7 +11,7 @@ function Login({ isOpen, onClose }) {
   const dispatch = useDispatch();
   const navegar = useNavigate();
   const [sendForm, setSendForm] = useState(false);
-  const token = useSelector((state) => state.user.login);
+  const token = useSelector((state) => state.products.login);
 console.log(token)
   let isLoguin = window.localStorage.getItem("login");
 

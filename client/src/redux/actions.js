@@ -13,6 +13,7 @@ export const INFINITY = "INFINITY";
 export const SET_CURRENTPAGE = "SET_CURRENTPAGE";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const DELETE_TO_CART = "DELETE_TO_CART";
+export const EMPTY_CART= "EMPTY CART";
 
 export const LOGIN = "LOGIN";
 export const REGISTRO = "REGISTRO";
@@ -173,19 +174,22 @@ export const deleteToCart = (product) => {
   return { type: DELETE_TO_CART, payload: product };
 };
 
+export const empty_cart = (product) => {
+  return { type: EMPTY_CART, payload: product };
+};
+
+
 export const login = (body) => async (dipatch) => {
   try {
-     const { data } = await axios.post("/auth", body);
-     return dipatch({
-       type: "LOGIN",
-       payload: data,
-     });
+    const { data } = await axios.post("/auth", body);
+    return dipatch({
+      type: "LOGIN",
+      payload: data,
+    });
   } catch (error) {
     alert(error.message);
   }
 };
-
-
 
 export function google() {
   return async function (dispatch) {
@@ -193,25 +197,24 @@ export function google() {
       const { data } = await axios.get(`/auth/google`);
       return dispatch({
         type: "LOGINGOOGLE",
-        payload: data
+        payload: data,
       });
     } catch (error) {
-     alert("laruta no esta autorizada");
+      alert("laruta no esta autorizada");
     }
   };
 }
 
-
 export function facebook() {
   return async function (dispatch) {
     try {
-      const {data} = await axios.get(`/auth/facebook`);
+      const { data } = await axios.get(`/auth/facebook`);
       return dispatch({
         type: "LOGINFACEBOOK",
-        payload:data,
+        payload: data,
       });
     } catch (error) {
-     alert("laruta no rata autorizada");
+      alert("laruta no rata autorizada");
     }
   };
 }

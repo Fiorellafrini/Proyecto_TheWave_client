@@ -10,22 +10,30 @@ import NavVertical from "./components/NavVertical/NavVertical";
 import SectionLogIn from "./components/SectionLogIn/SectionLogIn";
 import SectionRegister from "./components/SectionRegister/SectionRegister";
 import SectionCarrito from "./components/SectionCarrito/SectionCarrito";
-// import HomeDashboard from "./review/dashboard/HomeDashboard";  
+// import HomeDashboard from "./review/dashboard/HomeDashboard";
 import ProteccionRutas from "./components/Routers/ProteccionRutas"
+import React from 'react'
+import {Cloudinary} from "@cloudinary/url-gen";
+
 
 function App() {
+  const cld = new Cloudinary({
+    cloud: {
+      cloudName: 'djngalumm'
+    }
+  });
   const location = useLocation();
   return (
     <div className="App">
-      {location.pathname !== "/" && <NavVertical />}
+      {location.pathname !== "/"  && <NavVertical />}
       <Routes>
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="/SectionHome" element={<SectionHome />}></Route>
         <Route path="/SectionLogIn" element={<SectionLogIn />}></Route>
         <Route path="/SectionRegister" element={<SectionRegister />}></Route>
+        <Route path="/SectionCategories" element={<SectionCategories />}></Route>
         
         <Route element={<ProteccionRutas/>}> 
-        <Route path="/SectionCategories" element={<SectionCategories />}></Route>
         <Route path="/SectionCarrito" element={<SectionCarrito />}></Route>
         <Route path="/form" element={<FormProduct />}></Route>
         <Route path="/detail/:id" element={<Detail />}></Route>

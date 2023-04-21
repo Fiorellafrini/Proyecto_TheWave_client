@@ -17,6 +17,7 @@ import {
   SET_CURRENTPAGE,
   ADD_TO_CART,
   DELETE_TO_CART,
+  EMPTY_CART,
 } from "./actions";
 
 const initialState = {
@@ -174,6 +175,17 @@ const reducer = (state = initialState, action) => {
           (product) => product !== action.payload
         ),
       };
+
+case EMPTY_CART:
+  return {
+    ...state,
+    shoppingCart: state.shoppingCart.filter(
+      (product) => product !== action.payload
+    ),
+  }
+
+
+
     //--------------------------------UPDATE_CART--------------------------------\\
     default:
       return state;

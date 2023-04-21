@@ -32,7 +32,7 @@ function Paginado({total }) {
                 disabled={setPage === 1 ? true : false}
                 onClick={prevPage}
               >
-                back
+                ◀
               </button>
             </div>
             {numeroPagina.map((Pag) => (
@@ -50,7 +50,7 @@ function Paginado({total }) {
                 disabled={setPage >= numeroPagina.length ? true : false}
                 onClick={nextPage}
               >
-                Next
+                ▶
               </button>
             </div>
           </ul>
