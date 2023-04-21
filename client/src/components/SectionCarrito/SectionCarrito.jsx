@@ -44,8 +44,7 @@ const SectionCarrito = () => {
           <div className={styles.shoppingCartContainer}>
             <h1>Shopping Cart</h1>
             <div className={styles.containerProducts}>
-              {userCartShopping?.map((product) => {
-                 console.log("product.total: ", product.total);
+              {userCartShopping?.map((product, i) => {
                 return (
                   <ShoppingCartCard
                     key={i}
@@ -77,7 +76,7 @@ const SectionCarrito = () => {
                   );
               }}
             >
-              pagar
+              Pay
             </button>
           </div>
         </div>
@@ -87,6 +86,3 @@ const SectionCarrito = () => {
 };
 
 export default SectionCarrito;
-
-
-
