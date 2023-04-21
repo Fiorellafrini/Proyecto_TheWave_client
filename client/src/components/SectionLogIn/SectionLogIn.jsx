@@ -1,29 +1,31 @@
-import React, { useState, useEffect } from "react";
-import Navigation from "../Navigation/Navigation";
-import styles from "../SectionLogIn/SectionLogIn.module.css";
+import React, { useState } from "react";
+import { Popstyled } from "./sesion";
+
+import Login from "../Login/Login";
+import Register from "../Login/Register";
 
 const SectionLogIn = () => {
-  const [loading, setLoading] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const [Open, setOpen] = useState(false);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
+  const toggleModal = () => {
+    setIsOpen(!isOpen);
+  };
 
+  const toggleMo = () => {
+    setOpen(!Open);
+  };
   return (
-    <>
-      {loading ? (
-        <div className={styles.containerSpinner}>
-          <div className={styles.spinner}></div>
+    <Popstyled>
+      <div className="Form">
+        <button onClick={toggleModal}>Login</button>
+        {isOpen && <Login isOpen={isOpen} onClose={toggleModal} />}
+        <div>
+          <button onClick={toggleMo}>Register</button>
+          {Open && <Register isOpen={Open} onClose={toggleMo} />}
         </div>
-      ) : (
-        <div className={styles.container}>
-          <Navigation />
-          <h1 className={styles.titulo}>Section Login</h1>
-        </div>
-      )}
-    </>
+      </div>
+    </Popstyled>
   );
 };
 

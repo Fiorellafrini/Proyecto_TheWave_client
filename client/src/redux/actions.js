@@ -4,10 +4,6 @@ export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const GET_All_TYPES = "GET_ALL_TYPES";
 export const GET_ALL_BRANDS = "GET_ALL_BRANDS";
 export const FILTER_BY_NAME = "FILTER_BY_NAME";
-// export const FILTER_BY_ASC = "FILTER_BY_ASC";
-// export const FILTER_BY_DESC = "FILTER_BY_DESC";
-// export const FILTER_BY_PRICE_ASC = "FILTER_BY_PRICE_ASC";
-// export const FILTER_BY_PRICE_DESC = "FILTER_BY_PRICE_DESC";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
 export const FILTER_BRAND = "FILTER_BRAND";
@@ -19,7 +15,11 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const DELETE_TO_CART = "DELETE_TO_CART";
 export const EMPTY_CART= "EMPTY CART";
 
-
+export const LOGIN = "LOGIN";
+export const REGISTRO = "REGISTRO";
+export const LOGINGOOGLE = "LOGINGOOGLE";
+export const LOGINFACEBOOK = "LOGINFACEBOOK";
+export const RGOOGLE = "RGOOGLE";
 export const createProduct = (body) => async (dipatch) => {
   const { data } = await axios.post("/product", body);
   console.log(data);
@@ -54,49 +54,7 @@ export function filterByName(payload) {
     }
   };
 }
-// export function filterByNameAsc() {
-//   return async function (dispatch) {
-//     try {
-//       var json = await axios.get("http://localhost:3001/order/name/asc");
-//       return dispatch({
-//         type: "FILTER_BY_ASC",
-//         payload: json.data,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// }
-// export function filterByNameDesc() {
-//   return async function (dispatch) {
-//     try {
-//       var json = await axios.get("http://localhost:3001/order/name/desc");
-//       return dispatch({
-//         type: "FILTER_BY_DESC",
-//         payload: json.data,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// }
 
-// export function orderByName(order) {
-//   return async function (dispatch) {
-//     try {
-//       const response = await axios.get(
-//         `http://localhost:3001/product?sort=${order}`
-//       );
-//       const orderByName = response.data;
-//       return dispatch({
-//         type: "ORDER_BY_NAME",
-//         payload: orderByName,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// }
 
 // ----------------------------------
 
@@ -105,51 +63,6 @@ export const orderByName = (criteria) => {
 };
 
 // ----------------------------------
-
-// -----------------------------------FILTER_BY_PRICE-----------------------------------
-// export function filterByPriceAsc() {
-//   return async function (dispatch) {
-//     try {
-//       var json = await axios.get("http://localhost:3001/order/price/less");
-//       return dispatch({
-//         type: "FILTER_BY_PRICE_ASC",
-//         payload: json.data,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// }
-// export function filterByPriceDesc() {
-//   return async function (dispatch) {
-//     try {
-//       var json = await axios.get("http://localhost:3001/order/price/higher");
-//       return dispatch({
-//         type: "FILTER_BY_PRICE_DESC",
-//         payload: json.data,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// }
-
-// export function orderByPrice(order) {
-//   return async function (dispatch) {
-//     try {
-//       const response = await axios.get(
-//         `http://localhost:3001/product?sort=${order}`
-//       );
-//       const orderByPrice = response.data;
-//       return dispatch({
-//         type: "ORDER_BY_PRICE",
-//         payload: orderByPrice,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// }
 
 // ----------------------------------
 
@@ -203,6 +116,9 @@ export const setCurrentPage = (payload) => {
   };
 };
 
+// -------------------FILTER-BRAND----------------------------------
+
+
 export function filterBrand(id) {
   return async function (dispatch) {
     try {
@@ -236,6 +152,18 @@ export function filterType(id) {
     }
   };
 }
+
+
+
+//---------------------LOGIN---------------------------------------------//
+
+export const registro = (body) => async (dipatch) => {
+  const { data } = await axios.post("/user", body);
+  return dipatch({
+    type: "REGISTRO",
+    payload: data,
+  });
+};
 // ----------------------------------ADD TO CART----------------------------------
 export const addToCart = (product) => {
   return { type: ADD_TO_CART, payload: product };
@@ -249,3 +177,58 @@ export const deleteToCart = (product) => {
 export const empty_cart = (product) => {
   return { type: EMPTY_CART, payload: product };
 };
+
+
+export const login = (body) => async (dipatch) => {
+  try {
+    const { data } = await axios.post("/auth", body);
+    return dipatch({
+      type: "LOGIN",
+      payload: data,
+    });
+  } catch (error) {
+    alert(error.message);
+  }
+};
+
+export function google() {
+  return async function (dispatch) {
+    try {
+      const { data } = await axios.get(`/auth/google`);
+      return dispatch({
+        type: "LOGINGOOGLE",
+        payload: data,
+      });
+    } catch (error) {
+      alert("laruta no esta autorizada");
+    }
+  };
+}
+
+export function facebook() {
+  return async function (dispatch) {
+    try {
+      const { data } = await axios.get(`/auth/facebook`);
+      return dispatch({
+        type: "LOGINFACEBOOK",
+        payload: data,
+      });
+    } catch (error) {
+      alert("laruta no rata autorizada");
+    }
+  };
+}
+
+export function googleR() {
+  return async function (dispatch) {
+    try {
+      const { data } = await axios.get(`/auth//google/callback`);
+      return dispatch({
+        type: "RGOOGLE",
+        payload: data,
+      });
+    } catch (error) {
+      alert("laruta no rata autorizada");
+    }
+  };
+}

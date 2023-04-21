@@ -3,6 +3,7 @@ import styles from "./Navigation.module.css";
 import logoPage from "../../assets/logoPage.png";
 import carrito from "../../assets/carrito.png";
 import { Link } from "react-router-dom";
+import SectionRegister from "../SectionRegister/SectionRegister";
 
 const Navigation = () => {
   return (
@@ -21,19 +22,16 @@ const Navigation = () => {
       <div className={styles.col}>
         <img src={logoPage} alt="" />
       </div>
-      <div className={styles.col}>
-        <Link to={"/SectionLogIn"}>
-          <p>Log in</p>
-        </Link>{" "}
-        <Link to={"/SectionRegister"}>
-          <p>Register</p>
-        </Link>{" "}
-      </div>
       <Link to={"/SectionCarrito"}>
         <div className={styles.col}>
           <img src={carrito} alt="" />
         </div>
       </Link>
+      <div className={styles.col}>
+        <button>
+          <SectionRegister />
+        </button>
+      </div>
     </div>
   );
 };
