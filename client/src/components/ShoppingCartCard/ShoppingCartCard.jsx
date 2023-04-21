@@ -31,50 +31,46 @@ const PRODUCT_LIMIT = {
   "Diving fins - Nude - Powerjet": 5,
 };
 
-const ShoppingCartCard = ({ name, size, price, imagen }) => {
+const ShoppingCartCard = ({ name, size, price, imagen, setTotal }) => {
   const [imageSrc] = useState(imagen[0]);
   const [quantity, setQuantity] = useState(1);
-  const [totalPrice, setTotalPrice] = useState(price);
+  const [total, setProductTotal] = useState(price);
+  // if(quantity < MAX_QUANTITY) //este es si quiero poner el mismo stock a todos
 
-  // const handleIncrement = () => {
-  //   // if(quantity < MAX_QUANTITY) //este es si quiero poner el mismo stock a todos
-  //   if (quantity < PRODUCT_LIMIT[name]) setQuantity(quantity + 1);
-  // };
   const handleIncrement = () => {
     if (quantity < PRODUCT_LIMIT[name]) {
       setQuantity((prevQuantity) => {
         const newQuantity = prevQuantity + 1;
-        setTotalPrice(newQuantity * price);
+        const newTotal = newQuantity * price;
+        setProductTotal(newTotal);
+        setTotal(newTotal);
         return newQuantity;
       });
     }
   };
-
-  // const handleDecrement = () => {
-  //   if (quantity > 1) {
-  //     setQuantity(quantity - 1);
-  //   }
-  // };
 
   const handleDecrement = () => {
     if (quantity > 1) {
       setQuantity((prevQuantity) => {
         const newQuantity = prevQuantity - 1;
-        setTotalPrice(newQuantity * price);
+        const newTotal = newQuantity * price;
+
+        setProductTotal(newTotal);
+
+        setTotal(newTotal);
         return newQuantity;
       });
     }
   };
-
-  // const totalPrice = price * quantity;
 
   return (
     <div className={styles.containerCardShopping}>
       <img src={imageSrc} alt="" />
       <div className={styles.containerInfo}>
         <h1>{name}</h1>
-        <h2>waist-{size}</h2>
-        <h2>${totalPrice}</h2>
+        <h2>waist: {size}</h2>
+        <h2>1 x ${price}</h2>
+        {/* <h2>Total ${total}</h2> */}
       </div>
       <div>
         <div className={styles.buttons}>
@@ -82,6 +78,7 @@ const ShoppingCartCard = ({ name, size, price, imagen }) => {
           <p>{quantity}</p>
           <button onClick={handleIncrement}>+</button>
         </div>
+        <h2>Total ${total}</h2>
       </div>
     </div>
   );
