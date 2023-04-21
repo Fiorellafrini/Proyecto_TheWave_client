@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 const SectionCarrito = () => {
   const [loading, setLoading] = useState(true);
   const userCartShopping = useSelector((state) => state.shoppingCart);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     setTimeout(() => {
@@ -14,7 +15,23 @@ const SectionCarrito = () => {
     }, 2000);
   }, []);
 
-  return (
+  useEffect(() => {
+    const newTotal = userCartShopping.reduce(
+      (total, product) => total + product.total,
+      0
+    );
+    // console.log("newTotal: ", newTotal);
+    setTotal(newTotal);
+  }, [userCartShopping]);
+
+// useEffect(() => {
+//   const newTotal = userCartShopping.reduce((total, product) => total + product.total, 0);
+//   setTotal(newTotal);
+// }, [userCartShopping]);
+
+
+
+  return (  
     <>
       {loading ? (
         <div className={styles.containerSpinner}>
@@ -27,27 +44,26 @@ const SectionCarrito = () => {
             <h1>Shopping Cart</h1>
             <div className={styles.containerProducts}>
               {userCartShopping?.map((product) => {
+                 console.log("product.total: ", product.total);
                 return (
                   <ShoppingCartCard
                     name={product.name}
                     price={product.price}
                     size={product.size}
                     imagen={product.imagen}
+                    setTotal={(newTotal) => {
+                      product.total = newTotal;
+                    }}
                   />
                 );
               })}
             </div>
             <div className={styles.totalPay}>
-              <p>total</p>
-              <p>
-                {userCartShopping.reduce(
-                  (total, product) => total + product.price,
-                  0
-                )}
-              </p>
+              <p>Total</p>
+              <p>{total}</p>
             </div>
             <hr />
-            <button>pagar</button>
+            <button>Pay</button>
           </div>
         </div>
       )}
@@ -56,3 +72,6 @@ const SectionCarrito = () => {
 };
 
 export default SectionCarrito;
+
+
+
