@@ -131,6 +131,10 @@
     transform: scale(1.03);
 }
 
+.link {
+    color: rgb(252, 252, 252);
+    text-decoration: none;
+  }
 
 
 @keyframes spinner-d3wgkg {

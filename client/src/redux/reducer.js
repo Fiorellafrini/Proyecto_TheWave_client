@@ -15,16 +15,21 @@ import {
   DETAIL_PRODUCT,
   INFINITY,
   SET_CURRENTPAGE,
+  ADD_TO_CART,
+  DELETE_TO_CART,
+  EMPTY_CART,
 } from "./actions";
 
 const initialState = {
   products: [],
   allProduct: [],
+  shoppingCart: [],
   types: [],
   detail: [],
   brands: [],
   infinity: [],
   setPage: 0,
+  filters: {},
 };
 
 const reducer = (state = initialState, action) => {
@@ -80,9 +85,16 @@ const reducer = (state = initialState, action) => {
 
     case ORDER_BY_NAME:
       console.log("reducer", action.payload);
+      console.log("reducer", action.payload);
       return {
         ...state,
         products: [...state.products].sort((a, b) => {
+          if (action.payload === "nameAsc") {
+            if (a.name < b.name) return -1;
+            return 0;
+          } else if (action.payload === "nameDesc") {
+            if (a.name > b.name) return -1;
+            return 0;
           if (action.payload === "nameAsc") {
             if (a.name < b.name) return -1;
             return 0;
@@ -113,6 +125,16 @@ const reducer = (state = initialState, action) => {
     //   };
 
     case ORDER_BY_PRICE:
+      console.log(action.payload);
+      const sortName = [...state.products].sort((a, b) => {
+        if (action.payload === "priceAsc") {
+          if (a.price < b.price) return -1;
+          return 0;
+        } else if (action.payload === "priceDesc") {
+          if (a.price > b.price) return -1;
+          return 0;
+        } else {
+          return 0;
       console.log(action.payload);
       const sortName = [...state.products].sort((a, b) => {
         if (action.payload === "priceAsc") {
@@ -165,6 +187,32 @@ const reducer = (state = initialState, action) => {
         ...state,
         products: action.payload,
       };
+    //--------------------------------ADD_TO_CART--------------------------------\\
+    case ADD_TO_CART:
+      return {
+        ...state,
+        shoppingCart: [...state.shoppingCart, action.payload],
+      };
+    //--------------------------------DELETE_TO_CART--------------------------------\\
+    case DELETE_TO_CART:
+      return {
+        ...state,
+        shoppingCart: state.shoppingCart.filter(
+          (product) => product !== action.payload
+        ),
+      };
+
+case EMPTY_CART:
+  return {
+    ...state,
+    shoppingCart: state.shoppingCart.filter(
+      (product) => product !== action.payload
+    ),
+  }
+
+
+
+    //--------------------------------UPDATE_CART--------------------------------\\
     default:
       return state;
   }

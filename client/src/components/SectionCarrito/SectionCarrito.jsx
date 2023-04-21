@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Navigation from "../Navigation/Navigation";
 import styles from "../SectionCarrito/SectionCarrito.module.css";
+import ShoppingCartCard from "../ShoppingCartCard/ShoppingCartCard";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 const SectionCarrito = () => {
   const [loading, setLoading] = useState(true);
+  const userCartShopping = useSelector((state) => state.shoppingCart);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     setTimeout(() => {
@@ -11,7 +16,23 @@ const SectionCarrito = () => {
     }, 2000);
   }, []);
 
-  return (
+  useEffect(() => {
+    const newTotal = userCartShopping.reduce(
+      (total, product) => total + product.total,
+      0
+    );
+    // console.log("newTotal: ", newTotal);
+    setTotal(newTotal);
+  }, [userCartShopping]);
+
+// useEffect(() => {
+//   const newTotal = userCartShopping.reduce((total, product) => total + product.total, 0);
+//   setTotal(newTotal);
+// }, [userCartShopping]);
+
+
+
+  return (  
     <>
       {loading ? (
         <div className={styles.containerSpinner}>
@@ -20,7 +41,44 @@ const SectionCarrito = () => {
       ) : (
         <div className={styles.container}>
           <Navigation />
-          <h1 className={styles.titulo}>Section Carrito</h1>
+          <div className={styles.shoppingCartContainer}>
+            <h1>Shopping Cart</h1>
+            <div className={styles.containerProducts}>
+              {userCartShopping?.map((product, i) => {
+                return (
+                  <ShoppingCartCard
+                    key={i}
+                    name={product.name}
+                    price={product.price}
+                    size={product.size}
+                    imagen={product.imagen}
+                    setTotal={(newTotal) => {
+                      product.total = newTotal;
+                    }}
+                  />
+                );
+              })}
+            </div>
+            <div className={styles.totalPay}>
+              <p>Total</p>
+              <p>{total}</p>
+            </div>
+            <hr />
+            <button
+              onClick={() => {
+                const body = userCartShopping;
+                console.log("Body:", body); 
+                axios
+                  .post("http://localhost:3001/payment", body)
+                  .then(
+                    (res) =>
+                      (window.location.href = res.data.response.body.init_point)
+                  );
+              }}
+            >
+              pagar
+            </button>
+          </div>
         </div>
       )}
     </>
@@ -28,3 +86,6 @@ const SectionCarrito = () => {
 };
 
 export default SectionCarrito;
+
+
+

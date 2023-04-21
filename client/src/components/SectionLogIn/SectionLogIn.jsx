@@ -18,8 +18,8 @@ const SectionLogIn = () => {
           <div className={styles.spinner}></div>
         </div>
       ) : (
-          <div className={styles.container}>
-          <Navigation/>
+        <div className={styles.container}>
+          <Navigation />
           <h1 className={styles.titulo}>Section Login</h1>
         </div>
       )}
