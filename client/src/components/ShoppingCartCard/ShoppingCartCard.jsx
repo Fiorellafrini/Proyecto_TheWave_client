@@ -63,6 +63,11 @@ const ShoppingCartCard = ({ name, size, price, imagen, setTotal }) => {
     }
   };
 
+
+  // const handleRemove = () => {
+  //   removeProduct(name);
+  // };
+
   return (
     <div className={styles.containerCardShopping}>
       <img src={imageSrc} alt="" />
@@ -79,6 +84,7 @@ const ShoppingCartCard = ({ name, size, price, imagen, setTotal }) => {
           <button onClick={handleIncrement}>+</button>
         </div>
         <h2>Total ${total}</h2>
+        {/* <button onClick={handleRemove}>🗑</button>  */}
       </div>
     </div>
   );

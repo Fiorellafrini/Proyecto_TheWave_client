@@ -44,7 +44,7 @@ const SectionCarrito = () => {
             <h1>Shopping Cart</h1>
             <div className={styles.containerProducts}>
               {userCartShopping?.map((product) => {
-                 console.log("product.total: ", product.total);
+                //  console.log("product.total: ", product.total);
                 return (
                   <ShoppingCartCard
                     name={product.name}
