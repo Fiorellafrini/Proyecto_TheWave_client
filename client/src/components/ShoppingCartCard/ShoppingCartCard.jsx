@@ -86,6 +86,11 @@ const PRODUCT_LIMIT = {
 
 
 
+
+  // const handleRemove = () => {
+  //   removeProduct(name);
+  // };
+
   return (
     <div className={styles.containerCardShopping}>
       <img src={imageSrc} alt="" />
@@ -102,7 +107,6 @@ const PRODUCT_LIMIT = {
           <button onClick={handleIncrement}>+</button>
         </div>
         <h2>Total ${total}</h2>
-        {/* <button onClick={handleRemove}>🗑</button> */}
       </div>
     </div>
   );

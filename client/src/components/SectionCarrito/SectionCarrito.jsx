@@ -44,7 +44,8 @@ const SectionCarrito = () => {
           <div className={styles.shoppingCartContainer}>
             <h1>Shopping Cart</h1>
             <div className={styles.containerProducts}>
-              {userCartShopping?.map((product, i) => {
+              {userCartShopping?.map((product) => {
+                 console.log("product.total: ", product.total);
                 return (
                   <ShoppingCartCard
                     key={i}
