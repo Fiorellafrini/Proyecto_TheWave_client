@@ -1,5 +1,5 @@
 import React from "react";
-import { filterType, listProducts, setCurrentPage } from "../../redux/actions.js";
+import { filterType, setCurrentPage } from "../../redux/actions.js";
 import { useDispatch } from "react-redux";
 import styles from "./Filtro.module.css";
 

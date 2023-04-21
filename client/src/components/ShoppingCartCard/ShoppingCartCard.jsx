@@ -5,7 +5,7 @@ import styles from "../ShoppingCartCard/ShoppingCartCard.module.css";
 
 import { useState } from "react";
 
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 // import { empty_cart } from "../../redux/actions";
 
 
@@ -23,7 +23,7 @@ const ShoppingCartCard = ({ name, size, price, imagen, setTotal,}) => {
   const [total, setProductTotal] = useState(price);
   // if(quantity < MAX_QUANTITY) //este es si quiero poner el mismo stock a todos
 
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   // const handleRemove = () => {
   //   dispatch(empty_cart(product));
   //  };
