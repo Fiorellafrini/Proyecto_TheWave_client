@@ -40,13 +40,25 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         products: action.payload,
+        allProduct: action.payload.slice()
       };
     //--------------------------------FILTER_BY_NAME--------------------------------\\
+    // case FILTER_BY_NAME:
+    //   return {
+    //     ...state,
+    //     products: action.payload,
+    //   };
+
     case FILTER_BY_NAME:
       return {
         ...state,
-        products: action.payload,
+        products: state.allProduct.filter(
+          (prod) =>
+            prod.name &&
+            prod.name.toLowerCase().includes(action.payload.toLowerCase())
+        ),
       };
+
     //--------------------------------FILTER_BY_NAME_ASC--------------------------------\\
     // case FILTER_BY_ASC:
     //   return {
@@ -67,18 +79,18 @@ const reducer = (state = initialState, action) => {
     //   };
 
     case ORDER_BY_NAME:
-      console.log("reducer", action.payload)
+      console.log("reducer", action.payload);
       return {
         ...state,
         products: [...state.products].sort((a, b) => {
-          if(action.payload === "nameAsc"){
-            if(a.name < b.name) return -1
-            return 0
-          }else if(action.payload ===  "nameDesc"){
-            if(a.name > b.name) return -1
-            return 0
+          if (action.payload === "nameAsc") {
+            if (a.name < b.name) return -1;
+            return 0;
+          } else if (action.payload === "nameDesc") {
+            if (a.name > b.name) return -1;
+            return 0;
           }
-          return 0
+          return 0;
         }),
       };
     //--------------------------------FILTER_BY_PRICE_ASC--------------------------------\\
@@ -101,21 +113,21 @@ const reducer = (state = initialState, action) => {
     //   };
 
     case ORDER_BY_PRICE:
-      console.log(action.payload)
-      const sortName = [...state.products].sort((a,b) =>{
-        if(action.payload === "priceAsc"){
-          if(a.price < b.price) return -1
-          return 0
-        }else if(action.payload === "priceDesc"){
-          if(a.price > b.price) return -1
-          return 0
-        }else {
-          return 0
+      console.log(action.payload);
+      const sortName = [...state.products].sort((a, b) => {
+        if (action.payload === "priceAsc") {
+          if (a.price < b.price) return -1;
+          return 0;
+        } else if (action.payload === "priceDesc") {
+          if (a.price > b.price) return -1;
+          return 0;
+        } else {
+          return 0;
         }
-      })
+      });
       return {
         ...state,
-        products: sortName
+        products: sortName,
       };
     //-----------------------------------------------------------------------------\\
     case GET_All_TYPES:

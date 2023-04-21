@@ -105,3 +105,6 @@
     -moz-box-shadow: 7px 14px 12px 0px rgba(0,0,0,0.37);
     cursor: pointer;
 }
+.fila3 button:active{
+    opacity: 0.8;
+}

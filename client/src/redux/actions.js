@@ -35,21 +35,26 @@ export function listProducts() {
   };
 }
 // -----------------------------------FILTER_BY_NAME-----------------------------------
-export function filterByName(payload) {
-  return async function (dispatch) {
-    try {
-      var json = await axios.get(
-        "http://localhost:3001/product?name=" + payload
-      );
-      return dispatch({
-        type: "FILTER_BY_NAME",
-        payload: json.data,
-      });
-    } catch (error) {
-      alert("Dont exits...Are you lost?");
-    }
-  };
+// export function filterByName(payload) {
+//   return async function (dispatch) {
+//     try {
+//       var json = await axios.get(
+//         "http://localhost:3001/product?name=" + payload
+//       );
+//       return dispatch({
+//         type: "FILTER_BY_NAME",
+//         payload: json.data,
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// }
+
+export const filterByName = (name) => {
+  return {type: FILTER_BY_NAME, payload: name}
 }
+
 // export function filterByNameAsc() {
 //   return async function (dispatch) {
 //     try {
