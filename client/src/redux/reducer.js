@@ -46,6 +46,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         products: action.payload,
         allProduct: action.payload.slice()
+>>>>>>>>> Temporary merge branch 2
       };
     //--------------------------------FILTER_BY_NAME--------------------------------\\
     // case FILTER_BY_NAME:
@@ -62,6 +63,7 @@ const reducer = (state = initialState, action) => {
             prod.name &&
             prod.name.toLowerCase().includes(action.payload.toLowerCase())
         ),
+>>>>>>>>> Temporary merge branch 2
       };
 
     //--------------------------------FILTER_BY_NAME_ASC--------------------------------\\
