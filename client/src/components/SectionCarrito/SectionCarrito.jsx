@@ -7,8 +7,7 @@ import axios from "axios";
 
 const SectionCarrito = () => {
   const [loading, setLoading] = useState(true);
-  const userCartShopping = useSelector((state) => state.shoppingCart);
-  const [total, setTotal] = useState(0);
+  const userCartShopping = useSelector((state) => state.products.shoppingCart);
 
   useEffect(() => {
     setTimeout(() => {
@@ -16,23 +15,7 @@ const SectionCarrito = () => {
     }, 2000);
   }, []);
 
-  useEffect(() => {
-    const newTotal = userCartShopping.reduce(
-      (total, product) => total + product.total,
-      0
-    );
-    // console.log("newTotal: ", newTotal);
-    setTotal(newTotal);
-  }, [userCartShopping]);
-
-// useEffect(() => {
-//   const newTotal = userCartShopping.reduce((total, product) => total + product.total, 0);
-//   setTotal(newTotal);
-// }, [userCartShopping]);
-
-
-
-  return (  
+  return (
     <>
       {loading ? (
         <div className={styles.containerSpinner}>
@@ -52,22 +35,24 @@ const SectionCarrito = () => {
                     price={product.price}
                     size={product.size}
                     imagen={product.imagen}
-                    setTotal={(newTotal) => {
-                      product.total = newTotal;
-                    }}
                   />
                 );
               })}
             </div>
             <div className={styles.totalPay}>
-              <p>Total</p>
-              <p>{total}</p>
+              <p>total</p>
+              <p>
+                {userCartShopping.reduce(
+                  (total, product) => total + product.price,
+                  0
+                )}
+              </p>
             </div>
             <hr />
             <button
               onClick={() => {
                 const body = userCartShopping;
-                console.log("Body:", body); 
+                console.log("Body:", body);
                 axios
                   .post("http://localhost:3001/payment", body)
                   .then(
@@ -86,6 +71,3 @@ const SectionCarrito = () => {
 };
 
 export default SectionCarrito;
-
-
-

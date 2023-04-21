@@ -10,7 +10,7 @@
 }
 
 .containerNav:hover {
-    backdrop-filter: blur(10px);
+    /* backdrop-filter: blur(10px); */
 }
 a:link {
     text-decoration: none;

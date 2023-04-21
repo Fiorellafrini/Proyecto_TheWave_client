@@ -12,7 +12,7 @@ import Navigation from "../Navigation/Navigation.jsx";
 
 function Detail() {
   const dispatch = useDispatch();
-  const detalle = useSelector((state) => state.detail);
+  const detalle = useSelector((state) => state.products.detail);
   const [isSelected, setIsSelected] = useState(false);
   const { id } = useParams();
 
