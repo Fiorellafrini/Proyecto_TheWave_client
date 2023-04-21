@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage } from "../../redux/actions.js";
 import "./paginado.css";
-function Paginado({total }) {
+function Paginado({ total }) {
   const setPage = useSelector((state) => state.setPage);
   const dispatch = useDispatch();
   const numeroPagina = [];
@@ -32,7 +32,7 @@ function Paginado({total }) {
                 disabled={setPage === 1 ? true : false}
                 onClick={prevPage}
               >
-                back
+                ◀
               </button>
             </div>
             {numeroPagina.map((Pag) => (
@@ -50,7 +50,7 @@ function Paginado({total }) {
                 disabled={setPage >= numeroPagina.length ? true : false}
                 onClick={nextPage}
               >
-                Next
+                ▶
               </button>
             </div>
           </ul>
