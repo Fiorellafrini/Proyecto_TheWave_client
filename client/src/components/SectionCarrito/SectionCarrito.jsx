@@ -76,7 +76,7 @@ const SectionCarrito = () => {
                   );
               }}
             >
-              pagar
+              Pay
             </button>
           </div>
         </div>
