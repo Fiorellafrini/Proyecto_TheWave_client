@@ -6,7 +6,7 @@ import styles from "../ShoppingCartCard/ShoppingCartCard.module.css";
 import { useState } from "react";
 
 import { useDispatch } from "react-redux";
-import { empty_cart } from "../../redux/actions";
+// import { empty_cart } from "../../redux/actions";
 
 
 
@@ -17,16 +17,16 @@ import { empty_cart } from "../../redux/actions";
 
 
 
-const ShoppingCartCard = ({ name, size, price, imagen, setTotal, empty_cart, product}) => {
+const ShoppingCartCard = ({ name, size, price, imagen, setTotal,}) => {
   const [imageSrc] = useState(imagen[0]);
   const [quantity, setQuantity] = useState(1);
   const [total, setProductTotal] = useState(price);
   // if(quantity < MAX_QUANTITY) //este es si quiero poner el mismo stock a todos
 
   const dispatch = useDispatch()
-  const handleRemove = () => {
-    dispatch(empty_cart(product));
-   };
+  // const handleRemove = () => {
+  //   dispatch(empty_cart(product));
+  //  };
 
   const handleIncrement = () => {
     if (quantity < PRODUCT_LIMIT[name]) {
@@ -102,7 +102,7 @@ const PRODUCT_LIMIT = {
           <button onClick={handleIncrement}>+</button>
         </div>
         <h2>Total ${total}</h2>
-        <button onClick={handleRemove}>🗑</button>
+        {/* <button onClick={handleRemove}>🗑</button> */}
       </div>
     </div>
   );
