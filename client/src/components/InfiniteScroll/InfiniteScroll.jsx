@@ -50,15 +50,14 @@
 // export default Infinite;
 
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 // import InfiniteScroll from "react-infinite-scroll-component";
 import ProductCard from "../ProductCard/ProductCard";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts, setCurrentPage } from "../../redux/actions.js";
 import Paginado from "../Paginado/Paginado";
-import styles from './InfiniteScroll.module.css'
+import styles from "./InfiniteScroll.module.css";
 import Error404 from "../Error404/Error404";
-
 
 const Infinite = () => {
   const dispatch = useDispatch();
@@ -84,21 +83,24 @@ const Infinite = () => {
         loader={productos.length >= productos ? "" : <h4>Loading...</h4>}
       > */}
       <section className={styles.linkk}>
-        
-        {productos.length ? productos
-          .map((product) => (
-            <Link to={`/detail/${product.id}`} key={product.id}>
+        {productos.length ? (
+          productos
+            .map((product) => (
+              // <Link to={`/detail/${product.id}`} key={product.id}>
               <ProductCard
                 key={product.id}
+                id={product.id}
                 name={product.name}
                 price={product.price}
                 size={product.size}
                 imagen={product.imagen}
               />
-            </Link>
-          ))
-          .slice(firstIndex, lastIndex)
-        : <Error404/>}
+              // {/* </Link> */}
+            ))
+            .slice(firstIndex, lastIndex)
+        ) : (
+          <Error404 />
+        )}
       </section>
       {/* </InfiniteScroll> */}
     </>

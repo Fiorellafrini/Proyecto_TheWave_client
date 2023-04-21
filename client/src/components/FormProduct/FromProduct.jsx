@@ -4,6 +4,8 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import styles from "./FromProduct.module.css";
 import { createProduct } from "../../redux/actions";
 import Navigation from "../Navigation/Navigation";
+import Swal from "sweetalert2";
+// import { useNavigate } from "react-router-dom";
 
 
 
@@ -20,6 +22,32 @@ import Navigation from "../Navigation/Navigation";
 const FormProduct = () => {
   const [isSent, setIsSent] = useState(false);
   const dispatch = useDispatch();
+  // const navigate = useNavigate();
+  const errors = {};
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (Object.keys(errors).length === 0) {
+        Swal.fire({
+          title: "¡Good Job.!",
+          text: "Product Created SuccesFully",
+          icon: "success",
+          confirmButtonText: "Aceptar",
+        });
+        // navigate("/SectionCategories");
+      } else {
+        Swal.fire({
+          title: "Error!",
+          text: "Missing Information",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      }
+    } catch (error) {
+      return error.message;
+    }
+  };
 
   // Función para manejar la carga de imágenes
   const handleImageUpload = async (e, setFieldValue) => {
@@ -54,31 +82,30 @@ const FormProduct = () => {
         initialValues={{
           name: "",
           imagen: ["", ""],
-          id_brand: 0,
-          id_type: 0,
+          id_brand: "",
+          id_type: "",
           size: "",
-          price: 0,
+          price: "",
         }}
         validate={(values) => {
-          const errors = {};
           if (!values.name) {
             errors.name = "Please enter a name for this product";
           } /*  else if (!products.includes(values.name)){
                     errors.name = "this name has been used";
                 } */
-          if (values.imagen.length === 0) {
+          if (!values.imagen) {
             errors.imagen = "Please enter a imagen for this product";
           }
-          if (values.id_type === 0) {
+          if (!values.id_type) {
             errors.id_type = "Required";
           }
           if (!values.size) {
             errors.size = "Required";
           }
-          if (values.id_brand === 0) {
+          if (!values.id_brand) {
             errors.id_brand = "Required";
           }
-          if (values.price === 0) {
+          if (!values.price) {
             errors.price = "Please enter a price for this product";
           } else if (values.price > 999999999) {
             errors.price = "Please enter a price  valid for this product";
@@ -94,7 +121,7 @@ const FormProduct = () => {
       >
         {({ isSubmitting, errors,  setFieldValue }) => (
           <div className={styles.cntd}>
-            <Form className={styles.formulario}>
+            <Form onSubmit={handleSubmit} className={styles.formulario}>
               <label>
                 Name
                 <Field type="text" name="name" />
