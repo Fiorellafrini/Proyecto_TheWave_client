@@ -14,6 +14,7 @@ import {
 import Infinite from "../InfiniteScroll/InfiniteScroll";
 import FiltroMarca from "../Filtros/FiltroMarca";
 import FiltroType from "../Filtros/FiltroType";
+import Navigation from "../Navigation/Navigation";
 const SectionCategories = () => {
   const dispatch = useDispatch();
 
@@ -51,66 +52,69 @@ const SectionCategories = () => {
           <div className={styles.spinner}></div>
         </div>
       ) : (
-        <div className={styles.products}>
-          <SearchBar />
-          <div className={styles.filters}>
-            {/* <p>Order Name</p>
+        <div className={styles.container}>
+          <Navigation />
+          <div className={styles.products}>
+            <SearchBar />
+            <div className={styles.filters}>
+              {/* <p>Order Name</p>
             <button value="nameAsc" onChange={handlerOrder}>
               ascendente
             </button>
             <button value="nameDesc" onChange={handlerOrder}>
               descendente
             </button> */}
-            {/* <select defaultValue="order" onChange={handlerOrder}>
+              {/* <select defaultValue="order" onChange={handlerOrder}>
               <option disabled value="order">
                 Order Name
               </option>
               <option value="nameAsc">A - Z</option>
               <option value="nameDesc">Z - A</option>
             </select> */}
-            <select
-              name="orderByName"
-              defaultValue="order"
-              onChange={handleChange}
-            >
-              <option disabled value="order">
-                Order Name
-              </option>
-              <option value="nameAsc">A - Z</option>
-              <option value="nameDesc">Z - A</option>
-            </select>
-            {/* <p>Order Price</p>
+              <select
+                name="orderByName"
+                defaultValue="order"
+                onChange={handleChange}
+              >
+                <option disabled value="order">
+                  Order Name
+                </option>
+                <option value="nameAsc">A - Z</option>
+                <option value="nameDesc">Z - A</option>
+              </select>
+              {/* <p>Order Price</p>
             <button onClick={() => dispatch(filterByPriceAsc())}>
               ascendente
             </button>
             <button onClick={() => dispatch(filterByPriceDesc())}>
               descendente
             </button> */}
-            {/* <select defaultValue="price" onChange={handlerOrder}>
+              {/* <select defaultValue="price" onChange={handlerOrder}>
               <option disabled value="price">
                 Price
               </option>
               <option value="priceAsc">Price Lower</option>
               <option value="priceDesc">Price Higher</option>
             </select> */}
-            <select
-              name="orderByPrice"
-              defaultValue="price"
-              onChange={handleChange}
-            >
-              <option disabled value="price">
-                Price
-              </option>
-              <option value="priceAsc">Price Lower</option>
-              <option value="priceDesc">Price Higher</option>
-            </select>
-          </div>
-          <div className={styles.filtros}>
-            <FiltroMarca />
-            <FiltroType />
-          </div>
-          <div className={styles.containerProducts}>
-            <Infinite />
+              <select
+                name="orderByPrice"
+                defaultValue="price"
+                onChange={handleChange}
+              >
+                <option disabled value="price">
+                  Price
+                </option>
+                <option value="priceAsc">Price Lower</option>
+                <option value="priceDesc">Price Higher</option>
+              </select>
+            </div>
+            <div className={styles.filtros}>
+              <FiltroMarca />
+              <FiltroType />
+            </div>
+            <div className={styles.containerProducts}>
+              <Infinite />
+            </div>
           </div>
         </div>
       )}

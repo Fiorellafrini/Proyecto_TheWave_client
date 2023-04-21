@@ -1,20 +1,19 @@
-import React from "react";
-import { filterBrand, setCurrentPage } from "../../redux/actions.js";
-import { useDispatch } from "react-redux";
-import styles from "./Filtro.module.css";
-function FiltroMarca() {
-  const dispatch = useDispatch();
+import React from 'react'
+import {filterBrand, setCurrentPage} from '../../redux/actions.js'
+import {useDispatch} from 'react-redux'
+import styles from'./Filtro.module.css'
+function Filtro_Marca() {
+    const dispatch = useDispatch()
 
-  const handleOnchange = (e) => {
-    e.preventDefault();
-    e.target.name === "filterBrand" && dispatch(filterBrand(e.target.value));
-    setCurrentPage(1);
-  };
+    const handleOnchange =(e)=>{
+        dispatch(filterBrand(e.target.value))
+        setCurrentPage(1)
+    }
 
   return (
     <div className={styles.filtros}>
-      <select name="filterBrand" onChange={handleOnchange}>
-        <option value="">All</option>
+      <select className="" onChange={(e) => handleOnchange(e)}>
+        <option value="All">All</option>
         <option value="1">Hurley</option>
         <option value="2">Rip Curl</option>
         <option value="3">Vesl</option>
@@ -34,4 +33,4 @@ function FiltroMarca() {
   );
 }
 
-export default FiltroMarca;
+export default Filtro_Marca

@@ -15,16 +15,20 @@ import {
   DETAIL_PRODUCT,
   INFINITY,
   SET_CURRENTPAGE,
+  ADD_TO_CART,
+  DELETE_TO_CART,
 } from "./actions";
 
 const initialState = {
   products: [],
   allProduct: [],
+  shoppingCart: [],
   types: [],
   detail: [],
   brands: [],
   infinity: [],
   setPage: 0,
+  filters: {},
 };
 
 const reducer = (state = initialState, action) => {
@@ -41,6 +45,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         products: action.payload,
         allProduct: action.payload.slice()
+
       };
     //--------------------------------FILTER_BY_NAME--------------------------------\\
     // case FILTER_BY_NAME:
@@ -57,7 +62,6 @@ const reducer = (state = initialState, action) => {
             prod.name &&
             prod.name.toLowerCase().includes(action.payload.toLowerCase())
         ),
-      };
 
     //--------------------------------FILTER_BY_NAME_ASC--------------------------------\\
     // case FILTER_BY_ASC:
@@ -165,6 +169,21 @@ const reducer = (state = initialState, action) => {
         ...state,
         products: action.payload,
       };
+    //--------------------------------ADD_TO_CART--------------------------------\\
+    case ADD_TO_CART:
+      return {
+        ...state,
+        shoppingCart: [...state.shoppingCart, action.payload],
+      };
+    //--------------------------------DELETE_TO_CART--------------------------------\\
+    case DELETE_TO_CART:
+      return {
+        ...state,
+        shoppingCart: state.shoppingCart.filter(
+          (product) => product !== action.payload
+        ),
+      };
+    //--------------------------------UPDATE_CART--------------------------------\\
     default:
       return state;
   }

@@ -100,7 +100,7 @@ const FormProduct = () => {
               {/*  <Field name="description" as="textarea"/>
                     <ErrorMessage name="description" component="div" />*/}
               <label>
-                Imagen
+                Image
                 <Field type="url" name="imagen[0]" />
                 <Field type="url" name="imagen[1]" />
                 <ErrorMessage

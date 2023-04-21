@@ -7,7 +7,7 @@ import SectionLogIn from "../../components/SectionLogIn/SectionLogIn";
 import SectionRegister from "../../components/SectionRegister/SectionRegister";
 import logoPage from "../../assets/logoPage.png";
 import carrito from "../../assets/carrito.png";
-import styles from "../../components/HomePage/HomePage.module.css";
+// import styles from "../../components/HomePage/HomePage.module.css";
 import { useState } from "react";
 
 const Admin = () => {
