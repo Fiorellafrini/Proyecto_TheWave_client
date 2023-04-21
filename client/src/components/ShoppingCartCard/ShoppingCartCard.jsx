@@ -83,7 +83,7 @@ const ShoppingCartCard = ({ name, size, price, imagen, setTotal }) => {
           <p>{quantity}</p>
           <button onClick={handleIncrement}>+</button>
         </div>
-        <h2>Total ${total}</h2>
+        <h2 className={styles.h2}>Total ${total}</h2>
         {/* <button onClick={handleRemove}>🗑</button>  */}
       </div>
     </div>

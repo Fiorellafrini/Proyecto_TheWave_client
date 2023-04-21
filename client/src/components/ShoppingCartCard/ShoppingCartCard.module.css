@@ -11,6 +11,11 @@
     width: 90%;
     color: white;
 }
+
+.h2 {
+    width: 90%;
+    color: rgb(255, 255, 255);
+}
 .containerInfo h1 {
     font-size: 4em;
 }
