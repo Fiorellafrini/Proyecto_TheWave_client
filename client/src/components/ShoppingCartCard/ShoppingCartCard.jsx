@@ -37,6 +37,11 @@ const ShoppingCartCard = ({ name, size, price, imagen, setTotal }) => {
   const [total, setProductTotal] = useState(price);
   // if(quantity < MAX_QUANTITY) //este es si quiero poner el mismo stock a todos
 
+  // const dispatch = useDispatch()
+  // const handleRemove = () => {
+  //   dispatch(empty_cart(product));
+  //  };
+
   const handleIncrement = () => {
     if (quantity < PRODUCT_LIMIT[name]) {
       setQuantity((prevQuantity) => {
@@ -62,7 +67,6 @@ const ShoppingCartCard = ({ name, size, price, imagen, setTotal }) => {
       });
     }
   };
-
 
   // const handleRemove = () => {
   //   removeProduct(name);

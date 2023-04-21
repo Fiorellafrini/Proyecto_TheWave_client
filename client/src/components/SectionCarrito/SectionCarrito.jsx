@@ -3,6 +3,7 @@ import Navigation from "../Navigation/Navigation";
 import styles from "../SectionCarrito/SectionCarrito.module.css";
 import ShoppingCartCard from "../ShoppingCartCard/ShoppingCartCard";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 const SectionCarrito = () => {
   const [loading, setLoading] = useState(true);
@@ -43,10 +44,10 @@ const SectionCarrito = () => {
           <div className={styles.shoppingCartContainer}>
             <h1>Shopping Cart</h1>
             <div className={styles.containerProducts}>
-              {userCartShopping?.map((product) => {
-                //  console.log("product.total: ", product.total);
+              {userCartShopping?.map((product, i) => {
                 return (
                   <ShoppingCartCard
+                    key={i}
                     name={product.name}
                     price={product.price}
                     size={product.size}
@@ -63,7 +64,20 @@ const SectionCarrito = () => {
               <p>{total}</p>
             </div>
             <hr />
-            <button>Pay</button>
+            <button
+              onClick={() => {
+                const body = userCartShopping;
+                console.log("Body:", body); 
+                axios
+                  .post("http://localhost:3001/payment", body)
+                  .then(
+                    (res) =>
+                      (window.location.href = res.data.response.body.init_point)
+                  );
+              }}
+            >
+              Pay
+            </button>
           </div>
         </div>
       )}
