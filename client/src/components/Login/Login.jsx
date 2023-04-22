@@ -11,12 +11,12 @@ function Login({ isOpen, onClose }) {
   const dispatch = useDispatch();
   const navegar = useNavigate();
   const [sendForm, setSendForm] = useState(false);
-  const token = useSelector((state) => state.products.login);
-console.log(token)
-  let isLoguin = window.localStorage.getItem("login");
+  const token = useSelector((state) => state.products.logui);
+window.localStorage.setItem("login", JSON.stringify(token));
 
+  let isLoguin = JSON.parse(window.localStorage.getItem("login"));
+  console.log(isLoguin);
 
-  window.localStorage.setItem("login", JSON.stringify(token));
  
 
   const handleGoogle = () => {
