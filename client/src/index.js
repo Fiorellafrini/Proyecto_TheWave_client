@@ -7,8 +7,8 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import axios from "axios";
-// axios.defaults.baseURL = 'http://localhost:3001'; //para trabajar local
-axios.defaults.baseURL = 'https://proyectothewaveapi-production.up.railway.app/'; //si guardo con esta activado se actualiza el deploy
+axios.defaults.baseURL = "http://localhost:3001"; //para trabajar local
+// axios.defaults.baseURL = 'https://proyectothewaveapi-production.up.railway.app/'; //si guardo con esta activado se actualiza el deploy
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

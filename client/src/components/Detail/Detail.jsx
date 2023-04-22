@@ -5,7 +5,7 @@ import { useParams } from "react-router";
 import styles from "./Detail.module.css";
 import visa from "./iconos/visa.png";
 import master from "./iconos/master.png";
-// import pago from './iconos/pago.png'
+import axios from "axios";
 import { Link } from "react-router-dom";
 import Navigation from "../Navigation/Navigation.jsx";
 
@@ -83,7 +83,22 @@ function Detail() {
                 <p id={styles.envio}>Envío gratis a nivel nacional</p>
                 <p id={styles.devolucion}>Devolución gratis</p>
                 <p id={styles.dias}>Tienes 30 días desde que lo recibes.</p>
-                <button id={styles.comprar}>Comprar ahora</button>
+                <button
+                  id={styles.comprar}
+                  onClick={() => {
+                    const body = detalle;
+                    console.log("Body:", body);
+                    axios
+                      .post("http://localhost:3001/payment", body)
+                      .then(
+                        (res) =>
+                          (window.location.href =
+                            res.data.response.body.init_point)
+                      );
+                  }}
+                >
+                  pagar
+                </button>
                 {isSelected ? (
                   <button id={styles.carrito} onClick={addToShoppingCart}>
                     Quitar del carrito

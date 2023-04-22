@@ -1,5 +1,7 @@
 import axios from "axios";
 export const POST_PRODUCT = "POST_PRODUCT";
+export const UPDATE_STOCK_PRODUCT_INC = "UPDATE_STOCK_PRODUCT_INC";
+export const UPDATE_STOCK_PRODUCT_DEC = "UPDATE_STOCK_PRODUCT_DEC";
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const GET_All_TYPES = "GET_ALL_TYPES";
 export const GET_ALL_BRANDS = "GET_ALL_BRANDS";
@@ -17,17 +19,19 @@ export const INFINITY = "INFINITY";
 export const SET_CURRENTPAGE = "SET_CURRENTPAGE";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const DELETE_TO_CART = "DELETE_TO_CART";
+export const INCREMENT_QUANTITY = "INCREMENT_QUANTITY";
+export const DECREMENT_QUANTITY = "DECREMENT_QUANTITY";
+export const PAYMENT = "PAYMENT";
 
-
+// -----------------------------------CREATE-PRODUCT-----------------------------------
 export const createProduct = (body) => async (dipatch) => {
   const { data } = await axios.post("/product", body);
-  console.log(data);
-  console.log(body);
   return dipatch({
     type: "POST_PRODUCT",
     payload: data,
   });
 };
+// -----------------------------------LIST-PRODUCT-----------------------------------
 export function listProducts() {
   return async function (dispatch) {
     var json = await axios.get("/product");
@@ -41,9 +45,7 @@ export function listProducts() {
 export function filterByName(payload) {
   return async function (dispatch) {
     try {
-      var json = await axios.get(
-        "/product?name=" + payload
-      );
+      var json = await axios.get("/product?name=" + payload);
       return dispatch({
         type: "FILTER_BY_NAME",
         payload: json.data,
@@ -53,6 +55,14 @@ export function filterByName(payload) {
     }
   };
 }
+// -----------------------------------ORDER_BY_NAME-----------------------------------
+export const orderByName = (criteria) => {
+  return { type: ORDER_BY_NAME, payload: criteria };
+};
+// -----------------------------------ORDER_BY_PRICE-----------------------------------
+export const orderByPrice = (criteria) => {
+  return { type: ORDER_BY_PRICE, payload: criteria };
+};
 // export function filterByNameAsc() {
 //   return async function (dispatch) {
 //     try {
@@ -96,15 +106,6 @@ export function filterByName(payload) {
 //     }
 //   };
 // }
-
-// ----------------------------------
-
-export const orderByName = (criteria) => {
-  return { type: ORDER_BY_NAME, payload: criteria };
-};
-
-// ----------------------------------
-
 // -----------------------------------FILTER_BY_PRICE-----------------------------------
 // export function filterByPriceAsc() {
 //   return async function (dispatch) {
@@ -150,17 +151,7 @@ export const orderByName = (criteria) => {
 //   };
 // }
 
-// ----------------------------------
-
-
-export const orderByPrice = (criteria) => {
-  return { type: ORDER_BY_PRICE, payload: criteria };
-};
-
-// ----------------------------------
-
 // -------------------DETAIL----------------------------------
-
 export function productsById(id) {
   return async function (dispatch) {
     try {
@@ -174,17 +165,11 @@ export function productsById(id) {
     }
   };
 }
-
-
 // -------------------PAGE----------------------------------
-
-
 export function productsData(page) {
   return async function (dispatch) {
     try {
-      var json = await axios.get(
-        `product?page=${page}&size=30`
-      );
+      var json = await axios.get(`product?page=${page}&size=30`);
       return dispatch({
         type: "INFINITY",
         payload: json.data.products,
@@ -194,20 +179,17 @@ export function productsData(page) {
     }
   };
 }
-
 export const setCurrentPage = (payload) => {
   return {
     type: SET_CURRENTPAGE,
     payload,
   };
 };
-
+// -----------------------------------FILTER-BY-BRAND-----------------------------------
 export function filterBrand(id) {
   return async function (dispatch) {
     try {
-      const response = await axios.get(
-        `product?brand=${id}`
-      );
+      const response = await axios.get(`product?brand=${id}`);
       const filterByBrand = response.data;
       return dispatch({
         type: "FILTER_BRAND",
@@ -218,13 +200,11 @@ export function filterBrand(id) {
     }
   };
 }
-
+// -----------------------------------FILTER-BY-TYPE-----------------------------------
 export function filterType(id) {
   return async function (dispatch) {
     try {
-      const response = await axios.get(
-        `/product?type=${id}`
-      );
+      const response = await axios.get(`/product?type=${id}`);
       const filterByType = response.data;
       return dispatch({
         type: "FILTER_TYPE",
@@ -239,8 +219,65 @@ export function filterType(id) {
 export const addToCart = (product) => {
   return { type: ADD_TO_CART, payload: product };
 };
-// ----------------------------------UPDATE CART----------------------------------
 // ----------------------------------DELETE TO CART----------------------------------
 export const deleteToCart = (product) => {
   return { type: DELETE_TO_CART, payload: product };
 };
+// ----------------------------------PAYMENT----------------------------------
+export const paymentMercadoPago = (body) => {
+  return async (dispatch) => {
+    try {
+      var json = await axios
+        .post("http://localhost:3001/payment", body)
+        .then((res) => {
+          window.location.href = res.data.response.body.init_point;
+        })
+        .catch((error) => {});
+      return dispatch({
+        type: PAYMENT,
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+// -----------------------------------UPDATE_STOCK_PRODUCT_DEC-----------------------------------
+export const updateStockDecrement = (id) => async (dispatch) => {
+  try {
+    const response = await axios.get(`/product/${id}`);
+    const currentStockValue = response.data.stock;
+
+    const newStockValue = currentStockValue - 1;
+    
+    const updateResponse = await axios.put(`/product/${id}`, { stock: newStockValue });
+
+    dispatch({ type: UPDATE_STOCK_PRODUCT_INC, payload: updateResponse.data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+// -----------------------------------UPDATE_STOCK_PRODUCT_INC-----------------------------------
+
+export const updateStockIncrement = (id) => async (dispatch) => {
+  try {
+    const response = await axios.get(`/product/${id}`);
+    const currentStockValue = response.data.stock;
+
+    const newStockValue = currentStockValue + 1;
+    
+    const updateResponse = await axios.put(`/product/${id}`, { stock: newStockValue });
+
+    dispatch({ type: UPDATE_STOCK_PRODUCT_DEC, payload: updateResponse.data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+// -----------------------------------QUANTITY-----------------------------------
+export const incrementQuantity = (id) => {
+  return { type: INCREMENT_QUANTITY, payload: id };
+};
+export const decrementQuantity = (id) => {
+  return { type: DECREMENT_QUANTITY, payload: id };
+};
+
