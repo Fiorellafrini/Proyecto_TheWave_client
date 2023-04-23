@@ -15,17 +15,19 @@ const CoursesBanner = () => {
 
   return (
     <>
-      <div className={styles.courses}>
-        <p>COURSES</p>
-        <hr />
-      </div>
-      <div className={styles.containerCoursesBanner} style={{ display: currentImage === 1 ? "block" : "none" }}>
+      <div
+        className={styles.containerCoursesBanner}
+        style={{ display: currentImage === 1 ? "block" : "none" }}
+      >
         <img src={bannerCourses} alt="" />
-        <button className={styles.buttonCourses}>Start</button>
+        <button className={styles.buttonCourses}>COMING SOON...</button>
       </div>
-      <div className={styles.containerCoursesBanner} style={{ display: currentImage === 2 ? "block" : "none" }}>
+      <div
+        className={styles.containerCoursesBanner}
+        style={{ display: currentImage === 2 ? "block" : "none" }}
+      >
         <img src={bannerCourses1} alt="" />
-        <button className={styles.buttonCourses}>Start</button>
+        <button className={styles.buttonCourses}>COMING SOON...</button>
       </div>
     </>
   );

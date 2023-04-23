@@ -10,31 +10,46 @@ import SectionCategories from "./components/SectionCategories/SectionCategories"
 import SectionLogIn from "./components/SectionLogIn/SectionLogIn";
 import SectionRegister from "./components/SectionRegister/SectionRegister";
 import SectionCarrito from "./components/SectionCarrito/SectionCarrito";
-import HomeDashboard from "./components/Dashboard/HomeDashboard";
+import Favorites from "./components/Favoritos/Favoritos";
+// import HomeDashboard from "./components/Dashboard/HomeDashboard";
 import Estadisticas from "./components/Dashboard/Estadisticas";
 import CardsDash from "./components/Dashboard/CardsDash";
+import ProteccionRutas from "./components/Routers/ProteccionRutas"
+import React from 'react'
+import {Cloudinary} from "@cloudinary/url-gen";
+
 
 function App() {
+  const cld = new Cloudinary({
+    cloud: {
+      cloudName: 'djngalumm'
+    }
+  });
   const location = useLocation();
   return (
     <div className="App">
-      {/* {location.pathname !== "/" && <NavVertical />} */}
+      {location.pathname !== "/"  && <NavVertical />}
       <Routes>
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="/SectionHome" element={<SectionHome />}></Route>
-        <Route
-          path="/SectionCategories"
-          element={<SectionCategories />}
-        ></Route>
         <Route path="/SectionLogIn" element={<SectionLogIn />}></Route>
         <Route path="/SectionRegister" element={<SectionRegister />}></Route>
+        <Route path="/SectionCategories" element={<SectionCategories />}></Route>
+        <Route path="/Favorites" element={<Favorites />}></Route>
+
+        
+        <Route element={<ProteccionRutas/>}> 
         <Route path="/SectionCarrito" element={<SectionCarrito />}></Route>
         <Route path="/form" element={<FormProduct />}></Route>
         <Route path="/detail/:id" element={<Detail />}></Route>
+      
+
+        </Route>
+
         <Route path="*" element={<Error404 />}></Route>
-        <Route path="/admin" element={<HomeDashboard />}></Route>
+        {/* <Route path="/admin" element={<HomeDashboard />}></Route>
         <Route path="/admin" element={<CardsDash />}></Route>
-        <Route path="/stats" element={<Estadisticas />}></Route>
+        <Route path="/stats" element={<Estadisticas />}></Route> */}
       </Routes>
     </div>
   );

@@ -11,10 +11,11 @@
     font-size: 1.23em;
     font-weight: 700;
     outline: none;
+    color: white;
 }
-.filters input:hover {
+/* .filters input:hover {
 
-}
+} */
 
 .filters button {
     width: 150px;
@@ -29,7 +30,8 @@
     outline: none;
     text-decoration: none;
     margin-left: 5px;
+    cursor: pointer;
 }
-.filters button:hover {
-
+.filters button:active {
+    opacity: 0.6;
 }

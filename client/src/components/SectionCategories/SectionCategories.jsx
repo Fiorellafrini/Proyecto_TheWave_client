@@ -1,26 +1,33 @@
 import React, { useEffect, useState } from "react";
 import styles from "../SectionCategories/SectionCategories.module.css";
 import SearchBar from "../SearchBar/SearchBar";
-import Navigation from "../Navigation/Navigation";
-import { useDispatch } from "react-redux";
-import {
-  filterByNameAsc,
-  filterByNameDesc,
-  filterByPriceAsc,
-  filterByPriceDesc,
-} from "../../redux/actions";
 
+import { useDispatch } from "react-redux";
+import { orderByName, orderByPrice } from "../../redux/actions";
 import Infinite from "../InfiniteScroll/InfiniteScroll";
-import Filtro_Marca from "../Filtros/Filtro_Marca";
-import Filtro_Type from "../Filtros/Filtro_Type";
+import FiltroMarca from "../Filtros/FiltroMarca";
+import FiltroType from "../Filtros/FiltroType";
+import Navigation from "../Navigation/Navigation";
+
+
 const SectionCategories = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 1000);
   }, []);
+
+
+
+  const handleChange = (e) => {
+    e.target.name === "orderByName" && dispatch(orderByName(e.target.value));
+
+    e.target.name === "orderByPrice" && dispatch(orderByPrice(e.target.value));
+  };
+
   return (
     <>
       {loading ? (
@@ -29,28 +36,39 @@ const SectionCategories = () => {
         </div>
       ) : (
         <div className={styles.container}>
-          <Navigation/>
+          <Navigation />
           <div className={styles.products}>
+            <SearchBar />
             <div className={styles.filters}>
-              <h1>Products</h1>
-              <SearchBar />
-              <p>byName</p>
-              <button onClick={() => dispatch(filterByNameAsc())}>
-                ascendente
-              </button>
-              <button onClick={() => dispatch(filterByNameDesc())}>
-                descendente
-              </button>
-              <p>byPrice</p>
-              <button onClick={() => dispatch(filterByPriceAsc())}>
-                ascendente
-              </button>
-              <button onClick={() => dispatch(filterByPriceDesc())}>
-                descendente
-              </button>
+  
+              <select
+                name="orderByName"
+                defaultValue="order"
+                onChange={handleChange}
+              >
+                <option disabled value="order">
+                  Order Name
+                </option>
+                <option value="nameAsc">A - Z</option>
+                <option value="nameDesc">Z - A</option>
+              </select>
+        
+              <select
+                name="orderByPrice"
+                defaultValue="price"
+                onChange={handleChange}
+              >
+                <option disabled value="price">
+                  Price
+                </option>
+                <option value="priceAsc">Price Lower</option>
+                <option value="priceDesc">Price Higher</option>
+              </select>
             </div>
-            <Filtro_Marca className={styles.filtros}></Filtro_Marca>
-            <Filtro_Type className={styles.filtros}></Filtro_Type>
+            <div className={styles.filtros}>
+              <FiltroMarca />
+              <FiltroType />
+            </div>
             <div className={styles.containerProducts}>
               <Infinite />
             </div>

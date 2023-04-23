@@ -1,31 +1,101 @@
-import React, { useState, useEffect } from "react";
-import styles from "../SectionRegister/SectionRegister.module.css";
-import Navigation from "../Navigation/Navigation";
+import styled from "styled-components";
+import { useRef, useState } from "react";
+import { HiOutlineUserCircle, HiMenu } from "react-icons/hi";
+import { useNavigate } from "react-router-dom";
+import Login from "../Login/Login";
+import Register from "../Login/Register";
 
 
 const SectionRegister = () => {
-  const [loading, setLoading] = useState(true);
+  const refMenu = useRef(null);
+  const [active, setActive] = useState(false);
+   const [isOpen, setIsOpen] = useState(false);
+   const [Open, setOpen] = useState(false);
+   const navegar = useNavigate();
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
+
+      const toggleModal = () => {
+        setIsOpen(!isOpen);
+      };
+
+      const toggleMo = () => {
+        setOpen(!Open);
+      };
+
+   const handleLogout = () => {
+     window.localStorage.removeItem("login");
+     navegar("/");
+   };
 
   return (
-    <>
-      {loading ? (
-        <div className={styles.containerSpinner}>
-          <div className={styles.spinner}></div>
-        </div>
-      ) : (
-          <div className={styles.container}>
-          <Navigation/>
-          <h1 className={styles.titulo}>Section Register</h1>
-        </div>
-      )}
-    </>
+    <Button ref={refMenu}>
+      <div onClick={() => setActive(!active)}>
+        <HiMenu size={25} />
+        <HiOutlineUserCircle size={25} />
+      </div>
+      <MenuHidden style={active ? null : { display: "none" }}>
+        <Ul>
+          <Li>
+            <button onClick={handleLogout}>Cerrar sesion</button>
+          </Li>
+          <hr />
+          <Li>
+            <button onClick={toggleModal}>Login</button>
+            {isOpen && <Login isOpen={isOpen} onClose={toggleModal} />}
+          </Li>
+          <hr />
+          <li>
+            <button onClick={toggleMo}>Register</button>
+            {Open && <Register isOpen={Open} onClose={toggleMo} />}
+          </li>
+          <Li>
+            <p>Ayuda</p>
+          </Li>
+        </Ul>
+      </MenuHidden>
+    </Button>
   );
 };
-
 export default SectionRegister;
+const Button = styled.div`
+  padding: 0.5em;
+  position: relative;
+  border: 1px solid grey;
+  border-radius: 15px;
+  > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+`;
+
+const MenuHidden = styled.div`
+  position: absolute;
+  top: 6.5em;
+  left: -9em;
+  right: 0em;
+  z-index: 2;
+`;
+
+const Ul = styled.ul`
+  min-width: 18em;
+  min-height: 18em;
+  padding: 0.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  border: 1px solid grey;
+  border-radius: 1em;
+  list-style: none;
+  background: #ffff;
+`;
+
+const Li = styled.li`
+  color: #000;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+
