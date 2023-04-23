@@ -32,7 +32,11 @@ const PRODUCT_LIMIT = {
 };
 
 const ShoppingCartCard = ({ name, size, price, imagen, setTotal }) => {
-  const [imageSrc] = useState(imagen[0]);
+  // const [imageSrc] = useState(imagen[0]);
+  const [imageSrc] = useState(
+    Array.isArray(imagen) && imagen.length > 0 ? imagen[0] : null
+  );
+
   const [quantity, setQuantity] = useState(1);
   const [total, setProductTotal] = useState(price);
   // if(quantity < MAX_QUANTITY) //este es si quiero poner el mismo stock a todos
