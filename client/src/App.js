@@ -6,28 +6,35 @@ import Error404 from "./components/Error404/Error404";
 import Detail from "./components/Detail/Detail.jsx";
 import SectionHome from "./components/SectionHome/SectionHome";
 import SectionCategories from "./components/SectionCategories/SectionCategories";
-import NavVertical from "./components/NavVertical/NavVertical";
+//import NavVertical from "./components/NavVertical/NavVertical";
 import SectionLogIn from "./components/SectionLogIn/SectionLogIn";
 import SectionRegister from "./components/SectionRegister/SectionRegister";
 import SectionCarrito from "./components/SectionCarrito/SectionCarrito";
-import HomeDashboard from "./review/dashboard/HomeDashboard";
+import HomeDashboard from "./components/Dashboard/HomeDashboard";
+import Estadisticas from "./components/Dashboard/Estadisticas";
+import CardsDash from "./components/Dashboard/CardsDash";
 
 function App() {
   const location = useLocation();
   return (
     <div className="App">
-      {location.pathname !== "/" && <NavVertical />}
+      {/* {location.pathname !== "/" && <NavVertical />} */}
       <Routes>
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="/SectionHome" element={<SectionHome />}></Route>
-        <Route path="/SectionCategories" element={<SectionCategories />}></Route>
+        <Route
+          path="/SectionCategories"
+          element={<SectionCategories />}
+        ></Route>
         <Route path="/SectionLogIn" element={<SectionLogIn />}></Route>
         <Route path="/SectionRegister" element={<SectionRegister />}></Route>
         <Route path="/SectionCarrito" element={<SectionCarrito />}></Route>
         <Route path="/form" element={<FormProduct />}></Route>
         <Route path="/detail/:id" element={<Detail />}></Route>
         <Route path="*" element={<Error404 />}></Route>
-        <Route path="/admin" element={<HomeDashboard/>}></Route> 
+        <Route path="/admin" element={<HomeDashboard />}></Route>
+        <Route path="/admin" element={<CardsDash />}></Route>
+        <Route path="/stats" element={<Estadisticas />}></Route>
       </Routes>
     </div>
   );
