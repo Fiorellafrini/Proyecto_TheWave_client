@@ -37,9 +37,9 @@ const ShoppingCartCard = ({ id, name, size, price, imagen, quantity }) => {
       </div>
       <div>
         <div className={styles.buttons}>
-          <button onClick={handleIncrement}>+</button>
-          <p>{quantity}</p>
           <button onClick={handleDecrement}>-</button>
+          <p>{quantity}</p>
+          <button onClick={handleIncrement}>+</button>
         </div>
       </div>
     </div>

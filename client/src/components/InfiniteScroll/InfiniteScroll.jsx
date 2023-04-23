@@ -58,15 +58,16 @@ import { listProducts, setCurrentPage } from "../../redux/actions.js";
 import Paginado from "../Paginado/Paginado";
 import styles from './InfiniteScroll.module.css'
 import Error404 from "../Error404/Error404";
+// import products from "../CarruselProducts/img";
 
 
 const Infinite = () => {
-  const dispatch = useDispatch();
-  const productos = useSelector((state) => state.products);
-  const setPage = useSelector((state) => state.setPage);
-  // console.log(currentPage)
-  const lastIndex = setPage * 8;
-  const firstIndex = lastIndex - 8;
+  const dispatch = useDispatch()
+  const productos = useSelector((state) => state.products.products);
+  const setPage = useSelector((state) => state.products.setPage);
+  
+    const lastIndex = setPage * 8;
+    const firstIndex = lastIndex - 8;
 
   useEffect(() => {
     dispatch(listProducts());
@@ -79,7 +80,7 @@ const Infinite = () => {
       <Paginado total={productos.length} />
       {/* <InfiniteScroll
         dataLength={productos.length}
-        next={() => dispatch(setCurrentPage(currentPage))}
+        next={() => dispatch(setCurrentPage(currentPage + 1))}
         hasMore={true}
         loader={productos.length >= productos ? "" : <h4>Loading...</h4>}
       > */}

@@ -6,10 +6,6 @@ export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const GET_All_TYPES = "GET_ALL_TYPES";
 export const GET_ALL_BRANDS = "GET_ALL_BRANDS";
 export const FILTER_BY_NAME = "FILTER_BY_NAME";
-// export const FILTER_BY_ASC = "FILTER_BY_ASC";
-// export const FILTER_BY_DESC = "FILTER_BY_DESC";
-// export const FILTER_BY_PRICE_ASC = "FILTER_BY_PRICE_ASC";
-// export const FILTER_BY_PRICE_DESC = "FILTER_BY_PRICE_DESC";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const ORDER_BY_PRICE = "ORDER_BY_PRICE";
 export const FILTER_BRAND = "FILTER_BRAND";
@@ -19,11 +15,15 @@ export const INFINITY = "INFINITY";
 export const SET_CURRENTPAGE = "SET_CURRENTPAGE";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const DELETE_TO_CART = "DELETE_TO_CART";
+export const EMPTY_CART = "EMPTY CART";
 export const INCREMENT_QUANTITY = "INCREMENT_QUANTITY";
 export const DECREMENT_QUANTITY = "DECREMENT_QUANTITY";
 export const PAYMENT = "PAYMENT";
-
-// -----------------------------------CREATE-PRODUCT-----------------------------------
+export const LOGIN = "LOGIN";
+export const REGISTRO = "REGISTRO";
+export const LOGINGOOGLE = "LOGINGOOGLE";
+export const LOGINFACEBOOK = "LOGINFACEBOOK";
+export const RGOOGLE = "RGOOGLE";
 export const createProduct = (body) => async (dipatch) => {
   const { data } = await axios.post("/product", body);
   return dipatch({
@@ -185,7 +185,9 @@ export const setCurrentPage = (payload) => {
     payload,
   };
 };
-// -----------------------------------FILTER-BY-BRAND-----------------------------------
+
+// -------------------FILTER-BRAND----------------------------------
+
 export function filterBrand(id) {
   return async function (dispatch) {
     try {
@@ -215,6 +217,16 @@ export function filterType(id) {
     }
   };
 }
+
+//---------------------LOGIN---------------------------------------------//
+
+export const registro = (body) => async (dipatch) => {
+  const { data } = await axios.post("/user", body);
+  return dipatch({
+    type: "REGISTRO",
+    payload: data,
+  });
+};
 // ----------------------------------ADD TO CART----------------------------------
 export const addToCart = (product) => {
   return { type: ADD_TO_CART, payload: product };
@@ -249,8 +261,10 @@ export const updateStockDecrement = (id) => async (dispatch) => {
     const currentStockValue = response.data.stock;
 
     const newStockValue = currentStockValue - 1;
-    
-    const updateResponse = await axios.put(`/product/${id}`, { stock: newStockValue });
+
+    const updateResponse = await axios.put(`/product/${id}`, {
+      stock: newStockValue,
+    });
 
     dispatch({ type: UPDATE_STOCK_PRODUCT_INC, payload: updateResponse.data });
   } catch (error) {
@@ -265,8 +279,10 @@ export const updateStockIncrement = (id) => async (dispatch) => {
     const currentStockValue = response.data.stock;
 
     const newStockValue = currentStockValue + 1;
-    
-    const updateResponse = await axios.put(`/product/${id}`, { stock: newStockValue });
+
+    const updateResponse = await axios.put(`/product/${id}`, {
+      stock: newStockValue,
+    });
 
     dispatch({ type: UPDATE_STOCK_PRODUCT_DEC, payload: updateResponse.data });
   } catch (error) {
@@ -281,3 +297,60 @@ export const decrementQuantity = (id) => {
   return { type: DECREMENT_QUANTITY, payload: id };
 };
 
+export const empty_cart = (product) => {
+  return { type: EMPTY_CART, payload: product };
+};
+
+export const login = (body) => async (dipatch) => {
+  try {
+    const { data } = await axios.post("/auth", body);
+    return dipatch({
+      type: "LOGIN",
+      payload: data,
+    });
+  } catch (error) {
+    alert(error.message);
+  }
+};
+
+export function google() {
+  return async function (dispatch) {
+    try {
+      const { data } = await axios.get(`/auth/google`);
+      return dispatch({
+        type: "LOGINGOOGLE",
+        payload: data,
+      });
+    } catch (error) {
+      alert("laruta no esta autorizada");
+    }
+  };
+}
+
+export function facebook() {
+  return async function (dispatch) {
+    try {
+      const { data } = await axios.get(`/auth/facebook`);
+      return dispatch({
+        type: "LOGINFACEBOOK",
+        payload: data,
+      });
+    } catch (error) {
+      alert("laruta no rata autorizada");
+    }
+  };
+}
+
+export function googleR() {
+  return async function (dispatch) {
+    try {
+      const { data } = await axios.get(`/auth//google/callback`);
+      return dispatch({
+        type: "RGOOGLE",
+        payload: data,
+      });
+    } catch (error) {
+      alert("laruta no rata autorizada");
+    }
+  };
+}
