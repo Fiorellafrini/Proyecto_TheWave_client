@@ -32,6 +32,9 @@ const Navigation = () => {
           <SectionRegister />
         </button>
       </div>
+      <Link to={"/Favorites"}>
+          <p>🤍</p>
+        </Link>
     </div>
   );
 };

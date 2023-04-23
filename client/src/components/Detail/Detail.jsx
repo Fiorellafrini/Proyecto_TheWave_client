@@ -13,6 +13,7 @@ function Detail() {
   const dispatch = useDispatch();
   const detalle = useSelector((state) => state.products.detail);
   const [isSelected, setIsSelected] = useState(false);
+
   const { id } = useParams();
 
   const [loading, setLoading] = useState(true);
@@ -49,7 +50,7 @@ function Detail() {
           <Navigation />
           <div className={styles.cuadrado1}>
             <div className={styles.cerrar}>
-              <Link to="/SectionCategories">Volver</Link>
+              <Link to="/SectionCategories">Back</Link>
             </div>
             <div className={styles.imag}>
               {detalle.imagen?.map((imagen, i) => (
@@ -57,6 +58,7 @@ function Detail() {
                   <img key={i} src={imagen} alt="imagen" />
                 </div>
               ))}
+
               <div className={styles.granImagen}>
                 {detalle.imagen?.map((imagen, i) => (
                   <img key={i} src={i === 0 ? imagen : null} alt="" />
@@ -71,47 +73,47 @@ function Detail() {
                   <b>$ {detalle?.price} ARS</b>
                 </p>
                 <span>
-                  <b>Talla {detalle?.size}</b>
+                  <b>Size {detalle?.size}</b>
                 </span>
                 <div className={styles.metodo}>
                   <p id={styles.cuotas}>
-                    <b>Metodos de pago</b>
+                    <b>Payment methods</b>
                   </p>
                   <img src={visa} alt="visa" />
                   <img src={master} alt="card" />
                 </div>
-                <p id={styles.envio}>Envío gratis a nivel nacional</p>
-                <p id={styles.devolucion}>Devolución gratis</p>
+                <p id={styles.envio}>Free shipping nationwide</p>
+                <p id={styles.devolucion}>free return</p>
                 <p id={styles.dias}>Tienes 30 días desde que lo recibes.</p>
-                <button id={styles.comprar}>Comprar ahora</button>
+                {/* <button id={styles.comprar}>Buy now</button> */}
                 {isSelected ? (
                   <button id={styles.carrito} onClick={addToShoppingCart}>
-                    Quitar del carrito
+                    REMOVE FROM CART
                   </button>
                 ) : (
                   <button id={styles.carrito} onClick={addToShoppingCart}>
-                    Agregar al carrito
+                    ADD TO CART
                   </button>
                 )}
 
                 <p id={styles.protegida}>
-                  <b>Compra Protegida</b>, recibe el producto que esperabas{" "}
-                  <br /> o te devolvemos tu dinero.
+                  <b>Protected Purchase</b>, receive the product you expected{" "}
+                  <br /> or we will refund your money.
                 </p>
                 <p id={styles.garantia}>
-                  <b>90 días de garantía de fábrica.</b>
+                  <b>90 days factory warranty.</b>
                 </p>
               </div>
             </div>
             <div className={styles.comentario}>
               <h2>
-                <b>Sobre este artículo</b>
+                <b>About this article</b>
               </h2>
               <ul>
                 <li>
-                  Dimensiones: 8 pies x 22 1/2 x 3 1/4 <br />
-                  peso 11.5 libras Volumen de 86 litros de capacidad <br /> de
-                  peso sugerida de hasta 200 libras
+                Dimensions: 8 ft x 22 1/2 x 3 1/4 <br />
+                  weight 11.5 pounds Volume 86 liters capacity <br /> of
+                  suggested weight up to 200 pounds
                 </li>
                 <li>
                   Incluye almohadilla de tracción para <br />
@@ -120,10 +122,10 @@ function Detail() {
                   Correa de poliuretano de alta calidad
                 </li>
                 <li>
-                  Soft Webs-IXL Water Barrier Skin Crosslink
+                Soft Webs-IXL Water Barrier Skin Crosslink
                   <br />
                   Top Deck and Rils High density HDPE PE Skin <br />
-                  Slick Bottom Skin <br />
+                  Slick Bottom Skin<br />
                   Exclusive Brushed Color Graphic Art Deck
                 </li>
               </ul>
