@@ -4,7 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import styles from "./FromProduct.module.css";
 import { createProduct } from "../../redux/actions";
 import Navigation from "../Navigation/Navigation";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 // import { useNavigate } from "react-router-dom";
 
 
@@ -27,26 +27,26 @@ const FormProduct = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      if (Object.keys(errors).length === 0) {
-        Swal.fire({
-          title: "¡Good Job.!",
-          text: "Product Created SuccesFully",
-          icon: "success",
-          confirmButtonText: "Aceptar",
-        });
-        // navigate("/SectionCategories");
-      } else {
-        Swal.fire({
-          title: "Error!",
-          text: "Missing Information",
-          icon: "error",
-          confirmButtonText: "OK",
-        });
-      }
-    } catch (error) {
-      return error.message;
-    }
+  //   try {
+  //     if (Object.keys(errors).length === 0) {
+  //       Swal.fire({
+  //         title: "¡Good Job.!",
+  //         text: "Product Created SuccesFully",
+  //         icon: "success",
+  //         confirmButtonText: "Aceptar",
+  //       });
+  //       // navigate("/SectionCategories");
+  //     } else {
+  //       Swal.fire({
+  //         title: "Error!",
+  //         text: "Missing Information",
+  //         icon: "error",
+  //         confirmButtonText: "OK",
+  //       });
+  //     }
+  //   } catch (error) {
+  //     return error.message;
+  //   }
   };
 
   // Función para manejar la carga de imágenes
@@ -121,7 +121,9 @@ const FormProduct = () => {
       >
         {({ isSubmitting, errors,  setFieldValue }) => (
           <div className={styles.cntd}>
-            <Form onSubmit={handleSubmit} className={styles.formulario}>
+            {/* <Form onSubmit={handleSubmit} className={styles.formulario}> */}
+            <Form className={styles.formulario}>
+            
               <label>
                 Name
                 <Field type="text" name="name" />
