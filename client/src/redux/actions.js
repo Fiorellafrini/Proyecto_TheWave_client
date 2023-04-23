@@ -18,7 +18,9 @@ export const DELETE_TO_CART = "DELETE_TO_CART";
 export const EMPTY_CART = "EMPTY CART";
 export const INCREMENT_QUANTITY = "INCREMENT_QUANTITY";
 export const DECREMENT_QUANTITY = "DECREMENT_QUANTITY";
-export const PAYMENT = "PAYMENT";
+export const PAYMENT = "PAYMENT";export const ADD_TO_FAV="ADD_TO_FAV";
+export const DELETE_TO_FAV="DELETE_TO_FAV"
+
 export const LOGIN = "LOGIN";
 export const REGISTRO = "REGISTRO";
 export const LOGINGOOGLE = "LOGINGOOGLE";
@@ -353,4 +355,13 @@ export function googleR() {
       alert("laruta no rata autorizada");
     }
   };
+}
+
+//------------------------------------------------------------------------------------------//
+export const addToFav = (product) => {
+  return { type: ADD_TO_FAV, payload: product };
+};
+// ----------------------------------DELETE TO CART----------------------------------
+export const deleteToFav = () => {
+  return { type: DELETE_TO_FAV };
 }
