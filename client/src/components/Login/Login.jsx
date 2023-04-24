@@ -1,11 +1,11 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { BiX } from "react-icons/bi";
-import {  SiGoogle } from "react-icons/si";
+import { SiGoogle } from "react-icons/si";
 import { useDispatch } from "react-redux";
-import { login} from "../../redux/actions";
-import { Popstyled } from "./loginstyle";
 import { useNavigate } from "react-router-dom";
+import { login } from "../../redux/actions";
+import { Popstyled } from "./loginstyle";
 
 function Login({ isOpen, onClose }) {
   const dispatch = useDispatch();
