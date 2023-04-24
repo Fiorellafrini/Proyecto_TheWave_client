@@ -51,12 +51,12 @@
 
 import React, { useEffect } from "react";
 // import InfiniteScroll from "react-infinite-scroll-component";
-import ProductCard from "../ProductCard/ProductCard";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts, setCurrentPage } from "../../redux/actions.js";
-import Paginado from "../Paginado/Paginado";
-import styles from "./InfiniteScroll.module.css";
 import Error404 from "../Error404/Error404";
+import Paginado from "../Paginado/Paginado";
+import ProductCard from "../ProductCard/ProductCard";
+import styles from "./InfiniteScroll.module.css";
 // import products from "../CarruselProducts/img";
 
 const Infinite = () => {

@@ -28,6 +28,8 @@ formulario {
 	font-size: 14px;
 	margin-bottom: 5px;
 	color: #fff;
+	
+
 }
 
 .formulario input,
@@ -36,11 +38,11 @@ formulario {
 	font-family: 'Open Sans', sans-serif;
 	width: 100%;
 	border-radius: 5px;
-	border: 2px solid #e2e2e2;
+
 	font-size: 18px;
 	padding: 10px;
 	margin-bottom: 5px;
-	color: #1f1f1f;
+
 }
 
 .formulario input:focus {
