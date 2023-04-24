@@ -119,6 +119,7 @@
 #carrito {
     border: none;
     background-color: transparent;
-    color: #224145;
-    font-size: 2em;
-}
+    border: none;
+    margin-top: -3.5em;
+    margin-right: -2.4em;
+  }

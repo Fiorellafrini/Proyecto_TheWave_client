@@ -4,6 +4,13 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { createProduct } from "../../redux/actions";
 import Navigation from "../Navigation/Navigation";
+// import Swal from "sweetalert2";
+// import { useNavigate } from "react-router-dom";
+
+
+
+
+
 import styles from "./FromProduct.module.css";
 
 // cloudinary.config({
@@ -20,10 +27,10 @@ const FormProduct = () => {
 
   // Función para manejar la carga de imágenes
   const handleImageUpload = async (e, setFieldValue) => {
-    const files = e.target.files;
-    const formData = new FormData();
-    formData.append("file", files[0]);
-    formData.append("upload_preset", "thewave"); // Reemplaza con tu upload preset de Cloudinary
+    const files = e.target.files; // obtiene los archivos que se seleccionan
+    const formData = new FormData(); // es una interfaz que proporciona un conjunto de pares clave/valor para crear datos de formulario que se pueden enviar a través de una solicitud HTTP POST
+    formData.append("file", files[0]); // se agrega el archivo seleccionado (files[0]) como valor del par clave/valor file
+    formData.append("upload_preset", "thewave"); //se agrega el valor del par clave/valor, opción que se utiliza para especificar las opciones de carga en Cloudinary.
 
     // Realizar la petición de carga de imagen a Cloudinary
     const res = await fetch(
@@ -127,7 +134,7 @@ const FormProduct = () => {
                   <input
                     type="file"
                     accept="image/*"
-                    onChange={(e) => handleImageUpload(e, setFieldValue)}
+                    onChange={(e) => handleImageUpload(e, setFieldValue)} // se utiliza setFieldValue para actualizar el valor del campo de formulario con la URL de la imagen obtenida por claudinary
                   />
                   {/* Mostrar error si lo hay */}
                   <ErrorMessage
