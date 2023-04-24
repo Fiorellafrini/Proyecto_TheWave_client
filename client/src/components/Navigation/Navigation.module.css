@@ -6,7 +6,7 @@
     justify-content: space-around;
     gap: 15px;
     padding: 19.5px;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 a:link {

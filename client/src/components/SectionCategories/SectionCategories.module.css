@@ -1,5 +1,6 @@
 .container {
     width: 100%;
+    min-height: 100vh;
     background-image: url(../../assets/fondoHome.png);
     background-repeat: no-repeat;
     background-size: cover;
@@ -42,6 +43,15 @@
 /* .products img {
     border-radius: 20px;
 } */
+.bar{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+.filters{
+    display: flex;
+}
 
 .filters select {
     width: 150px;
@@ -62,7 +72,6 @@
 
 .filtros {
     display:  flex;
-    gap: 10px;
 }
 
 /* ----------------------------------------Spinner---------------------------------------- */

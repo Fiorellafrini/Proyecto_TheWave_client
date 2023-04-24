@@ -9,7 +9,6 @@ import FiltroMarca from "../Filtros/FiltroMarca";
 import FiltroType from "../Filtros/FiltroType";
 import Navigation from "../Navigation/Navigation";
 
-
 const SectionCategories = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
@@ -19,8 +18,6 @@ const SectionCategories = () => {
       setLoading(false);
     }, 1000);
   }, []);
-
-
 
   const handleChange = (e) => {
     e.target.name === "orderByName" && dispatch(orderByName(e.target.value));
@@ -38,36 +35,37 @@ const SectionCategories = () => {
         <div className={styles.container}>
           <Navigation />
           <div className={styles.products}>
-            <SearchBar />
-            <div className={styles.filters}>
-  
-              <select
-                name="orderByName"
-                defaultValue="order"
-                onChange={handleChange}
-              >
-                <option disabled value="order">
-                  Order Name
-                </option>
-                <option value="nameAsc">A - Z</option>
-                <option value="nameDesc">Z - A</option>
-              </select>
-        
-              <select
-                name="orderByPrice"
-                defaultValue="price"
-                onChange={handleChange}
-              >
-                <option disabled value="price">
-                  Price
-                </option>
-                <option value="priceAsc">Price Lower</option>
-                <option value="priceDesc">Price Higher</option>
-              </select>
-            </div>
-            <div className={styles.filtros}>
-              <FiltroMarca />
-              <FiltroType />
+            <div className={styles.bar}>
+              <SearchBar />
+              <div className={styles.filters}>
+                <select
+                  name="orderByName"
+                  defaultValue="order"
+                  onChange={handleChange}
+                >
+                  <option disabled value="order">
+                    Order Name
+                  </option>
+                  <option value="nameAsc">A - Z</option>
+                  <option value="nameDesc">Z - A</option>
+                </select>
+
+                <select
+                  name="orderByPrice"
+                  defaultValue="price"
+                  onChange={handleChange}
+                >
+                  <option disabled value="price">
+                    Price
+                  </option>
+                  <option value="priceAsc">Price Lower</option>
+                  <option value="priceDesc">Price Higher</option>
+                </select>
+                <div className={styles.filtros}>
+                  <FiltroMarca />
+                  <FiltroType />
+                </div>
+              </div>
             </div>
             <div className={styles.containerProducts}>
               <Infinite />
