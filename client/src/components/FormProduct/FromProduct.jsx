@@ -1,6 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import { createProduct } from "../../redux/actions";
 import Navigation from "../Navigation/Navigation";
 import styles from "./FromProduct.module.css";
@@ -15,6 +16,7 @@ import styles from "./FromProduct.module.css";
 const FormProduct = () => {
   const [isSent, setIsSent] = useState(false);
   const dispatch = useDispatch();
+  const navegate = useNavigate();
 
   // Función para manejar la carga de imágenes
   const handleImageUpload = async (e, setFieldValue) => {
@@ -87,6 +89,8 @@ const FormProduct = () => {
             setIsSent(true);
             setSubmitting(false);
             resetForm();
+            navegate("/SectionCategories")
+            
           }}
         >
           {({ isSubmitting, errors, setFieldValue }) => (
