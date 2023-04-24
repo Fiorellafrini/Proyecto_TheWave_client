@@ -21,7 +21,7 @@ const Favorites = () => {
       {/* <Navigation /> */}
       <div className={styles.container}>
         <div className={styles.cerrar}>
-          <Link to="/SectionCategories">Back</Link>
+          <Link className={styles.fav} to="/SectionCategories">Back</Link>
         </div>
         <div className={styles.fila1}>
           <h1 className={styles.name}>Favorites</h1>

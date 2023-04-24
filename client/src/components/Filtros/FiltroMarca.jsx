@@ -15,7 +15,7 @@ function Filtro_Marca() {
       <select className="" onChange={(e) => handleOnchange(e)}>
         <option value="All">All</option>
         <option value="1">Hurley</option>
-        <option value="2">Rip Curl</option>
+        {/* <option value="2">Rip Curl</option> */}
         <option value="3">Vesl</option>
         <option value="4">Russell</option>
         <option value="5">Wave</option>
