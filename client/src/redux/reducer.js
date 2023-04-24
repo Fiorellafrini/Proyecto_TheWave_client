@@ -67,11 +67,12 @@ const reducer = (state = initialState, action) => {
     case FILTER_BY_NAME:
       return {
         ...state,
-        products: state.allProduct.filter(
-          (prod) =>
-            prod.name &&
-            prod.name.toLowerCase().includes(action.payload.toLowerCase())
-        ),
+        // products: state.allProduct.filter(
+        //   (prod) =>
+        //     prod.name &&
+        //     prod.name.toLowerCase().includes(action.payload.toLowerCase())
+        // ),
+        products: action.payload
       };
 
     //--------------------------------FILTER_BY_NAME_ASC--------------------------------\\

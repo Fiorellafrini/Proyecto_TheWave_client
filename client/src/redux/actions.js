@@ -53,7 +53,7 @@ export function filterByName(payload) {
         payload: json.data,
       });
     } catch (error) {
-      // alert("Dont exits...Are you lost?");
+      alert("Dont exits...Are you lost?");
     }
   };
 }
