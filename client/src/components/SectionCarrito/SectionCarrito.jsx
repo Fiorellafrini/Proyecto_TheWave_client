@@ -3,7 +3,7 @@ import Navigation from "../Navigation/Navigation";
 import styles from "../SectionCarrito/SectionCarrito.module.css";
 import ShoppingCartCard from "../ShoppingCartCard/ShoppingCartCard";
 import { useSelector } from "react-redux";
-import { paymentMercadoPago } from "../../redux/actions";
+import { paymentMercadoPago, deleteToCart } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 
 const SectionCarrito = () => {
@@ -14,6 +14,9 @@ const SectionCarrito = () => {
 
   const handlePayment = () => {
     dispatch(paymentMercadoPago(userCartShopping));
+  };
+  const handleDelete = (product) => {
+    dispatch(deleteToCart(product));
   };
 
   useEffect(() => {
@@ -45,6 +48,7 @@ const SectionCarrito = () => {
                     imagen={product.imagen}
                     stock={product.stock}
                     quantity={product.quantity}
+                    onDelete={() => handleDelete(product)}
                   />
                 );
               })}
