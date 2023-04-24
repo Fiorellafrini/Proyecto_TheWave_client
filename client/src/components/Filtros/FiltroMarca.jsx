@@ -2,7 +2,7 @@ import React from 'react'
 import {filterBrand, setCurrentPage} from '../../redux/actions.js'
 import {useDispatch} from 'react-redux'
 import styles from'./Filtro.module.css'
-function Filtro_Marca() {
+function FiltroMarca() {
     const dispatch = useDispatch()
 
     const handleOnchange =(e)=>{
@@ -12,8 +12,9 @@ function Filtro_Marca() {
 
   return (
     <div className={styles.filtros}>
-      <select className="" onChange={(e) => handleOnchange(e)}>
-        <option value="All">All</option>
+      <select defaultValue= "Brand" onChange={handleOnchange}>
+        <option disabled value="Brand">Brand</option>
+        <option value="">All</option>
         <option value="1">Hurley</option>
         <option value="2">Rip Curl</option>
         <option value="3">Vesl</option>
@@ -33,4 +34,4 @@ function Filtro_Marca() {
   );
 }
 
-export default Filtro_Marca
+export default FiltroMarca
