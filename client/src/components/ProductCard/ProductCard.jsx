@@ -77,11 +77,11 @@ const ProductCard = ({
             </div>
             {deletePropInFav &&
               (isFav ? (
-                <button id={styles.carrito} onClick={handleFav}>
+                <button className={styles.carrito} onClick={handleFav}>
                   ❤️
                 </button>
               ) : (
-                <button id={styles.carrito} onClick={handleFav}>
+                <button className={styles.carrito} onClick={handleFav}>
                   🤍
                 </button>
               ))}
