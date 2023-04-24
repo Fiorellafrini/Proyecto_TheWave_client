@@ -12,8 +12,8 @@ import CardDash from "./CardDash";
 
 const CardsDash= () => {
   const dispatch = useDispatch()
-  const productos = useSelector((state) => state.products);
-  const setPage = useSelector((state) => state.setPage);
+  const productos = useSelector((state) => state.products.products);
+  const setPage = useSelector((state) => state.products.setPage);
     const lastIndex = setPage * 8;
     const firstIndex = lastIndex - 8;
 
