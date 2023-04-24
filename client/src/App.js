@@ -11,7 +11,9 @@ import SectionHome from "./components/SectionHome/SectionHome";
 import Favorites from "./components/Favoritos/Favoritos";
 import SectionCarrito from "./components/SectionCarrito/SectionCarrito";
 import SectionRegister from "./components/SectionRegister/SectionRegister";
-// import HomeDashboard from "./review/dashboard/HomeDashboard";
+import HomeDashboard from "./components/Dashboard/HomeDashboard";
+import Estadisticas from "./components/Dashboard/Estadisticas";
+import CardsDash from "./components/Dashboard/CardsDash";
 import { Cloudinary } from "@cloudinary/url-gen";
 import React from 'react';
 import Login from "./components/Login/Login";
@@ -45,8 +47,10 @@ function App() {
 
         </Route>
 
+        <Route path="/admin" element={<HomeDashboard />}></Route>
+        <Route path="/admin" element={<CardsDash />}></Route>
+        <Route path="/stats" element={<Estadisticas />}></Route> 
         <Route path="*" element={<Error404 />}></Route>
-        {/* <Route path="/admin" element={<HomeDashboard/>}></Route>  */}
       </Routes>
     </div>
   );

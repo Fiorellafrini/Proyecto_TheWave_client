@@ -6,8 +6,9 @@ const Error404 = () => {
     return (
         
         <div className={style.container}>
-            <h3>Error 404</h3>
+            <h3>Cant be found</h3>
             <h5>Are you lost?</h5>
+            
         </div>         
     )
 }
