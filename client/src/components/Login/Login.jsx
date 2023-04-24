@@ -1,11 +1,12 @@
+import axios from "axios";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { BiX } from "react-icons/bi";
 import { SiFacebook, SiGoogle } from "react-icons/si";
 import { useDispatch, useSelector } from "react-redux";
-import { login, google, facebook } from "../../redux/actions";
-import { Popstyled } from "./loginstyle";
 import { useNavigate } from "react-router-dom";
+import { facebook, login } from "../../redux/actions";
+import { Popstyled } from "./loginstyle";
 
 function Login({ isOpen, onClose }) {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ console.log(token)
  
 
   const handleGoogle = () => {
-    dispatch(google());
+    axios.get("http://localhost:3001/auth/google")
     if (!isLoguin) {
       navegar("/SectionLogIn");
     }
