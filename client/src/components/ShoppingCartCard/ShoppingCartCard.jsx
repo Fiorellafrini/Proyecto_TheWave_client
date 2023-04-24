@@ -5,11 +5,12 @@ import {
   updateStockDecrement,
   updateStockIncrement,
 } from "../../redux/actions";
+import { ImBin} from "react-icons/im";
 import { useDispatch } from "react-redux";
 
 import { useState } from "react";
 
-const ShoppingCartCard = ({ id, name, size, price, imagen, quantity }) => {
+const ShoppingCartCard = ({ id, name, size, price, imagen, quantity, onDelete}) => {
   const [imageSrc] = useState(imagen[0]);
   const dispatch = useDispatch();
 
@@ -17,7 +18,6 @@ const ShoppingCartCard = ({ id, name, size, price, imagen, quantity }) => {
     dispatch(incrementQuantity(id));
     dispatch(updateStockDecrement(id));
   };
-
   const handleDecrement = () => {
     dispatch(decrementQuantity(id));
     if (quantity > 1) {
@@ -41,6 +41,7 @@ const ShoppingCartCard = ({ id, name, size, price, imagen, quantity }) => {
           <p>{quantity}</p>
           <button onClick={handleIncrement}>+</button>
         </div>
+        <button onClick={onDelete}><ImBin/></button>
       </div>
     </div>
   );

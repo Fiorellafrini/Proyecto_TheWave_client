@@ -21,6 +21,11 @@ const Navigation = () => {
       </div>
       <div className={styles.col}>
         <img src={logoPage} alt="" />
+      </div>{" "}
+      <div className={styles.col}>
+        <Link to={"/Favorites"}>
+          <p>Favorites</p>
+        </Link>
       </div>
       <Link to={"/SectionCarrito"}>
         <div className={styles.col}>
@@ -32,9 +37,6 @@ const Navigation = () => {
           <SectionRegister />
         </button>
       </div>
-      <Link to={"/Favorites"}>
-          <p>🤍</p>
-        </Link>
     </div>
   );
 };
