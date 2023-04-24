@@ -18,7 +18,7 @@ import Login from "./components/Login/Login";
 
 
 function App() {
-  const cld = new Cloudinary({
+  new Cloudinary({
     cloud: {
       cloudName: 'djngalumm'
     }

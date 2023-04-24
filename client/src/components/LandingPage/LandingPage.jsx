@@ -38,18 +38,6 @@ const LandingPage = () => {
             >
               <p>About Us</p>
             </div>
-            <div
-              className={styles.navItems}
-              onClick={() => handleNavItemClick("Log in")}
-            >
-              <p>Log in</p>{" "}
-            </div>
-            <div
-              className={styles.navItems}
-              onClick={() => handleNavItemClick("Register")}
-            >
-              <p>Register</p>{" "}
-            </div>
           </div>
           <div className={styles.user}>
             <img src={logoPage} alt="" />

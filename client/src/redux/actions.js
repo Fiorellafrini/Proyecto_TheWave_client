@@ -222,7 +222,7 @@ export function facebook() {
 export function googleR() {
   return async function (dispatch) {
     try {
-      const { data } = await axios.get(`/auth//google/callback`);
+      const { data } = await axios.get(`/auth/google/callback`);
       return dispatch({
         type: "RGOOGLE",
         payload: data,

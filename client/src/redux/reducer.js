@@ -18,7 +18,7 @@ import {
   ADD_TO_CART,
   DELETE_TO_CART,
   EMPTY_CART,
-  LOGIN,
+  // LOGIN,
 } from "./actions";
 
 const initialState = {
@@ -31,7 +31,7 @@ const initialState = {
   infinity: [],
   setPage: 0,
   filters: {},
-  logui: [],
+  // logui: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -182,11 +182,11 @@ const reducer = (state = initialState, action) => {
           (product) => product !== action.payload
         ),
       };
-    case LOGIN:
-      return {
-        ...state,
-        logui: action.payload,
-      };
+    // case LOGIN:
+    //   return {
+    //     ...state,
+    //     logui: action.payload,
+    //   };
 
     //--------------------------------UPDATE_CART--------------------------------\\
     default:
