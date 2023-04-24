@@ -24,6 +24,9 @@
     box-shadow: 10px 10px 13px 0px rgba(0, 0, 0, 0.396);
 }
 
+.buttonCourses:active{
+    opacity: 0.8;
+}
 
 .containerCoursesBanner img {
     width: 100%;

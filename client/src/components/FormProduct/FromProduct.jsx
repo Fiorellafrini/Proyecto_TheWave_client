@@ -1,7 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { createProduct } from "../../redux/actions";
 import Navigation from "../Navigation/Navigation";
 import styles from "./FromProduct.module.css";
@@ -52,7 +52,7 @@ const FormProduct = () => {
             id_type: 0,
             size: "",
             price: 0,
-            stock:0
+            stock: 0,
           }}
           validate={(values) => {
             const errors = {};
@@ -85,12 +85,11 @@ const FormProduct = () => {
           }}
           onSubmit={(values, { setSubmitting, resetForm }) => {
             dispatch(createProduct(values));
-            console.log(values)
+            console.log(values);
             setIsSent(true);
             setSubmitting(false);
             resetForm();
-            navegate("/SectionCategories")
-            
+            navegate("/SectionCategories");
           }}
         >
           {({ isSubmitting, errors, setFieldValue }) => (
@@ -106,11 +105,7 @@ const FormProduct = () => {
                     )}
                   />
                 </label>
-                      <label>
-                      Description
-                      <Field name="description" as="textarea"/>
-                          <ErrorMessage name="description" component="div" />
-                      </label>
+
                 {/* <label>
                 Imagen
                 <Field type="url" name="imagen[0]" />
@@ -149,7 +144,7 @@ const FormProduct = () => {
                 </label>
 
                 <label>
-                Available stock
+                  Available stock
                   <Field type="number" name="stock" />
                   <ErrorMessage
                     name="stock"
@@ -158,9 +153,14 @@ const FormProduct = () => {
                     )}
                   />
                 </label>
+                <label>
+                  Description
+                  <Field name="description" as="textarea" />
+                  <ErrorMessage name="description" component="div" />
+                </label>
                 <div className={styles.selets}>
                   <label htmlFor="id_brand">
-                    Brand :
+                    Brand
                     <Field name="id_brand" as="select">
                       <option value={0}></option>
                       <option value={1}>Hurley</option>
@@ -186,7 +186,7 @@ const FormProduct = () => {
                     />
                   </label>
                   <label htmlFor="id_type">
-                    Type :
+                    Type
                     <Field name="id_type" as="select">
                       <option value={0}></option>
                       <option value={1}>Diving fins</option>
@@ -236,6 +236,5 @@ const FormProduct = () => {
     </div>
   );
 };
-
 
 export default FormProduct;
