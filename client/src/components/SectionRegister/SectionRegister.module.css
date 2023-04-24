@@ -1,41 +1,16 @@
 .container {
-    width: 100%;
-    background-image: url(../../assets/fondoHome.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    padding-bottom: 20px;
-}
-
-.titulo {
-    color: white;
-    font-size: 3em;
-}
-/* ----------------------------------------Spinner---------------------------------------- */
-.containerSpinner {
-    width: 100%;
-    height: 1500px;
+    width: 300px;
+    height: 300px;
+    background: #fff;
+    top:300px;
     display: flex;
+    flex-direction: column;
+    gap: 40px;
     justify-content: center;
     align-items: center;
+    padding: 20px;
+    margin: 20px;
 }
 
-.spinner {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 9px solid;
-    border-color: #dbdcef37;
-    border-right-color: #224145;
-    text-align: center;
-    animation: spinner-d3wgkg 1s infinite linear;
-}
 
-@keyframes spinner-d3wgkg {
-    to {
-        transform: rotate(1turn);
-    }
-}
-/* ----------------------------------------Spinner---------------------------------------- */
+

@@ -1,101 +1,46 @@
-import styled from "styled-components";
-import { useRef, useState } from "react";
-import { HiOutlineUserCircle, HiMenu } from "react-icons/hi";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Login from "../Login/Login";
 import Register from "../Login/Register";
-
+import style from './SectionRegister.module.css'
 
 const SectionRegister = () => {
-  const refMenu = useRef(null);
-  const [active, setActive] = useState(false);
-   const [isOpen, setIsOpen] = useState(false);
-   const [Open, setOpen] = useState(false);
-   const navegar = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+  const [Open, setOpen] = useState(false);
+  const navegar = useNavigate();
 
+  let isLoguin = window.localStorage.getItem("login");
 
-      const toggleModal = () => {
-        setIsOpen(!isOpen);
-      };
+  const toggleModal = () => {
+    setIsOpen(!isOpen);
+  };
 
-      const toggleMo = () => {
-        setOpen(!Open);
-      };
+  const toggleMo = () => {
+    setOpen(!Open);
+  };
 
-   const handleLogout = () => {
-     window.localStorage.removeItem("login");
-     navegar("/");
-   };
+  const handleLogout = () => {
+    window.localStorage.removeItem("login");
+    navegar("/");
+  };
 
-  return (
-    <Button ref={refMenu}>
-      <div onClick={() => setActive(!active)}>
-        <HiMenu size={25} />
-        <HiOutlineUserCircle size={25} />
+  if (!isLoguin) {
+    return (
+      <div className={style.container}>
+        <button onClick={toggleModal}>Login</button>
+        {isOpen && <Login isOpen={isOpen} onClose={toggleModal} />}
+        <button onClick={toggleMo}>Register</button>
+        {Open && <Register isOpen={Open} onClose={toggleMo} />}
       </div>
-      <MenuHidden style={active ? null : { display: "none" }}>
-        <Ul>
-          <Li>
-            <button onClick={handleLogout}>Cerrar sesion</button>
-          </Li>
-          <hr />
-          <Li>
-            <button onClick={toggleModal}>Login</button>
-            {isOpen && <Login isOpen={isOpen} onClose={toggleModal} />}
-          </Li>
-          <hr />
-          <li>
-            <button onClick={toggleMo}>Register</button>
-            {Open && <Register isOpen={Open} onClose={toggleMo} />}
-          </li>
-          <Li>
-            <p>Ayuda</p>
-          </Li>
-        </Ul>
-      </MenuHidden>
-    </Button>
+    );
+  }
+  return (
+    <div className={style.container}>
+      <button onClick={handleLogout}>Cerrar sesion</button>
+    </div>
   );
 };
 export default SectionRegister;
-const Button = styled.div`
-  padding: 0.5em;
-  position: relative;
-  border: 1px solid grey;
-  border-radius: 15px;
-  > div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-  }
-`;
 
-const MenuHidden = styled.div`
-  position: absolute;
-  top: 6.5em;
-  left: -9em;
-  right: 0em;
-  z-index: 2;
-`;
-
-const Ul = styled.ul`
-  min-width: 18em;
-  min-height: 18em;
-  padding: 0.5em;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-  border: 1px solid grey;
-  border-radius: 1em;
-  list-style: none;
-  background: #ffff;
-`;
-
-const Li = styled.li`
-  color: #000;
-  &:hover {
-    text-decoration: underline;
-  }
-`;
 
 

@@ -5,7 +5,7 @@ import { useParams } from "react-router";
 import styles from "./Detail.module.css";
 import visa from "./iconos/visa.png";
 import master from "./iconos/master.png";
-// import pago from './iconos/pago.png'
+import axios from "axios";
 import { Link } from "react-router-dom";
 import Navigation from "../Navigation/Navigation.jsx";
 
@@ -85,7 +85,22 @@ function Detail() {
                 <p id={styles.envio}>Free shipping nationwide</p>
                 <p id={styles.devolucion}>free return</p>
                 <p id={styles.dias}>Tienes 30 días desde que lo recibes.</p>
-                {/* <button id={styles.comprar}>Buy now</button> */}
+                <button
+                  id={styles.comprar}
+                  onClick={() => {
+                    const body = detalle;
+                    console.log("Body:", body);
+                    axios
+                      .post("http://localhost:3001/payment", body)
+                      .then(
+                        (res) =>
+                          (window.location.href =
+                            res.data.response.body.init_point)
+                      );
+                  }}
+                >
+                  PAY
+                </button>
                 {isSelected ? (
                   <button id={styles.carrito} onClick={addToShoppingCart}>
                     REMOVE FROM CART
@@ -110,22 +125,19 @@ function Detail() {
                 <b>About this article</b>
               </h2>
               <ul>
+                <li>{detalle?.description}</li>
                 <li>
-                Dimensions: 8 ft x 22 1/2 x 3 1/4 <br />
+                  Dimensions: 8 ft x 22 1/2 x 3 1/4 <br />
                   weight 11.5 pounds Volume 86 liters capacity <br /> of
                   suggested weight up to 200 pounds
                 </li>
+
                 <li>
-                  Incluye almohadilla de tracción para <br />
-                  correa de tobillo y cubierta suave para calcetines <br />
-                  para protección. <br />
-                  Correa de poliuretano de alta calidad
-                </li>
-                <li>
-                Soft Webs-IXL Water Barrier Skin Crosslink
+                  Soft Webs-IXL Water Barrier Skin Crosslink
                   <br />
                   Top Deck and Rils High density HDPE PE Skin <br />
-                  Slick Bottom Skin<br />
+                  Slick Bottom Skin
+                  <br />
                   Exclusive Brushed Color Graphic Art Deck
                 </li>
               </ul>

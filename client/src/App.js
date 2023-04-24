@@ -7,7 +7,7 @@ import Detail from "./components/Detail/Detail.jsx";
 import SectionHome from "./components/SectionHome/SectionHome";
 import SectionCategories from "./components/SectionCategories/SectionCategories";
 import NavVertical from "./components/NavVertical/NavVertical";
-import SectionLogIn from "./components/SectionLogIn/SectionLogIn";
+// import SectionLogIn from "./components/SectionLogIn/SectionLogIn";
 import SectionRegister from "./components/SectionRegister/SectionRegister";
 import SectionCarrito from "./components/SectionCarrito/SectionCarrito";
 import Favorites from "./components/Favoritos/Favoritos";
@@ -15,10 +15,11 @@ import Favorites from "./components/Favoritos/Favoritos";
 import ProteccionRutas from "./components/Routers/ProteccionRutas"
 import React from 'react'
 import {Cloudinary} from "@cloudinary/url-gen";
+import Login from "./components/Login/Login";
 
 
 function App() {
-  const cld = new Cloudinary({
+  new Cloudinary({
     cloud: {
       cloudName: 'djngalumm'
     }
@@ -30,7 +31,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="/SectionHome" element={<SectionHome />}></Route>
-        <Route path="/SectionLogIn" element={<SectionLogIn />}></Route>
+        <Route path="/SectionLogIn" element={<Login />}></Route>
         <Route path="/SectionRegister" element={<SectionRegister />}></Route>
         <Route path="/SectionCategories" element={<SectionCategories />}></Route>
         <Route path="/Favorites" element={<Favorites />}></Route>
