@@ -9,8 +9,8 @@ import {
   addToCart,
   deleteToCart,
 } from "../../redux/actions";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { BsBagHeart, BsBagHeartFill } from "react-icons/bs";
 
 const ProductCard = ({
   name,
@@ -18,6 +18,8 @@ const ProductCard = ({
   price,
   imagen,
   id,
+  quantity,
+  stock,
   deletePropInFav = true,
 }) => {
   const [imageSrc] = useState(imagen[0]);
@@ -63,7 +65,6 @@ const ProductCard = ({
         <div className={styles.col2}>
           <div className={styles.fila1}>
             <h1>{name}</h1>
-
             <p>${price}</p>
           </div>
           <div className={styles.fila2}>
@@ -78,11 +79,11 @@ const ProductCard = ({
             {deletePropInFav &&
               (isFav ? (
                 <button id={styles.carrito} onClick={handleFav}>
-                  ❤️
+                  <BsBagHeartFill />
                 </button>
               ) : (
                 <button id={styles.carrito} onClick={handleFav}>
-                  🤍
+                  <BsBagHeart />
                 </button>
               ))}
           </div>
@@ -96,18 +97,32 @@ const ProductCard = ({
           <div className={styles.fila3}>
             {isSelected ? (
               <button
-                id={styles.carrito}
                 onClick={() =>
-                  handleAddToShoppingCart({ name, size, price, imagen, id })
+                  handleAddToShoppingCart({
+                    name,
+                    size,
+                    price,
+                    imagen,
+                    id,
+                    quantity,
+                    stock,
+                  })
                 }
               >
                 REMOVE FROM CART
               </button>
             ) : (
               <button
-                id={styles.carrito}
                 onClick={() =>
-                  handleAddToShoppingCart({ name, size, price, imagen, id })
+                  handleAddToShoppingCart({
+                    name,
+                    size,
+                    price,
+                    imagen,
+                    id,
+                    quantity,
+                    stock,
+                  })
                 }
               >
                 ADD TO CART

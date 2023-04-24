@@ -25,6 +25,7 @@ import {
   EMPTY_CART,
   ADD_TO_FAV,
   DELETE_TO_FAV,
+  // LOGIN,
 } from "./actions";
 
 const initialState = {
@@ -50,19 +51,30 @@ const reducer = (state = initialState, action) => {
       };
     //--------------------------------GET_ALL_PRODUCTS--------------------------------\\
     case GET_ALL_PRODUCTS:
-      console.log(action.payload);
+    
       return {
         ...state,
         products: action.payload,
-        allProduct: action.payload,
+        allProduct: action.payload.slice(),
       };
     //--------------------------------FILTER_BY_NAME--------------------------------\\
+    // case FILTER_BY_NAME:
+    //   return {
+    //     ...state,
+    //     products: action.payload,
+    //   };
+
     case FILTER_BY_NAME:
       return {
         ...state,
-        products: action.payload,
-        // filters: { ...state.filters, name: action.payload }
+        // products: state.allProduct.filter(
+        //   (prod) =>
+        //     prod.name &&
+        //     prod.name.toLowerCase().includes(action.payload.toLowerCase())
+        // ),
+        products: action.payload
       };
+
     //--------------------------------FILTER_BY_NAME_ASC--------------------------------\\
     // case FILTER_BY_ASC:
     //   return {
@@ -82,11 +94,16 @@ const reducer = (state = initialState, action) => {
     //     products: action.payload,
     //   };
     case ORDER_BY_NAME:
-      console.log("reducer", action.payload);
       return {
         ...state,
         products: [...state.products].sort((a, b) => {
           if (action.payload === "nameAsc") {
+            if (a.name < b.name) return -1;
+            return 0;
+          } else if (action.payload === "nameDesc") {
+            if (a.name > b.name) return -1;
+            return 0;
+          } else if (action.payload === "nameAsc") {
             if (a.name < b.name) return -1;
             return 0;
           } else if (action.payload === "nameDesc") {
@@ -116,7 +133,6 @@ const reducer = (state = initialState, action) => {
     //   };
 
     case ORDER_BY_PRICE:
-      console.log(action.payload);
       const sortName = [...state.products].sort((a, b) => {
         if (action.payload === "priceAsc") {
           if (a.price < b.price) return -1;
