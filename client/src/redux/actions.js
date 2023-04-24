@@ -242,7 +242,7 @@ export const paymentMercadoPago = (body) => {
   return async (dispatch) => {
     try {
       var json = await axios
-        .post("http://localhost:3001/payment", body)
+        .post("/payment", body)
         .then((res) => {
           window.location.href = res.data.response.body.init_point;
         })
