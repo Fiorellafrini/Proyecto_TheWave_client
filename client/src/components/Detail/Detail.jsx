@@ -52,11 +52,6 @@ function Detail() {
         <div className={styles.container}>
           <Navigation />
           <div className={styles.cuadrado1}>
-            <div className={styles.cerrar}>
-              <Link to="/SectionCategories">
-                <img src={back} alt="back" />
-              </Link>
-            </div>
             <div className={styles.imag}>
               {detalle.imagen?.map((imagen, i) => (
                 <div className={styles.imagenT}>
