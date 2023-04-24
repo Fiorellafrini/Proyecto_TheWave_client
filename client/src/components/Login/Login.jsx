@@ -141,6 +141,7 @@ function Login({ isOpen, onClose }) {
       if(event.data){
         window.localStorage.setItem("login", event.data);
         popup?.close();
+        navegar("/SectionHome");
       }
     }
   });

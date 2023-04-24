@@ -51,7 +51,7 @@ const reducer = (state = initialState, action) => {
       };
     //--------------------------------GET_ALL_PRODUCTS--------------------------------\\
     case GET_ALL_PRODUCTS:
-      console.log(action.payload)
+    
       return {
         ...state,
         products: action.payload,
