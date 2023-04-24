@@ -9,9 +9,6 @@
     cursor: pointer;
 }
 
-.containerNav:hover {
-    /* backdrop-filter: blur(10px); */
-}
 a:link {
     text-decoration: none;
 }

@@ -49,10 +49,13 @@
   text-align: center;
   animation: spinner-d3wgkg 1s infinite linear;
 }
-
-/*  */
+@keyframes spinner-d3wgkg {
+    to {
+        transform: rotate(1turn);
+    }
+}
 /* ----------------------------------------Spinner---------------------------------------- */
-.name {
-  color: rgb(255, 255, 255);
-  font-size: 8em;
+.name{
+    color: rgb(255, 255, 255);
+    font-size:5em;
 }
