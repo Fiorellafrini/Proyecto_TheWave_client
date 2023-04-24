@@ -1,9 +1,9 @@
-import React, {useState} from "react";
-import styles from "./Navigation.module.css";
-import logoPage from "../../assets/logoPage.png";
-import carrito from "../../assets/carrito.png";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import carrito from "../../assets/carrito.png";
+import logoPage from "../../assets/logoPage.png";
 import SectionLogIn from "../SectionLogIn/SectionLogIn";
+import styles from "./Navigation.module.css";
 
 
 const Navigation = () => {
@@ -25,6 +25,9 @@ const Navigation = () => {
         <Link to={"/SectionCategories"}>
           <p>Products</p>
         </Link>
+        <Link to={"/form"}>
+        <p>Add product</p>
+      </Link>
       </div>
       <div className={styles.col}>
         <img src={logoPage} alt="" />
