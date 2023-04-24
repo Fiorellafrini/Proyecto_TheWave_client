@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { productsById, addToCart, deleteToCart } from "../../redux/actions.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import styles from "./Detail.module.css";
-import visa from "./iconos/visa.png";
-import master from "./iconos/master.png";
-import Navigation from "../Navigation/Navigation.jsx";
 import { paymentMercadoPago } from "../../redux/actions";
+import { addToCart, deleteToCart, productsById } from "../../redux/actions.js";
+import Navigation from "../Navigation/Navigation.jsx";
+import styles from "./Detail.module.css";
+import master from "./iconos/master.png";
+import visa from "./iconos/visa.png";
 
 function Detail() {
   const dispatch = useDispatch();
@@ -83,7 +83,7 @@ function Detail() {
                 </div>
                 <p id={styles.envio}>Free shipping nationwide</p>
                 <p id={styles.devolucion}>free return</p>
-                <p id={styles.dias}>Tienes 30 días desde que lo recibes.</p>
+                <p id={styles.dias}>You have 30 days from when you receive it.</p>
                 <button id={styles.comprar} onClick={handlePayment}>
                   PAY
                 </button>

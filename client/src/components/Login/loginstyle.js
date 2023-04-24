@@ -5,7 +5,7 @@ export const Popstyled = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(255, 255, 255, 03);
+  
   backdrop-filter: blur(5px);
   z-index: 999;
   display: flex;
@@ -15,7 +15,7 @@ export const Popstyled = styled.div`
   .Form {
     width: 500px;
     height: 500px;
-    background-color: white;
+    background-color: rgba(18, 18, 18, 0.14);
     display: flex;
     justify-content: center;
     align-items: center;
