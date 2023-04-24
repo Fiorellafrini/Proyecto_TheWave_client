@@ -9,9 +9,6 @@
     cursor: pointer;
 }
 
-.containerNav:hover {
-    /* backdrop-filter: blur(10px); */
-}
 a:link {
     text-decoration: none;
 }
@@ -24,4 +21,13 @@ a:visited {
     display: flex;
     font-size: 1.50em;
     gap: 150px;
+}
+#boton {
+    width: 60px;
+    font-size: 22px;
+    color:white;
+    padding: 10px 40px;
+    background: transparent;
+    border: none;
+    outline: none;
 }

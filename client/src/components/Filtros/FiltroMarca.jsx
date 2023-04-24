@@ -16,7 +16,7 @@ function FiltroMarca() {
         <option disabled value="Brand">Brand</option>
         <option value="">All</option>
         <option value="1">Hurley</option>
-        <option value="2">Rip Curl</option>
+        {/* <option value="2">Rip Curl</option> */}
         <option value="3">Vesl</option>
         <option value="4">Russell</option>
         <option value="5">Wave</option>

@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { productsById, addToCart, deleteToCart } from "../../redux/actions.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import styles from "./Detail.module.css";
-import visa from "./iconos/visa.png";
-import master from "./iconos/master.png";
-// import pago from './iconos/pago.png'
-import back from "./iconos/arrow_navigation_icon.png";
-import { Link } from "react-router-dom";
+import { paymentMercadoPago } from "../../redux/actions";
+import { addToCart, deleteToCart, productsById } from "../../redux/actions.js";
 import Navigation from "../Navigation/Navigation.jsx";
+import styles from "./Detail.module.css";
+import master from "./iconos/master.png";
+import visa from "./iconos/visa.png";
 
 function Detail() {
   const dispatch = useDispatch();
   const detalle = useSelector((state) => state.products.detail);
   const [isSelected, setIsSelected] = useState(false);
+
   const { id } = useParams();
 
   const [loading, setLoading] = useState(true);
+
+  const handlePayment = () => {
+    dispatch(paymentMercadoPago(detalle));
+  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -74,59 +77,61 @@ function Detail() {
                   <b>$ {detalle?.price} ARS</b>
                 </p>
                 <span>
-                  <b>Talla {detalle?.size}</b>
+                  <b>Size {detalle?.size}</b>
                 </span>
                 <div className={styles.metodo}>
                   <p id={styles.cuotas}>
-                    <b>Metodos de pago</b>
+                    <b>Payment methods</b>
                   </p>
                   <img src={visa} alt="visa" />
                   <img src={master} alt="card" />
                 </div>
-                <p id={styles.envio}>Envío gratis a nivel nacional</p>
-                <p id={styles.devolucion}>Devolución gratis</p>
-                <p id={styles.dias}>Tienes 30 días desde que lo recibes.</p>
-                <button id={styles.comprar}>Comprar ahora</button>
+                <p id={styles.envio}>Free shipping nationwide</p>
+                <p id={styles.devolucion}>free return</p>
+                <p id={styles.dias}>You have 30 days from when you receive it.</p>
+                <button id={styles.comprar} onClick={handlePayment}>
+                  PAY
+                </button>
                 {isSelected ? (
                   <button id={styles.carrito} onClick={addToShoppingCart}>
-                    Quitar del carrito
+                    REMOVE FROM CART
                   </button>
                 ) : (
                   <button id={styles.carrito} onClick={addToShoppingCart}>
-                    Agregar al carrito
+                    ADD TO CART
                   </button>
                 )}
-
                 <p id={styles.protegida}>
-                  <b>Compra Protegida</b>, recibe el producto que esperabas{" "}
-                  <br /> o te devolvemos tu dinero.
+                  <b>Protected Purchase</b>, receive the product you expected{" "}
+                  <br /> or we will refund your money.
                 </p>
                 <p id={styles.garantia}>
-                  <b>90 días de garantía de fábrica.</b>
+                  <b>90 days factory warranty.</b>
                 </p>
               </div>
             </div>
             <div className={styles.comentario}>
               <h2>
-                <b>Sobre este artículo</b>
+                <b>About this article</b>
               </h2>
               <ul>
+                <li>{detalle?.description}</li>
                 <li>
-                  Dimensiones: 8 pies x 22 1/2 x 3 1/4 <br />
-                  peso 11.5 libras Volumen de 86 litros de capacidad <br /> de
-                  peso sugerida de hasta 200 libras
+                  Dimensions: 8 ft x 22 1/2 x 3 1/4 <br />
+                  Dimensions: 8 ft x 22 1/2 x 3 1/4 <br />
+                  weight 11.5 pounds Volume 86 liters capacity <br /> of
+                  suggested weight up to 200 pounds
                 </li>
+
                 <li>
-                  Incluye almohadilla de tracción para <br />
-                  correa de tobillo y cubierta suave para calcetines <br />
-                  para protección. <br />
-                  Correa de poliuretano de alta calidad
-                </li>
-                <li>
+                  Soft Webs-IXL Water Barrier Skin Crosslink
                   Soft Webs-IXL Water Barrier Skin Crosslink
                   <br />
                   Top Deck and Rils High density HDPE PE Skin <br />
-                  Slick Bottom Skin <br />
+                  Slick Bottom Skin
+                  <br />
+                  Slick Bottom Skin
+                  <br />
                   Exclusive Brushed Color Graphic Art Deck
                 </li>
               </ul>

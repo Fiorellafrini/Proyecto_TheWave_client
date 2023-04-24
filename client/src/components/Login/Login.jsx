@@ -1,39 +1,27 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { BiX } from "react-icons/bi";
-import { SiFacebook, SiGoogle } from "react-icons/si";
-import { useDispatch, useSelector } from "react-redux";
-import { login, google, facebook } from "../../redux/actions";
-import { Popstyled } from "./loginstyle";
+import { SiGoogle } from "react-icons/si";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { login } from "../../redux/actions";
+import { Popstyled } from "./loginstyle";
 
 function Login({ isOpen, onClose }) {
   const dispatch = useDispatch();
   const navegar = useNavigate();
   const [sendForm, setSendForm] = useState(false);
-  const token = useSelector((state) => state.products.login);
-console.log(token)
-  let isLoguin = window.localStorage.getItem("login");
+  let isLoguin = window.localStorage.getItem("login"); 
 
 
-  window.localStorage.setItem("login", JSON.stringify(token));
- 
-
-  const handleGoogle = () => {
-    dispatch(google());
-    if (!isLoguin) {
-      navegar("/SectionLogIn");
-    }
-    navegar("/SectionHome");
-  };
-
-  const handlefacebook = () => {
-    dispatch(facebook());
-    if (!isLoguin) {
-      navegar("/SectionLogIn");
-    }
-    navegar("/SectionHome");
-  };
+ // const handlefacebook = () => {
+  //   dispatch(facebook());
+  //   if (!isLoguin) {
+  //     navegar("/SectionLogIn");
+  //   }
+  //   navegar("/SectionHome");
+  // };
+  
 
   return (
     <Popstyled>
@@ -126,13 +114,42 @@ console.log(token)
         <hr />
         <p>Tambien puedes registrarte con:</p>
         <div className="icons">
-          <button onClick={handleGoogle}>
+          <button
+          onClick={() => {
+  const width = 620;
+  const height = 700;
+  const left = (window.screen.width / 2) - (width / 2);
+  const top = (window.screen.height / 2) - (height / 2);
+
+  const popup = window.open(
+    "https://proyectothewaveapi-production.up.railway.app/auth/google",
+    "targetWindow",
+    `toolbar=no,
+    location=no,
+    status=no,
+    menubar=no,
+    scrollbars=yes,
+    resizable=yes,
+    width=${width},
+    height=${height},
+    left=${left},
+    top=${top}`
+  );
+
+  window.addEventListener("message", event => {
+    if(event.origin === "https://proyectothewaveapi-production.up.railway.app"){
+      if(event.data){
+        window.localStorage.setItem("login", event.data);
+        popup?.close();
+        navegar("/SectionHome");
+      }
+    }
+  });
+}}
+          >
             <SiGoogle size={25} />
           </button>
           <p>Google</p>
-          <button onClick={handlefacebook}>
-            <SiFacebook size={25} />
-          </button>
           <p>Facebook</p>
         </div>
       </div>

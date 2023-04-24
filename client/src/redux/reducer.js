@@ -17,7 +17,15 @@ import {
   SET_CURRENTPAGE,
   ADD_TO_CART,
   DELETE_TO_CART,
+  PAYMENT,
+  UPDATE_STOCK_PRODUCT_INC,
+  UPDATE_STOCK_PRODUCT_DEC,
+  INCREMENT_QUANTITY,
+  DECREMENT_QUANTITY,
   EMPTY_CART,
+  ADD_TO_FAV,
+  DELETE_TO_FAV,
+  // LOGIN,
 } from "./actions";
 
 const initialState = {
@@ -30,6 +38,7 @@ const initialState = {
   infinity: [],
   setPage: 0,
   filters: {},
+  favorites: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -42,7 +51,7 @@ const reducer = (state = initialState, action) => {
       };
     //--------------------------------GET_ALL_PRODUCTS--------------------------------\\
     case GET_ALL_PRODUCTS:
-      console.log(action.payload)
+    
       return {
         ...state,
         products: action.payload,
@@ -83,9 +92,7 @@ const reducer = (state = initialState, action) => {
     //     ...state,
     //     products: action.payload,
     //   };
-
     case ORDER_BY_NAME:
-      // console.log("reducer", action.payload);
       return {
         ...state,
         products: [...state.products].sort((a, b) => {
@@ -125,7 +132,6 @@ const reducer = (state = initialState, action) => {
     //   };
 
     case ORDER_BY_PRICE:
-      // console.log(action.payload);
       const sortName = [...state.products].sort((a, b) => {
         if (action.payload === "priceAsc") {
           if (a.price < b.price) return -1;
@@ -199,8 +205,93 @@ const reducer = (state = initialState, action) => {
           (product) => product !== action.payload
         ),
       };
+    //---------------------------------------------------------------------------------//
+    case ADD_TO_FAV:
+      return {
+        ...state,
+        favorites: [...state.favorites, action.payload],
+      };
 
-    //--------------------------------UPDATE_CART--------------------------------\\
+    //--------------------------------DELETE_TO_CART--------------------------------\\
+    case DELETE_TO_FAV:
+      return {
+        ...state,
+        favorites: state.favorites.filter(
+          (product) => product !== action.payload
+        ),
+      };
+    //--------------------------------PAYMENT--------------------------------\\
+    case PAYMENT:
+      return {
+        ...state,
+        shoppingCart: action.payload,
+      };
+    //--------------------------------UPDATE_STOCK_PRODUCT_DEC--------------------------------\\
+    case UPDATE_STOCK_PRODUCT_DEC:
+      const updatedProductDec = action.payload;
+      const updatedProductsDec = state.products.map((product) => {
+        if (product.id === updatedProductDec.id) {
+          return updatedProductDec;
+        } else {
+          return product;
+        }
+      });
+      return {
+        ...state,
+        products: updatedProductsDec,
+      };
+    //--------------------------------UPDATE_STOCK_PRODUCT_INC--------------------------------\\
+    case UPDATE_STOCK_PRODUCT_INC:
+      const updatedProductInc = action.payload;
+      const updatedProductsInc = state.products.map((product) => {
+        if (product.id === updatedProductInc.id) {
+          return updatedProductInc;
+        } else {
+          return product;
+        }
+      });
+      return {
+        ...state,
+        products: updatedProductsInc,
+      };
+    //--------------------------------INCREMENT_QUANTITY--------------------------------\\
+    case INCREMENT_QUANTITY:
+      const id = action.payload;
+      const currentQuantity =
+        state.shoppingCart.find((item) => item.id === id)?.quantity || 0;
+      const updatedCart = state.shoppingCart.map((item) => {
+        if (item.id === id) {
+          const updatedProduct = { ...item, quantity: currentQuantity + 1 };
+          return updatedProduct;
+        } else {
+          return Object.assign({}, item, { page: undefined });
+        }
+      });
+      return {
+        ...state,
+        shoppingCart: updatedCart,
+      };
+
+    //--------------------------------DECREMENT_QUANTITY--------------------------------\\
+    case DECREMENT_QUANTITY:
+      const idLess = action.payload;
+      const currentQuantityLess =
+        state.shoppingCart.find((item) => item.id === idLess)?.quantity || 0;
+      const updatedCartLess = state.shoppingCart.map((item) => {
+        if (item.id === idLess) {
+          const updatedProduct = { ...item, quantity: currentQuantityLess - 1 };
+          if (updatedProduct.quantity < 1) {
+            updatedProduct.quantity = 1;
+          }
+          return updatedProduct;
+        } else {
+          return Object.assign({}, item, { page: undefined });
+        }
+      });
+      return {
+        ...state,
+        shoppingCart: updatedCartLess,
+      };
     default:
       return state;
   }

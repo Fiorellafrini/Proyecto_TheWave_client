@@ -3,11 +3,21 @@ import Navigation from "../Navigation/Navigation";
 import styles from "../SectionCarrito/SectionCarrito.module.css";
 import ShoppingCartCard from "../ShoppingCartCard/ShoppingCartCard";
 import { useSelector } from "react-redux";
-import axios from "axios";
+import { paymentMercadoPago, deleteToCart } from "../../redux/actions";
+import { useDispatch } from "react-redux";
 
 const SectionCarrito = () => {
   const [loading, setLoading] = useState(true);
   const userCartShopping = useSelector((state) => state.products.shoppingCart);
+
+  const dispatch = useDispatch();
+
+  const handlePayment = () => {
+    dispatch(paymentMercadoPago(userCartShopping));
+  };
+  const handleDelete = (product) => {
+    dispatch(deleteToCart(product));
+  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -31,38 +41,29 @@ const SectionCarrito = () => {
                 return (
                   <ShoppingCartCard
                     key={i}
+                    id={product.id}
                     name={product.name}
                     price={product.price}
                     size={product.size}
                     imagen={product.imagen}
+                    stock={product.stock}
+                    quantity={product.quantity}
+                    onDelete={() => handleDelete(product)}
                   />
                 );
               })}
             </div>
             <div className={styles.totalPay}>
-              <p>total</p>
+              <p>Total</p>
               <p>
                 {userCartShopping.reduce(
-                  (total, product) => total + product.price,
+                  (total, product) => total + product.price * product.quantity,
                   0
                 )}
               </p>
             </div>
             <hr />
-            <button
-              onClick={() => {
-                const body = userCartShopping;
-                console.log("Body:", body);
-                axios
-                  .post("http://localhost:3001/payment", body)
-                  .then(
-                    (res) =>
-                      (window.location.href = res.data.response.body.init_point)
-                  );
-              }}
-            >
-              pagar
-            </button>
+            <button onClick={handlePayment}>Pay</button>
           </div>
         </div>
       )}
