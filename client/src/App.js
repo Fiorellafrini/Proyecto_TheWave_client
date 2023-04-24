@@ -6,12 +6,12 @@ import Error404 from "./components/Error404/Error404";
 import Detail from "./components/Detail/Detail.jsx";
 import SectionHome from "./components/SectionHome/SectionHome";
 import SectionCategories from "./components/SectionCategories/SectionCategories";
-//import NavVertical from "./components/NavVertical/NavVertical";
+import NavVertical from "./components/NavVertical/NavVertical";
 import SectionLogIn from "./components/SectionLogIn/SectionLogIn";
 import SectionRegister from "./components/SectionRegister/SectionRegister";
 import SectionCarrito from "./components/SectionCarrito/SectionCarrito";
 import Favorites from "./components/Favoritos/Favoritos";
-// import HomeDashboard from "./components/Dashboard/HomeDashboard";
+import HomeDashboard from "./components/Dashboard/HomeDashboard";
 import Estadisticas from "./components/Dashboard/Estadisticas";
 import CardsDash from "./components/Dashboard/CardsDash";
 import ProteccionRutas from "./components/Routers/ProteccionRutas"
@@ -46,10 +46,10 @@ function App() {
 
         </Route>
 
-        <Route path="*" element={<Error404 />}></Route>
-        {/* <Route path="/admin" element={<HomeDashboard />}></Route>
+        <Route path="/admin" element={<HomeDashboard />}></Route>
         <Route path="/admin" element={<CardsDash />}></Route>
-        <Route path="/stats" element={<Estadisticas />}></Route> */}
+        <Route path="/stats" element={<Estadisticas />}></Route> 
+        <Route path="*" element={<Error404 />}></Route>
       </Routes>
     </div>
   );

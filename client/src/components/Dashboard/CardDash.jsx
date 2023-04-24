@@ -9,7 +9,6 @@ const CardDash = ({name, size, price, imagen, id}) => {
 
    const [isDeleted, setIsdeleted] = useState();
 
-  // // const local = "https://inmovate.onrender.com";
   const local = "http://localhost:3000";
    const deleteProp = async (id, boolean) => {
      axios
