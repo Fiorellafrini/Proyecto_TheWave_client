@@ -3,9 +3,9 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
 
-import axios from "axios";
-import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store, persistor } from "./redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 import axios from "axios";
 // axios.defaults.baseURL = 'http://localhost:3001'; //para trabajar local
