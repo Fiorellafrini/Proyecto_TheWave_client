@@ -1,8 +1,14 @@
-import { REGISTRO, LOGIN, LOGINGOOGLE,LOGINFACEBOOK,RGOOGLE} from "./actions";
+import {
+  REGISTRO,
+  LOGINGOOGLE,
+  LOGIN,
+  LOGINFACEBOOK,
+  RGOOGLE,
+} from "./actions";
 
 const initialState = {
   user: [],
-  login: [],
+  logui:[],
   google:[],
 };
 
@@ -14,25 +20,21 @@ const authReducer = (state = initialState, action) => {
         user: action.payload,
       };
     case LOGIN:
-      console.log(action.payload);
       return {
         ...state,
-        login: action.payload,
+        logui: window.localStorage.setItem("login", JSON.stringify(action.payload))
       };
     case LOGINGOOGLE:
-      console.log(action.payload);
       return {
         ...state,
-       google: action.payload,
+       logui: window.localStorage.setItem("login", JSON.stringify(action.payload))
       };
     case LOGINFACEBOOK:
-      console.log(action.payload);
       return {
         ...state,
-        login: action.payload,
+        logui: window.localStorage.setItem("login", JSON.stringify(action.payload))
       };
     case RGOOGLE:
-      console.log(action.payload);
       return {
         ...state,
         google: action.payload,
