@@ -15,10 +15,6 @@ const CoursesBanner = () => {
 
   return (
     <>
-      <div className={styles.courses}>
-        {/* <p>I S    C O M I N G ...</p> */}
-        <hr />
-      </div>
       <div
         className={styles.containerCoursesBanner}
         style={{ display: currentImage === 1 ? "block" : "none" }}

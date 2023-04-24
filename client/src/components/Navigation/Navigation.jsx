@@ -40,6 +40,9 @@ const Navigation = () => {
           Perfil
         </button>
       </div>
+      <Link to={"/Favorites"}>
+          <p>🤍</p>
+        </Link>
     </div>
   );
 };

@@ -10,6 +10,7 @@ import NavVertical from "./components/NavVertical/NavVertical";
 // import SectionLogIn from "./components/SectionLogIn/SectionLogIn";
 import SectionRegister from "./components/SectionRegister/SectionRegister";
 import SectionCarrito from "./components/SectionCarrito/SectionCarrito";
+import Favorites from "./components/Favoritos/Favoritos";
 // import HomeDashboard from "./review/dashboard/HomeDashboard";
 import ProteccionRutas from "./components/Routers/ProteccionRutas"
 import React from 'react'
@@ -33,11 +34,15 @@ function App() {
         <Route path="/SectionLogIn" element={<Login />}></Route>
         <Route path="/SectionRegister" element={<SectionRegister />}></Route>
         <Route path="/SectionCategories" element={<SectionCategories />}></Route>
+        <Route path="/Favorites" element={<Favorites />}></Route>
+
         
         <Route element={<ProteccionRutas/>}> 
         <Route path="/SectionCarrito" element={<SectionCarrito />}></Route>
         <Route path="/form" element={<FormProduct />}></Route>
         <Route path="/detail/:id" element={<Detail />}></Route>
+      
+
         </Route>
 
         <Route path="*" element={<Error404 />}></Route>
