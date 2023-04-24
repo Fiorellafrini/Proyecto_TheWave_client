@@ -1,31 +1,46 @@
-import React, { useState, useEffect } from "react";
-import styles from "../SectionRegister/SectionRegister.module.css";
-import Navigation from "../Navigation/Navigation";
-
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Login from "../Login/Login";
+import Register from "../Login/Register";
+import style from './SectionRegister.module.css'
 
 const SectionRegister = () => {
-  const [loading, setLoading] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const [Open, setOpen] = useState(false);
+  const navegar = useNavigate();
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
+  let isLoguin = window.localStorage.getItem("login");
 
+  const toggleModal = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const toggleMo = () => {
+    setOpen(!Open);
+  };
+
+  const handleLogout = () => {
+    window.localStorage.removeItem("login");
+    navegar("/");
+  };
+
+  if (!isLoguin) {
+    return (
+      <div className={style.container}>
+        <button onClick={toggleModal}>Login</button>
+        {isOpen && <Login isOpen={isOpen} onClose={toggleModal} />}
+        <button onClick={toggleMo}>Register</button>
+        {Open && <Register isOpen={Open} onClose={toggleMo} />}
+      </div>
+    );
+  }
   return (
-    <>
-      {loading ? (
-        <div className={styles.containerSpinner}>
-          <div className={styles.spinner}></div>
-        </div>
-      ) : (
-          <div className={styles.container}>
-          <Navigation/>
-          <h1 className={styles.titulo}>Section Register</h1>
-        </div>
-      )}
-    </>
+    <div className={style.container}>
+      <button onClick={handleLogout}>Cerrar sesion</button>
+    </div>
   );
 };
-
 export default SectionRegister;
+
+
+

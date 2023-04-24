@@ -1,30 +1,50 @@
-import React, { useState, useEffect } from "react";
-import Navigation from "../Navigation/Navigation";
-import styles from "../SectionLogIn/SectionLogIn.module.css";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Login from "../Login/Login";
+import Register from "../Login/Register";
+import { Popstyled } from "./sesion";
 
 const SectionLogIn = () => {
-  const [loading, setLoading] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const [Open, setOpen] = useState(false);
+  let isLoguin = window.localStorage.getItem("login");
+   const navegar = useNavigate();
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
+  const toggleModal = () => {
+    setIsOpen(!isOpen);
+  };
 
-  return (
-    <>
-      {loading ? (
-        <div className={styles.containerSpinner}>
-          <div className={styles.spinner}></div>
-        </div>
-      ) : (
-          <div className={styles.container}>
-          <Navigation/>
-          <h1 className={styles.titulo}>Section Login</h1>
-        </div>
-      )}
-    </>
-  );
+  const toggleMo = () => {
+    setOpen(!Open);
+  };
+    const handleLogout = () => {
+      window.localStorage.removeItem("login");
+      navegar("/");
+    };
+
+  if (isLoguin) {
+      return (
+        <Popstyled>
+          <div className="Form">
+            <button onClick={handleLogout}>Logout</button>
+          </div>
+        </Popstyled>
+      );
+  }
+        return (
+          <Popstyled>
+            <div onBlur={e => {
+              
+            }} className="Form">
+              <button onClick={toggleModal}>Login</button>
+              {isOpen && <Login isOpen={isOpen} onClose={toggleModal} />}
+              <div>
+                <button onClick={toggleMo}>Register</button>
+                {Open && <Register isOpen={Open} onClose={toggleMo} />}
+              </div>
+            </div>
+          </Popstyled>
+        );
 };
 
 export default SectionLogIn;

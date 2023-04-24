@@ -1,10 +1,21 @@
-import React from "react";
-import styles from "./Navigation.module.css";
-import logoPage from "../../assets/logoPage.png";
-import carrito from "../../assets/carrito.png";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import carrito from "../../assets/carrito.png";
+import logoPage from "../../assets/logoPage.png";
+import SectionLogIn from "../SectionLogIn/SectionLogIn";
+import styles from "./Navigation.module.css";
+
 
 const Navigation = () => {
+
+  const [cerrar , setcerrar]=useState(false)
+
+  const handelcerrar = ()=>{
+    setcerrar(true)
+  }
+
+   
+
   return (
     <div className={styles.containerNav}>
       <div className={styles.col}>
@@ -14,26 +25,29 @@ const Navigation = () => {
         <Link to={"/SectionCategories"}>
           <p>Products</p>
         </Link>
-        <Link to={"/Form"}>
-          <p>Add Item</p>
-        </Link>
+        <Link to={"/form"}>
+        <p>Add product</p>
+      </Link>
       </div>
       <div className={styles.col}>
         <img src={logoPage} alt="" />
-      </div>
+      </div>{" "}
       <div className={styles.col}>
-        <Link to={"/SectionLogIn"}>
-          <p>Log in</p>
-        </Link>{" "}
-        <Link to={"/SectionRegister"}>
-          <p>Register</p>
-        </Link>{" "}
+        <Link to={"/Favorites"}>
+          <p>Favorites</p>
+        </Link>
       </div>
       <Link to={"/SectionCarrito"}>
         <div className={styles.col}>
           <img src={carrito} alt="" />
         </div>
       </Link>
+      <div className={styles.color}>
+        <button id={styles.boton} onClick={handelcerrar}>
+          {cerrar && <SectionLogIn setcerrar={setcerrar} />}
+          Perfil
+        </button>
+      </div>
     </div>
   );
 };

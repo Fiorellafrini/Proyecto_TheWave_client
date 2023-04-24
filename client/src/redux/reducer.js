@@ -15,17 +15,30 @@ import {
   DETAIL_PRODUCT,
   INFINITY,
   SET_CURRENTPAGE,
+  ADD_TO_CART,
+  DELETE_TO_CART,
+  PAYMENT,
+  UPDATE_STOCK_PRODUCT_INC,
+  UPDATE_STOCK_PRODUCT_DEC,
+  INCREMENT_QUANTITY,
+  DECREMENT_QUANTITY,
+  EMPTY_CART,
+  ADD_TO_FAV,
+  DELETE_TO_FAV,
+  // LOGIN,
 } from "./actions";
 
 const initialState = {
   products: [],
   allProduct: [],
+  shoppingCart: [],
   types: [],
   detail: [],
   brands: [],
   infinity: [],
   setPage: 0,
   filters: {},
+  favorites: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -38,17 +51,18 @@ const reducer = (state = initialState, action) => {
       };
     //--------------------------------GET_ALL_PRODUCTS--------------------------------\\
     case GET_ALL_PRODUCTS:
+    
       return {
         ...state,
         products: action.payload,
-        allProduct: action.payload
+        allProduct: action.payload,
       };
     //--------------------------------FILTER_BY_NAME--------------------------------\\
     case FILTER_BY_NAME:
       return {
         ...state,
         products: action.payload,
-    // filters: { ...state.filters, name: action.payload }
+        // filters: { ...state.filters, name: action.payload }
       };
     //--------------------------------FILTER_BY_NAME_ASC--------------------------------\\
     // case FILTER_BY_ASC:
@@ -68,20 +82,18 @@ const reducer = (state = initialState, action) => {
     //     ...state,
     //     products: action.payload,
     //   };
-
     case ORDER_BY_NAME:
-      console.log("reducer", action.payload)
       return {
         ...state,
         products: [...state.products].sort((a, b) => {
-          if(action.payload === "nameAsc"){
-            if(a.name < b.name) return -1
-            return 0
-          }else if(action.payload ===  "nameDesc"){
-            if(a.name > b.name) return -1
-            return 0
+          if (action.payload === "nameAsc") {
+            if (a.name < b.name) return -1;
+            return 0;
+          } else if (action.payload === "nameDesc") {
+            if (a.name > b.name) return -1;
+            return 0;
           }
-          return 0
+          return 0;
         }),
       };
     //--------------------------------FILTER_BY_PRICE_ASC--------------------------------\\
@@ -104,21 +116,20 @@ const reducer = (state = initialState, action) => {
     //   };
 
     case ORDER_BY_PRICE:
-      console.log(action.payload)
-      const sortName = [...state.products].sort((a,b) =>{
-        if(action.payload === "priceAsc"){
-          if(a.price < b.price) return -1
-          return 0
-        }else if(action.payload === "priceDesc"){
-          if(a.price > b.price) return -1
-          return 0
-        }else {
-          return 0
+      const sortName = [...state.products].sort((a, b) => {
+        if (action.payload === "priceAsc") {
+          if (a.price < b.price) return -1;
+          return 0;
+        } else if (action.payload === "priceDesc") {
+          if (a.price > b.price) return -1;
+          return 0;
+        } else {
+          return 0;
         }
-      })
+      });
       return {
         ...state,
-        products: sortName
+        products: sortName,
       };
     //-----------------------------------------------------------------------------\\
     case GET_All_TYPES:
@@ -155,6 +166,115 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         products: action.payload,
+      };
+    //--------------------------------ADD_TO_CART--------------------------------\\
+    case ADD_TO_CART:
+      return {
+        ...state,
+        shoppingCart: [...state.shoppingCart, action.payload],
+      };
+    //--------------------------------DELETE_TO_CART--------------------------------\\
+    case DELETE_TO_CART:
+      return {
+        ...state,
+        shoppingCart: state.shoppingCart.filter(
+          (product) => product !== action.payload
+        ),
+      };
+
+    case EMPTY_CART:
+      return {
+        ...state,
+        shoppingCart: state.shoppingCart.filter(
+          (product) => product !== action.payload
+        ),
+      };
+    //---------------------------------------------------------------------------------//
+    case ADD_TO_FAV:
+      return {
+        ...state,
+        favorites: [...state.favorites, action.payload],
+      };
+
+    //--------------------------------DELETE_TO_CART--------------------------------\\
+    case DELETE_TO_FAV:
+      return {
+        ...state,
+        favorites: state.favorites.filter(
+          (product) => product !== action.payload
+        ),
+      };
+    //--------------------------------PAYMENT--------------------------------\\
+    case PAYMENT:
+      return {
+        ...state,
+        shoppingCart: action.payload,
+      };
+    //--------------------------------UPDATE_STOCK_PRODUCT_DEC--------------------------------\\
+    case UPDATE_STOCK_PRODUCT_DEC:
+      const updatedProductDec = action.payload;
+      const updatedProductsDec = state.products.map((product) => {
+        if (product.id === updatedProductDec.id) {
+          return updatedProductDec;
+        } else {
+          return product;
+        }
+      });
+      return {
+        ...state,
+        products: updatedProductsDec,
+      };
+    //--------------------------------UPDATE_STOCK_PRODUCT_INC--------------------------------\\
+    case UPDATE_STOCK_PRODUCT_INC:
+      const updatedProductInc = action.payload;
+      const updatedProductsInc = state.products.map((product) => {
+        if (product.id === updatedProductInc.id) {
+          return updatedProductInc;
+        } else {
+          return product;
+        }
+      });
+      return {
+        ...state,
+        products: updatedProductsInc,
+      };
+    //--------------------------------INCREMENT_QUANTITY--------------------------------\\
+    case INCREMENT_QUANTITY:
+      const id = action.payload;
+      const currentQuantity =
+        state.shoppingCart.find((item) => item.id === id)?.quantity || 0;
+      const updatedCart = state.shoppingCart.map((item) => {
+        if (item.id === id) {
+          const updatedProduct = { ...item, quantity: currentQuantity + 1 };
+          return updatedProduct;
+        } else {
+          return Object.assign({}, item, { page: undefined });
+        }
+      });
+      return {
+        ...state,
+        shoppingCart: updatedCart,
+      };
+
+    //--------------------------------DECREMENT_QUANTITY--------------------------------\\
+    case DECREMENT_QUANTITY:
+      const idLess = action.payload;
+      const currentQuantityLess =
+        state.shoppingCart.find((item) => item.id === idLess)?.quantity || 0;
+      const updatedCartLess = state.shoppingCart.map((item) => {
+        if (item.id === idLess) {
+          const updatedProduct = { ...item, quantity: currentQuantityLess - 1 };
+          if (updatedProduct.quantity < 1) {
+            updatedProduct.quantity = 1;
+          }
+          return updatedProduct;
+        } else {
+          return Object.assign({}, item, { page: undefined });
+        }
+      });
+      return {
+        ...state,
+        shoppingCart: updatedCartLess,
       };
     default:
       return state;
