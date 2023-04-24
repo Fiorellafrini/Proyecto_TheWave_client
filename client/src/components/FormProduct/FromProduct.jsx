@@ -202,11 +202,11 @@ const FormProduct = () => {
                     Type :
                     <Field name="id_type" as="select">
                       <option value={0}></option>
-                      <option value={1}>Aletas de buceo</option>
-                      <option value={2}>Traje De Neopreno</option>
-                      <option value={3}>Tabla de Stand Up Paddle</option>
-                      <option value={4}>Tabla de Surf</option>
-                      <option value={5}>Tabla de WakeBoard</option>
+                      <option value={1}>Diving fins</option>
+                      <option value={2}>Wetsuit</option>
+                      <option value={3}>Stand Up Paddle Board</option>
+                      <option value={4}>Surfboard</option>
+                      <option value={5}>WakeBoard</option>
                     </Field>
                     <ErrorMessage
                       name="id_type"
