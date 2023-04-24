@@ -1,18 +1,14 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { BiX } from "react-icons/bi";
-import { SiFacebook, SiGoogle } from "react-icons/si";
 import { useDispatch } from "react-redux";
-import { registro, googleR} from "../../redux/actions";
+import { registro} from "../../redux/actions";
 import { Popstyled } from "./loginstyle";
 
 function Register({ Open, onClose }) {
     const dispatch = useDispatch();
   const [sendForm, setSendForm] = useState(false);
 
- const handleGoogler = ()=>{
-  dispatch(googleR)
- }
   return (
     <Popstyled>
       <div className="Form">
@@ -179,16 +175,6 @@ function Register({ Open, onClose }) {
             </Form>
           )}
         </Formik>
-        <hr />
-        <p>Tambien puedes registrarte con:</p>
-        <div className="icons">
-          <button onClick={handleGoogler}>
-            <SiGoogle size={25} />
-          </button>
-          <p>Google</p>
-          <SiFacebook size={25} />
-          <p>Facebook</p>
-        </div>
       </div>
     </Popstyled>
   );
