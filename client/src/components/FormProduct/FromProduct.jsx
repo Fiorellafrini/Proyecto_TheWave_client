@@ -1,9 +1,10 @@
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import styles from "./FromProduct.module.css";
+import { useNavigate } from "react-router-dom";
 import { createProduct } from "../../redux/actions";
 import Navigation from "../Navigation/Navigation";
+import styles from "./FromProduct.module.css";
 
 // cloudinary.config({
 // cloud_name: 'djngalumm',
@@ -15,6 +16,7 @@ import Navigation from "../Navigation/Navigation";
 const FormProduct = () => {
   const [isSent, setIsSent] = useState(false);
   const dispatch = useDispatch();
+  const navegate = useNavigate();
 
   // Función para manejar la carga de imágenes
   const handleImageUpload = async (e, setFieldValue) => {
@@ -46,11 +48,11 @@ const FormProduct = () => {
         <Formik
           initialValues={{
             name: "",
-            imagen: ["", ""],
             id_brand: 0,
             id_type: 0,
             size: "",
             price: 0,
+            stock: 0,
           }}
           validate={(values) => {
             const errors = {};
@@ -76,13 +78,18 @@ const FormProduct = () => {
             } else if (values.price > 999999999) {
               errors.price = "Please enter a price  valid for this product";
             }
+            if (values.stock === 0) {
+              errors.stock = "Please enter the quantity of products in stock";
+            }
             return errors;
           }}
           onSubmit={(values, { setSubmitting, resetForm }) => {
             dispatch(createProduct(values));
+            console.log(values);
             setIsSent(true);
             setSubmitting(false);
             resetForm();
+            navegate("/SectionCategories");
           }}
         >
           {({ isSubmitting, errors, setFieldValue }) => (
@@ -99,8 +106,6 @@ const FormProduct = () => {
                   />
                 </label>
 
-                {/*  <Field name="description" as="textarea"/>
-                    <ErrorMessage name="description" component="div" />*/}
                 {/* <label>
                 Imagen
                 <Field type="url" name="imagen[0]" />
@@ -113,7 +118,7 @@ const FormProduct = () => {
                 />
               </label> */}
                 <label>
-                  Imagen
+                  Image
                   <input
                     type="file"
                     accept="image/*"
@@ -138,9 +143,24 @@ const FormProduct = () => {
                   />
                 </label>
 
+                <label>
+                  Available stock
+                  <Field type="number" name="stock" />
+                  <ErrorMessage
+                    name="stock"
+                    component={() => (
+                      <div className={styles.error}>{errors.stock}</div>
+                    )}
+                  />
+                </label>
+                <label>
+                  Description
+                  <Field name="description" as="textarea" />
+                  <ErrorMessage name="description" component="div" />
+                </label>
                 <div className={styles.selets}>
                   <label htmlFor="id_brand">
-                    Brand :
+                    Brand
                     <Field name="id_brand" as="select">
                       <option value={0}></option>
                       <option value={1}>Hurley</option>
@@ -166,7 +186,7 @@ const FormProduct = () => {
                     />
                   </label>
                   <label htmlFor="id_type">
-                    Type :
+                    Type
                     <Field name="id_type" as="select">
                       <option value={0}></option>
                       <option value={1}>Diving fins</option>
@@ -216,6 +236,5 @@ const FormProduct = () => {
     </div>
   );
 };
-
 
 export default FormProduct;

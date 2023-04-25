@@ -318,10 +318,18 @@ export const login = (body) => async (dipatch) => {
 export function google() {
   return async function (dispatch) {
     try {
-      const { data } = await axios.get(`/auth/google`);
+      const { data } = axios.get('/auth/google')
+      .then(response => {
+        const { token } = response.data;
+          
+      })
+      .catch(error => {
+        console.error(error);
+      });
+      console.log(data)
       return dispatch({
         type: "LOGINGOOGLE",
-        payload: data,
+        payload: data
       });
     } catch (error) {
       alert("laruta no esta autorizada");

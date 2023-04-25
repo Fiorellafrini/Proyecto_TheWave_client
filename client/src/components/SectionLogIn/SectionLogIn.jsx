@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Popstyled } from "./sesion";
 import { useNavigate } from "react-router-dom";
 import Login from "../Login/Login";
 import Register from "../Login/Register";
+import { Popstyled } from "./sesion";
 
 const SectionLogIn = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,14 +26,16 @@ const SectionLogIn = () => {
       return (
         <Popstyled>
           <div className="Form">
-            <button onClick={handleLogout}>Cerrar sesion</button>
+            <button onClick={handleLogout}>Logout</button>
           </div>
         </Popstyled>
       );
   }
         return (
           <Popstyled>
-            <div className="Form">
+            <div onBlur={e => {
+              
+            }} className="Form">
               <button onClick={toggleModal}>Login</button>
               {isOpen && <Login isOpen={isOpen} onClose={toggleModal} />}
               <div>

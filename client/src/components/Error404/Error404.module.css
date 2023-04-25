@@ -1,5 +1,10 @@
 .container{
     background-size: cover;
+    background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        opacity: 0.5;
+        padding: 20px;
     
 }
 
@@ -21,21 +26,22 @@ height: 100vh;
 */
 
 .container h3 {
-    color: rgb(232, 230, 230);
+    color: rgb(45, 51, 91);
     font-size: 2em;
     font-family: 'Work Sans';
-    font-weight: bold;
-    margin-top: 30px;
-    text-align: left;
-    display: block;
-
-}
+    
+}/*
+font-weight: bold;
+margin-top: 30px;
+text-align: left;
+display: block;
+*/
 
 .container h5 {
-    color: rgb(233, 231, 231);
+    color: rgb(45, 51, 91);
     font-size: 2em;
     font-family: 'Work Sans';
-    font-weight: bold;
-    text-align: left;
-    display: block;
-    }
+}/*
+font-weight: bold;
+text-align: left;
+display: block;*/
