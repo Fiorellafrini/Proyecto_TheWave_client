@@ -8,7 +8,6 @@
     background-attachment: fixed;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
-    padding-bottom: 20px;
 }
 
 .containerSpinner {
@@ -57,6 +56,8 @@
     box-shadow: 0px 0px 39px 0px rgba(0, 0, 0, 0.9);
     -webkit-box-shadow: 0px 0px 39px 0px rgba(0, 0, 0, 0.9);
     -moz-box-shadow: 0px 0px 39px 0px rgba(0, 0, 0, 0.9);
+    animation: contenido 3s ease 0s 1 normal forwards;
+
 }
 
 .imageButtonContainer img {
@@ -86,6 +87,8 @@
 
 .section2 {
     width: 100%;
+    animation: contenido 3s ease 0s 1 normal forwards;
+
 }
 
 .fila1 {
@@ -95,10 +98,10 @@
 }
 
 .box {
-
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.116);
     background-color: #ffffff6e;
+    backdrop-filter: blur(10px);
     box-shadow: 0px 17px 39px 0px rgba(0, 0, 0, 0.445);
     -webkit-box-shadow: 0px 17px 39px 0px rgba(0, 0, 0, 0.445);
     -moz-box-shadow: 0px 17px 39px 0px rgba(0, 0, 0, 0.459);
@@ -119,8 +122,6 @@
     width: 100%;
 }
 
-
-
 .section3 {
     width: 100%;
     border-radius: 20px;
@@ -128,32 +129,49 @@
     justify-content: space-between;
     padding: 30px;
     border: 1px solid rgba(255, 255, 255, 0.116);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(10px);
     box-shadow: 0px 17px 39px 0px rgba(0, 0, 0, 0.445);
     -webkit-box-shadow: 0px 17px 39px 0px rgba(0, 0, 0, 0.445);
     -moz-box-shadow: 0px 17px 39px 0px rgba(0, 0, 0, 0.459);
+    animation: contenido 3s ease 0s 1 normal forwards;
 }
 
 .column {
     width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.icon {
+    font-size: 3em;
+    color: #1e5b5bdc;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
 
 .column h2 {
-    font-size: 2em;
+    font-size: 1.7 0em;
+    color: #1e5b5bdc;
 }
 
 .column p {
     font-family: 'Work Sans';
-    font-size: 1.50em;
+    font-size: 1.20em;
 }
 
 .section4 {
     width: 100%;
     background-color: #ffffff6e;
     border-radius: 20px;
+    backdrop-filter: blur(10px);
     box-shadow: 0px 17px 39px 0px rgba(0, 0, 0, 0.445);
     -webkit-box-shadow: 0px 17px 39px 0px rgba(0, 0, 0, 0.445);
     -moz-box-shadow: 0px 17px 39px 0px rgba(0, 0, 0, 0.459);
+    animation: contenido 3s ease 0s 1 normal forwards;
+
 }
 
 @keyframes spinner-d3wgkg {
@@ -161,3 +179,15 @@
         transform: rotate(1turn);
     }
 }
+
+@keyframes contenido {
+	0% {
+		transform: scale(0);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}
+
+

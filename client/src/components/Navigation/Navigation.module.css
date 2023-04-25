@@ -5,7 +5,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    text-transform: uppercase;
+    position: relative;
+    z-index: 2;
+    animation: nav 1s ease 0s 1 normal forwards;
 }
 
 .containerNav:hover {
@@ -104,7 +106,7 @@ body::before {
     width: 100%;
 }
 
-@media screen and (max-width:1500px) {
+@media screen and (max-width:1200px) {
     .nav {
         display: none;
     }
@@ -124,4 +126,16 @@ body::before {
         align-items: center;
         width: 200px;
     }
+}
+
+@keyframes nav {
+	0% {
+		opacity: 0;
+		transform: translateX(250px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
