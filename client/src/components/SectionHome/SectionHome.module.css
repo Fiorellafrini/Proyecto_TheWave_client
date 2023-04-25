@@ -80,6 +80,10 @@
     border-radius: 40px;
 }
 
+.button:active {
+    opacity: 0.8;
+}
+
 .section2 {
     width: 100%;
 }
@@ -104,10 +108,11 @@
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 20px;
+    transition: all 0.2s;
 }
 
 .box:hover {
-    transform: scale(1.04);
+    transform: scale(1.02);
 }
 
 .box img {
