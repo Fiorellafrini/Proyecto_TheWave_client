@@ -18,10 +18,13 @@
 
 .navHome {
     border-bottom: 1px solid rgba(255, 255, 255, 0.233);
-    height: 130px;
+    height: 129px;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    z-index: 2;
+    animation: nav 1s ease 0s 1 normal forwards;
 }
 
 .containerNavBar {
@@ -104,6 +107,7 @@ body::before {
     justify-content: space-between;
     padding: 135px;
     margin-top: 30px;
+    animation: contenido 3s ease 0s 1 normal forwards;
 }
 
 .titulo {
@@ -112,6 +116,7 @@ body::before {
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
+    animation: contenido 1s ease 0s 1 normal forwards;
 }
 
 
@@ -119,6 +124,7 @@ body::before {
     font-family: 'Roboto', sans-serif;
     font-size: 8em;
     color: white;
+
 }
 
 .titulo p {
@@ -223,4 +229,25 @@ body::before {
         font-size: 20px;
     }
 
+}
+
+@keyframes contenido {
+	0% {
+		transform: scale(0);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}
+@keyframes nav {
+	0% {
+		opacity: 0;
+		transform: translateX(250px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
