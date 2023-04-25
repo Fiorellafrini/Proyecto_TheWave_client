@@ -1,6 +1,6 @@
 .containerNav {
     border-bottom: 1px solid rgba(255, 255, 255, 0.156);
-    cursor: pointer;
+    /* cursor: pointer; */
     height: 129px;
     display: flex;
     justify-content: center;

@@ -13,28 +13,54 @@
 }
 
 .h2 {
-  width: 90%;
-  color: rgb(255, 255, 255);
+  /* width: 90%; */
+  /* color: rgb(255, 255, 255); */
 }
 .containerInfo h1 {
-  font-size: 4em;
+  font-size: 2em;
+  margin: 0;
 }
 .containerInfo h2 {
   font-size: 2em;
 }
 .containerCardShopping img {
-  width: 200px;
+  width: 100px;
 }
-.containerCardShopping button {
-  width: 200px;
-  height: 70px;
+.option{
+  margin-left: 10rem;
+}
+.delete{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.delete button{
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+}
+/* .containerCardShopping button {
   font-size: 2em;
   border-radius: 15px;
-}
+} */
 .buttons {
   display: flex;
   align-items: center;
   gap: 20px;
-  font-size: 2em;
+  /* font-size: 2em; */
   justify-content: center;
+}
+
+.buttons p{
+  font-size: 1.5rem;
+}
+
+.buttons button{
+  padding: 0.5rem 2rem;
+}
+
+@media only screen and (min-width: 481px) and (max-width: 1024px) {
+  .option{
+    margin-left: 0;
+  }
 }

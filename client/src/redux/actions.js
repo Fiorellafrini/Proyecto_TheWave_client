@@ -1,4 +1,5 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 export const POST_PRODUCT = "POST_PRODUCT";
 export const UPDATE_STOCK_PRODUCT_INC = "UPDATE_STOCK_PRODUCT_INC";
 export const UPDATE_STOCK_PRODUCT_DEC = "UPDATE_STOCK_PRODUCT_DEC";
@@ -18,14 +19,16 @@ export const DELETE_TO_CART = "DELETE_TO_CART";
 export const EMPTY_CART = "EMPTY CART";
 export const INCREMENT_QUANTITY = "INCREMENT_QUANTITY";
 export const DECREMENT_QUANTITY = "DECREMENT_QUANTITY";
-export const PAYMENT = "PAYMENT";export const ADD_TO_FAV="ADD_TO_FAV";
-export const DELETE_TO_FAV="DELETE_TO_FAV"
+export const PAYMENT = "PAYMENT";
+export const ADD_TO_FAV = "ADD_TO_FAV";
+export const DELETE_TO_FAV = "DELETE_TO_FAV";
 
 export const LOGIN = "LOGIN";
 export const REGISTRO = "REGISTRO";
 export const LOGINGOOGLE = "LOGINGOOGLE";
 export const LOGINFACEBOOK = "LOGINFACEBOOK";
 export const RGOOGLE = "RGOOGLE";
+
 export const createProduct = (body) => async (dipatch) => {
   const { data } = await axios.post("/product", body);
   return dipatch({
@@ -53,7 +56,18 @@ export function filterByName(payload) {
         payload: json.data,
       });
     } catch (error) {
-      alert("Dont exits...Are you lost?");
+      // alert("Dont exits...Are you lost?");
+      Swal.fire({
+        title: "Dont exits...Are you lost?",
+        color: "white",
+        icon: "error",
+        background: "#1e1e1e",
+        // position: "top-end",color: "white",
+        showConfirmButton: false,
+        // confirmButtonColor: '#224145',
+        timer: 2000,
+        timerProgressBar: true,
+      });
     }
   };
 }
@@ -306,30 +320,47 @@ export const empty_cart = (product) => {
 export const login = (body) => async (dipatch) => {
   try {
     const { data } = await axios.post("/auth", body);
-    return dipatch({
+    dipatch({
       type: "LOGIN",
       payload: data,
     });
+    Swal.fire({
+      icon: "success",
+      title: "Login successful",
+      color: "white",
+      background: "#1e1e1e",
+      showConfirmButton: false,
+      timer: 1500,
+    });
   } catch (error) {
-    alert(error.message);
+    // alert(error.message);
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Incorrect Credentials",
+      color: "white",
+      background: "#1e1e1e",
+      showConfirmButton: false,
+      timer: 1500,
+    });
   }
 };
 
 export function google() {
   return async function (dispatch) {
     try {
-      const { data } = axios.get('/auth/google')
-      .then(response => {
-        const { token } = response.data;
-          
-      })
-      .catch(error => {
-        console.error(error);
-      });
-      console.log(data)
+      const { data } = axios
+        .get("/auth/google")
+        .then((response) => {
+          const { token } = response.data;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      console.log(data);
       return dispatch({
         type: "LOGINGOOGLE",
-        payload: data
+        payload: data,
       });
     } catch (error) {
       alert("laruta no esta autorizada");
@@ -372,4 +403,4 @@ export const addToFav = (product) => {
 // ----------------------------------DELETE TO CART----------------------------------
 export const deleteToFav = () => {
   return { type: DELETE_TO_FAV };
-}
+};

@@ -12,10 +12,10 @@
     flex-wrap: wrap;
     list-style: none;
     gap : 0.5rem;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
-.paginas ul li button {
+.paginas ul button {
     
     border: 1px solid #224145;
     border-radius: 10px;
@@ -23,12 +23,12 @@
     transition: all 0.3s;
     cursor: pointer;
 }
-.paginas ul div button{
+/* .paginas ul div button{
     border: 1px solid #224145;
     border-radius: 10px;
     padding: 10px;
     transition: all 0.3s;
-}
+} */
 
 .paginas ul li button:hover {
     color: white;
