@@ -1,12 +1,42 @@
-
 .containerNav {
     border-bottom: 1px solid rgba(255, 255, 255, 0.156);
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    gap: 15px;
-    padding: 19.5px;
     cursor: pointer;
+    height: 129px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerNav:hover {
+    backdrop-filter: blur(5px);
+    position: relative;
+    z-index: 2;
+}
+
+.nav {
+    width: 99%;
+    display: flex;
+    justify-content: space-around;
+}
+.nav2 {
+    display: none;
+}
+
+.column {
+    font-size: 1.70em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+}
+
+.columnFinal {
+    padding-top: 10px;
+    font-size: 3.50em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
 }
 
 a:link {
@@ -17,17 +47,80 @@ a:visited {
     text-decoration: none;
 }
 
-.col {
-    display: flex;
-    font-size: 1.50em;
-    gap: 150px;
+.dropdown {
+    position: relative;
+    display: inline-block;
 }
-#boton {
-    width: 60px;
-    font-size: 22px;
-    color:white;
-    padding: 10px 40px;
-    background: transparent;
+
+.dropdown button {
+    color: rgba(255, 255, 255, 0.719);
+    font-size: 1.30em;
+    margin-top: 10px;
+}
+
+.dropdownToggle {
+    background-color: transparent;
     border: none;
-    outline: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 30px;
+}
+
+.dropdownMenu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 250px;
+    background-color: #d5d8d8da;
+    border-radius: 10px;
+    color: #161819;
+}
+
+.menuList {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+    cursor: pointer;
+}
+
+.menuList li {
+    padding: 20px 20px;
+    font-size: 25px;
+    color: #161819;
+}
+
+.menuList li:hover {
+    background-color: #1e5b5b9b;
+    border-radius: 10px;
+}
+
+.menuList li:last-child {
+    border-bottom: none;
+}
+
+body::before {
+    width: 100%;
+}
+
+@media screen and (max-width:1500px) {
+    .nav {
+        display: none;
+    }
+    .nav2 {
+        display: block;
+        width: 99%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .columnResponsive{
+        padding-top: 10px;
+        font-size: 3em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 200px;
+    }
 }

@@ -14,10 +14,10 @@ const LandingPage = () => {
   const [selectedNavItem, setSelectedNavItem] = useState("Shop");
 
   const toggleDropdown = () => {
-    setIsOpen(!isOpen); // Invertimos el estado actual de isOpen al hacer clic en el botón
+    setIsOpen(!isOpen); 
   };
   const handleNavItemClick = (item) => {
-    setSelectedNavItem(item); // actualizamos el estado con la opción seleccionada
+    setSelectedNavItem(item); 
   };
 
   return (
@@ -25,23 +25,11 @@ const LandingPage = () => {
       <NavVertical />
       <div className={styles.landing}>
         <div className={styles.navHome}>
-          <div className={styles.containerItems}>
-            <div
-              className={styles.navItems}
-              onClick={() => handleNavItemClick("Shop")}
-            >
-              <p>Shop</p>{" "}
+          <div className={styles.containerNavBar}>
+            <div className={styles.col}>
+              <img src={logoPage} alt="" />
             </div>
-            <div
-              className={styles.navItems}
-              onClick={() => handleNavItemClick("About Us")}
-            >
-              <p>About Us</p>
-            </div>
-          </div>
-          <div className={styles.user}>
-            <img src={logoPage} alt="" />
-            <p>Autentificacion</p>
+            <div className={styles.col}>
             <div className={styles.dropdown}>
               <button
                 className={styles.dropdownToggle}
@@ -57,11 +45,13 @@ const LandingPage = () => {
                       About Us
                     </li>
                     <li onClick={() => handleNavItemClick("Log in")}>Log in</li>
-                    <li onClick={() => handleNavItemClick("Register")}>Register</li>
-                    <li>Authentication</li>
+                    <li onClick={() => handleNavItemClick("Register")}>
+                      Register
+                    </li>
                   </ul>
                 </div>
               )}
+            </div>
             </div>
           </div>
         </div>
