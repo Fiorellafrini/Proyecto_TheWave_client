@@ -23,20 +23,23 @@ import ProteccionRutas from "./components/Routers/ProteccionRutas";
 function App() {
   new Cloudinary({
     cloud: {
-      cloudName: 'djngalumm'
-    }
+      cloudName: "djngalumm",
+    },
   });
   const location = useLocation();
   return (
     <div className="App">
-      {location.pathname !== "/"  && <NavVertical />}
+      {location.pathname !== "/" && <NavVertical />}
       <Routes>
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="/SectionHome" element={<SectionHome />}></Route>
         <Route path="/SectionLogIn" element={<Login />}></Route>
         <Route path="/SectionRegister" element={<SectionRegister />}></Route>
-        <Route path="/SectionCategories" element={<SectionCategories />}></Route>
-        
+        <Route
+          path="/SectionCategories"
+          element={<SectionCategories />}
+        ></Route>
+        <Route path="/Favorites" element={<Favorites />}></Route>
 
         
         <Route element={<ProteccionRutas/>}> 
