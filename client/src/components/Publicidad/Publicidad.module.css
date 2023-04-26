@@ -1,7 +1,7 @@
 .containerPublicidad {
     margin-top: 30px;
     height: 350px;
-    webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     z-index: 1;
     display: flex;
     justify-content: space-between;
@@ -28,4 +28,8 @@
     align-items: center;
     font-size: 2em;
     color: #1e5b5b9b;
+}
+
+.arrow {
+    cursor: pointer;
 }

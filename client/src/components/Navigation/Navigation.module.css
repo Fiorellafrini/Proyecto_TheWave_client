@@ -1,10 +1,13 @@
 .containerNav {
     border-bottom: 1px solid rgba(255, 255, 255, 0.156);
-    cursor: pointer;
+    /* cursor: pointer; */
     height: 129px;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    z-index: 2;
+    animation: nav 1s ease 0s 1 normal forwards;
 }
 
 .containerNav:hover {
@@ -50,6 +53,13 @@ a:visited {
 .dropdown {
     position: relative;
     display: inline-block;
+}
+
+.dropdown img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 .dropdown button {
@@ -122,7 +132,7 @@ body::before {
     width: 100%;
 }
 
-@media screen and (max-width:1500px) {
+@media screen and (max-width:1200px) {
     .nav {
         display: none;
     }
@@ -142,4 +152,16 @@ body::before {
         align-items: center;
         width: 200px;
     }
+}
+
+@keyframes nav {
+	0% {
+		opacity: 0;
+		transform: translateX(250px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }

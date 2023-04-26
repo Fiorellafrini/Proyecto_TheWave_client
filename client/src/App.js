@@ -15,10 +15,10 @@ import HomeDashboard from "./components/Dashboard/HomeDashboard";
 import Estadisticas from "./components/Dashboard/Estadisticas";
 import CardsDash from "./components/Dashboard/CardsDash";
 import { Cloudinary } from "@cloudinary/url-gen";
-import React from 'react';
+import React from "react";
 import Login from "./components/Login/Login";
 import ProteccionRutas from "./components/Routers/ProteccionRutas";
-import Perfil from "./components/Login/Perfil";
+import Perfil from "./components/perfil/Perfil";
 
 
 function App() {
@@ -30,7 +30,9 @@ function App() {
   const location = useLocation();
   return (
     <div className="App">
-      {location.pathname  !== "/"  && <NavVertical /> }
+      {!["/", "/SectionLogIn", "/SectionRegister"].includes(
+        location.pathname
+      ) && <NavVertical />}
       <Routes>
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="/SectionHome" element={<SectionHome />}></Route>

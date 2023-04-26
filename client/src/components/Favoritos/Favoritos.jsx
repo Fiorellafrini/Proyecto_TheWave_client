@@ -32,8 +32,8 @@ const Favorites = () => {
         <div className={styles.container}>
           <Navigation />
           <div className={styles.fila1}>
-            <h1 className={styles.name}>Favorites</h1>
-            <div>
+            <h1 className={styles.name}>Your Favorites</h1>
+            <div className={styles.card}>
               {fav?.map((product) => {
                 return (
                   product && (
