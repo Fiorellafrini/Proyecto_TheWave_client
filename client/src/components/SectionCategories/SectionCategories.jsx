@@ -35,7 +35,7 @@ const SectionCategories = () => {
       ) : (
         <div className={styles.container}>
           <Navigation />
-          <Publicidad/>
+          <Publicidad />
           <div className={styles.products}>
             <div className={styles.bar}>
               <SearchBar />
