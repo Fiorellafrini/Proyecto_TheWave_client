@@ -18,6 +18,8 @@ import { Cloudinary } from "@cloudinary/url-gen";
 import React from "react";
 import Login from "./components/Login/Login";
 import ProteccionRutas from "./components/Routers/ProteccionRutas";
+import Perfil from "./components/perfil/Perfil";
+
 
 function App() {
   new Cloudinary({
@@ -28,7 +30,7 @@ function App() {
   const location = useLocation();
   return (
     <div className="App">
-      {!["/", "/SectionLogIn", "/SectionRegister"].includes(
+      {!["/", "/SectionLogIn", "/SectionRegister", "/form","/SectionCarrito"].includes(
         location.pathname
       ) && <NavVertical />}
       <Routes>
@@ -36,20 +38,20 @@ function App() {
         <Route path="/SectionHome" element={<SectionHome />}></Route>
         <Route path="/SectionLogIn" element={<Login />}></Route>
         <Route path="/SectionRegister" element={<SectionRegister />}></Route>
-        <Route
-          path="/SectionCategories"
-          element={<SectionCategories />}
-        ></Route>
-        <Route path="/Favorites" element={<Favorites />}></Route>
+        <Route path="/SectionCategories"element={<SectionCategories />}></Route>
+        {/* <Route path="/Favorites" element={<Favorites />}></Route> */}
+
         <Route element={<ProteccionRutas />}>
           <Route path="/SectionCarrito" element={<SectionCarrito />}></Route>
           <Route path="/form" element={<FormProduct />}></Route>
           <Route path="/detail/:id" element={<Detail />}></Route>
           <Route path="/Favorites" element={<Favorites />}></Route>
-        </Route>
         <Route path="/admin" element={<HomeDashboard />}></Route>
         <Route path="/admin" element={<CardsDash />}></Route>
         <Route path="/stats" element={<Estadisticas />}></Route>
+        <Route path="/My Profile" element={<Perfil />}></Route>
+        </Route>
+
         <Route path="*" element={<Error404 />}></Route>
       </Routes>
     </div>

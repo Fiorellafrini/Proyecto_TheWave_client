@@ -1,0 +1,62 @@
+.contenedor_todo{
+width: 700px;
+height: 800px;
+background: rgba(3, 42, 43, 0.322);
+position:relative;
+top: 56px;
+left:200px;
+bottom:109px;
+display: flex;
+flex-direction: column;
+}
+
+.contenedor{
+    width: 600px;
+    height: 740px;
+    position: relative;
+    top: 25px;
+    left: 45px;
+}
+.contenedor img{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+.contenedor2{
+    width: 440px;
+    height: 100px;
+    position: absolute;
+    top: 30px;
+    left: 140px;
+}
+.contenedor2 h2{
+    position:relative;
+    top:16px;
+}
+.editar{
+    width: 555px;
+    height: 570px;
+
+    position: absolute;
+    top: 140px;
+    left: 25px;
+}
+
+.formulario input{
+    width: 390px;
+    height: 30px;
+    padding: 20px 40px;
+    margin: 15px;
+}
+
+.formulario button{
+    position:relative;
+    top:-572px;
+    left:328px;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin: 20px;
+}

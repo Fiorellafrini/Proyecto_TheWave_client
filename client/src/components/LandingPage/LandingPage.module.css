@@ -74,11 +74,27 @@
     color: #161819;
 }
 
+.dropdownMenu button{
+    width: 100%;
+    padding: 10px 20px; 
+    border: none;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 25px;
+    color: #161819;
+}
+
+.dropdownMenu button:hover{
+    background-color: rgb(94, 168, 198);
+    border-radius: 10px;
+}
+
 .menuList {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    text-align: right;
+    text-align: center;
     cursor: pointer;
 }
 
@@ -130,7 +146,7 @@ body::before {
 .titulo p {
     font-size: 1.70em;
     font-family: 'Work Sans';
-    backdrop-filter: blur(5px);
+    webkit-backdrop-filter: blur(5px);
     padding: 10px;
     border-radius: 10px;
 }
@@ -166,7 +182,7 @@ body::before {
 .aboutUsP {
     padding: 20px;
     border-radius: 15px;
-    backdrop-filter: blur(15px);
+    webkit-backdrop-filter: blur(15px);
 }
 
 @media screen and (max-width:1500px) {
