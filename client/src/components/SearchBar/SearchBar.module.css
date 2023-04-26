@@ -17,6 +17,10 @@
 
 } */
 
+.filters input::placeholder{
+    color: #224145;
+}
+
 .filters button {
     width: 150px;
     height: 60px;

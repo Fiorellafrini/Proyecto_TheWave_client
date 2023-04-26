@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Navigation.module.css";
 import logoPage from "../../assets/logoPage.png";
 import { Link } from "react-router-dom";
@@ -8,9 +8,22 @@ import { AiOutlineUserSwitch } from "react-icons/ai";
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleClickOutside = (event) => {
+    if (event.target.closest(`.${styles.dropdownMenu}`)) return;
+    setIsOpen(false);
+  };
+
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
+
   return (
     <div className={styles.containerNav}>
       <div className={styles.nav}>
@@ -25,7 +38,9 @@ const Navigation = () => {
           </Link>
         </div>
         <div className={styles.column}>
-          <img src={logoPage} alt="" />
+          <Link to={"/SectionHome"}>
+            <img src={logoPage} alt="" />
+          </Link>
         </div>
         <div className={styles.column}>
           <Link to={"/Favorites"}>

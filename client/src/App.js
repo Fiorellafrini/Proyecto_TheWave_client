@@ -15,10 +15,9 @@ import HomeDashboard from "./components/Dashboard/HomeDashboard";
 import Estadisticas from "./components/Dashboard/Estadisticas";
 import CardsDash from "./components/Dashboard/CardsDash";
 import { Cloudinary } from "@cloudinary/url-gen";
-import React from 'react';
+import React from "react";
 import Login from "./components/Login/Login";
 import ProteccionRutas from "./components/Routers/ProteccionRutas";
-
 
 function App() {
   new Cloudinary({
@@ -29,7 +28,9 @@ function App() {
   const location = useLocation();
   return (
     <div className="App">
-      {location.pathname !== "/" && <NavVertical />}
+      {!["/", "/SectionLogIn", "/SectionRegister"].includes(
+        location.pathname
+      ) && <NavVertical />}
       <Routes>
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="/SectionHome" element={<SectionHome />}></Route>
@@ -40,19 +41,15 @@ function App() {
           element={<SectionCategories />}
         ></Route>
         <Route path="/Favorites" element={<Favorites />}></Route>
-
-        
-        <Route element={<ProteccionRutas/>}> 
-        <Route path="/SectionCarrito" element={<SectionCarrito />}></Route>
-        <Route path="/form" element={<FormProduct />}></Route>
-        <Route path="/detail/:id" element={<Detail />}></Route>
-        <Route path="/Favorites" element={<Favorites />}></Route>
-
+        <Route element={<ProteccionRutas />}>
+          <Route path="/SectionCarrito" element={<SectionCarrito />}></Route>
+          <Route path="/form" element={<FormProduct />}></Route>
+          <Route path="/detail/:id" element={<Detail />}></Route>
+          <Route path="/Favorites" element={<Favorites />}></Route>
         </Route>
-
         <Route path="/admin" element={<HomeDashboard />}></Route>
         <Route path="/admin" element={<CardsDash />}></Route>
-        <Route path="/stats" element={<Estadisticas />}></Route> 
+        <Route path="/stats" element={<Estadisticas />}></Route>
         <Route path="*" element={<Error404 />}></Route>
       </Routes>
     </div>
