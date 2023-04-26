@@ -46,10 +46,8 @@ function Login({ isOpen, onClose }) {
             } else if (!/^[a-zA-Z]+$/.test(values.password)) {
               errors.password =
                 "The password can only contain lower or upper case letters.";
-            }
-            else if(!/^.{5,10}$/.test(values.password)){
-              errors.password =
-              "Password Must be between 5 and 10 characters"
+            } else if (!/^.{5,10}$/.test(values.password)) {
+              errors.password = "Password Must be between 5 and 10 characters";
             }
             // Validación de email
             if (!values.email) {
@@ -129,11 +127,11 @@ function Login({ isOpen, onClose }) {
               const left = window.screen.width / 2 - width / 2;
               const top = window.screen.height / 2 - height / 2;
 
-  const popup = window.open(
-    // "http://localhost:3001/auth/google",
-    "https://proyectothewaveapi-production.up.railway.app/auth/google",
-    "targetWindow",
-    `toolbar=no,
+              const popup = window.open(
+                // "http://localhost:3001/auth/google",
+                "https://proyectothewaveapi-production.up.railway.app/auth/google",
+                "targetWindow",
+                `toolbar=no,
     location=no,
     status=no,
     menubar=no,
@@ -143,19 +141,22 @@ function Login({ isOpen, onClose }) {
     height=${height},
     left=${left},
     top=${top}`
-  );
+              );
 
-  window.addEventListener("message", event => {
-    // if (event.origin === "http://localhost:3001"){
-      if (event.origin === "https://proyectothewaveapi-production.up.railway.app") {
-        if (event.data) {
-          window.localStorage.setItem("login", event.data);
-          popup?.close();
-          navegar("/SectionHome");
-        }
-      }
-  });
-}}
+              window.addEventListener("message", (event) => {
+                // if (event.origin === "http://localhost:3001"){
+                if (
+                  event.origin ===
+                  "https://proyectothewaveapi-production.up.railway.app"
+                ) {
+                  if (event.data) {
+                    window.localStorage.setItem("login", event.data);
+                    popup?.close();
+                    navigate("/SectionHome");
+                  }
+                }
+              });
+            }}
           >
             <SiGoogle size={25} />
           </button>
