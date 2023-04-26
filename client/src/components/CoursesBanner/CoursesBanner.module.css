@@ -9,7 +9,6 @@
     height: 70px;
     bottom: 0;
     right: 0;
-    padding: 10px 20px;
     margin: 40px;
     border: none;
     color: white;
@@ -43,3 +42,12 @@
     color: black;
     font-weight: 700;
 }
+
+@media only screen and (min-width: 481px) and (max-width: 1024px) {
+    /* Estilos para tabletas */
+    .buttonCourses {
+      font-size: 1em;
+      width: 150px;
+      height: 50px;
+    }
+  }
