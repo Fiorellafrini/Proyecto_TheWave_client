@@ -129,34 +129,33 @@ function Login({ isOpen, onClose }) {
               const left = window.screen.width / 2 - width / 2;
               const top = window.screen.height / 2 - height / 2;
 
-              const popup = window.open(
-                "https://proyectothewaveapi-production.up.railway.app/auth/google",
-                "targetWindow",
-                `toolbar=no,
-                location=no,
-                menubar=no,
-                scrollbars=yes,
-                resizable=yes,
-                width=${width},
-                height=${height},
-                left=${left},
-                status=no,
-                top=${top}`
-              );
+  const popup = window.open(
+    // "http://localhost:3001/auth/google",
+    "https://proyectothewaveapi-production.up.railway.app/auth/google",
+    "targetWindow",
+    `toolbar=no,
+    location=no,
+    status=no,
+    menubar=no,
+    scrollbars=yes,
+    resizable=yes,
+    width=${width},
+    height=${height},
+    left=${left},
+    top=${top}`
+  );
 
-              window.addEventListener("message", (event) => {
-                if (
-                  event.origin ===
-                  "https://proyectothewaveapi-production.up.railway.app"
-                ) {
-                  if (event.data) {
-                    window.localStorage.setItem("login", event.data);
-                    popup?.close();
-                    navigate("/SectionHome");
-                  }
-                }
-              });
-            }}
+  window.addEventListener("message", event => {
+    // if (event.origin === "http://localhost:3001"){
+      if (event.origin === "https://proyectothewaveapi-production.up.railway.app") {
+        if (event.data) {
+          window.localStorage.setItem("login", event.data);
+          popup?.close();
+          navegar("/SectionHome");
+        }
+      }
+  });
+}}
           >
             <SiGoogle size={25} />
           </button>

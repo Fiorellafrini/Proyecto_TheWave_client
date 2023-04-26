@@ -11,7 +11,7 @@
 }
 
 .containerNav:hover {
-    backdrop-filter: blur(5px);
+    /* backdrop-filter: blur(5px); */
     position: relative;
     z-index: 2;
 }
@@ -55,6 +55,13 @@ a:visited {
     display: inline-block;
 }
 
+.dropdown img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
 .dropdown button {
     color: rgba(255, 255, 255, 0.719);
     font-size: 1.30em;
@@ -79,11 +86,28 @@ a:visited {
     color: #161819;
 }
 
+.dropdownMenu button{
+    width: 100%;
+    padding: 20px 20px;
+    border: none;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 25px;
+    color: #161819;
+    text-align: center;
+}
+
+.dropdownMenu button:hover{
+    background-color: #1e5b5b9b;
+    border-radius: 10px;
+    color: #fff;
+}
 .menuList {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    text-align: right;
+    text-align: center;
     cursor: pointer;
 }
 
@@ -91,11 +115,13 @@ a:visited {
     padding: 20px 20px;
     font-size: 25px;
     color: #161819;
+    
 }
 
 .menuList li:hover {
     background-color: #1e5b5b9b;
     border-radius: 10px;
+    color: #fff;
 }
 
 .menuList li:last-child {
