@@ -26,6 +26,7 @@
 
 .item1 img {
     width: 40px;
+    cursor: pointer;
 }
 
 .item2 {
