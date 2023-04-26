@@ -40,11 +40,11 @@ function App() {
         <Route path="/SectionRegister" element={<SectionRegister />}></Route>
         <Route path="/SectionCategories"element={<SectionCategories />}></Route>
         {/* <Route path="/Favorites" element={<Favorites />}></Route> */}
+          <Route path="/SectionCarrito" element={<SectionCarrito />}></Route>
+          <Route path="/detail/:id" element={<Detail />}></Route>
 
         <Route element={<ProteccionRutas />}>
-          <Route path="/SectionCarrito" element={<SectionCarrito />}></Route>
           <Route path="/form" element={<FormProduct />}></Route>
-          <Route path="/detail/:id" element={<Detail />}></Route>
           <Route path="/Favorites" element={<Favorites />}></Route>
         <Route path="/admin" element={<HomeDashboard />}></Route>
         <Route path="/admin" element={<CardsDash />}></Route>
