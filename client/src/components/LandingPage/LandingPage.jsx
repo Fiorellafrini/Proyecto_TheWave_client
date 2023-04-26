@@ -8,10 +8,14 @@ import tablaSurf from "../../assets/tablasurf.png";
 import { Link } from "react-router-dom";
 import { TfiMenu } from "react-icons/tfi";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 const LandingPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedNavItem, setSelectedNavItem] = useState("Shop");
+  let isLoguin = window.localStorage.getItem("login");
+  const navegar = useNavigate();
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen); 
@@ -19,6 +23,10 @@ const LandingPage = () => {
   const handleNavItemClick = (item) => {
     setSelectedNavItem(item); 
   };
+    const handleLogout = () => {
+      window.localStorage.removeItem("login");
+      navegar("/");
+    };
 
   return (
     <div className={styles.containerLanding}>
@@ -30,28 +38,41 @@ const LandingPage = () => {
               <img src={logoPage} alt="" />
             </div>
             <div className={styles.col}>
-            <div className={styles.dropdown}>
-              <button
-                className={styles.dropdownToggle}
-                onClick={toggleDropdown}
-              >
-                <TfiMenu />
-              </button>
-              {isOpen && (
-                <div className={styles.dropdownMenu}>
-                  <ul className={styles.menuList}>
-                    <li onClick={() => handleNavItemClick("Shop")}>Shop</li>
-                    <li onClick={() => handleNavItemClick("About Us")}>
-                      About Us
-                    </li>
-                    <li onClick={() => handleNavItemClick("Log in")}>Log in</li>
-                    <li onClick={() => handleNavItemClick("Register")}>
-                      Register
-                    </li>
-                  </ul>
-                </div>
-              )}
-            </div>
+              <div className={styles.dropdown}>
+                <button
+                  className={styles.dropdownToggle}
+                  onClick={toggleDropdown}
+                >
+                  <TfiMenu />
+                </button>
+                {isOpen &&
+                  (!isLoguin ? (
+                    <div className={styles.dropdownMenu}>
+                      <ul className={styles.menuList}>
+                        <li onClick={() => handleNavItemClick("Shop")}>Shop</li>
+                        <li onClick={() => handleNavItemClick("About Us")}>
+                          About Us
+                        </li>
+                        <li onClick={() => handleNavItemClick("Log in")}>
+                          Log in
+                        </li>
+                        <li onClick={() => handleNavItemClick("Register")}>
+                          Register
+                        </li>
+                      </ul>
+                    </div>
+                  ) : (
+                    <div className={styles.dropdownMenu}>
+                      <ul className={styles.menuList}>
+                        <li onClick={() => handleNavItemClick("Shop")}>Shop</li>
+                        <li onClick={() => handleNavItemClick("About Us")}>
+                          About Us
+                        </li>
+                        <button onClick={handleLogout}>Log out</button>
+                      </ul>
+                    </div>
+                  ))}
+              </div>
             </div>
           </div>
         </div>
