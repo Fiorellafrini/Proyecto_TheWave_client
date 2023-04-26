@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap');
+
 .nav {
     width: 120px;
     background-color: #161819;
@@ -10,13 +11,16 @@
     flex-direction: column;
     padding-top: 50px;
     padding-bottom: 50px;
+    animation: navVertical 1s ease 0s 1 normal forwards;
 }
 
 .item1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-bottom: 40px;
+    padding-bottom: 35px;
+    padding-left: 10px;
+    padding-right: 10px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.233);
 }
 
@@ -116,7 +120,19 @@
 }
 
 @media screen and (max-width:700px) {
-.nav {
-    display: none;
+    .nav {
+        display: none;
+    }
 }
+
+@keyframes navVertical {
+	0% {
+		opacity: 0;
+		transform: translateX(-250px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }

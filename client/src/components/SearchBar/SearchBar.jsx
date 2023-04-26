@@ -22,7 +22,11 @@ const SearchBar = () => {
     if (!name) {
       Swal.fire({
         title: "Please enter a product",
+        color: "white",
         icon: "warning",
+        iconColor:'#5edad2',
+        background: '#1e1e1e',
+        confirmButtonColor: '#224145',
       });
     }
   }
