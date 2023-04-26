@@ -21,6 +21,7 @@ const ProductCard = ({
   quantity,
   stock,
   deletePropInFav = true,
+  handleDelete
 }) => {
   const [imageSrc] = useState(imagen[0]);
   const dispatch = useDispatch();
@@ -76,6 +77,7 @@ const ProductCard = ({
             <div>
               <img src={durability} alt="" />
             </div>
+            
             {deletePropInFav &&
               (isFav ? (
                 <button id={styles.carrito} onClick={handleFav}>
@@ -136,3 +138,5 @@ const ProductCard = ({
 };
 
 export default ProductCard;
+
+
