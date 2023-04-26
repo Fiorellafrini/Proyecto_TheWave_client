@@ -28,7 +28,7 @@ function App() {
   const location = useLocation();
   return (
     <div className="App">
-      {!["/", "/SectionLogIn", "/SectionRegister"].includes(
+      {!["/", "/SectionLogIn", "/SectionRegister", "/form","/SectionCarrito"].includes(
         location.pathname
       ) && <NavVertical />}
       <Routes>

@@ -5,33 +5,34 @@ import { SiGoogle } from "react-icons/si";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../redux/actions";
-import { Popstyled } from "./loginstyle";
+// import { Popstyled } from "./loginstyle";
+import style from "./login.module.css";
 
 function Login({ isOpen, onClose }) {
   const dispatch = useDispatch();
-  const navegar = useNavigate();
+  const navigate = useNavigate();
+  const handleNavigate = () => navigate("/");
   const [sendForm, setSendForm] = useState(false);
-  let isLoguin = window.localStorage.getItem("login"); 
+  let isLoguin = window.localStorage.getItem("login");
 
-
- // const handlefacebook = () => {
+  // const handlefacebook = () => {
   //   dispatch(facebook());
   //   if (!isLoguin) {
   //     navegar("/SectionLogIn");
   //   }
   //   navegar("/SectionHome");
   // };
-  
 
   return (
-    <Popstyled>
-      <div className="Form">
-        <button onClick={onClose}>
-          <BiX className="btn-close" size={25} />
-        </button>
-        <h2>Inicia sesion</h2>
-        <p>Bienvenido</p>
-
+    <div className={style.container}>
+      <div className={style.Form}>
+        <div className={style.close}>
+          <button onClick={handleNavigate}>
+            <BiX className={style.btnclose} size={25} />
+          </button>
+        </div>
+        <h1>Sign In</h1>
+        {/* <span>Welcome</span> */}
         <Formik
           initialValues={{
             email: "",
@@ -39,22 +40,26 @@ function Login({ isOpen, onClose }) {
           }}
           validate={(values) => {
             let errors = {};
-            // Validación de nombre
+            // Validación de Password
             if (!values.password) {
-              errors.password = "Ingrese su contraseña";
-            } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.password)) {
+              errors.password = "Enter your password";
+            } else if (!/^[a-zA-Z]+$/.test(values.password)) {
               errors.password =
-                "El contraseña  solo puede contener letras minusculas o mayusculas";
+                "The password can only contain lower or upper case letters.";
+            }
+            else if(!/^.{5,10}$/.test(values.password)){
+              errors.password =
+              "Password Must be between 5 and 10 characters"
             }
             // Validación de email
             if (!values.email) {
-              errors.email = "Ingrese su email";
+              errors.email = "Enter your email address";
             } else if (
               !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(
                 values.email
               )
             ) {
-              errors.email = "Correo invalido";
+              errors.email = "Invalid email";
             }
 
             return errors;
@@ -62,98 +67,104 @@ function Login({ isOpen, onClose }) {
           onSubmit={(values, { resetForm }) => {
             dispatch(login(values));
             if (!isLoguin) {
-              navegar("/SectionLogIn");
+              navigate("/SectionLogIn");
             }
-            navegar("/SectionHome");
+            navigate("/SectionHome");
             setSendForm(true);
             setTimeout(() => setSendForm(false), 5000);
             resetForm();
           }}
         >
           {({ errors }) => (
-            <Form className="formulario">
-              <div>
-                <Field
-                  className="inputs"
-                  type="text"
-                  id="email"
-                  name="email"
-                  placeholder="Email"
-                />
-                <ErrorMessage
-                  name="email"
-                  component={() => <div className="error">{errors.email}</div>}
-                />
+            <Form className={style.formulario}>
+              <div className={style.access}>
+                <div className={style.input}>
+                  <Field
+                    className={style.inputs}
+                    type="text"
+                    id="email"
+                    name="email"
+                    placeholder="Email"
+                  />
+                  <ErrorMessage
+                    name="email"
+                    component={() => (
+                      <div className={style.error}>{errors.email}</div>
+                    )}
+                  />
+                </div>
+                <div className={style.input}>
+                  <Field
+                    className={style.inputs}
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Password"
+                  />
+                  <ErrorMessage
+                    name="password"
+                    component={() => (
+                      <div className={style.error}>{errors.password}</div>
+                    )}
+                  />
+                </div>
+                <button
+                  className={style.btnsubmit}
+                  type="submit"
+                  disabled={Object.keys(errors).length === 0 ? false : true}
+                >
+                  Login
+                </button>
+                {sendForm && <p>"User added successfully"</p>}
               </div>
-              <div>
-                <Field
-                  className="inputs"
-                  type="password"
-                  id="password"
-                  name="password"
-                  placeholder="Password"
-                />
-                <ErrorMessage
-                  name="password"
-                  component={() => (
-                    <div className="error">{errors.password}</div>
-                  )}
-                />
-              </div>
-              <button
-                className="btn-submit"
-                type="submit"
-                disabled={Object.keys(errors).length === 0 ? false : true}
-              >
-                Enviar
-              </button>
-              {sendForm && <p>"Usuario agregado con exito"</p>}
             </Form>
           )}
         </Formik>
-        <hr />
-        <p>Tambien puedes registrarte con:</p>
-        <div className="icons">
+        <p>You can also register with</p>
+        <div className={style.icons}>
           <button
-          onClick={() => {
-  const width = 620;
-  const height = 700;
-  const left = (window.screen.width / 2) - (width / 2);
-  const top = (window.screen.height / 2) - (height / 2);
+            onClick={() => {
+              const width = 620;
+              const height = 700;
+              const left = window.screen.width / 2 - width / 2;
+              const top = window.screen.height / 2 - height / 2;
 
-  const popup = window.open(
-    "https://proyectothewaveapi-production.up.railway.app/auth/google",
-    "targetWindow",
-    `toolbar=no,
-    location=no,
-    status=no,
-    menubar=no,
-    scrollbars=yes,
-    resizable=yes,
-    width=${width},
-    height=${height},
-    left=${left},
-    top=${top}`
-  );
+              const popup = window.open(
+                "https://proyectothewaveapi-production.up.railway.app/auth/google",
+                "targetWindow",
+                `toolbar=no,
+                location=no,
+                menubar=no,
+                scrollbars=yes,
+                resizable=yes,
+                width=${width},
+                height=${height},
+                left=${left},
+                status=no,
+                top=${top}`
+              );
 
-  window.addEventListener("message", event => {
-    if(event.origin === "https://proyectothewaveapi-production.up.railway.app"){
-      if(event.data){
-        window.localStorage.setItem("login", event.data);
-        popup?.close();
-        navegar("/SectionHome");
-      }
-    }
-  });
-}}
+              window.addEventListener("message", (event) => {
+                if (
+                  event.origin ===
+                  "https://proyectothewaveapi-production.up.railway.app"
+                ) {
+                  if (event.data) {
+                    window.localStorage.setItem("login", event.data);
+                    popup?.close();
+                    navigate("/SectionHome");
+                  }
+                }
+              });
+            }}
           >
             <SiGoogle size={25} />
           </button>
-          <p>Google</p>
+          {/* <p>Google</p> */}
           <p>Facebook</p>
         </div>
       </div>
-    </Popstyled>
+    </div>
   );
 }
 

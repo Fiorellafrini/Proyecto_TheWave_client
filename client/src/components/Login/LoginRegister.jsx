@@ -1,4 +1,4 @@
-import style from './login.module.css'
+import style from './loginRegister.module.css'
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";

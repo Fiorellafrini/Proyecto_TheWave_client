@@ -3,14 +3,12 @@ import React, { useState } from "react";
 import { BiX } from "react-icons/bi";
 import { useDispatch } from "react-redux";
 import { registro} from "../../redux/actions";
-import { Popstyled } from "./loginstyle";
 
 function Register({ Open, onClose }) {
     const dispatch = useDispatch();
   const [sendForm, setSendForm] = useState(false);
 
   return (
-    <Popstyled>
       <div className="Form">
         <button onClick={onClose}>
           <BiX className="btn-close" size={25} />
@@ -176,7 +174,6 @@ function Register({ Open, onClose }) {
           )}
         </Formik>
       </div>
-    </Popstyled>
   );
 }
 
