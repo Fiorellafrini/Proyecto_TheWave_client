@@ -10,8 +10,33 @@ function Perfil() {
   const navigate = useNavigate();
   const handleNavigate = () => navigate("/SectionHome");
   let token = window.localStorage.getItem("login");
+  
+  const user  = jwt(token);
 
-  const user = jwt(token);
+
+
+    const handleImageUpload = async (e, setFieldValue) => {
+      const files = e.target.files;
+      const formData = new FormData();
+      formData.append("file", files[0]);
+      formData.append("upload_preset", "thewave"); // Reemplaza con tu upload preset de Cloudinary
+
+      // Realizar la petición de carga de imagen a Cloudinary
+      const res = await fetch(
+        "https://api.cloudinary.com/v1_1/djngalumm/image/upload", // Reemplaza con tu cloud name de Cloudinary
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      const data = await res.json();
+      console.log(data);
+
+      // Actualizar los valores de imagen en el formulario
+      setFieldValue("imagen[0]", data.secure_url);
+      // setFieldValue("imagen[1]", data.secure_url);
+    };
+
 
   return (
     <div className={styles.contenedor_todo}>
