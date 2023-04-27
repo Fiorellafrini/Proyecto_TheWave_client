@@ -2,12 +2,13 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import styles from "../SearchBar/SearchBar.module.css";
-import { filterByName } from "../../redux/actions";
+import { filterByName, setCurrentPage } from "../../redux/actions";
 import Swal from "sweetalert2";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
+  
 
   const setSearchTerm = (e) => {
     // e.preventDefault();
@@ -16,13 +17,18 @@ const SearchBar = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(filterByName(name));
+    dispatch(setCurrentPage(1));
   };
 
   const handleSearch = () => {
     if (!name) {
       Swal.fire({
         title: "Please enter a product",
+        color: "white",
         icon: "warning",
+        iconColor:'#5edad2',
+        background: '#1e1e1e',
+        confirmButtonColor: '#224145',
       });
     }
   }

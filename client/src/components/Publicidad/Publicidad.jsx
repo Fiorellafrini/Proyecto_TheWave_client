@@ -37,7 +37,7 @@ const Publicidad = () => {
           <img src={publicidadImages[1]} alt="" />
         </div>
         <div className={styles.col3}>
-          <ImArrowRight onClick={handlePublicidadArrow} />
+          <ImArrowRight onClick={handlePublicidadArrow} className={styles.arrow}/>
         </div>
       </div>
     </>

@@ -2,156 +2,166 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { BiX } from "react-icons/bi";
 import { useDispatch } from "react-redux";
-import { registro} from "../../redux/actions";
-import { Popstyled } from "./loginstyle";
+import { registro } from "../../redux/actions";
+import { useNavigate } from "react-router-dom";
+import style from "./Register.module.css";
 
 function Register({ Open, onClose }) {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [sendForm, setSendForm] = useState(false);
+  const navigate = useNavigate();
+  const handleNavigate = () => navigate("/SectionHome");
 
   return (
-    <Popstyled>
-      <div className="Form">
-        <button onClick={onClose}>
-          <BiX className="btn-close" size={25} />
-        </button>
-        <p>Bienvenido</p>
-        <h2>registrate</h2>
-
-        <Formik
-          initialValues={{
-            name: "",
-            lastName: "",
-            address: "",
-            email: "",
-            password: "",
-            // confirmar_password: "",
-          }}
-          validate={(values) => {
-            let errors = {};
-            // Validación de nombre
-            if (!values.name) {
-              errors.name = "Ingrese su nombre";
-            } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.name)) {
-              errors.name = "El nombre solo puede contener letras";
-            }
-            if (!values.lastName) {
-              errors.lastName = "Ingrese su nombre";
-            } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.lastName)) {
-              errors.lastName = "El nombre solo puede contener letras";
-            }
-            // Validación de email
-            if (!values.email) {
-              errors.email = "Ingrese su email";
-            } else if (
-              !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(
-                values.email
-              )
-            ) {
-              errors.email = "Correo invalido";
-            }
-            // validacion de password
-            if (!values.password) {
-              errors.password = "Ingrese contraseña";
-            } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.password)) {
-              errors.password =
-                "La contraseña debe contener al menos una letra en mayúscula, una letra minúscula, un número y un carácter especial y debe tener al menos 8 caracteres de longitud.";
-            }
-            // if (!values.confirmar_password) {
-            //   errors.confirmar_password = "Ingrese contraseña";
-            // } else if (values.password !== values.confirmar_password) {
-            //   errors.confirmar_password = "la contraseña no coinciden";
-            // }
-            if (!values.address) {
-              errors.address = "ingrese un address";
-            }
-            return errors;
-          }}
-          onSubmit={(values, { resetForm, setSubmitting }) => {
-            console.log(values);
-            dispatch(registro(values));
-            setSendForm(true);
-            setTimeout(() => setSendForm(false), 5000);
-            resetForm();
-            setSubmitting(false);
-          }}
-        >
-          {({ errors, isSubmitting }) => (
-            <Form className="formulario">
-              <div>
+    <div className={style.container}>
+      <div className="animate__animated animate__fadeIn">
+        <div className={style.Form}>
+          <div className={style.close}>
+            <button onClick={handleNavigate}>
+              <BiX className={style.btnclose} size={25} />
+            </button>
+          </div>
+          <h1>Sign Up</h1>
+          <Formik
+            initialValues={{
+              name: "",
+              lastName: "",
+              address: "",
+              email: "",
+              password: "",
+              // confirmar_password: "",
+            }}
+            validate={(values) => {
+              let errors = {};
+              // Validación de nombre
+              if (!values.name) {
+                errors.name = "Please enter your name";
+              } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.name)) {
+                errors.name = "El nombre solo puede contener letras";
+              }
+              if (!values.lastName) {
+                errors.lastName = "Please enter your lastname";
+              } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.lastName)) {
+                errors.lastName = "The name can only contain letters";
+              }
+              // Validación de email
+              if (!values.email) {
+                errors.email = "Enter your email";
+              } else if (
+                !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(
+                  values.email
+                )
+              ) {
+                errors.email = "Invalid email";
+              }
+              // validacion de password
+              if (!values.password) {
+                errors.password = "Enter your password";
+              } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.password)) {
+                errors.password =
+                  "The password must contain at least one uppercase letter, one lowercase letter, one number and one special character and must be at least 8 characters long.";
+              }
+              // if (!values.confirmar_password) {
+              //   errors.confirmar_password = "Ingrese contraseña";
+              // } else if (values.password !== values.confirmar_password) {
+              //   errors.confirmar_password = "la contraseña no coinciden";
+              // }
+              if (!values.address) {
+                errors.address = "enter an address";
+              }
+              return errors;
+            }}
+            onSubmit={(values, { resetForm, setSubmitting }) => {
+              console.log(values);
+              dispatch(registro(values));
+              setSendForm(true);
+              setTimeout(() => setSendForm(false), 5000);
+              resetForm();
+              setSubmitting(false);
+            }}
+          >
+            {({ errors, isSubmitting }) => (
+              <Form className={style.formulario}>
+                <div className={style.access}>
+                  <div className={style.input}>
+                    <Field
+                      className={style.inputs}
+                      type="text"
+                      id="name"
+                      name="name"
+                      placeholder="Name"
+                    />
+                    <ErrorMessage
+                      name="name"
+                      component={() => (
+                        <div className={style.error}>{errors.name}</div>
+                      )}
+                    />
+                  </div>
+                  <div className={style.input}>
+                    <Field
+                      className={style.inputs}
+                      type="text"
+                      id="lastName"
+                      name="lastName"
+                      placeholder="Surname"
+                    />
+                    <ErrorMessage
+                      name="lastName"
+                      component={() => (
+                        <div className={style.error}>{errors.lastName}</div>
+                      )}
+                    />
+                  </div>
+                  <div className={style.input}>
+                    <Field
+                      className={style.inputs}
+                      type="text"
+                      id="address"
+                      name="address"
+                      placeholder="Address"
+                    />
+                    <ErrorMessage
+                      name="address"
+                      component={() => (
+                        <div className={style.error}>{errors.address}</div>
+                      )}
+                    />
+                  </div>
+                  <div className={style.input}>
+                    <Field
+                      className={style.inputs}
+                      type="text"
+                      id="email"
+                      name="email"
+                      placeholder="Email"
+                    />
+                    <ErrorMessage
+                      name="email"
+                      component={() => (
+                        <div className={style.error}>{errors.email}</div>
+                      )}
+                    />
+                  </div>
+                  <div className={style.input}>
+                    <Field
+                      className={style.inputs}
+                      type="password"
+                      id="password"
+                      name="password"
+                      placeholder="Password"
+                    />
+                    <ErrorMessage
+                      name="password"
+                      component={() => (
+                        <div className={style.error}>{errors.password}</div>
+                      )}
+                    />
+                  </div>
+                  {/* <div>
                 <Field
-                  className="inputs"
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder="Nombre"
-                />
-                <ErrorMessage
-                  name="name"
-                  component={() => <div className="error">{errors.name}</div>}
-                />
-              </div>
-              <div>
-                <Field
-                  className="inputs"
-                  type="text"
-                  id="lastName"
-                  name="lastName"
-                  placeholder="Apellido"
-                />
-                <ErrorMessage
-                  name="lastName"
-                  component={() => (
-                    <div className="error">{errors.lastName}</div>
-                  )}
-                />
-              </div>
-              <div>
-                <Field
-                  className="inputs"
-                  type="text"
-                  id="address"
-                  name="address"
-                  placeholder="address"
-                />
-                <ErrorMessage
-                  name="address"
-                  component={() => (
-                    <div className="error">{errors.address}</div>
-                  )}
-                />
-              </div>
-              <div>
-                <Field
-                  className="inputs"
-                  type="text"
-                  id="email"
-                  name="email"
-                  placeholder="Email"
-                />
-                <ErrorMessage
-                  name="email"
-                  component={() => <div className="error">{errors.email}</div>}
-                />
-              </div>
-              <div>
-                <Field
-                  className="inputs"
-                  type="password"
-                  id="password"
-                  name="password"
-                  placeholder="Password"
-                />
-                <ErrorMessage
-                  name="password"
-                  component={() => (
-                    <div className="error">{errors.password}</div>
-                  )}
-                />
-              </div>
-              {/* <div>
-                <Field
-                  className="inputs"
+                      className={style.inputs}
+                  className=
                   type="password"
                   id="confirmar_password"
                   name="confirmar_password"
@@ -164,19 +174,23 @@ function Register({ Open, onClose }) {
                   )}
                 />
               </div> */}
-              <button
-                className="btn-submit"
-                type="submit"
-                disabled={isSubmitting}
-              >
-                Enviar
-              </button>
-              {sendForm && <p>"Usuario agregado con exito"</p>}
-            </Form>
-          )}
-        </Formik>
+                </div>
+                <div>
+                <button
+                  className={style.btnsubmit}
+                  type="submit"
+                  disabled={isSubmitting}
+                >
+                  Send
+                </button>
+                {sendForm && <p>"User successfully added"</p>}
+                </div>
+              </Form>
+            )}
+          </Formik>
+        </div>
       </div>
-    </Popstyled>
+    </div>
   );
 }
 

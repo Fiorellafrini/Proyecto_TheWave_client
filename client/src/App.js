@@ -10,14 +10,19 @@ import SectionHome from "./components/SectionHome/SectionHome";
 // import SectionLogIn from "./components/SectionLogIn/SectionLogIn";
 import Favorites from "./components/Favoritos/Favoritos";
 import SectionCarrito from "./components/SectionCarrito/SectionCarrito";
-import SectionRegister from "./components/SectionRegister/SectionRegister";
-import HomeDashboard from "./components/Dashboard/HomeDashboard";
-import Estadisticas from "./components/Dashboard/Estadisticas";
-import CardsDash from "./components/Dashboard/CardsDash";
+// import SectionRegister from "./components/SectionRegister/SectionRegister";
 import { Cloudinary } from "@cloudinary/url-gen";
-import React from 'react';
+import React from "react";
+import CardsDash from "./components/Dashboard/CardsDash";
+import Estadisticas from "./components/Dashboard/Estadisticas";
+import HomeDashboard from "./components/Dashboard/HomeDashboard";
+import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
+import ResetPassword from "./components/ResetPasword/ResetPassword.jsx";
 import Login from "./components/Login/Login";
+import Register from "./components/Login/Register";
 import ProteccionRutas from "./components/Routers/ProteccionRutas";
+import Perfil from "./components/perfil/Perfil";
+import ProteccionRutaAdmin from "./components/Routers/ProteccionRutaAdmin";
 
 
 function App() {
@@ -29,31 +34,31 @@ function App() {
   const location = useLocation();
   return (
     <div className="App">
-      {location.pathname !== "/" && <NavVertical />}
+      {["/SectionHome","/SectionCategories","/Favorites"].includes(
+        location.pathname
+      ) ? <NavVertical /> : null}
       <Routes>
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="/SectionHome" element={<SectionHome />}></Route>
         <Route path="/SectionLogIn" element={<Login />}></Route>
-        <Route path="/SectionRegister" element={<SectionRegister />}></Route>
-        <Route
-          path="/SectionCategories"
-          element={<SectionCategories />}
-        ></Route>
-        <Route path="/Favorites" element={<Favorites />}></Route>
-
-        
-        <Route element={<ProteccionRutas/>}> 
+        <Route path="/SectionRegister" element={<Register />}></Route>
+        <Route path="/SectionCategories"  element={<SectionCategories />}></Route>
         <Route path="/SectionCarrito" element={<SectionCarrito />}></Route>
-        <Route path="/form" element={<FormProduct />}></Route>
         <Route path="/detail/:id" element={<Detail />}></Route>
-        <Route path="/Favorites" element={<Favorites />}></Route>
-
+        <Route path="*" element={<Error404 />}></Route>
+        <Route path="/forgot-password/" element={<ForgotPassword />}></Route>
+        <Route path="/reset-Password/:id/:token" element={<ResetPassword/>}></Route>
+        <Route element={<ProteccionRutas />}>
+          <Route path="/Favorites" element={<Favorites />}></Route>
+          <Route path="/MyProfile" element={<Perfil />}></Route>
         </Route>
 
-        <Route path="/admin" element={<HomeDashboard />}></Route>
-        <Route path="/admin" element={<CardsDash />}></Route>
-        <Route path="/stats" element={<Estadisticas />}></Route> 
-        <Route path="*" element={<Error404 />}></Route>
+        <Route element={<ProteccionRutaAdmin />}>
+          <Route path="/form" element={<FormProduct />}></Route>
+          <Route path="/admin" element={<HomeDashboard />}></Route>
+          <Route path="/admin" element={<CardsDash />}></Route>
+          <Route path="/stats" element={<Estadisticas />}></Route>
+        </Route>
       </Routes>
     </div>
   );

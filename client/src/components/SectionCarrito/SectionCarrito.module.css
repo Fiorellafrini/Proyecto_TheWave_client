@@ -1,12 +1,16 @@
 .container {
     width: 100%;
+    min-height: 100vh;
     background-image: url(../../assets/fondoHome.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
+    border-radius: 15px;
     padding-bottom: 20px;
+}
+.shop{
+    display: flex;
+    justify-content: center;
 }
 
 .shoppingCartContainer {
@@ -17,21 +21,29 @@
 }
 
 .shoppingCartContainer h1 {
-    font-size: 6em;
+    font-size: 3em;
     margin: 10px;
     color: white;
 }
 .shoppingCartContainer button {
-    width: 300px;
-    height: 80px;
-    font-size: 3em;
+    font-size: 1.5em;
     margin-top: 10px;
+    background: #104243;
+    color: white;
+    border-radius: 15px;
+    padding: 1rem 4rem;
+    cursor: pointer;
 }
 .totalPay {
-    font-size: 4em;
+    font-size: 2em;
     display: flex;
     justify-content: space-between;
     padding: 10px;
+}
+
+.pay{
+    display: flex;
+    justify-content: flex-end;
 }
 
 

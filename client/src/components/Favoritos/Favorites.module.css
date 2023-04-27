@@ -24,6 +24,12 @@
   -moz-box-shadow: 7px 14px 12px 0px rgba(0, 0, 0, 0.37);
 }
 
+.card{
+  display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .shoppingCartContainer {
   margin: 10px;
   border-radius: 15px;
@@ -60,3 +66,4 @@
     color: rgb(255, 255, 255);
     font-size:5em;
 }
+

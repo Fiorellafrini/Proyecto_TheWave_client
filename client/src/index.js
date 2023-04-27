@@ -3,11 +3,11 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
 
-import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
-import { store, persistor } from "./redux/store";
-import { PersistGate } from "redux-persist/integration/react";
 import axios from "axios";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistor, store } from "./redux/store";
 // axios.defaults.baseURL = 'http://localhost:3001'; //para trabajar local
 axios.defaults.baseURL = 'https://proyectothewaveapi-production.up.railway.app'; //si guardo con esta activado se actualiza el deploy
 

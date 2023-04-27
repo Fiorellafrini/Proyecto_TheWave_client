@@ -1,10 +1,13 @@
 .containerNav {
     border-bottom: 1px solid rgba(255, 255, 255, 0.156);
-    cursor: pointer;
+    /* cursor: pointer; */
     height: 129px;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    z-index: 2;
+    /* animation: nav 1s ease 0s 1 normal forwards; */
 }
 
 .containerNav:hover {
@@ -52,6 +55,13 @@ a:visited {
     display: inline-block;
 }
 
+.dropdown img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
 .dropdown button {
     color: rgba(255, 255, 255, 0.719);
     font-size: 1.30em;
@@ -76,11 +86,28 @@ a:visited {
     color: #161819;
 }
 
+.dropdownMenu button{
+    width: 100%;
+    padding: 20px 20px;
+    border: none;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 25px;
+    color: #161819;
+    text-align: center;
+}
+
+.dropdownMenu button:hover{
+    background-color: #1e5b5b9b;
+    border-radius: 10px;
+    color: #fff;
+}
 .menuList {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    text-align: right;
+    text-align: end;
     cursor: pointer;
 }
 
@@ -88,11 +115,13 @@ a:visited {
     padding: 20px 20px;
     font-size: 25px;
     color: #161819;
+    
 }
 
 .menuList li:hover {
     background-color: #1e5b5b9b;
     border-radius: 10px;
+    color: #fff;
 }
 
 .menuList li:last-child {
@@ -102,8 +131,30 @@ a:visited {
 body::before {
     width: 100%;
 }
-
-@media screen and (max-width:1500px) {
+.cart {
+    color: #ffffffb7;
+    font-size: 1.20em;
+    cursor: pointer;
+    margin-top: 10px;
+    position: relative;
+}
+.cartCount {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color:#1e5b5b9b;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+  }
+@media screen and (max-width:1200px) {
     .nav {
         display: none;
     }
@@ -123,4 +174,16 @@ body::before {
         align-items: center;
         width: 200px;
     }
+}
+
+@keyframes nav {
+	0% {
+		opacity: 0;
+		transform: translateX(250px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
