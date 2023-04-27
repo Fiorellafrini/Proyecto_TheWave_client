@@ -25,7 +25,7 @@ const CardDash = ({ name, size, price, imagen, id, active }) => {
     try {
       await axios.put(`/product/active/${id}`, { active: active });
       setIsDeleted(!isDeleted);
-      console.log('Producto eliminado exitosamente');
+      console.log('Producto modificado exitosamente');
     } catch (error) {
       console.error('Error al cambiar la activación del producto', error);
     }
