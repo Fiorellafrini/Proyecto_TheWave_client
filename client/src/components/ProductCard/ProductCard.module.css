@@ -113,6 +113,7 @@
   box-shadow: 7px 14px 12px 0px rgba(0, 0, 0, 0.37);
   -webkit-box-shadow: 7px 14px 12px 0px rgba(0, 0, 0, 0.37);
   -moz-box-shadow: 7px 14px 12px 0px rgba(0, 0, 0, 0.37);
+  cursor: pointer;
 }
 
 #carrito {
@@ -120,6 +121,7 @@
   background-color: transparent;
   color: #224145;
   font-size: 2em;
+  cursor: pointer;
 }
 
 @media only screen and (min-width: 481px) and (max-width: 1024px) {
