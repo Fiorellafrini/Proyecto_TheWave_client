@@ -1,118 +1,113 @@
-.contenedor__todo{
-   width:796px;
-    max-width: 800px;
-    margin: auto;
-    position: relative;
-    top:216px;
-    
+.container {
+  background-image: url(../../assets/surfing.jpg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  border-radius: 15px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
-.caja__trasera{
-    height:553px;
-    width:796px;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: center;
-    -webkit-backdrop-filter: blur(10px);
-    background-color: rgba(0, 128, 255, 0.5)
+.Form {
+  background-color: rgba(18, 18, 18, 0.7);
+  box-shadow: 15px 16px 10px rgba(0, 0, 0, 0.25),
+    inset 10px 6px 10px rgba(0, 0, 0, 0.25);
+  /* background: #1e1e1e; */
+  border-radius: 15px;
+  padding: 3rem;
+  width: 510px;
 }
 
-.caja__trasera div {
-    margin: 100px 40px;
-    color: white;
-    transition: all 500ms;
-    margin-right:38px;
-    width:253px;
+.Form h1 {
+  margin-bottom: 1rem;
+  color: white;
+  text-align: center;
 }
 
-.caja__trasera div p,
-.caja__trasera div button{
-    margin: 30px;
+.Form p {
+  text-align: center;
 }
 
-.caja__trasera div h3{
-    font-weight: 400px;
-    font-size: 26px;
-}
-.caja__trasera button{
-    padding: 10px 40px;
-    border: 2px solid #fff;
-    background: transparent;
-    font-size: 14px;
-    font-weight: 600px;
-    cursor: pointer;
-    color: white;
-    outline: none;
-    transition: all 300ms; 
+.close {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
 }
 
-.caja__trasera button:hover{
-    background-color: #fff;
-    color: black
+.close button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
 
-/* // -------------------formularios---------------------------------- */
-.contenedor__login_register{
-    display: flex;
-    align-items: center;
-   width:410px;
-    height: 500px;
-    max-width: 380px;
-    position: relative;
-    
-}
-.contenedor__login_register Form {
-    border-radius: 20px;
-    padding: 80px 20px;
-    margin-right:0px;
-    position: absolute;
-    background: #fff;
-    padding-left:0px;
-    width:410px;
-    padding-top:6px;
-    /* min-height:650px; */
-    /* height:650px; */
-    transform:translatex(-627px) translatey(366px);
-    top:-435px;
-    left: 30px;
+.btnclose {
+  border: none;
+  background-color: #333;
+  color: red;
+  border-radius: 50%;
 }
 
-.contenedor__login_register Form h2{
-    font-size: 30px;
-    text-align: center;
-    margin-bottom: 20px;
-    color: black;
-}
-.contenedor__login_register form div{
-    margin-top:9px;
-    margin-bottom:14px;
-}
-.contenedor__login_register Form input{
-    width: 350px;
-    margin-top: 10px;
-    padding: 20px;
-    border: none;
-    background: #f2f2f2;
-    font-size: 16px;
-    outline: none;
+.input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.contenedor__login_register Form button{
-    padding: 10px 40px;
-    margin-top: 40px;
-    border: none;
-    font-size: 14px;
-    background: blue;
-    color: white;
-    cursor: pointer;
-    outline: none;
+.inputs {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  outline: none;
+  padding: 1rem;
+  font-size: 1rem;
 }
 
-.formulario__login{
-    opacity: 1;
-    display: block;
+.btnsubmit {
+  background: #104243;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
 }
 
-.formulario__register{
-    /* display: none; */
+.formulario {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.access {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+.error {
+  color: red;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem;
+}
+.icons button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #db4437;
 }

@@ -19,6 +19,7 @@ import React from "react";
 import Login from "./components/Login/Login";
 import ProteccionRutas from "./components/Routers/ProteccionRutas";
 import Perfil from "./components/perfil/Perfil";
+import ProteccionRutaAdmin from "./components/Routers/ProteccionRutaAdmin";
 
 
 function App() {
@@ -30,29 +31,34 @@ function App() {
   const location = useLocation();
   return (
     <div className="App">
-      {!["/", "/SectionLogIn", "/SectionRegister"].includes(
-        location.pathname
-      ) && <NavVertical />}
+      {![
+        "/",
+        "/SectionLogIn",
+        "/SectionRegister",
+        "/form",
+        "/SectionCarrito",
+      ].includes(location.pathname) && <NavVertical />}
       <Routes>
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="/SectionHome" element={<SectionHome />}></Route>
         <Route path="/SectionLogIn" element={<Login />}></Route>
         <Route path="/SectionRegister" element={<SectionRegister />}></Route>
-        <Route path="/SectionCategories"element={<SectionCategories />}></Route>
-        {/* <Route path="/Favorites" element={<Favorites />}></Route> */}
-          <Route path="/SectionCarrito" element={<SectionCarrito />}></Route>
-          <Route path="/detail/:id" element={<Detail />}></Route>
+        <Route path="/SectionCategories" element={<SectionCategories />}></Route>
+        <Route path="/SectionCarrito" element={<SectionCarrito />}></Route>
+        <Route path="/detail/:id" element={<Detail />}></Route>
+        <Route path="*" element={<Error404 />}></Route>
 
         <Route element={<ProteccionRutas />}>
-          <Route path="/form" element={<FormProduct />}></Route>
           <Route path="/Favorites" element={<Favorites />}></Route>
-        <Route path="/admin" element={<HomeDashboard />}></Route>
-        <Route path="/admin" element={<CardsDash />}></Route>
-        <Route path="/stats" element={<Estadisticas />}></Route>
-        <Route path="/My Profile" element={<Perfil />}></Route>
+          <Route path="/My Profile" element={<Perfil />}></Route>
         </Route>
 
-        <Route path="*" element={<Error404 />}></Route>
+        <Route element={<ProteccionRutaAdmin />}>
+          <Route path="/form" element={<FormProduct />}></Route>
+          <Route path="/admin" element={<HomeDashboard />}></Route>
+          <Route path="/admin" element={<CardsDash />}></Route>
+          <Route path="/stats" element={<Estadisticas />}></Route>
+        </Route>
       </Routes>
     </div>
   );

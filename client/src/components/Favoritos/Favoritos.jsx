@@ -14,8 +14,7 @@ const Favorites = () => {
   useEffect(() => {
     dispatch(deleteToFav());
     dispatch(addToFav());
-    console.log(fav);
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     setTimeout(() => {
