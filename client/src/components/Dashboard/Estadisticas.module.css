@@ -1,42 +1,42 @@
 .container {
-    margin-top: 100px;
+  margin-top: 100px;
 }
 
 .counter-box {
-    display: block;
-    background: #ff83cd;
-    padding: 40px 20px 37px;
-    text-align: center
+  display: block;
+  background: #ff83cd;
+  padding: 40px 20px 37px;
+  text-align: center;
 }
 
 .counter-box p {
-    margin: 5px 0 0;
-    padding: 0;
-    color: #fffdfd;
-    font-size: 18px;
-    font-weight: 500
+  margin: 5px 0 0;
+  padding: 0;
+  color: #fffdfd;
+  font-size: 18px;
+  font-weight: 500;
 }
 
 .counter-box i {
-    font-size: 60px;
-    margin: 0 0 15px;
-    color: #e4ff5b
+  font-size: 60px;
+  margin: 0 0 15px;
+  color: #e4ff5b;
 }
 
 .counter {
-    display: block;
-    font-size: 32px;
-    font-weight: 700;
-    color: #fffafa;
-    line-height: 28px
+  display: block;
+  font-size: 32px;
+  font-weight: 700;
+  color: #fffafa;
+  line-height: 28px;
 }
 
 .counter-box.colored {
-    background: #ff83cd;
+  background: #ff83cd;
 }
 
 .counter-box.colored p,
 .counter-box.colored i,
 .counter-box.colored .counter {
-    color: #fff
+  color: #fff;
 }

@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { variables } from "./ItemSidebar";
 import {
   AiFillHome,
-    AiOutlineForm,
-    AiOutlineUpload,
+  AiOutlineForm,
+  AiOutlineUpload,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
 import { ImStatsBars } from "react-icons/im";
@@ -14,31 +14,28 @@ export default function Sidebar({ sidebarOpen, setsidebarOpen }) {
   // const open = () => {
   //   setsidebarOpen(!sidebarOpen);
   // };
-    return (
-      <div className={style.sidebar}>
-    <Container isOpen={!sidebarOpen}>
-      {/* <button className="Sidebarbutton" onClick={open}>
+  return (
+    <div className={style.sidebar}>
+      <Container isOpen={!sidebarOpen}>
+        {/* <button className="Sidebarbutton" onClick={open}>
         <AiOutlineArrowsAlt />
       </button> */}
-      {/* <div className="LogoInmobate">
+        {/* <div className="LogoInmobate">
         <div className="imgcontent">
 
         </div>
       </div> */}
-      {linksArray.map(({icon, label, to}) => (
-        <div className="me-2" key ={label}>
-          <NavLink to={to} activeClassName="active" className ="Links">
-            <div className="Linkicon">
-              {icon}
-            </div>
-          
+        {linksArray.map(({ icon, label, to }) => (
+          <div className="me-2" key={label}>
+            <NavLink to={to} activeClassName="active" className="Links">
+              <div className="Linkicon">{icon}</div>
+
               <span>{label}</span>
-           
-          </NavLink>
-        </div>
-      ))}
-            </Container>
-            </div>
+            </NavLink>
+          </div>
+        ))}
+      </Container>
+    </div>
   );
 }
 
@@ -55,77 +52,69 @@ const linksArray = [
   },
   {
     label: "General",
-    icon: <AiOutlineForm/>,
+    icon: <AiOutlineForm />,
     to: "/general",
   },
   {
     label: "Comments",
-    icon: <AiOutlineForm/>,
+    icon: <AiOutlineForm />,
     to: "/comments",
   },
   {
     label: "Add",
-    icon: <AiOutlineUpload/>,
+    icon: <AiOutlineUpload />,
     to: "/form",
   },
 ];
 
 //////////////////styledcomponents//////////////
 
-
 const Container = styled.div`
-
-
-
-.LogoInmobate {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px;
-
-}
-.Links {
-   
-  display: flex;
-  align-items: center;
-  color: white;
-  text-decoration: none;
-  padding: 10px;
-  margin: 5px 0;
-  border-radius: 5px;
-  transition: all 0.3s ease;
-}
-.Links:hover {
-  background-color: #333;
-  color: #fba2e7;
-}
-.Linkicon {
-  with: 14rem;
-  align-items: center;
-  justify-content: center;
-  margin-right: 10px;
-  font-size: 1.5rem;
-}
-.active {
-  background-color: #333;
-  color: #ff94e8;
-}
-@media screen and (max-width: 768px) {
   .LogoInmobate {
-    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
   }
-  
   .Links {
-    padding: 5px;
-    margin: 3px 0;
-    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    transition: all 0.3s ease;
   }
-  
+  .Links:hover {
+    background-color: #333;
+    color: #fba2e7;
+  }
   .Linkicon {
-    
-    margin-right: 5px;
-    font-size: 1.2rem;
+    with: 14rem;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    font-size: 1.5rem;
   }
-}
-`;
+  .active {
+    background-color: #333;
+    color: #ff94e8;
+  }
+  @media screen and (max-width: 768px) {
+    .LogoInmobate {
+      margin-top: 10px;
+    }
 
+    .Links {
+      padding: 5px;
+      margin: 3px 0;
+      font-size: 0.8rem;
+    }
+
+    .Linkicon {
+      margin-right: 5px;
+      font-size: 1.2rem;
+    }
+  }
+`;

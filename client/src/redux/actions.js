@@ -39,11 +39,15 @@ export const createProduct = (body) => async (dipatch) => {
 // -----------------------------------LIST-PRODUCT-----------------------------------------------------//
 export function listProducts() {
   return async function (dispatch) {
-    var json = await axios.get("/product");
-    return dispatch({
-      type: "GET_ALL_PRODUCTS",
-      payload: json.data,
-    });
+    try {
+      var json = await axios.get("/product");
+      return dispatch({
+        type: "GET_ALL_PRODUCTS",
+        payload: json.data,
+      });
+    } catch (error) {
+      
+    }
   };
 }
 // -----------------------------------FILTER_BY_NAME---------------------------------------------------//
