@@ -282,7 +282,7 @@ export function google() {
       const { data } = axios
         .get("/auth/google")
         .then((response) => {
-          const { token } = response.data;
+          // const { token } = response.data;
         })
         .catch((error) => {
           console.error(error);
