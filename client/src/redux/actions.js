@@ -22,13 +22,13 @@ export const DECREMENT_QUANTITY = "DECREMENT_QUANTITY";
 export const PAYMENT = "PAYMENT";
 export const ADD_TO_FAV = "ADD_TO_FAV";
 export const DELETE_TO_FAV = "DELETE_TO_FAV";
-
 export const LOGIN = "LOGIN";
 export const REGISTRO = "REGISTRO";
 export const LOGINGOOGLE = "LOGINGOOGLE";
 export const LOGINFACEBOOK = "LOGINFACEBOOK";
 export const RGOOGLE = "RGOOGLE";
 
+//-------------------------------------------CREATE PRODUCT---------------------------------------------------------//
 export const createProduct = (body) => async (dipatch) => {
   const { data } = await axios.post("/product", body);
   return dipatch({
@@ -36,7 +36,7 @@ export const createProduct = (body) => async (dipatch) => {
     payload: data,
   });
 };
-// -----------------------------------LIST-PRODUCT-----------------------------------
+// -----------------------------------LIST-PRODUCT-----------------------------------------------------//
 export function listProducts() {
   return async function (dispatch) {
     try {
@@ -50,7 +50,7 @@ export function listProducts() {
     }
   };
 }
-// -----------------------------------FILTER_BY_NAME-----------------------------------
+// -----------------------------------FILTER_BY_NAME---------------------------------------------------//
 export function filterByName(payload) {
   return async function (dispatch) {
     try {
@@ -75,103 +75,16 @@ export function filterByName(payload) {
     }
   };
 }
-// -----------------------------------ORDER_BY_NAME-----------------------------------
+// -----------------------------------ORDER_BY_NAME-----------------------------------------------------//
 export const orderByName = (criteria) => {
   return { type: ORDER_BY_NAME, payload: criteria };
 };
-// -----------------------------------ORDER_BY_PRICE-----------------------------------
+// -----------------------------------ORDER_BY_PRICE----------------------------------------------------//
 export const orderByPrice = (criteria) => {
   return { type: ORDER_BY_PRICE, payload: criteria };
 };
-// export function filterByNameAsc() {
-//   return async function (dispatch) {
-//     try {
-//       var json = await axios.get("http://localhost:3001/order/name/asc");
-//       return dispatch({
-//         type: "FILTER_BY_ASC",
-//         payload: json.data,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// }
-// export function filterByNameDesc() {
-//   return async function (dispatch) {
-//     try {
-//       var json = await axios.get("http://localhost:3001/order/name/desc");
-//       return dispatch({
-//         type: "FILTER_BY_DESC",
-//         payload: json.data,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// }
 
-// export function orderByName(order) {
-//   return async function (dispatch) {
-//     try {
-//       const response = await axios.get(
-//         `http://localhost:3001/product?sort=${order}`
-//       );
-//       const orderByName = response.data;
-//       return dispatch({
-//         type: "ORDER_BY_NAME",
-//         payload: orderByName,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// }
-// -----------------------------------FILTER_BY_PRICE-----------------------------------
-// export function filterByPriceAsc() {
-//   return async function (dispatch) {
-//     try {
-//       var json = await axios.get("http://localhost:3001/order/price/less");
-//       return dispatch({
-//         type: "FILTER_BY_PRICE_ASC",
-//         payload: json.data,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// }
-// export function filterByPriceDesc() {
-//   return async function (dispatch) {
-//     try {
-//       var json = await axios.get("http://localhost:3001/order/price/higher");
-//       return dispatch({
-//         type: "FILTER_BY_PRICE_DESC",
-//         payload: json.data,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// }
-
-// export function orderByPrice(order) {
-//   return async function (dispatch) {
-//     try {
-//       const response = await axios.get(
-//         `http://localhost:3001/product?sort=${order}`
-//       );
-//       const orderByPrice = response.data;
-//       return dispatch({
-//         type: "ORDER_BY_PRICE",
-//         payload: orderByPrice,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// }
-
-// -------------------DETAIL----------------------------------
+// -------------------DETAIL----------------------------------------------------------------------------//
 export function productsById(id) {
   return async function (dispatch) {
     try {
@@ -185,7 +98,7 @@ export function productsById(id) {
     }
   };
 }
-// -------------------PAGE----------------------------------
+// -------------------PAGE-----------------------------------------------------------------//
 export function productsData(page) {
   return async function (dispatch) {
     try {
@@ -206,7 +119,7 @@ export const setCurrentPage = (payload) => {
   };
 };
 
-// -------------------FILTER-BRAND----------------------------------
+// -------------------FILTER-BRAND---------------------------------------------------------------//
 
 export function filterBrand(id) {
   return async function (dispatch) {
@@ -222,7 +135,7 @@ export function filterBrand(id) {
     }
   };
 }
-// -----------------------------------FILTER-BY-TYPE-----------------------------------
+// -----------------------------------FILTER-BY-TYPE-----------------------------------------//
 export function filterType(id) {
   return async function (dispatch) {
     try {
@@ -238,7 +151,7 @@ export function filterType(id) {
   };
 }
 
-//---------------------LOGIN---------------------------------------------//
+//---------------------LOGIN-------------------------------------------------------------------//
 
 export const registro = (body) => async (dipatch) => {
   const { data } = await axios.post("/user", body);
@@ -247,15 +160,15 @@ export const registro = (body) => async (dipatch) => {
     payload: data,
   });
 };
-// ----------------------------------ADD TO CART----------------------------------
+// ----------------------------------ADD TO CART-----------------------------------------------//
 export const addToCart = (product) => {
   return { type: ADD_TO_CART, payload: product };
 };
-// ----------------------------------DELETE TO CART----------------------------------
+// ----------------------------------DELETE TO CART---------------------------------------------//
 export const deleteToCart = (product) => {
   return { type: DELETE_TO_CART, payload: product };
 };
-// ----------------------------------PAYMENT----------------------------------
+// ----------------------------------PAYMENT----------------------------------------------------//
 export const paymentMercadoPago = (body) => {
   return async (dispatch) => {
     try {
@@ -274,7 +187,7 @@ export const paymentMercadoPago = (body) => {
     }
   };
 };
-// -----------------------------------UPDATE_STOCK_PRODUCT_DEC-----------------------------------
+// -----------------------------------UPDATE_STOCK_PRODUCT_DEC-----------------------------------//
 export const updateStockDecrement = (id) => async (dispatch) => {
   try {
     const response = await axios.get(`/product/${id}`);
@@ -291,7 +204,7 @@ export const updateStockDecrement = (id) => async (dispatch) => {
     console.log(error);
   }
 };
-// -----------------------------------UPDATE_STOCK_PRODUCT_INC-----------------------------------
+// -----------------------------------UPDATE_STOCK_PRODUCT_INC----------------------------------//
 
 export const updateStockIncrement = (id) => async (dispatch) => {
   try {
@@ -309,7 +222,7 @@ export const updateStockIncrement = (id) => async (dispatch) => {
     console.log(error);
   }
 };
-// -----------------------------------QUANTITY-----------------------------------
+// -----------------------------------QUANTITY--------------------------------------------------//
 export const incrementQuantity = (id) => {
   return { type: INCREMENT_QUANTITY, payload: id };
 };
@@ -400,11 +313,101 @@ export function googleR() {
   };
 }
 
-//------------------------------------------------------------------------------------------//
+//-------------------------------------FAVORITOS-----------------------------------------------------//
 export const addToFav = (product) => {
   return { type: ADD_TO_FAV, payload: product };
 };
-// ----------------------------------DELETE TO CART----------------------------------
-export const deleteToFav = () => {
-  return { type: DELETE_TO_FAV };
+
+export const deleteToFav = (product) => {
+  return { type: DELETE_TO_FAV, payload: product };
 };
+
+//-------------------------------Los filtros cuando quisimos hacerlos desde el back:-------------------//
+//
+// export function filterByNameAsc() {
+//   return async function (dispatch) {
+//     try {
+//       var json = await axios.get("http://localhost:3001/order/name/asc");
+//       return dispatch({
+//         type: "FILTER_BY_ASC",
+//         payload: json.data,
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// }
+// export function filterByNameDesc() {
+//   return async function (dispatch) {
+//     try {
+//       var json = await axios.get("http://localhost:3001/order/name/desc");
+//       return dispatch({
+//         type: "FILTER_BY_DESC",
+//         payload: json.data,
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// }
+
+// export function orderByName(order) {
+//   return async function (dispatch) {
+//     try {
+//       const response = await axios.get(
+//         `http://localhost:3001/product?sort=${order}`
+//       );
+//       const orderByName = response.data;
+//       return dispatch({
+//         type: "ORDER_BY_NAME",
+//         payload: orderByName,
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// }
+// -----------------------------------FILTER_BY_PRICE-----------------------------------
+// export function filterByPriceAsc() {
+//   return async function (dispatch) {
+//     try {
+//       var json = await axios.get("http://localhost:3001/order/price/less");
+//       return dispatch({
+//         type: "FILTER_BY_PRICE_ASC",
+//         payload: json.data,
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// }
+// export function filterByPriceDesc() {
+//   return async function (dispatch) {
+//     try {
+//       var json = await axios.get("http://localhost:3001/order/price/higher");
+//       return dispatch({
+//         type: "FILTER_BY_PRICE_DESC",
+//         payload: json.data,
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// }
+
+// export function orderByPrice(order) {
+//   return async function (dispatch) {
+//     try {
+//       const response = await axios.get(
+//         `http://localhost:3001/product?sort=${order}`
+//       );
+//       const orderByPrice = response.data;
+//       return dispatch({
+//         type: "ORDER_BY_PRICE",
+//         payload: orderByPrice,
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// }

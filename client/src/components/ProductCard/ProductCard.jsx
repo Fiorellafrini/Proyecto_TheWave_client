@@ -21,6 +21,7 @@ const ProductCard = ({
   quantity,
   stock,
   deletePropInFav = true,
+  handleDelete
 }) => {
   const [imageSrc] = useState(imagen[0]);
   const dispatch = useDispatch();
@@ -138,3 +139,5 @@ const ProductCard = ({
 };
 
 export default ProductCard;
+
+

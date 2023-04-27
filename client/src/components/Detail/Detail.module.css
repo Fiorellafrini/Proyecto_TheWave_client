@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap');
+
+
 .container {
     width: 100%;
     background-image: url(../../assets/fondoHome.png);
@@ -7,265 +10,123 @@
     background-attachment: fixed;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
-    padding-bottom: 20px;
 }
 
-.cuadrado1 a img{
- width:50px;
- /* height:50px; */
- /* position:relative;
- top:121px;
- left:500px; */
- /* cursor: pointer; */
- filter: invert(100%);
-}
-
-.cuadrado1 .cerrar a{
-    /* font-family: 'Work Sans'; */
-    /* font-size:2rem; */
-    display:inline-block;
-    /* transform:translatex(0px) translatey(0px); */
-    /* left:38px;
-    top:21px; */
-    /* z-index:62; */
-    /* width:106px;
-    height:37px; */
-    cursor: pointer;
-    /* position:relative ; */
-    background: rgba(3, 42, 43, 0.4);
+.detailContainer {
+    position: relative;
+    margin: 20px;
+    padding: 60px;
     border-radius: 20px;
-    /* color: white; */
-    text-decoration: none;
-    margin: 1rem;
-}
-/* cuadro principal de la imagenes  */
-.imag{
-    width: 800px;
-    height: 900px;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius:5px;
-    position: relative;
-    top: -5px;
-    left: 150px;
+    background-color: #b2b3b3;
+    box-shadow: 0px 0px 39px 0px rgba(0, 0, 0, 0.9);
+    -webkit-box-shadow: 0px 0px 39px 0px rgba(0, 0, 0, 0.9);
+    -moz-box-shadow: 0px 0px 39px 0px rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* visor de imagen lateral  */
-.imagenT {
-    width: 80px;
-    height: 100px;
-    background: rgba(17, 65, 66, 0.6);
-    border-radius: 3px;
-    position: relative;
-    top: 90px;
-    left: 40px;
-    
-}
-.imagenT img {
-    width: 50px; 
-    height: 50px;
-    border: 1px solid transparent;
-    position: absolute;
-    top: 15px;
-    left: 10px;
+.talles {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    animation: talle 1s ease 0s 1 normal forwards;
 }
 
-/* recuadro donde se visualiza la imagen mas grande */
-.granImagen{
-    width: 300px;
-    height: 300px;
-    background: rgba(17, 65, 66, 0.6);
-    border: 1px solid transparent;
-    position: absolute;
-    top: 90px;
-    left: 140px;
-    cursor: zoom-in;
+.talles img {
+    width: 600px;
 }
-.cuadrado1 .granImagen img{
+
+.detailInfo {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    animation: type 1s ease 0s 1 normal forwards;
+}
+
+.col1 {
+    width: 30%;
+    height: 950px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.col1 h2 {
+    font-size: 1.50em;
+    color: #1e1e1e;
+}
+.col1 img {
+    width: 200px;
+}
+.containerInfo {
+display: flex;
+flex-direction: column;
+gap: 20px;
+padding: 5px;
+}
+.containerInfo p {
+    font-size: 1.50em;
+}
+
+
+.col2 {
+    width: 70%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+}
+
+.col2 h1 {
+    line-height: 165px;
+    -webkit-text-stroke: 1.5px black;
+    font-family: 'Poppins', sans-serif;
+    color: transparent;
+    position: relative;
+    z-index: 1;
+}
+
+.detailImagen {
+    position: absolute;
+    top: 100;
+    z-index: 0;
+}
+
+.detailImagen img {
+    width: 420px;
+    margin-left: 300px;
+}
+
+.containerPago button {
     width: 180px;
-    height: 200px;
-    position : absolute;
-    top:49px;
-    left:58px;
-}
-/* recuadro de pagos */
-.pago{
-    width: 320px;
-    height: 725px;
-   background: rgba(17, 65, 66, 0.6);
-    border-radius: 4px;
-    position: absolute;
-    top: 90px;
-    left: 460px;
-}
-.pago button {
-    width: 50px;
-    background: rgb(3, 42, 43);
-    margin: 10px;
-    border-radius: 10px;
+    height: 60px;
     border: none;
-    color: rgba(226, 235, 241);
+    border-radius: 15px;
+    background-color: #224145;
+    color: white;
+    padding: 10px;
     font-family: 'Work Sans';
-    font-size: 1em;
-    -webkit-box-shadow: 7px 14px 12px 0px rgba(0,0,0,0.37);
-    -moz-box-shadow: 7px 14px 12px 0px rgba(0,0,0,0.37);
+    font-size: 1.10em;
+    outline: none;
+    text-decoration: none;
+    margin-left: 5px;
     cursor: pointer;
+    text-align: center;
 }
-
-
-
-.pago h1 {
-     position:relative;
-     left:20px !important;
-     font-family: 'Work Sans';
-    font-weight: 100;
-    font-size:1.8rem;
-    color: rgba(226, 235, 241);
+.cards {
+    border-radius: 20px;
+    background-color: #a0a0a0;
+    padding: 20px;
+    font-size: 1.50em;
 }
-
-.cuadrado1 .pago span {
-     top:130px;
-     left:226px !important;
-    font-family: 'Work Sans';
-    font-weight: 100;
-    font-size:1.3rem;
-    color: rgba(226, 235, 241);
-}
-
-.cuadrado1 .pago .metodo img{
-    position:relative;
-    top:150px;
-    left: 15px;
-    margin:  0px 20px 0px 20px;
+.cards img {
     width: 100px;
-    height: 100px;
-}
-.cuadrado1 .pago .metodo p {
-    top: 185px;
-    left: 30px;
-    font-family: 'Work Sans';
-    font-weight: 100;
-    font-size:1.3rem;
-    color: rgba(226, 235, 241);
-}
-.cuadrado1 .pago  #name {
-    top:4px;
-
-}
-.cuadrado1 .pago  #megusta {
-    top:10px;
-    left: 450px;
-}
-.cuadrado1 .pago  #precio {
-    top:130px;
-    left: 24px;
-    font-family: 'Work Sans';
-    font-weight: 100;
-    font-size: 1.3rem;
-    color: rgba(226, 235, 241);
+    margin-right: 10px;
 }
 
-.cuadrado1 .pago p{
-    font-family: 'Work Sans';
-    font-size: 1.5rem;
-    left:50px;
-}
-.cuadrado1 .pago  #envio {
-    top:360px;
-    left: 24px;
-    color: rgba(226, 235, 241);
-    font-size: 1.3rem;
-}
-.cuadrado1 .pago  #devolucion {
-    top:385px;
-    left: 24px;
-    color: rgba(226, 235, 241);
-    font-size: 1.3rem;
-    font-family: 'Work Sans';
-}
-.cuadrado1 .pago  #dias {
-    top:410px;
-    font-size: 1.3rem;
-    left: 24px;
-    font-family: 'Work Sans';
-    color: rgba(226, 235, 241);
-}
-
-.cuadrado1 .pago  #protegida {
-    top:550px;
-    font-size: 1.3rem;
-    left: 24px;
-    font-family: 'Work Sans';
-    color: rgba(226, 235, 241);
-}
-.cuadrado1 .pago  #garantia {
-    top:680px;
-    font-size: 1.3rem;
-    left: 24px;
-    font-family: 'Work Sans';
-    color: rgba(226, 235, 241);
-}
-.pago #carrito {
-    position: absolute;
-    top: 458px;
-    left: 170px;
-    height: 60px;
-    width: 125px;
-}
-.pago #comprar {
-    position: absolute;
-    top: 458px;
-    left: 10px;
-    height: 60px;
-    width: 125px;
-}
-
-
-
-.imag p{
-    font-family: 'Work Sans';
-    font-size: 2rem;
-    color: rgba(226, 235, 241);
-    position:absolute;
-    top: 750px;
-    left: 330px;
-}
-.imag span{
-    font-family: 'Work Sans';
-    font-size: 2rem;
-    color: rgba(226, 235, 241);
-    position:absolute;
-    top: 750px;
-    left: 700px;
-}
-/* espacio para comentarios y calificacion del producto */
-.comentario{
-    width: 415px;
-    height: 400px;
-    background: rgba(17, 65, 66, 0.6);
-    border-radius: 4px;
-    position: absolute;
-     top:570px;
-    left:322px;
-}
-
-.comentario ul li{
-    font-family: 'Work Sans';
-    font-size: 1rem;
-    color: rgba(226, 235, 241);
-    position:relative;
-    top:50px;
-    left:23px;
-    padding-top:23px;
-}
-
-.comentario h2 b {
-    font-family: 'Work Sans';
-    font-size: 1.5rem;
-    color: rgb(226, 235, 241);
-    position:relative;
-    top:33px;
-    left:12px;
-}
 /* ----------------------------------------Spinner---------------------------------------- */
 .containerSpinner {
     width: 100%;
@@ -291,4 +152,28 @@
         transform: rotate(1turn);
     }
 }
+
+@keyframes talle {
+    0% {
+        opacity: 0;
+        transform: translateY(250px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes type {
+	0% {
+		opacity: 0;
+		transform: translateX(-250px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
 /* ----------------------------------------Spinner---------------------------------------- */

@@ -51,7 +51,6 @@ const SectionCategories = () => {
                   <option value="nameAsc">A - Z</option>
                   <option value="nameDesc">Z - A</option>
                 </select>
-
                 <select
                   name="orderByPrice"
                   defaultValue="price"
