@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../redux/actions";
 import style from "./login.module.css";
+import { Link } from "react-router-dom";
 
 function Login({ isOpen, onClose }) {
   const dispatch = useDispatch();
@@ -108,6 +109,9 @@ function Login({ isOpen, onClose }) {
                     />
                   </div>
                 </div>
+                <div className={style.link}>
+                  <Link to="/SectionRegister">You are not registered?</Link>
+                </div>
                 <div>
                   <button
                     className={style.btnsubmit}
@@ -116,7 +120,7 @@ function Login({ isOpen, onClose }) {
                   >
                     Login
                   </button>
-                  {sendForm && <p>"User added successfully"</p>}
+                  {/* {sendForm && <p>"User added successfully"</p>} */}
                 </div>
               </Form>
             )}

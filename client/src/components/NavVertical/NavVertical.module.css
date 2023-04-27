@@ -60,6 +60,8 @@
     border-radius: 30px;
     display: flex;
     justify-content: center;
+    transform: translateY(10px) rotate(180deg);
+    cursor: pointer;
 }
 
 .scrollDown span {

@@ -26,10 +26,10 @@ const ProductCard = ({
   const [imageSrc] = useState(imagen[0]);
   const dispatch = useDispatch();
   const [isFav, setIsFav] = useState(false);
-  const fav = useSelector((state) => state.products.favorites);
+  // const fav = useSelector((state) => state.products.favorites);
   const [isSelected, setIsSelected] = useState(false);
 
-  // const detalle = useSelector((state) => state.products.detail);
+  const detalle = useSelector((state) => state.products.detail);
 
   const handleFav = () => {
     const product = { name, size, price, imagen, id };
@@ -42,15 +42,15 @@ const ProductCard = ({
     }
   };
 
-  const handleAddToShoppingCart = (product) => {
+  const handleAddToShoppingCart = () => {
     if (isSelected === false) {
-      dispatch(addToCart(product));
+      dispatch(addToCart(detalle));
       setIsSelected(true);
     } else if (isSelected === true) {
-      dispatch(deleteToCart(product));
+      dispatch(deleteToCart(detalle));
       setIsSelected(false);
     }
-  };
+  };  
 
   return (
     <div className="animate__animated animate__fadeIn">

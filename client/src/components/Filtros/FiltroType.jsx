@@ -14,8 +14,8 @@ function FiltroType() {
 
   return (
     <div className={styles.filtros}>
-      <select defaultValue="Categorie" name="filterType" onChange={handleOnchange}>
-        <option disabled value="Categorie">Categorie</option>
+      <select defaultValue="Category" name="filterType" onChange={handleOnchange}>
+        <option disabled value="Category">Category</option>
         <option value="">All</option>
         <option value="1">Diving fins</option>
         <option value="2">Wetsuit</option>

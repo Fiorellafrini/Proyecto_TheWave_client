@@ -24,6 +24,9 @@ const LandingPage = () => {
   const handleLogin = () => {
     navgigate("/SectionLogIn");
   };
+  const handleRegister = () => {
+    navgigate("/SectionRegister");
+  };
   const handleLogout = () => {
     window.localStorage.removeItem("login");
     navgigate("/");
@@ -56,7 +59,7 @@ const LandingPage = () => {
                         <li onClick={() => handleLogin("Log in")}>
                           Log in
                         </li>
-                        <li onClick={() => handleNavItemClick("Register")}>
+                        <li onClick={() => handleRegister("Register")}>
                           Register
                         </li>
                       </ul>
