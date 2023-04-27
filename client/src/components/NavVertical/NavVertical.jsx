@@ -3,8 +3,14 @@
 import React from "react";
 import styles from "../NavVertical/NavVertical.module.css";
 import menu from "../../assets/menu.png";
-import scrollDown from "../../assets/scrollDonw.png";
 import { Link } from "react-router-dom";
+
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+};
 
 const NavVertical = () => {
   return (
@@ -16,12 +22,10 @@ const NavVertical = () => {
           </Link>
         </div>
         <div className={styles.item3}>
-          <img src={scrollDown} alt="" />
-          <a className={styles.scrollDown}>
+          <a onClick={scrollToTop} className={styles.scrollDown}>
             <span></span>
           </a>
         </div>
-        <div className={styles.item2}></div>
       </div>
     </>
   );
