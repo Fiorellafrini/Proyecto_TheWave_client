@@ -1,21 +1,13 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addToFav, deleteToFav } from "../../redux/actions";
+import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import styles from "./Favorites.module.css";
 import ProductCard from "../ProductCard/ProductCard";
 import Navigation from "../Navigation/Navigation.jsx";
 
 const Favorites = () => {
-  const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const fav = useSelector((state) => state.products.favorites);
-
-  useEffect(() => {
-    dispatch(deleteToFav());
-    dispatch(addToFav());
-    console.log(fav);
-  }, []);
 
   useEffect(() => {
     setTimeout(() => {
@@ -34,11 +26,12 @@ const Favorites = () => {
           <div className={styles.fila1}>
             <h1 className={styles.name}>Your Favorites</h1>
             <div className={styles.card}>
-              {fav?.map((product) => {
+              {fav?.map((product, i) => {
                 return (
                   product && (
                     <div>
                       <ProductCard
+                        key={i}
                         name={product.name}
                         id={product.id}
                         size={product.size}

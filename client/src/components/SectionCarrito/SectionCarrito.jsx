@@ -49,7 +49,7 @@ const SectionCarrito = () => {
                       imagen={product.imagen}
                       stock={product.stock}
                       quantity={product.quantity}
-                      onDelete={() => handleDelete(product)}
+                      onDelete={() => handleDelete(product.id)}
                     />
                   );
                 })}

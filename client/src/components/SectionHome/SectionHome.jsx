@@ -38,7 +38,7 @@ const SectionHome = () => {
               <div className={styles.imageButtonContainer}>
                 <img src={Geometry} alt="" className={styles.image} />
                 <Link to={"/SectionCategories"}>
-                  <button className={styles.button}>Pay</button>
+                  <button className={styles.button}>view</button>
                 </Link>
               </div>
             </div>

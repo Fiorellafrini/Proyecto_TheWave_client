@@ -51,7 +51,6 @@ const reducer = (state = initialState, action) => {
       };
     //--------------------------------GET_ALL_PRODUCTS--------------------------------\\
     case GET_ALL_PRODUCTS:
-    
       return {
         ...state,
         products: action.payload,
@@ -72,7 +71,7 @@ const reducer = (state = initialState, action) => {
         //     prod.name &&
         //     prod.name.toLowerCase().includes(action.payload.toLowerCase())
         // ),
-        products: action.payload
+        products: action.payload,
       };
 
     //--------------------------------FILTER_BY_NAME_ASC--------------------------------\\
@@ -192,11 +191,12 @@ const reducer = (state = initialState, action) => {
       };
     //--------------------------------DELETE_TO_CART--------------------------------\\
     case DELETE_TO_CART:
+      const deleteCar = state.shoppingCart.filter(
+        (product) => product.id !== action.payload
+      );
       return {
         ...state,
-        shoppingCart: state.shoppingCart.filter(
-          (product) => product !== action.payload
-        ),
+        shoppingCart: deleteCar,
       };
 
     case EMPTY_CART:
@@ -206,20 +206,21 @@ const reducer = (state = initialState, action) => {
           (product) => product !== action.payload
         ),
       };
-    //---------------------------------------------------------------------------------//
+    //--------------------------------ADD_TO_FAV-------------------------------\\
     case ADD_TO_FAV:
       return {
         ...state,
         favorites: [...state.favorites, action.payload],
       };
-
-    //--------------------------------DELETE_TO_CART--------------------------------\\
+    //--------------------------------DELETE_TO_FAV-------------------------------\\
     case DELETE_TO_FAV:
+      const newFavorites = state.favorites.filter(
+        (product) => product.id !== action.payload
+      );
+      console.log(newFavorites);
       return {
         ...state,
-        favorites: state.favorites.filter(
-          (product) => product !== action.payload
-        ),
+        favorites: newFavorites,
       };
     //--------------------------------PAYMENT--------------------------------\\
     case PAYMENT:

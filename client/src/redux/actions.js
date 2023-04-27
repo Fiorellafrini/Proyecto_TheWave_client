@@ -233,9 +233,7 @@ export function filterType(id) {
     }
   };
 }
-
 //---------------------LOGIN---------------------------------------------//
-
 export const registro = (body) => async (dipatch) => {
   const { data } = await axios.post("/user", body);
   return dipatch({
@@ -248,8 +246,8 @@ export const addToCart = (product) => {
   return { type: ADD_TO_CART, payload: product };
 };
 // ----------------------------------DELETE TO CART----------------------------------
-export const deleteToCart = (product) => {
-  return { type: DELETE_TO_CART, payload: product };
+export const deleteToCart = (id) => {
+  return { type: DELETE_TO_CART, payload: id };
 };
 // ----------------------------------PAYMENT----------------------------------
 export const paymentMercadoPago = (body) => {
@@ -288,7 +286,6 @@ export const updateStockDecrement = (id) => async (dispatch) => {
   }
 };
 // -----------------------------------UPDATE_STOCK_PRODUCT_INC-----------------------------------
-
 export const updateStockIncrement = (id) => async (dispatch) => {
   try {
     const response = await axios.get(`/product/${id}`);
@@ -401,6 +398,6 @@ export const addToFav = (product) => {
   return { type: ADD_TO_FAV, payload: product };
 };
 // ----------------------------------DELETE TO CART----------------------------------
-export const deleteToFav = () => {
-  return { type: DELETE_TO_FAV };
+export const deleteToFav = (id) => {
+  return { type: DELETE_TO_FAV, payload: id };
 };
