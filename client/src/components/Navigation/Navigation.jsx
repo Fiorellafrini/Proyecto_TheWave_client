@@ -90,7 +90,7 @@ const Navigation = () => {
                 ) : (
                   <div className={styles.dropdownMenu}>
                     <ul className={styles.menuList}>
-                      <Link to={"/My Profile"}>
+                      <Link to={"/MyProfile"}>
                         <li>My Profile</li>
                       </Link>
                       <li onClick={handleLogout}>Log out</li>

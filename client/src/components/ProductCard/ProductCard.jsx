@@ -43,7 +43,7 @@ const ProductCard = ({
     const product = { name, size, price, imagen, id,  quantity,
       stock, };
     if (isSelected === false) {
-      dispatch(addToCart(detalle));
+      dispatch(addToCart(product));
       setIsSelected(true);
     } else if (isSelected === true) {
       dispatch(deleteToCart(id));
