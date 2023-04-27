@@ -85,7 +85,7 @@ const FormProduct = () => {
           }}
           onSubmit={(values, { setSubmitting, resetForm }) => {
             dispatch(createProduct(values));
-            console.log(values);
+          
             setIsSent(true);
             setSubmitting(false);
             resetForm();

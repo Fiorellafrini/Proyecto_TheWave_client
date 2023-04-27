@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { BiX } from "react-icons/bi";
 import { SiGoogle } from "react-icons/si";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../redux/actions";
 import style from "./login.module.css";
 
@@ -109,6 +109,8 @@ function Login({ isOpen, onClose }) {
                   </div>
                 </div>
                 <div>
+                <Link to={"/forgot-password"}>Forgot password?</Link>
+                <br/>
                   <button
                     className={style.btnsubmit}
                     type="submit"
@@ -131,8 +133,8 @@ function Login({ isOpen, onClose }) {
                 const top = window.screen.height / 2 - height / 2;
 
                 const popup = window.open(
-                  // "http://localhost:3001/auth/google",
-                  "https://proyectothewaveapi-production.up.railway.app/auth/google",
+                  "http://localhost:3001/auth/google",
+                  //"https://proyectothewaveapi-production.up.railway.app/auth/google",
                   "targetWindow",
                   `toolbar=no,
     location=no,
@@ -147,11 +149,8 @@ function Login({ isOpen, onClose }) {
                 );
 
                 window.addEventListener("message", (event) => {
-                  // if (event.origin === "http://localhost:3001"){
-                  if (
-                    event.origin ===
-                    "https://proyectothewaveapi-production.up.railway.app"
-                  ) {
+                  if (event.origin === "http://localhost:3001"){
+                  //if (event.origin === "https://proyectothewaveapi-production.up.railway.app") {
                     if (event.data) {
                       window.localStorage.setItem("login", event.data);
                       popup?.close();
