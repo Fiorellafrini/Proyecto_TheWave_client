@@ -2,9 +2,6 @@ import styled from "styled-components";
 
 import { Link, useLocation } from "react-router-dom";
 
-
-
-
 const Navbar2 = () => {
   const location = useLocation();
   const isHome = location.pathname !== "/profile";
@@ -27,20 +24,18 @@ const Navbar2 = () => {
 };
 
 const Nav2 = styled.nav`
-width:-70px;
+  width: -70px;
   border-botom: 1px solid white;
   background-color: rgb(115, 115, 115);
   padding: 2rem 3rem;
   margin: 0;
   padding: 0;
-
 `;
 
 const Elements = styled.div`
   display: flex;
   justify-content: flex-left;
   align-items: center;
- 
 `;
 
 const Brand = styled.div`
@@ -59,6 +54,5 @@ const Title = styled.div`
   font-size: 30px;
   color: rgb(45, 51, 91);
 `;
-
 
 export default Navbar2;

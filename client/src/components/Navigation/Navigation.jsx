@@ -25,6 +25,7 @@ const Navigation = () => {
   let isLoguin = window.localStorage.getItem("login");
   
   const navegar = useNavigate();
+  
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
@@ -85,7 +86,7 @@ const Navigation = () => {
                   ) : (
                     <div className={styles.dropdownMenu}>
                       <ul className={styles.menuList}>
-                        <Link to={"/My Profile"}>
+                        <Link to={"/MyProfile"}>
                           <li>My Profile</li>
                         </Link>
                         <Link to={"/SectionCarrito"}>
@@ -205,7 +206,7 @@ const Navigation = () => {
               ) : (
                 <div className={styles.dropdownMenu}>
                   <ul className={styles.menuList}>
-                    <Link to={"/My Profile"}>
+                    <Link to={"/MyProfile"}>
                       <li>My Profile</li>
                     </Link>
                     <Link to={"/SectionCarrito"}>
