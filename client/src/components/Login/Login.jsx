@@ -108,6 +108,9 @@ function Login({ isOpen, onClose }) {
                     />
                   </div>
                 </div>
+                <div className={style.link}>
+                  <Link to="/SectionRegister">You are not registered?</Link>
+                </div>
                 <div>
                 <Link to={"/forgot-password"}>Forgot password?</Link>
                 <br/>
@@ -118,7 +121,7 @@ function Login({ isOpen, onClose }) {
                   >
                     Login
                   </button>
-                  {sendForm && <p>"User added successfully"</p>}
+                  {/* {sendForm && <p>"User added successfully"</p>} */}
                 </div>
               </Form>
             )}

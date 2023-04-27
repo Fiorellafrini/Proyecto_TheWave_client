@@ -153,10 +153,26 @@ export function filterType(id) {
 //---------------------LOGIN---------------------------------------------//
 export const registro = (body) => async (dipatch) => {
   const { data } = await axios.post("/user", body);
-  return dipatch({
-    type: "REGISTRO",
-    payload: data,
-  });
+  try {
+    dipatch({
+      type: "REGISTRO",
+      payload: data,
+    });
+    Swal.fire({
+      icon: "success",
+      title: "Register Successful",
+      color: "white",
+      background: "#1e1e1e",
+      confirmButtonColor: '#224145',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Redireccionar a la ruta deseada
+        window.location.href = "/SectionLogIn";
+      }
+    });
+  } catch (error) {
+    
+  }
 };
 // ----------------------------------ADD TO CART-----------------------------------------------//
 export const addToCart = (product) => {
@@ -240,7 +256,7 @@ export const login = (body) => async (dipatch) => {
     });
     Swal.fire({
       icon: "success",
-      title: "Login successful",
+      title: "Login Successful",
       color: "white",
       background: "#1e1e1e",
       showConfirmButton: false,

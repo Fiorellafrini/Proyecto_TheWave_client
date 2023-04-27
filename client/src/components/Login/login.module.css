@@ -88,11 +88,21 @@
   justify-content: center;
   align-items: center;
 }
+
 .access {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+
+.link{
+  margin-bottom: 1rem;
+}
+
+.link a{
+  color: #5edad2;
+}
+
 .error {
   color: red;
 }
