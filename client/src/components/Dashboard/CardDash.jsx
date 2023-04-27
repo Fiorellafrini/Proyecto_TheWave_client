@@ -47,7 +47,7 @@ const CardDash = ({ name, size, price, imagen, id, active }) => {
   };
   
   const cardClassName = `${styles.containerCard} ${
-    !active ? styles.opacidad : ""
+    isDeleted ? styles.opacidad : ""
   }`;
   
   return (
