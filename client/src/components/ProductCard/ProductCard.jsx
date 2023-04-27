@@ -9,7 +9,7 @@ import {
   addToCart,
   deleteToCart,
 } from "../../redux/actions";
-import {  useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { BsBagHeart, BsBagHeartFill } from "react-icons/bs";
 
 const ProductCard = ({

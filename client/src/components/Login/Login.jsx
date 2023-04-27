@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../redux/actions";
 import style from "./login.module.css";
-import { Link } from "react-router-dom";
 
 function Login({ isOpen, onClose }) {
   const dispatch = useDispatch();

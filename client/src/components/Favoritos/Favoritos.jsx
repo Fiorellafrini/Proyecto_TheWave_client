@@ -11,13 +11,6 @@ const Favorites = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const fav = useSelector((state) => state.products.favorites);
-  // console.log(fav);
-
-  useEffect(() => {
-    dispatch(deleteToFav());
-    dispatch(addToFav());
-    // console.log(fav);
-  }, []);
 
   const handleDelete = (product) => {
     dispatch(deleteToFav(product));
