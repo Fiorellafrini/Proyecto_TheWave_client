@@ -1,14 +1,24 @@
 import axios from "axios";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
+import { VscEye } from "react-icons/vsc";
+import { RxEyeClosed } from "react-icons/rx";
 import { useParams } from "react-router";
+import { useNavigate } from "react-router-dom";
 import styles from "./ResetPassword.module.css";
+
 const ResetPassword = () => {
+  const navegate = useNavigate();
   const { id, token } = useParams();
-  const [showPassword, setShowPassword] = useState(false);
+
   const [isSent, setIsSent] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const toggleShowPassword = () => setShowPassword(!showPassword);
-  console.log(id, token);
+  const toggleShowConfirmPassword = () =>
+    setShowConfirmPassword(!showConfirmPassword);
+
   return (
     <Formik
       initialValues={{
@@ -31,11 +41,7 @@ const ResetPassword = () => {
         return errors;
       }}
       onSubmit={async (values, { setSubmitting, resetForm }) => {
-        const { data } = await axios.post(
-          `password/reset/${id}/${token}`,
-          values
-        );
-        console.log(values);
+        const { data } = await axios.post(`password/reset/${id}/${token}`,values);
         setIsSent(true);
         setSubmitting(false);
         resetForm();
@@ -45,31 +51,34 @@ const ResetPassword = () => {
     >
       {({ isSubmitting, errors }) => (
         <Form className={styles.formulario}>
-          <label htmlFor="password">
-            <Field type={showPassword ? "text" : "password"} name="password" />
-            <button type="button" onClick={toggleShowPassword}>
-              {showPassword ? "Hide" : "Show"}
-            </button>
-            <ErrorMessage
-              name="password"
-              component={() => (
-                <div className={styles.error}>{errors.password}</div>
-              )}
-            />
-          </label>
+          <label htmlFor="password">New password</label>
+          <Field type={showPassword ? "text" : "password"} name="password" />
+          <button type="button" onClick={toggleShowPassword}>
+            {showPassword ? <RxEyeClosed /> : <VscEye />}
+          </button>
+          <ErrorMessage
+            name="password"
+            component={() => (
+              <div className={styles.error}>{errors.password}</div>
+            )}
+          />
+
           <br />
-          <label htmlFor="password1">
-            <Field type={showPassword ? "text" : "password"} name="password1" />
-            <button type="button" onClick={toggleShowPassword}>
-              {showPassword ? "Hide" : "Show"}
-            </button>
-            <ErrorMessage
-              name="password1"
-              component={() => (
-                <div className={styles.error}>{errors.password1}</div>
-              )}
-            />
-          </label>
+          <label htmlFor="password1">Confirm new password. *</label>
+          <Field
+            type={showConfirmPassword ? "text" : "password"}
+            name="password1"
+          />
+          <button type="button" onClick={toggleShowConfirmPassword}>
+            {showConfirmPassword ? <RxEyeClosed /> : <VscEye />}
+          </button>
+          <ErrorMessage
+            name="password1"
+            component={() => (
+              <div className={styles.error}>{errors.password1}</div>
+            )}
+          />
+
           <button type="submit" disabled={isSubmitting}>
             Submit
           </button>
