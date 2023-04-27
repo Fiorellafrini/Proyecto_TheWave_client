@@ -9,7 +9,7 @@ const Error404 = () => {
     <div className={style.container}>
       <div className={style.content}>
         <h1 className={style.title}>
-          Oops! There's no one left. Everybody is gone.
+          {/* Oops! There's no one left. Everybody is gone. */}
         </h1>
         <Link to={'/SectionHome'}>
         <button className={style.button}>Go To Home</button>
