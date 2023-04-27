@@ -35,7 +35,7 @@ const SectionCategories = () => {
       ) : (
         <div className={styles.container}>
           <Navigation />
-          <Publicidad/>
+          <Publicidad />
           <div className={styles.products}>
             <div className={styles.bar}>
               <SearchBar />
@@ -51,7 +51,6 @@ const SectionCategories = () => {
                   <option value="nameAsc">A - Z</option>
                   <option value="nameDesc">Z - A</option>
                 </select>
-
                 <select
                   name="orderByPrice"
                   defaultValue="price"

@@ -10,18 +10,24 @@ const Favorites = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const fav = useSelector((state) => state.products.favorites);
+  // console.log(fav);
 
   useEffect(() => {
     dispatch(deleteToFav());
     dispatch(addToFav());
-    console.log(fav);
+    // console.log(fav);
   }, []);
+
+  const handleDelete = (product) => {
+    dispatch(deleteToFav(product));
+  };
 
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 2000);
   }, []);
+
   return (
     <>
       {loading ? (
@@ -35,6 +41,7 @@ const Favorites = () => {
             <h1 className={styles.name}>Your Favorites</h1>
             <div className={styles.card}>
               {fav?.map((product) => {
+                // console.log(product);
                 return (
                   product && (
                     <div>
@@ -45,7 +52,11 @@ const Favorites = () => {
                         price={product.price}
                         imagen={product.imagen ? product.imagen : []}
                         deletePropInFav={false}
+                        key={product.id}
                       />
+                      <button className={styles.buttonx} onClick={() => handleDelete(product)}>
+                        DELETE
+                      </button>
                     </div>
                   )
                 );

@@ -27,10 +27,6 @@
   text-align: center;
 }
 
-.Form p {
-  text-align: center;
-}
-
 .close {
   display: flex;
   justify-content: flex-end;
@@ -95,18 +91,4 @@
 }
 .error {
   color: red;
-}
-
-.icons {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin: 2rem;
-}
-.icons button {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: #db4437;
 }

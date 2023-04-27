@@ -34,39 +34,41 @@ const SectionCarrito = () => {
       ) : (
         <div className={styles.container}>
           <Navigation />
-          <div className={styles.shop}>
-            <div className={styles.shoppingCartContainer}>
-              <h1>Your Shopping Cart</h1>
-              <div className={styles.containerProducts}>
-                {userCartShopping?.map((product, i) => {
-                  return (
-                    <ShoppingCartCard
-                      key={i}
-                      id={product.id}
-                      name={product.name}
-                      price={product.price}
-                      size={product.size}
-                      imagen={product.imagen}
-                      stock={product.stock}
-                      quantity={product.quantity}
-                      onDelete={() => handleDelete(product)}
-                    />
-                  );
-                })}
-              </div>
-              <div className={styles.totalPay}>
-                <p>Total</p>
-                <p>
-                  {userCartShopping.reduce(
-                    (total, product) =>
-                      total + product.price * product.quantity,
-                    0
-                  )}
-                </p>
-              </div>
-              <hr />
-              <div className={styles.pay}>
-                <button onClick={handlePayment}>Pay</button>
+          <div className="animate__animated animate__fadeIn">
+            <div className={styles.shop}>
+              <div className={styles.shoppingCartContainer}>
+                <h1>Your Shopping Cart</h1>
+                <div className={styles.containerProducts}>
+                  {userCartShopping?.map((product, i) => {
+                    return (
+                      <ShoppingCartCard
+                        key={i}
+                        id={product.id}
+                        name={product.name}
+                        price={product.price}
+                        size={product.size}
+                        imagen={product.imagen}
+                        stock={product.stock}
+                        quantity={product.quantity}
+                        onDelete={() => handleDelete(product)}
+                      />
+                    );
+                  })}
+                </div>
+                <div className={styles.totalPay}>
+                  <p>Total</p>
+                  <p>
+                    {userCartShopping.reduce(
+                      (total, product) =>
+                        total + product.price * product.quantity,
+                      0
+                    )}
+                  </p>
+                </div>
+                <hr />
+                <div className={styles.pay}>
+                  <button onClick={handlePayment}>Pay</button>
+                </div>
               </div>
             </div>
           </div>

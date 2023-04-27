@@ -21,6 +21,7 @@ import SectionCarrito from "./components/SectionCarrito/SectionCarrito";
 import SectionRegister from "./components/SectionRegister/SectionRegister";
 import Perfil from "./components/perfil/Perfil";
 
+
 function App() {
   new Cloudinary({
     cloud: {
@@ -38,9 +39,9 @@ function App() {
         <Route path="/SectionHome" element={<SectionHome />}></Route>
         <Route path="/SectionLogIn" element={<Login />}></Route>
         <Route path="/SectionRegister" element={<SectionRegister />}></Route>
-        <Route path="/SectionCategories" element={<SectionCategories />}></Route>
+        <Route path="/SectionCategories"element={<SectionCategories />}></Route>
         {/* <Route path="/Favorites" element={<Favorites />}></Route> */}
-        <Route path="/reset-Password/:id/:token" element={<ResetPassword/>}></Route>
+        <Route path="/reset-password" element={<ResetPassword/>}></Route>
         <Route element={<ProteccionRutas />}>
           <Route path="/SectionCarrito" element={<SectionCarrito />}></Route>
           <Route path="/form" element={<FormProduct />}></Route>

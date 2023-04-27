@@ -1,3 +1,4 @@
+import axios from "axios";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { useParams } from "react-router";
@@ -29,49 +30,52 @@ const ResetPassword = () => {
         }
         return errors;
       }}
-      onSubmit={(values, { setSubmitting, resetForm }) => {
-        /*        dispatch(createProduct(values));
+      onSubmit={async (values, { setSubmitting, resetForm }) => {
+        const { data } = await axios.post(
+          `password/reset/${id}/${token}`,
+          values
+        );
         console.log(values);
         setIsSent(true);
         setSubmitting(false);
         resetForm();
-        navegate("/SectionCategories") */
+        alert(`${data}`);
+        navegate("/SectionCategories");
       }}
     >
-    {({ isSubmitting, errors, setFieldValue }) => (<Form>
-        <label htmlFor="password">
-          <Field  type={showPassword ? 'text' :'password'  } name="password" />
-          <button type="button" onClick={toggleShowPassword}>
-          {showPassword ? 'Hide' : 'Show'}
-        </button>
-          <ErrorMessage 
-                    name="password"
-                    component={() => (
-                      <div  className={styles.error} >{errors.password}</div>
-                    )}
-                  />
-        </label>
-        <br/>
-        <label htmlFor="password1">
-          <Field  type={showPassword ? 'text' :'password'  } name="password1" />
-          <button type="button" onClick={toggleShowPassword}>
-          {showPassword ? 'Hide' : 'Show'}
-        </button>
-          <ErrorMessage 
-                    name="password1"
-                    component={() => (
-                      <div  className={styles.error} >{errors.password1}</div>
-                    )}
-                  />
-        </label>
-        <button type="submit" disabled={isSubmitting}>
-        Submit
-      </button>
-      {isSent && (
-        <p className={styles.exito}>form sent successfully </p>
+      {({ isSubmitting, errors }) => (
+        <Form className={styles.formulario}>
+          <label htmlFor="password">
+            <Field type={showPassword ? "text" : "password"} name="password" />
+            <button type="button" onClick={toggleShowPassword}>
+              {showPassword ? "Hide" : "Show"}
+            </button>
+            <ErrorMessage
+              name="password"
+              component={() => (
+                <div className={styles.error}>{errors.password}</div>
+              )}
+            />
+          </label>
+          <br />
+          <label htmlFor="password1">
+            <Field type={showPassword ? "text" : "password"} name="password1" />
+            <button type="button" onClick={toggleShowPassword}>
+              {showPassword ? "Hide" : "Show"}
+            </button>
+            <ErrorMessage
+              name="password1"
+              component={() => (
+                <div className={styles.error}>{errors.password1}</div>
+              )}
+            />
+          </label>
+          <button type="submit" disabled={isSubmitting}>
+            Submit
+          </button>
+          {isSent && <p className={styles.exito}>form sent successfully </p>}
+        </Form>
       )}
-      </Form>)}
-      
     </Formik>
   );
 };
