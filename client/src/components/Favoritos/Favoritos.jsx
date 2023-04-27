@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToFav, deleteToFav } from "../../redux/actions";
+import { deleteToFav } from "../../redux/actions";
 import { useEffect } from "react";
 import styles from "./Favorites.module.css";
 import ProductCard from "../ProductCard/ProductCard";
@@ -35,7 +35,6 @@ const Favorites = () => {
             <h1 className={styles.name}>Your Favorites</h1>
             <div className={styles.cards}>
               {fav?.map((product) => {
-                // console.log(product);
                 return (
                   product && (
                     <div className={styles.card}>

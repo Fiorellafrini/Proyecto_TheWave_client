@@ -150,9 +150,7 @@ export function filterType(id) {
     }
   };
 }
-
-//---------------------LOGIN-------------------------------------------------------------------//
-
+//---------------------LOGIN---------------------------------------------//
 export const registro = (body) => async (dipatch) => {
   const { data } = await axios.post("/user", body);
   try {
@@ -180,9 +178,9 @@ export const registro = (body) => async (dipatch) => {
 export const addToCart = (product) => {
   return { type: ADD_TO_CART, payload: product };
 };
-// ----------------------------------DELETE TO CART---------------------------------------------//
-export const deleteToCart = (product) => {
-  return { type: DELETE_TO_CART, payload: product };
+// ----------------------------------DELETE TO CART----------------------------------
+export const deleteToCart = (id) => {
+  return { type: DELETE_TO_CART, payload: id };
 };
 // ----------------------------------PAYMENT----------------------------------------------------//
 export const paymentMercadoPago = (body) => {
@@ -220,8 +218,7 @@ export const updateStockDecrement = (id) => async (dispatch) => {
     console.log(error);
   }
 };
-// -----------------------------------UPDATE_STOCK_PRODUCT_INC----------------------------------//
-
+// -----------------------------------UPDATE_STOCK_PRODUCT_INC-----------------------------------
 export const updateStockIncrement = (id) => async (dispatch) => {
   try {
     const response = await axios.get(`/product/${id}`);
@@ -333,9 +330,9 @@ export function googleR() {
 export const addToFav = (product) => {
   return { type: ADD_TO_FAV, payload: product };
 };
-
-export const deleteToFav = (product) => {
-  return { type: DELETE_TO_FAV, payload: product };
+// ----------------------------------DELETE TO CART----------------------------------
+export const deleteToFav = (id) => {
+  return { type: DELETE_TO_FAV, payload: id };
 };
 
 
