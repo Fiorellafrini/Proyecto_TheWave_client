@@ -39,11 +39,15 @@ export const createProduct = (body) => async (dipatch) => {
 // -----------------------------------LIST-PRODUCT-----------------------------------------------------//
 export function listProducts() {
   return async function (dispatch) {
-    var json = await axios.get("/product");
-    return dispatch({
-      type: "GET_ALL_PRODUCTS",
-      payload: json.data,
-    });
+    try {
+      var json = await axios.get("/product");
+      return dispatch({
+        type: "GET_ALL_PRODUCTS",
+        payload: json.data,
+      });
+    } catch (error) {
+      
+    }
   };
 }
 // -----------------------------------FILTER_BY_NAME---------------------------------------------------//
@@ -146,9 +150,7 @@ export function filterType(id) {
     }
   };
 }
-
-//---------------------LOGIN-------------------------------------------------------------------//
-
+//---------------------LOGIN---------------------------------------------//
 export const registro = (body) => async (dipatch) => {
   const { data } = await axios.post("/user", body);
   return dipatch({
@@ -160,9 +162,9 @@ export const registro = (body) => async (dipatch) => {
 export const addToCart = (product) => {
   return { type: ADD_TO_CART, payload: product };
 };
-// ----------------------------------DELETE TO CART---------------------------------------------//
-export const deleteToCart = (product) => {
-  return { type: DELETE_TO_CART, payload: product };
+// ----------------------------------DELETE TO CART----------------------------------
+export const deleteToCart = (id) => {
+  return { type: DELETE_TO_CART, payload: id };
 };
 // ----------------------------------PAYMENT----------------------------------------------------//
 export const paymentMercadoPago = (body) => {
@@ -200,8 +202,7 @@ export const updateStockDecrement = (id) => async (dispatch) => {
     console.log(error);
   }
 };
-// -----------------------------------UPDATE_STOCK_PRODUCT_INC----------------------------------//
-
+// -----------------------------------UPDATE_STOCK_PRODUCT_INC-----------------------------------
 export const updateStockIncrement = (id) => async (dispatch) => {
   try {
     const response = await axios.get(`/product/${id}`);
@@ -313,97 +314,9 @@ export function googleR() {
 export const addToFav = (product) => {
   return { type: ADD_TO_FAV, payload: product };
 };
-
-export const deleteToFav = (product) => {
-  return { type: DELETE_TO_FAV, payload: product };
+// ----------------------------------DELETE TO CART----------------------------------
+export const deleteToFav = (id) => {
+  return { type: DELETE_TO_FAV, payload: id };
 };
 
-//-------------------------------Los filtros cuando quisimos hacerlos desde el back:-------------------//
-//
-// export function filterByNameAsc() {
-//   return async function (dispatch) {
-//     try {
-//       var json = await axios.get("http://localhost:3001/order/name/asc");
-//       return dispatch({
-//         type: "FILTER_BY_ASC",
-//         payload: json.data,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// }
-// export function filterByNameDesc() {
-//   return async function (dispatch) {
-//     try {
-//       var json = await axios.get("http://localhost:3001/order/name/desc");
-//       return dispatch({
-//         type: "FILTER_BY_DESC",
-//         payload: json.data,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// }
 
-// export function orderByName(order) {
-//   return async function (dispatch) {
-//     try {
-//       const response = await axios.get(
-//         `http://localhost:3001/product?sort=${order}`
-//       );
-//       const orderByName = response.data;
-//       return dispatch({
-//         type: "ORDER_BY_NAME",
-//         payload: orderByName,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// }
-// -----------------------------------FILTER_BY_PRICE-----------------------------------
-// export function filterByPriceAsc() {
-//   return async function (dispatch) {
-//     try {
-//       var json = await axios.get("http://localhost:3001/order/price/less");
-//       return dispatch({
-//         type: "FILTER_BY_PRICE_ASC",
-//         payload: json.data,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// }
-// export function filterByPriceDesc() {
-//   return async function (dispatch) {
-//     try {
-//       var json = await axios.get("http://localhost:3001/order/price/higher");
-//       return dispatch({
-//         type: "FILTER_BY_PRICE_DESC",
-//         payload: json.data,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// }
-
-// export function orderByPrice(order) {
-//   return async function (dispatch) {
-//     try {
-//       const response = await axios.get(
-//         `http://localhost:3001/product?sort=${order}`
-//       );
-//       const orderByPrice = response.data;
-//       return dispatch({
-//         type: "ORDER_BY_PRICE",
-//         payload: orderByPrice,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// }

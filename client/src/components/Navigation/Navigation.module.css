@@ -7,11 +7,11 @@
     align-items: center;
     position: relative;
     z-index: 2;
-    animation: nav 1s ease 0s 1 normal forwards;
+    /* animation: nav 1s ease 0s 1 normal forwards; */
 }
 
 .containerNav:hover {
-    /* backdrop-filter: blur(5px); */
+    backdrop-filter: blur(5px);
     position: relative;
     z-index: 2;
 }
@@ -107,7 +107,7 @@ a:visited {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    text-align: center;
+    text-align: end;
     cursor: pointer;
 }
 
@@ -131,7 +131,29 @@ a:visited {
 body::before {
     width: 100%;
 }
-
+.cart {
+    color: #ffffffb7;
+    font-size: 1.20em;
+    cursor: pointer;
+    margin-top: 10px;
+    position: relative;
+}
+.cartCount {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color:#1e5b5b9b;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+  }
 @media screen and (max-width:1200px) {
     .nav {
         display: none;
