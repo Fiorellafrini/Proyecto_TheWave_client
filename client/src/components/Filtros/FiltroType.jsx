@@ -9,7 +9,7 @@ function FiltroType() {
   const handleOnchange = (e) => {
     // e.preventDefault();
     e.target.name === "filterType" && dispatch(filterType(e.target.value));
-    setCurrentPage(1);
+    dispatch(setCurrentPage(1));
   };
 
   return (

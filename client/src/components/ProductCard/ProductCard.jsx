@@ -9,7 +9,7 @@ import {
   addToCart,
   deleteToCart,
 } from "../../redux/actions";
-import { useSelector, useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 import { BsBagHeart, BsBagHeartFill } from "react-icons/bs";
 
 const ProductCard = ({
@@ -26,7 +26,7 @@ const ProductCard = ({
   const [imageSrc] = useState(imagen[0]);
   const dispatch = useDispatch();
   const [isFav, setIsFav] = useState(false);
-  // const fav = useSelector((state) => state.products.favorites);
+
   const [isSelected, setIsSelected] = useState(false);
 
   const detalle = useSelector((state) => state.products.detail);
