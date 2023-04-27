@@ -10,22 +10,29 @@ import styles from "./CardDash.module.css";
 import React, { useState } from "react";
 import durability from "../../assets/durability.png";
 import hurleyCard from "../../assets/hurleyCard.png";
+import { useEffect } from "react";
 
-
-
-import { useNavigate } from 'react-router-dom';
 
 
 
 const CardDash = ({ name, size, price, imagen, id, active }) => {
   const [isDeleted, setIsDeleted] = useState(false);
-  const navigate = useNavigate();
+  
+
+  useEffect(() => {
+    const isDeleted = JSON.parse(localStorage.getItem(`product_${id}`));
+    setIsDeleted(isDeleted || false);
+  }, [id]);
+  
 
   const toggleProductActive = async (id, active) => {
     try {
       await axios.put(`/product/active/${id}`, { active: active });
       setIsDeleted(!isDeleted);
       console.log('Producto eliminado exitosamente');
+  
+      // Guarda el valor en localStorage
+      localStorage.setItem(`product_${id}`, JSON.stringify(!isDeleted));
     } catch (error) {
       console.error('Error al cambiar la activación del producto', error);
     }
@@ -34,11 +41,18 @@ const CardDash = ({ name, size, price, imagen, id, active }) => {
   const onClose = async () => {
     setIsDeleted(false);
     await toggleProductActive(id, true);
+  
+    // Guarda el valor en localStorage
+    localStorage.setItem(`product_${id}`, JSON.stringify(false));
   };
   
   const handleDelete = async () => {
     await toggleProductActive(id, false);
+  
+    // Guarda el valor en localStorage
+    localStorage.setItem(`product_${id}`, JSON.stringify(true));
   };
+  
   
   const handleOnClick = (e) => {
     e.stopPropagation();
@@ -92,7 +106,7 @@ const CardDash = ({ name, size, price, imagen, id, active }) => {
 };
 
 
-
+export default CardDash;
 
 
 
@@ -202,7 +216,7 @@ const CardDash = ({ name, size, price, imagen, id, active }) => {
 //   );
 // };
 
-export default CardDash;
+
 /*
 const Container = styled.div`
   display: flex;
