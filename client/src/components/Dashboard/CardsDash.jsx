@@ -35,15 +35,17 @@ const CardsDash= () => {
         
         {productos.length ? productos
           .map((product) => (
-            <Link to={`/detail/${product.id}`} key={product.id}>
+            // <Link to={`/detail/${product.id}`} key={product.id}>
               <CardDash
                 key={product.id}
+                id={product.id}
                 name={product.name}
                 price={product.price}
                 size={product.size}
                 imagen={product.imagen}
+                
               />
-            </Link>
+            // {/* </Link> */}
           ))
           .slice(firstIndex, lastIndex)
         : <Error404/>}
