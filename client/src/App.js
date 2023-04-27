@@ -11,13 +11,15 @@ import SectionHome from "./components/SectionHome/SectionHome";
 import Favorites from "./components/Favoritos/Favoritos";
 import SectionCarrito from "./components/SectionCarrito/SectionCarrito";
 // import SectionRegister from "./components/SectionRegister/SectionRegister";
-import Register from "./components/Login/Register";
-import HomeDashboard from "./components/Dashboard/HomeDashboard";
-import Estadisticas from "./components/Dashboard/Estadisticas";
-import CardsDash from "./components/Dashboard/CardsDash";
 import { Cloudinary } from "@cloudinary/url-gen";
 import React from "react";
+import CardsDash from "./components/Dashboard/CardsDash";
+import Estadisticas from "./components/Dashboard/Estadisticas";
+import HomeDashboard from "./components/Dashboard/HomeDashboard";
+import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
+import ResetPassword from "./components/ResetPasword/ResetPassword.jsx";
 import Login from "./components/Login/Login";
+import Register from "./components/Login/Register";
 import ProteccionRutas from "./components/Routers/ProteccionRutas";
 import Perfil from "./components/perfil/Perfil";
 import ProteccionRutaAdmin from "./components/Routers/ProteccionRutaAdmin";
@@ -44,7 +46,8 @@ function App() {
         <Route path="/SectionCarrito" element={<SectionCarrito />}></Route>
         <Route path="/detail/:id" element={<Detail />}></Route>
         <Route path="*" element={<Error404 />}></Route>
-
+        <Route path="/forgot-password/" element={<ForgotPassword />}></Route>
+        <Route path="/reset-Password/:id/:token" element={<ResetPassword/>}></Route>
         <Route element={<ProteccionRutas />}>
           <Route path="/Favorites" element={<Favorites />}></Route>
           <Route path="/MyProfile" element={<Perfil />}></Route>
