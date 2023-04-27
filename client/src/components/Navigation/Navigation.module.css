@@ -7,11 +7,11 @@
     align-items: center;
     position: relative;
     z-index: 2;
-    animation: nav 1s ease 0s 1 normal forwards;
+    /* animation: nav 1s ease 0s 1 normal forwards; */
 }
 
 .containerNav:hover {
-    /* backdrop-filter: blur(5px); */
+    backdrop-filter: blur(5px);
     position: relative;
     z-index: 2;
 }

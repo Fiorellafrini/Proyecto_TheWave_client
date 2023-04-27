@@ -1,7 +1,6 @@
 import React from "react";
-import NavVertical from "../NavVertical/NavVertical";
-import SectionLogIn from "../SectionLogIn/SectionLogIn";
-import SectionRegister from "../SectionRegister/SectionRegister";
+// import SectionLogIn from "../SectionLogIn/SectionLogIn";
+// import SectionRegister from "../SectionRegister/SectionRegister";
 import styles from "./LandingPage.module.css";
 import logoPage from "../../assets/logoPage.png";
 import tablaSurf from "../../assets/tablasurf.png";
@@ -10,27 +9,28 @@ import { TfiMenu } from "react-icons/tfi";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 const LandingPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedNavItem, setSelectedNavItem] = useState("Shop");
   let isLoguin = window.localStorage.getItem("login");
-  const navegar = useNavigate();
+  const navgigate = useNavigate();
 
   const toggleDropdown = () => {
-    setIsOpen(!isOpen); 
+    setIsOpen(!isOpen);
   };
   const handleNavItemClick = (item) => {
-    setSelectedNavItem(item); 
+    setSelectedNavItem(item);
   };
-    const handleLogout = () => {
-      window.localStorage.removeItem("login");
-      navegar("/");
-    };
+  const handleLogin = () => {
+    navgigate("/SectionLogIn");
+  };
+  const handleLogout = () => {
+    window.localStorage.removeItem("login");
+    navgigate("/");
+  };
 
   return (
     <div className={styles.containerLanding}>
-      <NavVertical />
       <div className={styles.landing}>
         <div className={styles.navHome}>
           <div className={styles.containerNavBar}>
@@ -53,7 +53,7 @@ const LandingPage = () => {
                         <li onClick={() => handleNavItemClick("About Us")}>
                           About Us
                         </li>
-                        <li onClick={() => handleNavItemClick("Log in")}>
+                        <li onClick={() => handleLogin("Log in")}>
                           Log in
                         </li>
                         <li onClick={() => handleNavItemClick("Register")}>
@@ -119,9 +119,9 @@ const LandingPage = () => {
               </p>
             </div>
           )}
-          {selectedNavItem === "Log in" && <SectionLogIn />}
-          {selectedNavItem === "Register" && <SectionRegister />}
         </div>
+        {/* {selectedNavItem === "Log in" && <SectionLogIn />}
+        {selectedNavItem === "Register" && <SectionRegister />} */}
       </div>
     </div>
   );

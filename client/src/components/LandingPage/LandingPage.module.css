@@ -8,12 +8,12 @@
 
 .landing {
     width: 100%;
+    min-height: 100vh;
     background-image: url(../../assets/pf.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
+    border-radius: 15px;
 }
 
 .navHome {
@@ -24,7 +24,7 @@
     align-items: center;
     position: relative;
     z-index: 2;
-    animation: nav 1s ease 0s 1 normal forwards;
+    /* animation: nav 1s ease 0s 1 normal forwards; */
 }
 
 .containerNavBar {
@@ -171,7 +171,7 @@ body::before {
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: myAnim 1s ease 0s 1 normal forwards;
+    /* animation: myAnim 1s ease 0s 1 normal forwards; */
 }
 
 .imgTabla img {
@@ -182,7 +182,7 @@ body::before {
 .aboutUsP {
     padding: 20px;
     border-radius: 15px;
-    webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
 }
 
 @media screen and (max-width:1500px) {
@@ -256,7 +256,7 @@ body::before {
 		transform: scale(1);
 	}
 }
-@keyframes nav {
+/* @keyframes nav {
 	0% {
 		opacity: 0;
 		transform: translateX(250px);
@@ -266,4 +266,4 @@ body::before {
 		opacity: 1;
 		transform: translateX(0);
 	}
-}
+} */

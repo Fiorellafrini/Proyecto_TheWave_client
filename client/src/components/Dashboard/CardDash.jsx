@@ -73,7 +73,7 @@ const CardDash = ({name, size, price, imagen, id}) => {
         </>
       ) : (
         <>
-            <button className={styles.eliminar} onClick={() => onClose(id)}> Eliminar </button>
+            <button className={styles.eliminar} onClick={() => onClose(id)}> Delete </button>
         </>
       )}
 

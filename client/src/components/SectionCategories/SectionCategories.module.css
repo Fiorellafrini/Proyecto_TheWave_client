@@ -30,9 +30,6 @@
   gap: 30px;
 }
 
-/* .products img {
-    border-radius: 20px;
-} */
 .bar {
   display: flex;
   flex-direction: row-reverse;

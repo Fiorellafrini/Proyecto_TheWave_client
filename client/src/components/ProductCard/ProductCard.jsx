@@ -10,6 +10,7 @@ import {
   deleteToCart,
 } from "../../redux/actions";
 import {  useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 import { BsBagHeart, BsBagHeartFill } from "react-icons/bs";
 
 const ProductCard = ({
@@ -21,6 +22,7 @@ const ProductCard = ({
   quantity,
   stock,
   deletePropInFav = true,
+  handleDelete
 }) => {
   const [imageSrc] = useState(imagen[0]);
   const dispatch = useDispatch();
@@ -109,3 +111,5 @@ const ProductCard = ({
 };
 
 export default ProductCard;
+
+

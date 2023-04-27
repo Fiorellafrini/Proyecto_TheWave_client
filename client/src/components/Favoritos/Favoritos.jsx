@@ -14,6 +14,7 @@ const Favorites = () => {
       setLoading(false);
     }, 2000);
   }, []);
+
   return (
     <>
       {loading ? (
@@ -38,7 +39,11 @@ const Favorites = () => {
                         price={product.price}
                         imagen={product.imagen ? product.imagen : []}
                         deletePropInFav={false}
+                        key={product.id}
                       />
+                      <button className={styles.buttonx} onClick={() => handleDelete(product)}>
+                        DELETE
+                      </button>
                     </div>
                   )
                 );
