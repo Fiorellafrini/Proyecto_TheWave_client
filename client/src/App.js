@@ -10,7 +10,8 @@ import SectionHome from "./components/SectionHome/SectionHome";
 // import SectionLogIn from "./components/SectionLogIn/SectionLogIn";
 import Favorites from "./components/Favoritos/Favoritos";
 import SectionCarrito from "./components/SectionCarrito/SectionCarrito";
-import SectionRegister from "./components/SectionRegister/SectionRegister";
+// import SectionRegister from "./components/SectionRegister/SectionRegister";
+import Register from "./components/Login/Register";
 import HomeDashboard from "./components/Dashboard/HomeDashboard";
 import Estadisticas from "./components/Dashboard/Estadisticas";
 import CardsDash from "./components/Dashboard/CardsDash";
@@ -31,26 +32,22 @@ function App() {
   const location = useLocation();
   return (
     <div className="App">
-      {![
-        "/",
-        "/SectionLogIn",
-        "/SectionRegister",
-        "/form",
-        "/SectionCarrito",
-      ].includes(location.pathname) && <NavVertical />}
+      {["/SectionHome","/SectionCategories","/Favorites"].includes(
+        location.pathname
+      ) ? <NavVertical /> : null}
       <Routes>
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="/SectionHome" element={<SectionHome />}></Route>
         <Route path="/SectionLogIn" element={<Login />}></Route>
-        <Route path="/SectionRegister" element={<SectionRegister />}></Route>
-        <Route path="/SectionCategories" element={<SectionCategories />}></Route>
+        <Route path="/SectionRegister" element={<Register />}></Route>
+        <Route path="/SectionCategories"  element={<SectionCategories />}></Route>
         <Route path="/SectionCarrito" element={<SectionCarrito />}></Route>
         <Route path="/detail/:id" element={<Detail />}></Route>
         <Route path="*" element={<Error404 />}></Route>
 
         <Route element={<ProteccionRutas />}>
           <Route path="/Favorites" element={<Favorites />}></Route>
-          <Route path="/My Profile" element={<Perfil />}></Route>
+          <Route path="/MyProfile" element={<Perfil />}></Route>
         </Route>
 
         <Route element={<ProteccionRutaAdmin />}>

@@ -15,23 +15,23 @@ p {
 body {
   background-color: #1e1e1e;
 }
+
 .App {
   padding: 15px;
   display: flex;
 }
-  ::-webkit-scrollbar {
-    width: 0px;
-    height: 0px;
-    background-color: rgb(224, 223, 223);
-  }
 
-  ::-webkit-scrollbar-thumb {
-    background: rgb(140, 136, 132);
-    border-radius: 5px;
-  }
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  background-color: rgb(224, 223, 223);
+}
 
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgb(74, 70, 66);
-  }
+::-webkit-scrollbar-thumb {
+  background: rgb(140, 136, 132);
+  border-radius: 5px;
+}
 
-
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(74, 70, 66);
+}

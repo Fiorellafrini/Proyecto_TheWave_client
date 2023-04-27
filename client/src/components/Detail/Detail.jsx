@@ -5,8 +5,16 @@ import { paymentMercadoPago } from "../../redux/actions";
 import { addToCart, deleteToCart, productsById } from "../../redux/actions.js";
 import Navigation from "../Navigation/Navigation.jsx";
 import styles from "./Detail.module.css";
-import master from "./iconos/master.png";
-import visa from "./iconos/visa.png";
+import talleS from "../../assets/talleS.png";
+import talleM from "../../assets/talleM.png";
+import talleL from "../../assets/talleL.png";
+import talleXL from "../../assets/talleXL.png";
+import hurley from "../../assets/hurley.png";
+import billabong from "../../assets/billabong.png";
+import vesl from "../../assets/vesl.png";
+import russel from "../../assets/russel.png";
+import target1 from "../Detail/iconos/master.png";
+import target2 from "../Detail/iconos/visa.png";
 
 function Detail() {
   const dispatch = useDispatch();
@@ -42,6 +50,8 @@ function Detail() {
     }
   };
 
+  const nombreEnMayusculas = detalle?.name?.toUpperCase();
+
   return (
     <>
       {loading ? (
@@ -51,85 +61,70 @@ function Detail() {
       ) : (
         <div className={styles.container}>
           <Navigation />
-          <div className={styles.cuadrado1}>
-            <div className={styles.imag}>
-              {detalle.imagen?.map((imagen, i) => (
-                <div className={styles.imagenT}>
-                  <img key={i} src={imagen} alt="imagen" />
-                </div>
-              ))}
-              <div className={styles.granImagen}>
-                {detalle.imagen?.map((imagen, i) => (
-                  <img key={i} src={i === 0 ? imagen : null} alt="" />
-                ))}
-              </div>
-              <div className={styles.pago}>
-                <h2 id={styles.megusta}>.</h2>
-                <h1 id={styles.name}>
-                  <b>{detalle?.name}</b>
-                </h1>
-                <p id={styles.precio}>
-                  <b>$ {detalle?.price} ARS</b>
-                </p>
-                <span>
-                  <b>Size {detalle?.size}</b>
-                </span>
-                <div className={styles.metodo}>
-                  <p id={styles.cuotas}>
-                    <b>Payment methods</b>
-                  </p>
-                  <img src={visa} alt="visa" />
-                  <img src={master} alt="card" />
-                </div>
-                <p id={styles.envio}>Free shipping nationwide</p>
-                <p id={styles.devolucion}>free return</p>
-                <p id={styles.dias}>You have 30 days from when you receive it.</p>
-                <button id={styles.comprar} onClick={handlePayment}>
-                  PAY
-                </button>
-                {isSelected ? (
-                  <button id={styles.carrito} onClick={addToShoppingCart}>
-                    REMOVE FROM CART
-                  </button>
-                ) : (
-                  <button id={styles.carrito} onClick={addToShoppingCart}>
-                    ADD TO CART
-                  </button>
-                )}
-                <p id={styles.protegida}>
-                  <b>Protected Purchase</b>, receive the product you expected{" "}
-                  <br /> or we will refund your money.
-                </p>
-                <p id={styles.garantia}>
-                  <b>90 days factory warranty.</b>
-                </p>
-              </div>
+          <div className={styles.detailContainer}>
+            <div className={styles.talles}>
+              {detalle.size === "S" && <img src={talleS} alt="Talle S" />}
+              {detalle.size === "M" && <img src={talleM} alt="Talle M" />}
+              {detalle.size === "L" && <img src={talleL} alt="Talle L" />}
+              {detalle.size === "XL" && <img src={talleXL} alt="Talle XL" />}
             </div>
-            <div className={styles.comentario}>
-              <h2>
-                <b>About this article</b>
-              </h2>
-              <ul>
-                <li>{detalle?.description}</li>
-                <li>
-                  Dimensions: 8 ft x 22 1/2 x 3 1/4 <br />
-                  Dimensions: 8 ft x 22 1/2 x 3 1/4 <br />
-                  weight 11.5 pounds Volume 86 liters capacity <br /> of
-                  suggested weight up to 200 pounds
-                </li>
-
-                <li>
-                  Soft Webs-IXL Water Barrier Skin Crosslink
-                  Soft Webs-IXL Water Barrier Skin Crosslink
-                  <br />
-                  Top Deck and Rils High density HDPE PE Skin <br />
-                  Slick Bottom Skin
-                  <br />
-                  Slick Bottom Skin
-                  <br />
-                  Exclusive Brushed Color Graphic Art Deck
-                </li>
-              </ul>
+            <div className={styles.detailInfo}>
+              <div className={styles.col1}>
+                {detalle.id_brand === 1 && <img src={hurley} alt="hurley" />}
+                {detalle.id_brand === 3 && <img src={vesl} alt="vesl" />}
+                {detalle.id_brand === 4 && (
+                  <img style={{ width: "100px" }} src={russel} alt="russel" />
+                )}
+                {detalle.id_brand === 6 && <h2>JOBE</h2>}
+                {detalle.id_brand === 9 && (
+                  <img src={billabong} alt="billabong" />
+                )}
+                <div className={styles.containerInfo}>
+                  <h2>{nombreEnMayusculas}</h2>
+                  <p className={styles.star}>★★★★★</p>
+                  <h2>${detalle.price}</h2>
+                  <p>{detalle.description}</p>
+                </div>
+                <div className={styles.cards}>
+                  <p>-Free shipping nationwide</p>
+                  <p>-free return</p>
+                  <p>-30 days factory warranty.</p>
+                  <p>-You have 30 days from when you receive it.</p>
+                </div>
+                <div className={styles.cards}>
+                  <p style={{ color: "#224145" }}>Payment methods:</p>
+                  <img src={target1} alt="" />
+                  <img src={target2} alt="" />
+                </div>
+                <div className={styles.containerPago}>
+                  <button onClick={handlePayment}>PAY</button>
+                  {isSelected ? (
+                    <button onClick={addToShoppingCart}>REMOVE</button>
+                  ) : (
+                    <button onClick={addToShoppingCart}>ADD TO CART</button>
+                  )}
+                </div>
+              </div>
+              <div className={styles.col2}>
+                {detalle.id_type === 1 && (
+                  <h1 style={{ fontSize: "210px" }}>Diving Fins</h1>
+                )}
+                {detalle.id_type === 2 && (
+                  <h1 style={{ fontSize: "200px" }}>Wetsuit</h1>
+                )}
+                {detalle.id_type === 3 && (
+                  <h1 style={{ fontSize: "140px" }}>Stand Up Paddle</h1>
+                )}
+                {detalle.id_type === 4 && (
+                  <h1 style={{ fontSize: "210px" }}>Surf Board</h1>
+                )}
+                {detalle.id_type === 5 && (
+                  <h1 style={{ fontSize: "9.5vw" }}>Wakeboard</h1>
+                )}
+                <div className={styles.detailImagen}>
+                  <img src={detalle.imagen[0]} alt="" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
