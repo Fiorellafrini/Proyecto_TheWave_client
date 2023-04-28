@@ -41,7 +41,7 @@ const Favorites = () => {
                       <div className={styles.delete}>
                       <button
                         className={styles.button}
-                        onClick={() => handleDelete(product)}
+                        onClick={() => handleDelete(product.id)}
                       >
                         <BsHeartbreakFill />
                       </button>
