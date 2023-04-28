@@ -27,6 +27,7 @@ export const REGISTRO = "REGISTRO";
 export const LOGINGOOGLE = "LOGINGOOGLE";
 export const LOGINFACEBOOK = "LOGINFACEBOOK";
 export const RGOOGLE = "RGOOGLE";
+export const PUTUSER = "PUTUSER";
 
 //-------------------------------------------CREATE PRODUCT---------------------------------------------------------//
 export const createProduct = (body) => async (dipatch) => {
@@ -153,10 +154,26 @@ export function filterType(id) {
 //---------------------LOGIN---------------------------------------------//
 export const registro = (body) => async (dipatch) => {
   const { data } = await axios.post("/user", body);
-  return dipatch({
-    type: "REGISTRO",
-    payload: data,
-  });
+  try {
+    dipatch({
+      type: "REGISTRO",
+      payload: data,
+    });
+    Swal.fire({
+      icon: "success",
+      title: "Register Successful",
+      color: "white",
+      background: "#1e1e1e",
+      confirmButtonColor: '#224145',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Redireccionar a la ruta deseada
+        window.location.href = "/SectionLogIn";
+      }
+    });
+  } catch (error) {
+    
+  }
 };
 // ----------------------------------ADD TO CART-----------------------------------------------//
 export const addToCart = (product) => {
@@ -240,7 +257,7 @@ export const login = (body) => async (dipatch) => {
     });
     Swal.fire({
       icon: "success",
-      title: "Login successful",
+      title: "Login Successful",
       color: "white",
       background: "#1e1e1e",
       showConfirmButton: false,
@@ -260,56 +277,6 @@ export const login = (body) => async (dipatch) => {
   }
 };
 
-export function google() {
-  return async function (dispatch) {
-    try {
-      const { data } = axios
-        .get("/auth/google")
-        .then((response) => {
-          const { token } = response.data;
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-      console.log(data);
-      return dispatch({
-        type: "LOGINGOOGLE",
-        payload: data,
-      });
-    } catch (error) {
-      alert("laruta no esta autorizada");
-    }
-  };
-}
-
-export function facebook() {
-  return async function (dispatch) {
-    try {
-      const { data } = await axios.get(`/auth/facebook`);
-      return dispatch({
-        type: "LOGINFACEBOOK",
-        payload: data,
-      });
-    } catch (error) {
-      alert("laruta no rata autorizada");
-    }
-  };
-}
-
-export function googleR() {
-  return async function (dispatch) {
-    try {
-      const { data } = await axios.get(`/auth/google/callback`);
-      return dispatch({
-        type: "RGOOGLE",
-        payload: data,
-      });
-    } catch (error) {
-      alert("laruta no rata autorizada");
-    }
-  };
-}
-
 //-------------------------------------FAVORITOS-----------------------------------------------------//
 export const addToFav = (product) => {
   return { type: ADD_TO_FAV, payload: product };
@@ -320,3 +287,13 @@ export const deleteToFav = (id) => {
 };
 
 
+//---------------------------------------PUT USER --------------------------------------------------//
+
+export const putUser = (id, body, token) => async (dispatch) => {
+  // const authToken =  window.localStorage.getItem("login");
+  const { data } = await axios.put(`/user/${id}`, body);
+  return dispatch({
+    type: PUTUSER,
+    payload: data,
+  });
+};

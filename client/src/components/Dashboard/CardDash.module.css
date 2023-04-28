@@ -115,20 +115,36 @@
   -moz-box-shadow: 7px 14px 12px 0px rgba(0, 0, 0, 0.37);
 }
 
-.eliminar {
-  font-family: "Work Sans";
-  font-size: 1rem;
-  display: inline-block;
-  transform: translatex(0px) translatey(0px);
-  left: 38px;
-  top: 21px;
-  z-index: 62;
-  width: 106px;
-  height: 37px;
-  cursor: pointer;
-  position: relative;
-  background: rgba(3, 42, 43, 0.4);
-  border-radius: 20px;
-  color: white;
-  text-decoration: none;
-}
+.eliminar  {
+        font-family: 'Work Sans';
+        font-size: 1rem;
+        display: inline-block;
+        transform: translatex(0px) translatey(0px);
+        left: 38px;
+        top: 21px;
+        z-index: 62;
+        width: 106px;
+        height: 37px;
+        cursor: pointer;
+        position: relative;
+        background: rgba(3, 42, 43, 0.4);
+        border-radius: 20px;
+        color: white;
+        text-decoration: none;
+        /* position: absolute;
+        top: 10px;
+        right: 10px; */
+    }
+
+
+    .opacidad {
+        opacity: 0.5;
+      }
+      
+
+
+
+
+
+
+
