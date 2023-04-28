@@ -1,67 +1,81 @@
 import React from "react";
-import NavVertical from "../NavVertical/NavVertical";
-import SectionLogIn from "../SectionLogIn/SectionLogIn";
-import SectionRegister from "../SectionRegister/SectionRegister";
+// import SectionLogIn from "../SectionLogIn/SectionLogIn";
+// import SectionRegister from "../SectionRegister/SectionRegister";
 import styles from "./LandingPage.module.css";
 import logoPage from "../../assets/logoPage.png";
 import tablaSurf from "../../assets/tablasurf.png";
 import { Link } from "react-router-dom";
 import { TfiMenu } from "react-icons/tfi";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedNavItem, setSelectedNavItem] = useState("Shop");
+  let isLoguin = window.localStorage.getItem("login");
+  const navgigate = useNavigate();
 
   const toggleDropdown = () => {
-    setIsOpen(!isOpen); // Invertimos el estado actual de isOpen al hacer clic en el botón
+    setIsOpen(!isOpen);
   };
   const handleNavItemClick = (item) => {
-    setSelectedNavItem(item); // actualizamos el estado con la opción seleccionada
+    setSelectedNavItem(item);
+  };
+  const handleLogin = () => {
+    navgigate("/SectionLogIn");
+  };
+  const handleRegister = () => {
+    navgigate("/SectionRegister");
+  };
+  const handleLogout = () => {
+    window.localStorage.removeItem("login");
+    navgigate("/");
   };
 
   return (
     <div className={styles.containerLanding}>
-      <NavVertical />
       <div className={styles.landing}>
         <div className={styles.navHome}>
-          <div className={styles.containerItems}>
-            <div
-              className={styles.navItems}
-              onClick={() => handleNavItemClick("Shop")}
-            >
-              <p>Shop</p>{" "}
+          <div className={styles.containerNavBar}>
+            <div className={styles.col}>
+              <img src={logoPage} alt="" />
             </div>
-            <div
-              className={styles.navItems}
-              onClick={() => handleNavItemClick("About Us")}
-            >
-              <p>About Us</p>
-            </div>
-          </div>
-          <div className={styles.user}>
-            <img src={logoPage} alt="" />
-            <p>Autentificacion</p>
-            <div className={styles.dropdown}>
-              <button
-                className={styles.dropdownToggle}
-                onClick={toggleDropdown}
-              >
-                <TfiMenu />
-              </button>
-              {isOpen && (
-                <div className={styles.dropdownMenu}>
-                  <ul className={styles.menuList}>
-                    <li onClick={() => handleNavItemClick("Shop")}>Shop</li>
-                    <li onClick={() => handleNavItemClick("About Us")}>
-                      About Us
-                    </li>
-                    <li onClick={() => handleNavItemClick("Log in")}>Log in</li>
-                    <li onClick={() => handleNavItemClick("Register")}>Register</li>
-                    <li>Authentication</li>
-                  </ul>
-                </div>
-              )}
+            <div className={styles.col}>
+              <div className={styles.dropdown}>
+                <button
+                  className={styles.dropdownToggle}
+                  onClick={toggleDropdown}
+                >
+                  <TfiMenu />
+                </button>
+                {isOpen &&
+                  (!isLoguin ? (
+                    <div className={styles.dropdownMenu}>
+                      <ul className={styles.menuList}>
+                        <li onClick={() => handleNavItemClick("Shop")}>Shop</li>
+                        <li onClick={() => handleNavItemClick("About Us")}>
+                          About Us
+                        </li>
+                        <li onClick={() => handleLogin("Log in")}>
+                          Log in
+                        </li>
+                        <li onClick={() => handleRegister("Register")}>
+                          Register
+                        </li>
+                      </ul>
+                    </div>
+                  ) : (
+                    <div className={styles.dropdownMenu}>
+                      <ul className={styles.menuList}>
+                        <li onClick={() => handleNavItemClick("Shop")}>Shop</li>
+                        <li onClick={() => handleNavItemClick("About Us")}>
+                          About Us
+                        </li>
+                        <button onClick={handleLogout}>Log out</button>
+                      </ul>
+                    </div>
+                  ))}
+              </div>
             </div>
           </div>
         </div>
@@ -87,30 +101,31 @@ const LandingPage = () => {
             <div className={styles.titulo}>
               <h1>About Us</h1>
               <p className={styles.aboutUsP}>
-                Bienvenido a nuestra tienda online de productos náuticos,
-                especializada en surf. Somos apasionados por el mar y los
-                deportes acuáticos, y queremos compartir nuestra pasión contigo
-                ofreciéndote los mejores productos para disfrutar de tus
-                sesiones de surf. En nuestra tienda encontrarás una amplia
-                selección de productos de alta calidad, desde tablas de surf y
-                accesorios, hasta trajes de neopreno y complementos para
-                protegerte del sol y el viento. Trabajamos con las mejores
-                marcas del mercado, garantizándote productos duraderos y de
-                excelente rendimiento. Además, contamos con un equipo de
-                expertos en surf que estarán encantados de asesorarte y ayudarte
-                en todo lo que necesites para elegir el equipo perfecto para ti.
-                Ofrecemos envío gratuito en pedidos superiores a cierta
-                cantidad, y estamos comprometidos con la satisfacción de
-                nuestros clientes, por lo que si no estás satisfecho con tu
-                compra, puedes devolverla sin problemas. Únete a nuestra
-                comunidad de surfistas y descubre lo que tenemos para ofrecerte.
-                ¡Gracias por elegirnos!
+              Welcome to our online store of nautical products,
+                specialized in surfing. We are passionate about the sea and the
+                water sports, and we want to share our passion with you
+                offering you the best products to enjoy your
+                surf sessions. In our store you will find a wide
+                selection of high quality products, from surfboards and
+                accessories, even wetsuits and accessories for
+                protect you from the sun and wind. We work with the best
+                brands in the market, guaranteeing you long-lasting and high-quality products.
+                excellent performance. In addition, we have a team of
+                surf experts who will be happy to advise and help you
+                in everything you need to choose the perfect equipment for you.
+                We offer free shipping on orders over a certain
+                quantity, and we are committed to the satisfaction of
+                our customers, so if you are not satisfied with your
+                purchase, you can return it without problems. join our
+                surfing community and discover what we have to offer you.
+               
+                Thank you for choosing us!
               </p>
             </div>
           )}
-          {selectedNavItem === "Log in" && <SectionLogIn />}
-          {selectedNavItem === "Register" && <SectionRegister />}
         </div>
+        {/* {selectedNavItem === "Log in" && <SectionLogIn />}
+        {selectedNavItem === "Register" && <SectionRegister />} */}
       </div>
     </div>
   );

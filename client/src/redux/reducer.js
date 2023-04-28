@@ -4,10 +4,6 @@ import {
   GET_All_TYPES,
   GET_ALL_BRANDS,
   FILTER_BY_NAME,
-  // FILTER_BY_ASC,
-  // FILTER_BY_DESC,
-  // FILTER_BY_PRICE_ASC,
-  // FILTER_BY_PRICE_DESC,
   ORDER_BY_NAME,
   ORDER_BY_PRICE,
   FILTER_BRAND,
@@ -45,15 +41,14 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    //--------------------------------POST_PRODUCT--------------------------------\\
+    //--------------------------------POST_PRODUCT---------------------------------------------\\
     case POST_PRODUCT:
       return {
         ...state,
         products: [...state.products, action.payload],
       };
-    //--------------------------------GET_ALL_PRODUCTS--------------------------------\\
+    //--------------------------------GET_ALL_PRODUCTS-----------------------------------------\\
     case GET_ALL_PRODUCTS:
-    
       return {
         ...state,
         products: action.payload,
@@ -70,42 +65,13 @@ const reducer = (state = initialState, action) => {
     //     allProduct: action.payload,
 
     //   }
-    //--------------------------------FILTER_BY_NAME--------------------------------\\
-    // case FILTER_BY_NAME:
-    //   return {
-    //     ...state,
-    //     products: action.payload,
-    //   };
-
+    //--------------------------------FILTROS--------------------------------------------------\\
     case FILTER_BY_NAME:
       return {
         ...state,
-        // products: state.allProduct.filter(
-        //   (prod) =>
-        //     prod.name &&
-        //     prod.name.toLowerCase().includes(action.payload.toLowerCase())
-        // ),
-        products: action.payload
+        products: action.payload,
       };
 
-    //--------------------------------FILTER_BY_NAME_ASC--------------------------------\\
-    // case FILTER_BY_ASC:
-    //   return {
-    //     ...state,
-    //     products: action.payload,
-    //   };
-    //--------------------------------FILTER_BY_NAME_DESC--------------------------------\\
-    // case FILTER_BY_DESC:
-    //   return {
-    //     ...state,
-    //     products: action.payload,
-    //   };
-    //--------------------------------ORDER_BY_NAME--------------------------------\\
-    // case ORDER_BY_NAME:
-    //   return {
-    //     ...state,
-    //     products: action.payload,
-    //   };
     case ORDER_BY_NAME:
       return {
         ...state,
@@ -126,24 +92,6 @@ const reducer = (state = initialState, action) => {
           return 0;
         }),
       };
-    //--------------------------------FILTER_BY_PRICE_ASC--------------------------------\\
-    // case FILTER_BY_PRICE_ASC:
-    //   return {
-    //     ...state,
-    //     products: action.payload,
-    //   };
-    //--------------------------------FILTER_BY_PRICE_DESC--------------------------------\\
-    // case FILTER_BY_PRICE_DESC:
-    //   return {
-    //     ...state,
-    //     products: action.payload,
-    //   };
-    //--------------------------------ORDER_BY_PRICE--------------------------------\\
-    // case ORDER_BY_PRICE:
-    //   return {
-    //     ...state,
-    //     products: action.payload,
-    //   };
 
     case ORDER_BY_PRICE:
       const sortName = [...state.products].sort((a, b) => {
@@ -161,7 +109,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         products: sortName,
       };
-    //-----------------------------------------------------------------------------\\
+
     case GET_All_TYPES:
       return {
         ...state,
@@ -205,11 +153,12 @@ const reducer = (state = initialState, action) => {
       };
     //--------------------------------DELETE_TO_CART--------------------------------\\
     case DELETE_TO_CART:
+      const deleteCar = state.shoppingCart.filter(
+        (product) => product.id !== action.payload
+      );
       return {
         ...state,
-        shoppingCart: state.shoppingCart.filter(
-          (product) => product !== action.payload
-        ),
+        shoppingCart: deleteCar,
       };
 
     case EMPTY_CART:
@@ -219,28 +168,30 @@ const reducer = (state = initialState, action) => {
           (product) => product !== action.payload
         ),
       };
-    //---------------------------------------------------------------------------------//
+    //--------------------------------ADD_TO_FAV-------------------------------\\
     case ADD_TO_FAV:
       return {
         ...state,
         favorites: [...state.favorites, action.payload],
       };
-
-    //--------------------------------DELETE_TO_CART--------------------------------\\
+    //--------------------------------DELETE_TO_FAV-------------------------------\\
     case DELETE_TO_FAV:
+      const newFavorites = state.favorites.filter(
+        (product) => product.id !== action.payload
+      );
+      console.log(newFavorites);
       return {
         ...state,
-        favorites: state.favorites.filter(
-          (product) => product !== action.payload
-        ),
+        favorites: newFavorites,
       };
-    //--------------------------------PAYMENT--------------------------------\\
+
+    //--------------------------------PAYMENT------------------------------------------------------\\
     case PAYMENT:
       return {
         ...state,
         shoppingCart: action.payload,
       };
-    //--------------------------------UPDATE_STOCK_PRODUCT_DEC--------------------------------\\
+    //--------------------------------UPDATE_STOCK_PRODUCT_DEC----------------------------------------\\
     case UPDATE_STOCK_PRODUCT_DEC:
       const updatedProductDec = action.payload;
       const updatedProductsDec = state.products.map((product) => {
@@ -254,7 +205,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         products: updatedProductsDec,
       };
-    //--------------------------------UPDATE_STOCK_PRODUCT_INC--------------------------------\\
+    //--------------------------------UPDATE_STOCK_PRODUCT_INC---------------------------------------\\
     case UPDATE_STOCK_PRODUCT_INC:
       const updatedProductInc = action.payload;
       const updatedProductsInc = state.products.map((product) => {
@@ -268,7 +219,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         products: updatedProductsInc,
       };
-    //--------------------------------INCREMENT_QUANTITY--------------------------------\\
+    //--------------------------------INCREMENT_QUANTITY------------------------------------------------\\
     case INCREMENT_QUANTITY:
       const id = action.payload;
       const currentQuantity =
@@ -286,7 +237,7 @@ const reducer = (state = initialState, action) => {
         shoppingCart: updatedCart,
       };
 
-    //--------------------------------DECREMENT_QUANTITY--------------------------------\\
+    //--------------------------------DECREMENT_QUANTITY-----------------------------------------------\\
     case DECREMENT_QUANTITY:
       const idLess = action.payload;
       const currentQuantityLess =
@@ -317,3 +268,42 @@ const reducer = (state = initialState, action) => {
 };
 
 export default reducer;
+
+//----------------------------------------FILTROS PARA HACERLOS DESDE EL BACK-------------------------//
+
+//--------------------------------FILTER_BY_NAME_ASC--------------------------------------------------\\
+// case FILTER_BY_ASC:
+//   return {
+//     ...state,
+//     products: action.payload,
+//   };
+//--------------------------------FILTER_BY_NAME_DESC--------------------------------------------------\\
+// case FILTER_BY_DESC:
+//   return {
+//     ...state,
+//     products: action.payload,
+//   };
+//--------------------------------ORDER_BY_NAME--------------------------------------------------------\\
+// case ORDER_BY_NAME:
+//   return {
+//     ...state,
+//     products: action.payload,
+//   };
+//--------------------------------FILTER_BY_PRICE_ASC----------------------------------------------------\\
+// case FILTER_BY_PRICE_ASC:
+//   return {
+//     ...state,
+//     products: action.payload,
+//   };
+//--------------------------------FILTER_BY_PRICE_DESC--------------------------------------------------\\
+// case FILTER_BY_PRICE_DESC:
+//   return {
+//     ...state,
+//     products: action.payload,
+//   };
+//--------------------------------ORDER_BY_PRICE-----------------------------------------------------\\
+// case ORDER_BY_PRICE:
+//   return {
+//     ...state,
+//     products: action.payload,
+//   };

@@ -9,13 +9,12 @@
     height: 70px;
     bottom: 0;
     right: 0;
-    padding: 10px 20px;
     margin: 40px;
     border: none;
     color: white;
     font-family: 'Work Sans';
     font-size: 1.2em;
-    background-color: #33cc99ca;
+    background-color: #1e5b5bdc;
     border-radius: 15px;
     cursor: pointer;
 }
@@ -43,3 +42,12 @@
     color: black;
     font-weight: 700;
 }
+
+@media only screen and (min-width: 481px) and (max-width: 1024px) {
+    /* Estilos para tabletas */
+    .buttonCourses {
+      font-size: 1em;
+      width: 150px;
+      height: 50px;
+    }
+  }

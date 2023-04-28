@@ -1,0 +1,77 @@
+.contenedor_todo {
+  width: 100%;
+  height: 100vh;
+  background-image: url(../../assets/surfing.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contenedor {
+  background: rgba(3, 42, 43, 0.322);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+  border-radius: 15px;
+  padding: 50px;
+  width: 60rem;
+}
+
+.contenedor img {
+  width: 200px;
+}
+
+.contenedor2 {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.editar h1 {
+  text-align: center;
+}
+.editar hr {
+  margin-bottom: 1rem;
+}
+
+.editar button {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  margin-left: 5rem;
+  background: #104243;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.formulario div {
+  margin-bottom: 1rem;
+}
+
+.formulario input {
+  outline: none;
+  width: 20rem;
+  border-radius: 5px;
+  border: none;
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+.error {
+  color: red;
+  width: 20rem;
+}
+
+@media only screen and (min-width: 481px) and (max-width: 1024px) {
+  /* Estilos para tabletas */
+  .contenedor {
+    gap: 20px;
+    width: 40rem;
+    flex-direction: column;
+  }
+}

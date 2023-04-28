@@ -7,7 +7,7 @@ function FiltroMarca() {
 
     const handleOnchange =(e)=>{
         dispatch(filterBrand(e.target.value))
-        setCurrentPage(1)
+        dispatch(setCurrentPage(1));
     }
 
   return (

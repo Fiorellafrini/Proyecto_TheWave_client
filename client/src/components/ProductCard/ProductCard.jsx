@@ -21,14 +21,12 @@ const ProductCard = ({
   quantity,
   stock,
   deletePropInFav = true,
+  handleDelete
 }) => {
   const [imageSrc] = useState(imagen[0]);
   const dispatch = useDispatch();
   const [isFav, setIsFav] = useState(false);
-  const fav = useSelector((state) => state.products.favorites);
   const [isSelected, setIsSelected] = useState(false);
-
-  // const detalle = useSelector((state) => state.products.detail);
 
   const handleFav = () => {
     const product = { name, size, price, imagen, id };
@@ -36,20 +34,22 @@ const ProductCard = ({
       dispatch(addToFav(product));
       setIsFav(true);
     } else if (isFav === true) {
-      dispatch(deleteToFav(product));
+      dispatch(deleteToFav(id));
       setIsFav(false);
     }
   };
 
-  const handleAddToShoppingCart = (product) => {
+  const handleAddToShoppingCart = () => {
+    const product = { name, size, price, imagen, id,  quantity,
+      stock, };
     if (isSelected === false) {
       dispatch(addToCart(product));
       setIsSelected(true);
     } else if (isSelected === true) {
-      dispatch(deleteToCart(product));
+      dispatch(deleteToCart(id));
       setIsSelected(false);
     }
-  };
+  };  
 
   return (
     <div className={styles.containerCard}>
@@ -96,37 +96,11 @@ const ProductCard = ({
           )}
           <div className={styles.fila3}>
             {isSelected ? (
-              <button
-                onClick={() =>
-                  handleAddToShoppingCart({
-                    name,
-                    size,
-                    price,
-                    imagen,
-                    id,
-                    quantity,
-                    stock,
-                  })
-                }
-              >
+              <button onClick={handleAddToShoppingCart}>
                 REMOVE FROM CART
               </button>
             ) : (
-              <button
-                onClick={() =>
-                  handleAddToShoppingCart({
-                    name,
-                    size,
-                    price,
-                    imagen,
-                    id,
-                    quantity,
-                    stock,
-                  })
-                }
-              >
-                ADD TO CART
-              </button>
+              <button onClick={handleAddToShoppingCart}>ADD TO CART</button>
             )}
           </div>
         </div>
@@ -136,3 +110,5 @@ const ProductCard = ({
 };
 
 export default ProductCard;
+
+

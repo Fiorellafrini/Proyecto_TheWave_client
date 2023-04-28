@@ -1,3 +1,8 @@
+.linkk {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 .linkk a{
     text-decoration: none;
 }

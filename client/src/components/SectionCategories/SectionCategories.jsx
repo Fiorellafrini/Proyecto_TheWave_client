@@ -8,6 +8,7 @@ import Infinite from "../InfiniteScroll/InfiniteScroll";
 import FiltroMarca from "../Filtros/FiltroMarca";
 import FiltroType from "../Filtros/FiltroType";
 import Navigation from "../Navigation/Navigation";
+import Publicidad from "../Publicidad/Publicidad";
 
 const SectionCategories = () => {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ const SectionCategories = () => {
       ) : (
         <div className={styles.container}>
           <Navigation />
+          <Publicidad />
           <div className={styles.products}>
             <div className={styles.bar}>
               <SearchBar />
@@ -49,7 +51,6 @@ const SectionCategories = () => {
                   <option value="nameAsc">A - Z</option>
                   <option value="nameDesc">Z - A</option>
                 </select>
-
                 <select
                   name="orderByPrice"
                   defaultValue="price"
