@@ -2,7 +2,7 @@ import axios from "axios";
 import styles from "./CardDash.module.css";
 import React, {useState} from "react";
 import durability from "../../assets/durability.png";
-import hurleyCard from "../../assets/hurleyCard.png";
+//import hurleyCard from "../../assets/hurleyCard.png";
 
 const CardDash = ({name, size, price, imagen, id}) => {
   const [imageSrc] = useState(imagen[0]);
@@ -16,7 +16,8 @@ const CardDash = ({name, size, price, imagen, id}) => {
        .then((response) => {
          console.log(response.data);
        });
-   };
+  };
+  
  const onClose = async () => {
      if (isDeleted) {
        setIsdeleted(false);
@@ -27,61 +28,24 @@ const CardDash = ({name, size, price, imagen, id}) => {
      }
   };
 
-//   return (
-//     <div>
-      // {isDeleted ? (
-      //   <>
-      //     <button onClick={() => onClose(id)}> Restaurar </button>
-      //     <ImageWrapper>
-      //       <ImageBYC
-      //         src={imagen[0]}
-      //         alt="imagen"     
-      //         onError={(e) => (e.target.src = `${Error}`)}
-      //       />
-      //     </ImageWrapper>
-      //   </>
-      // ) : (
-      //   <>
-      //     <button onClick={() => onClose(id)}> Eliminar </button>
-      //     <ImageWrapper>
-      //       <Image
-      //         src={imagen[0]}
-      //         alt="imagen"
-      //         onError={(e) => (e.target.src = `${Error}`)}
-      //       />
-      //     </ImageWrapper>
-      //   </>
-      // )}
-
-//       <Details>
-//         <Location>
-//           {name}, {size}, {imagen}
-//         </Location>
-//         <Price>${price}</Price>
-//       </Details>
-//     </div>
-//   );
-// };
-
-// import {Link} from "react-router-dom";
 
   return (
     <div className={styles.containerCard}>
         {isDeleted ? (
         <>
-          <button onClick={() => onClose(id)}> Restaurar </button>
+          <button className={styles.eliminar} onClick={() => onClose(id)}> In stock </button>
         </>
       ) : (
         <>
-            <button className={styles.eliminar} onClick={() => onClose(id)}> Eliminar </button>
+            <button className={styles.eliminar} onClick={() => onClose(id)}> Out stock </button>
         </>
       )}
 
-        <div className={styles.cuadrado1}>
-          <div className={styles.imgCuadrado1}>
+        {/* <div className={styles.cuadrado1}>
+           <div className={styles.imgCuadrado1}>
             <img src={hurleyCard} alt="#" />
-          </div>
-        </div>
+          </div> 
+        </div> */}
         <div className={styles.cuadrado2}>
           <div className={styles.col1}>
             <img src={imageSrc} alt={name} />

@@ -18,14 +18,20 @@ export const DELETE_TO_CART = "DELETE_TO_CART";
 export const EMPTY_CART = "EMPTY CART";
 export const INCREMENT_QUANTITY = "INCREMENT_QUANTITY";
 export const DECREMENT_QUANTITY = "DECREMENT_QUANTITY";
-export const PAYMENT = "PAYMENT";export const ADD_TO_FAV="ADD_TO_FAV";
-export const DELETE_TO_FAV="DELETE_TO_FAV"
+export const PAYMENT = "PAYMENT";
+export const ADD_TO_FAV = "ADD_TO_FAV";
+export const DELETE_TO_FAV = "DELETE_TO_FAV";
+export const STOCKS_PRODUCTS = "STOCKS_PRODUCTS";
+export const GET_USERS = "GET_USERS";
+
 
 export const LOGIN = "LOGIN";
 export const REGISTRO = "REGISTRO";
 export const LOGINGOOGLE = "LOGINGOOGLE";
 export const LOGINFACEBOOK = "LOGINFACEBOOK";
 export const RGOOGLE = "RGOOGLE";
+
+
 export const createProduct = (body) => async (dipatch) => {
   const { data } = await axios.post("/product", body);
   return dipatch({
@@ -43,6 +49,39 @@ export function listProducts() {
     });
   };
 }
+//-------------------------------------LIST IN STOCK - OUT STOCK-------------------
+// export function stocksProducts(id) {
+//   return async function (dispatch) {
+//     const response = await axios.put(`/product/${id}`);
+//     return dispatch({
+//       type: "STOCKS_PRODUCTS",
+//       payload: response.data
+//     }) 
+//   }
+// }
+
+
+
+
+
+
+// export const updateStockIncrement = (id) => async (dispatch) => {
+//   try {
+//     const response = await axios.get(`/product/${id}`);
+//     const currentStockValue = response.data.stock;
+
+//     const newStockValue = currentStockValue + 1;
+
+//     const updateResponse = await axios.put(`/product/${id}`, {
+//       stock: newStockValue,
+//     });
+
+//     dispatch({ type: UPDATE_STOCK_PRODUCT_DEC, payload: updateResponse.data });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
 // -----------------------------------FILTER_BY_NAME-----------------------------------
 export function filterByName(payload) {
   return async function (dispatch) {
@@ -237,6 +276,8 @@ export const addToCart = (product) => {
 export const deleteToCart = (product) => {
   return { type: DELETE_TO_CART, payload: product };
 };
+
+
 // ----------------------------------PAYMENT----------------------------------
 export const paymentMercadoPago = (body) => {
   return async (dispatch) => {
@@ -372,4 +413,15 @@ export const addToFav = (product) => {
 // ----------------------------------DELETE TO CART----------------------------------
 export const deleteToFav = () => {
   return { type: DELETE_TO_FAV };
+}
+//----------------------------------------------GET USERS----------------------------------//
+
+export function getUsers() {
+  return async function (dispatch) {
+    var json = await axios.get("/user");
+    return dispatch({
+      type: "GET_USERS",
+      payload: json.data,
+    });
+  };
 }

@@ -17,7 +17,7 @@
     align-items: center;
 }
 
-.imgCuadrado1 {
+/* .imgCuadrado1 {
     margin: 20px;
     width: 50%;
     display: flex;
@@ -27,7 +27,7 @@
 
 .imgCuadrado1 img {
     width: 100px;
-}
+} */
 
 .cuadrado2 {
     padding: 10px;
