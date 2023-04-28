@@ -66,7 +66,7 @@ const Navigation = () => {
                   className={styles.dropdownToggle}
                   onClick={toggleDropdown}
                 >
-                  <img src={user.photo ? user.photo : perfil} alt="foto" />
+                  <img src={user.photo ? user?.photo : perfil} alt="#" />
                 </button>
                 {isOpen &&
                   (!isLoguin ? (
@@ -93,6 +93,9 @@ const Navigation = () => {
                           <li>Shopping Cart</li>
                         </Link>
                         <button onClick={handleLogout}>Log out</button>
+                        <Link to={"/admin"}>
+                          <li>Dashboard</li>
+                        </Link>
                       </ul>
                     </div>
                   ))}

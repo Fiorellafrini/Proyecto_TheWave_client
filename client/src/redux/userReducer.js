@@ -1,9 +1,7 @@
 import {
   REGISTRO,
-  LOGINGOOGLE,
   LOGIN,
-  LOGINFACEBOOK,
-  RGOOGLE,
+  PUTUSER
 } from "./actions";
 
 const initialState = {
@@ -24,20 +22,10 @@ const authReducer = (state = initialState, action) => {
         ...state,
         logui: window.localStorage.setItem("login", JSON.stringify(action.payload))
       };
-    case LOGINGOOGLE:
+    case PUTUSER:
       return {
         ...state,
-       logui: window.localStorage.setItem("login", JSON.stringify(action.payload))
-      };
-    case LOGINFACEBOOK:
-      return {
-        ...state,
-        logui: window.localStorage.setItem("login", JSON.stringify(action.payload))
-      };
-    case RGOOGLE:
-      return {
-        ...state,
-        google: action.payload,
+        user: action.payload,
       };
     default:
       return state;
