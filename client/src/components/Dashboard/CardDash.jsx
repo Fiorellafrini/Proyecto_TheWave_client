@@ -1,10 +1,3 @@
-// import axios from "axios";
-// import styles from "./CardDash.module.css";
-// import React, {useState} from "react";
-// import durability from "../../assets/durability.png";
-// import hurleyCard from "../../assets/hurleyCard.png";
-
-
 import axios from "axios";
 import styles from "./CardDash.module.css";
 import React, { useState } from "react";
@@ -13,15 +6,13 @@ import hurleyCard from "../../assets/hurleyCard.png";
 import { useEffect } from "react";
 
 
-
-
 const CardDash = ({ name, size, price, imagen, id, active }) => {
   const [isDeleted, setIsDeleted] = useState(false);
   
 
   useEffect(() => {
     const isDeleted = JSON.parse(localStorage.getItem(`product_${id}`));
-    setIsDeleted(isDeleted || false);
+    setIsDeleted(isDeleted || false); // si el valor recuperado es null o algún otro valor falsy, entonces false se utilizará como valor predeterminado 
   }, [id]);
   
 
@@ -29,12 +20,12 @@ const CardDash = ({ name, size, price, imagen, id, active }) => {
     try {
       await axios.put(`/product/active/${id}`, { active: active });
       setIsDeleted(!isDeleted);
-      console.log('Producto eliminado exitosamente');
+      console.log('successfully modified product');
   
       // Guarda el valor en localStorage
       localStorage.setItem(`product_${id}`, JSON.stringify(!isDeleted));
     } catch (error) {
-      console.error('Error al cambiar la activación del producto', error);
+      console.error('Error changing product activation', error);
     }
   };
   
