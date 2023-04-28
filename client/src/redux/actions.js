@@ -151,23 +151,37 @@ export function filterType(id) {
     }
   };
 }
-
-//---------------------LOGIN-------------------------------------------------------------------//
-
+//---------------------LOGIN---------------------------------------------//
 export const registro = (body) => async (dipatch) => {
   const { data } = await axios.post("/user", body);
-  return dipatch({
-    type: "REGISTRO",
-    payload: data,
-  });
+  try {
+    dipatch({
+      type: "REGISTRO",
+      payload: data,
+    });
+    Swal.fire({
+      icon: "success",
+      title: "Register Successful",
+      color: "white",
+      background: "#1e1e1e",
+      confirmButtonColor: '#224145',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Redireccionar a la ruta deseada
+        window.location.href = "/SectionLogIn";
+      }
+    });
+  } catch (error) {
+    
+  }
 };
 // ----------------------------------ADD TO CART-----------------------------------------------//
 export const addToCart = (product) => {
   return { type: ADD_TO_CART, payload: product };
 };
-// ----------------------------------DELETE TO CART---------------------------------------------//
-export const deleteToCart = (product) => {
-  return { type: DELETE_TO_CART, payload: product };
+// ----------------------------------DELETE TO CART----------------------------------
+export const deleteToCart = (id) => {
+  return { type: DELETE_TO_CART, payload: id };
 };
 // ----------------------------------PAYMENT----------------------------------------------------//
 export const paymentMercadoPago = (body) => {
@@ -205,8 +219,7 @@ export const updateStockDecrement = (id) => async (dispatch) => {
     console.log(error);
   }
 };
-// -----------------------------------UPDATE_STOCK_PRODUCT_INC----------------------------------//
-
+// -----------------------------------UPDATE_STOCK_PRODUCT_INC-----------------------------------
 export const updateStockIncrement = (id) => async (dispatch) => {
   try {
     const response = await axios.get(`/product/${id}`);
@@ -244,7 +257,7 @@ export const login = (body) => async (dipatch) => {
     });
     Swal.fire({
       icon: "success",
-      title: "Login successful",
+      title: "Login Successful",
       color: "white",
       background: "#1e1e1e",
       showConfirmButton: false,
@@ -268,9 +281,9 @@ export const login = (body) => async (dipatch) => {
 export const addToFav = (product) => {
   return { type: ADD_TO_FAV, payload: product };
 };
-
-export const deleteToFav = (product) => {
-  return { type: DELETE_TO_FAV, payload: product };
+// ----------------------------------DELETE TO CART----------------------------------
+export const deleteToFav = (id) => {
+  return { type: DELETE_TO_FAV, payload: id };
 };
 
 

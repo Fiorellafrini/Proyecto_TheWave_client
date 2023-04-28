@@ -30,23 +30,23 @@ const CardsDash = () => {
         loader={productos.length >= productos ? "" : <h4>Loading...</h4>}
       > */}
       <section className={styles.linkk}>
-        {productos.length ? (
-          productos
-            .map((product) => (
-              <Link to={`/detail/${product.id}`} key={product.id}>
-                <CardDash
-                  key={product.id}
-                  name={product.name}
-                  price={product.price}
-                  size={product.size}
-                  imagen={product.imagen}
-                />
-              </Link>
-            ))
-            .slice(firstIndex, lastIndex)
-        ) : (
-          <Error404 />
-        )}
+        
+        {productos.length ? productos
+          .map((product) => (
+            // <Link to={`/detail/${product.id}`} key={product.id}>
+              <CardDash
+                key={product.id}
+                id={product.id}
+                name={product.name}
+                price={product.price}
+                size={product.size}
+                imagen={product.imagen}
+                
+              />
+            // {/* </Link> */}
+          ))
+          .slice(firstIndex, lastIndex)
+        : <Error404/>}
       </section>
       {/* </InfiniteScroll> */}
     </>

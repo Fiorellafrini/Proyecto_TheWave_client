@@ -140,11 +140,12 @@ const reducer = (state = initialState, action) => {
       };
     //--------------------------------DELETE_TO_CART--------------------------------\\
     case DELETE_TO_CART:
+      const deleteCar = state.shoppingCart.filter(
+        (product) => product.id !== action.payload
+      );
       return {
         ...state,
-        shoppingCart: state.shoppingCart.filter(
-          (product) => product !== action.payload
-        ),
+        shoppingCart: deleteCar,
       };
 
     case EMPTY_CART:
@@ -154,21 +155,21 @@ const reducer = (state = initialState, action) => {
           (product) => product !== action.payload
         ),
       };
-    //---------------------------FAVORITES------------------------------------------------------//
+    //--------------------------------ADD_TO_FAV-------------------------------\\
     case ADD_TO_FAV:
       return {
         ...state,
         favorites: [...state.favorites, action.payload],
       };
-
-
-      
+    //--------------------------------DELETE_TO_FAV-------------------------------\\
     case DELETE_TO_FAV:
+      const newFavorites = state.favorites.filter(
+        (product) => product.id !== action.payload
+      );
+      console.log(newFavorites);
       return {
         ...state,
-        favorites: state.favorites.filter(
-          (product) => product !== action.payload
-        ),
+        favorites: newFavorites,
       };
 
     //--------------------------------PAYMENT------------------------------------------------------\\

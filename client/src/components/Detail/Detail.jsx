@@ -40,12 +40,12 @@ function Detail() {
   }, [dispatch, id]);
 
   //------------------------------addToCart------------------------------\\
-  const addToShoppingCart = (product) => {
+  const addToShoppingCart = () => {
     if (isSelected === false) {
       dispatch(addToCart(detalle));
       setIsSelected(true);
     } else if (isSelected === true) {
-      dispatch(deleteToCart(detalle));
+      dispatch(deleteToCart(detalle.id));
       setIsSelected(false);
     }
   };
@@ -89,7 +89,6 @@ function Detail() {
                   <p>-Free shipping nationwide</p>
                   <p>-free return</p>
                   <p>-30 days factory warranty.</p>
-                  <p>-You have 30 days from when you receive it.</p>
                 </div>
                 <div className={styles.cards}>
                   <p style={{ color: "#224145" }}>Payment methods:</p>

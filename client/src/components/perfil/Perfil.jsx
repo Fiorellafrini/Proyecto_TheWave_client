@@ -216,7 +216,7 @@ function Perfil() {
                     type="submit"
                     disabled={isSubmitting}
                   >
-                    Send
+                    Confirm
                   </button>
                   <button onClick={handleNavigate}>Cancel</button>
                 </Form>
