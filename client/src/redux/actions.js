@@ -28,7 +28,7 @@ export const LOGINGOOGLE = "LOGINGOOGLE";
 export const LOGINFACEBOOK = "LOGINFACEBOOK";
 export const RGOOGLE = "RGOOGLE";
 export const PUTUSER = "PUTUSER";
-
+export const GET_BY_ID = "GET_BY_ID";
 //-------------------------------------------CREATE PRODUCT---------------------------------------------------------//
 export const createProduct = (body) => async (dipatch) => {
   const { data } = await axios.post("/product", body);
@@ -297,3 +297,15 @@ export const putUser = (id, body, token) => async (dispatch) => {
     payload: data,
   });
 };
+
+export function userById(id) {
+  return async function (dispatch) {
+    try {
+      var json = await axios.get(`/user/${id}`);
+      return dispatch({
+        type: "GET_BY_ID",
+        payload: json.data,
+      });
+    } catch (error) {}
+  };
+}

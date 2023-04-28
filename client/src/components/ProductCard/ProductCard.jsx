@@ -9,9 +9,9 @@ import {
   addToCart,
   deleteToCart,
 } from "../../redux/actions";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { BsBagHeart, BsBagHeartFill } from "react-icons/bs";
-
+import { useNavigate } from "react-router-dom";
 const ProductCard = ({
   name,
   size,
@@ -27,7 +27,8 @@ const ProductCard = ({
   const dispatch = useDispatch();
   const [isFav, setIsFav] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
-
+  const navigate = useNavigate();
+  let token = window.localStorage.getItem("login");
   const handleFav = () => {
     const product = { name, size, price, imagen, id };
     if (isFav === false) {
@@ -51,6 +52,16 @@ const ProductCard = ({
     }
   };  
 
+    const handleSinPermisos = () => {
+      alert("You need to be logged in to be able to add to favorites");
+      navigate("/SectionRegister");
+    };
+    const handleSinPermisosAñadir = () => {
+      alert(
+        "You need to be logged in to be able to add products to the shopping cart"
+      );
+      navigate("/SectionRegister");
+    };
   return (
     <div className={styles.containerCard}>
       <div className={styles.cuadrado1}>
@@ -78,11 +89,17 @@ const ProductCard = ({
             </div>
             {deletePropInFav &&
               (isFav ? (
-                <button id={styles.carrito} onClick={handleFav}>
+                <button
+                  id={styles.carrito}
+                  onClick={!token ? handleSinPermisos : handleFav}
+                >
                   <BsBagHeartFill />
                 </button>
               ) : (
-                <button id={styles.carrito} onClick={handleFav}>
+                <button
+                  id={styles.carrito}
+                  onClick={!token ? handleSinPermisos : handleFav}
+                >
                   <BsBagHeart />
                 </button>
               ))}
@@ -96,11 +113,21 @@ const ProductCard = ({
           )}
           <div className={styles.fila3}>
             {isSelected ? (
-              <button onClick={handleAddToShoppingCart}>
+              <button
+                onClick={
+                  !token ? handleSinPermisosAñadir : handleAddToShoppingCart
+                }
+              >
                 REMOVE FROM CART
               </button>
             ) : (
-              <button onClick={handleAddToShoppingCart}>ADD TO CART</button>
+              <button
+                onClick={
+                  !token ? handleSinPermisosAñadir : handleAddToShoppingCart
+                }
+              >
+                ADD TO CART
+              </button>
             )}
           </div>
         </div>

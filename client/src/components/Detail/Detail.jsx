@@ -15,14 +15,14 @@ import vesl from "../../assets/vesl.png";
 import russel from "../../assets/russel.png";
 import target1 from "../Detail/iconos/master.png";
 import target2 from "../Detail/iconos/visa.png";
-
+import { useNavigate } from "react-router-dom";
 function Detail() {
   const dispatch = useDispatch();
   const detalle = useSelector((state) => state.products.detail);
   const [isSelected, setIsSelected] = useState(false);
-
+  const navigate = useNavigate();
   const { id } = useParams();
-
+  let token = window.localStorage.getItem("login");
   const [loading, setLoading] = useState(true);
 
   const handlePayment = () => {
@@ -52,6 +52,16 @@ function Detail() {
 
   const nombreEnMayusculas = detalle?.name?.toUpperCase();
 
+  const handleSinPermisos =()=>{
+    alert("You need to be logged in to be able to buy");
+    navigate("/SectionRegister");
+  }
+    const handleSinPermisosAñadir = () => {
+      alert(
+        "You need to be logged in to be able to add products to the shopping cart"
+      );
+      navigate("/SectionRegister");
+    };
   return (
     <>
       {loading ? (
@@ -96,11 +106,22 @@ function Detail() {
                   <img src={target2} alt="" />
                 </div>
                 <div className={styles.containerPago}>
-                  <button onClick={handlePayment}>PAY</button>
+                  <button onClick={!token ? handleSinPermisos : handlePayment}>
+                    PAY
+                  </button>
+
                   {isSelected ? (
-                    <button onClick={addToShoppingCart}>REMOVE</button>
+                    <button
+                      onClick={!token ? handleSinPermisosAñadir : addToShoppingCart}
+                    >
+                      REMOVE
+                    </button>
                   ) : (
-                    <button onClick={addToShoppingCart}>ADD TO CART</button>
+                    <button
+                      onClick={!token ? handleSinPermisosAñadir : addToShoppingCart}
+                    >
+                      ADD TO CART
+                    </button>
                   )}
                 </div>
               </div>
