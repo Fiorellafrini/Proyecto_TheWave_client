@@ -5,48 +5,49 @@ import styles from "./Perfil.module.css";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import "animate.css";
-
+import {putUser} from '../../redux/actions.js'
+import {useDispatch} from 'react-redux'
 function Perfil() {
   const navigate = useNavigate();
   const handleNavigate = () => navigate("/SectionHome");
   let token = window.localStorage.getItem("login");
-  
-  const user  = jwt(token);
+  const user = jwt(token);
+  const dispatch = useDispatch();
 
+  // Función para manejar la carga de imágenes
+  const handleImageUpload = async (e, setFieldValue) => {
+    const files = e.target.files;
+    const formData = new FormData();
+    formData.append("file", files[0]);
+    formData.append("upload_preset", "thewave"); // Reemplaza con tu upload preset de Cloudinary
 
+    // Realizar la petición de carga de imagen a Cloudinary
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/djngalumm/image/upload", // Reemplaza con tu cloud name de Cloudinary
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+    const data = await res.json();
 
-    const handleImageUpload = async (e, setFieldValue) => {
-      const files = e.target.files;
-      const formData = new FormData();
-      formData.append("file", files[0]);
-      formData.append("upload_preset", "thewave"); // Reemplaza con tu upload preset de Cloudinary
-
-      // Realizar la petición de carga de imagen a Cloudinary
-      const res = await fetch(
-        "https://api.cloudinary.com/v1_1/djngalumm/image/upload", // Reemplaza con tu cloud name de Cloudinary
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-      const data = await res.json();
-      console.log(data);
-
-      // Actualizar los valores de imagen en el formulario
-      setFieldValue("imagen[0]", data.secure_url);
-      // setFieldValue("imagen[1]", data.secure_url);
-    };
-
+    // Actualizar los valores de imagen en el formulario
+    setFieldValue("photo", data.secure_url);
+    // setFieldValue("imagen[1]", data.secure_url);
+  };
 
   return (
     <div className={styles.contenedor_todo}>
       <div className="animate__animated animate__fadeIn">
         <div className={styles.contenedor}>
           <div className={styles.contenedor2}>
-            <img src={user.photo ? user.photo : perfil} alt="foto" />
+            <img src={user.photo ? user?.photo : perfil} alt="#" />
             <h2>{user.name + " " + user.lastName}</h2>
             <h2>{user.email}</h2>
           </div>
+
+
+
           <div className={styles.editar}>
             <h1>Edit Profile</h1>
             <hr />
@@ -96,11 +97,12 @@ function Perfil() {
                 return errors;
               }}
               onSubmit={(values, { resetForm, setSubmitting }) => {
+                dispatch(putUser(user.id, values));
                 resetForm();
                 setSubmitting(false);
               }}
             >
-              {({ errors, isSubmitting }) => (
+              {({ errors, isSubmitting, setFieldValue }) => (
                 <Form className={styles.formulario}>
                   <div>
                     <Field
@@ -133,11 +135,12 @@ function Perfil() {
                     />
                   </div>
                   <div>
-                    <Field
+                    <input
                       className="inputs"
                       type="file"
                       id="photo"
                       name="photo"
+                      onChange={(e) => handleImageUpload(e, setFieldValue)}
                     />
                     <ErrorMessage
                       name="photo"

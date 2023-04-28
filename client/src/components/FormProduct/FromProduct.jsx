@@ -6,12 +6,7 @@ import { createProduct } from "../../redux/actions";
 import Navigation from "../Navigation/Navigation";
 import styles from "./FromProduct.module.css";
 
-// cloudinary.config({
-// cloud_name: 'djngalumm',
-// api_key: '897654326791657',
-// api_secret: 'UfU4nbhH4-ud3S3bYVrv-U4lICo',
-// // CLOUDINARY_URL=cloudinary://897654326791657:UfU4nbhH4-ud3S3bYVrv-U4lICo@djngalumm
-// });
+
 
 const FormProduct = () => {
   const [isSent, setIsSent] = useState(false);
@@ -34,7 +29,7 @@ const FormProduct = () => {
       }
     );
     const data = await res.json();
-    console.log(data);
+
 
     // Actualizar los valores de imagen en el formulario
     setFieldValue("imagen[0]", data.secure_url);
@@ -106,17 +101,7 @@ const FormProduct = () => {
                   />
                 </label>
 
-                {/* <label>
-                Imagen
-                <Field type="url" name="imagen[0]" />
-                <Field type="url" name="imagen[1]" />
-                <ErrorMessage
-                  name="imagen"
-                  component={() => (
-                    <div className={styles.error}>{errors.imagen}</div>
-                  )}
-                />
-              </label> */}
+          
                 <label>
                   Image
                   <input
