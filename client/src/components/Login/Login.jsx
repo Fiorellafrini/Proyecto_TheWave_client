@@ -110,10 +110,10 @@ function Login({ isOpen, onClose }) {
                 </div>
                 <div className={style.link}>
                   <Link to="/SectionRegister">You are not registered?</Link>
+                  <Link to={"/forgot-password"}>Forgot password?</Link>
                 </div>
                 <div>
-                <Link to={"/forgot-password"}>Forgot password?</Link>
-                <br/>
+                  <br />
                   <button
                     className={style.btnsubmit}
                     type="submit"
@@ -135,11 +135,11 @@ function Login({ isOpen, onClose }) {
                 const left = window.screen.width / 2 - width / 2;
                 const top = window.screen.height / 2 - height / 2;
 
-  const popup = window.open(
-    // "http://localhost:3001/auth/google",
-    "https://proyectothewaveapi-production.up.railway.app/auth/google",
-    "targetWindow",
-    `toolbar=no,
+                const popup = window.open(
+                  // "http://localhost:3001/auth/google",
+                  "https://proyectothewaveapi-production.up.railway.app/auth/google",
+                  "targetWindow",
+                  `toolbar=no,
     location=no,
     status=no,
     menubar=no,
@@ -151,25 +151,28 @@ function Login({ isOpen, onClose }) {
     top=${top}`
                 );
 
-  window.addEventListener("message", event => {
-    // if (event.origin === "http://localhost:3001"){
-      if (event.origin === "https://proyectothewaveapi-production.up.railway.app") {
-        if (event.data) {
-          window.localStorage.setItem("login", event.data);
-          popup?.close();
-          navigate("/SectionHome");
-        }
-      }
-  });
-}}
-          >
-            <SiGoogle size={25} />
-          </button>
-          {/* <p>Google</p> */}
-          <p>Facebook</p>
+                window.addEventListener("message", (event) => {
+                  // if (event.origin === "http://localhost:3001"){
+                  if (
+                    event.origin ===
+                    "https://proyectothewaveapi-production.up.railway.app"
+                  ) {
+                    if (event.data) {
+                      window.localStorage.setItem("login", event.data);
+                      popup?.close();
+                      navigate("/SectionHome");
+                    }
+                  }
+                });
+              }}
+            >
+              <SiGoogle size={25} />
+            </button>
+            {/* <p>Google</p> */}
+            <p>Facebook</p>
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 }
