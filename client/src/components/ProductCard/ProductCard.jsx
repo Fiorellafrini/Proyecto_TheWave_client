@@ -10,8 +10,9 @@ import {
   deleteToCart,
 } from "../../redux/actions";
 import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { BsBagHeart, BsBagHeartFill } from "react-icons/bs";
-
+import { useNavigate } from "react-router-dom";
 const ProductCard = ({
   name,
   size,
@@ -27,7 +28,8 @@ const ProductCard = ({
   const dispatch = useDispatch();
   const [isFav, setIsFav] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
-
+  const navigate = useNavigate();
+  let token = window.localStorage.getItem("login");
   const handleFav = () => {
     const product = { name, size, price, imagen, id };
     if (isFav === false) {
@@ -50,6 +52,16 @@ const ProductCard = ({
     }
   };
 
+    const handleSinPermisos = () => {
+      alert("You need to be logged in to be able to add to favorites");
+      navigate("/SectionRegister");
+    };
+    const handleSinPermisosAñadir = () => {
+      alert(
+        "You need to be logged in to be able to add products to the shopping cart"
+      );
+      navigate("/SectionRegister");
+    };
   return (
     <div className="animate__animated animate__fadeIn">
       <div className={styles.containerCard}>

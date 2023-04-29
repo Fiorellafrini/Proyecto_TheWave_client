@@ -1,13 +1,10 @@
-import {
-  REGISTRO,
-  LOGIN,
-  PUTUSER
-} from "./actions";
+import { REGISTRO, LOGIN, PUTUSER, GET_BY_ID } from "./actions";
 
 const initialState = {
   user: [],
-  logui:[],
-  google:[],
+  logui: [],
+  google: [],
+  userID:[]
 };
 
 const authReducer = (state = initialState, action) => {
@@ -26,6 +23,11 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.payload,
+      };
+    case GET_BY_ID:
+      return {
+        ...state,
+        userID: action.payload,
       };
     default:
       return state;
