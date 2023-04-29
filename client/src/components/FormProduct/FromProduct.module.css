@@ -6,6 +6,7 @@
   background-size: cover;
   background-attachment: fixed;
   border-radius: 15px;
+  display: flex ;
 }
 
 /* .formulario {
@@ -92,7 +93,7 @@
   background-color: rgba(0, 0, 0, 0.16);
   width: 700px;
   /* height: 500px; */
-  transform: translatex(550px) translatey(100px);
+  transform: translatex(500px) translatey(150px);
   padding: 2rem;
   transition: 0.3s ease all;
   border-radius: 5px;
@@ -119,6 +120,6 @@
 @media only screen and (min-width: 1024px) and (max-width: 1280px) {
   /* Estilos para Laptos */
   .cntd {
-    transform: translatex(250px) translatey(5px);
+    transform: translatex(200px) translatey(85px);
   }
 }

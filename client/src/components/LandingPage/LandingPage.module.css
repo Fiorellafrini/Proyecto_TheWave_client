@@ -69,8 +69,7 @@
     min-width: 300px;
     max-height: 500px;
     background-color: #d5d8d8da;
-    border-bottom-left-radius: 10px;
-    border-top-left-radius: 10px;
+    border-radius: 10px;
     color: #161819;
 }
 
@@ -83,11 +82,6 @@
     cursor: pointer;
     font-size: 25px;
     color: #161819;
-}
-
-.dropdownMenu button:hover{
-    background-color: rgb(94, 168, 198);
-    border-radius: 10px;
 }
 
 .menuList {
@@ -105,8 +99,7 @@
 
 .menuList li:hover {
     background-color: rgb(94, 168, 198);
-    border-bottom-left-radius: 10px;
-    border-top-left-radius: 10px;
+    border-radius: 10px;
 }
 
 .menuList li:last-child {

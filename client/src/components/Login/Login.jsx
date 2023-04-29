@@ -43,12 +43,9 @@ function Login({ isOpen, onClose }) {
               // Validación de Password
               if (!values.password) {
                 errors.password = "Enter your password";
-              } else if (!/^[a-zA-Z]+$/.test(values.password)) {
+              } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(values.password)) {
                 errors.password =
-                  "The password can only contain lower or upper case letters.";
-              } else if (!/^.{5,10}$/.test(values.password)) {
-                errors.password =
-                  "Password Must be between 5 and 10 characters";
+                  " The password must be at least one lowercase letter, one uppercase letter, one number, and one special character, and be at least 8 characters long.";
               }
               // Validación de email
               if (!values.email) {
@@ -63,7 +60,7 @@ function Login({ isOpen, onClose }) {
 
               return errors;
             }}
-            onSubmit={(values, { resetForm }) => {
+            onSubmit={(values, { resetForm, setSubmitting }) => {
               dispatch(login(values));
               if (!isLoguin) {
                 navigate("/SectionLogIn");
@@ -72,6 +69,7 @@ function Login({ isOpen, onClose }) {
               setSendForm(true);
               setTimeout(() => setSendForm(false), 5000);
               resetForm();
+              setSubmitting(false);
             }}
           >
             {({ errors }) => (
@@ -108,9 +106,12 @@ function Login({ isOpen, onClose }) {
                     />
                   </div>
                 </div>
+                <div className={style.link}>
+                  <Link to="/SectionRegister">You are not registered?</Link>
+                  <Link to={"/forgot-password"}>Forgot password?</Link>
+                </div>
                 <div>
-                <Link to={"/forgot-password"}>Forgot password?</Link>
-                <br/>
+                  <br />
                   <button
                     className={style.btnsubmit}
                     type="submit"
@@ -132,41 +133,41 @@ function Login({ isOpen, onClose }) {
                 const left = window.screen.width / 2 - width / 2;
                 const top = window.screen.height / 2 - height / 2;
 
-  const popup = window.open(
-    // "http://localhost:3001/auth/google",
-    "https://proyectothewaveapi-production.up.railway.app/auth/google",
-    "targetWindow",
-    `toolbar=no,
-    location=no,
-    status=no,
-    menubar=no,
-    scrollbars=yes,
-    resizable=yes,
-    width=${width},
-    height=${height},
-    left=${left},
-    top=${top}`
-                );
+                const popup = window.open(
+                  // "http://localhost:3001/auth/google",
+                  "https://proyectothewaveapi-production.up.railway.app/auth/google",
+                  "targetWindow",
+                  `toolbar=no,
+                  location=no,
+                  status=no,
+                  menubar=no,
+                  scrollbars=yes,
+                  resizable=yes,
+                  width=${width},
+                  height=${height},
+                  left=${left},
+                  top=${top}`
+                  );
 
-  window.addEventListener("message", event => {
-    // if (event.origin === "http://localhost:3001"){
-      if (event.origin === "https://proyectothewaveapi-production.up.railway.app") {
-        if (event.data) {
-          window.localStorage.setItem("login", event.data);
-          popup?.close();
-          navigate("/SectionHome");
-        }
-      }
-  });
-}}
-          >
-            <SiGoogle size={25} />
-          </button>
-          {/* <p>Google</p> */}
-          <p>Facebook</p>
+                window.addEventListener("message", (event) => {
+                  // if (event.origin === "http://localhost:3001") {
+                    if (event.origin === "https://proyectothewaveapi-production.up.railway.app") {
+                    if (event.data) {
+                      window.localStorage.setItem("login", event.data);
+                      popup?.close();
+                      navigate("/SectionHome");
+                    }
+                  }
+                });
+              }}
+            >
+              <SiGoogle size={25} />
+            </button>
+            {/* <p>Google</p> */}
+            {/* <p>Facebook</p> */}
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 }

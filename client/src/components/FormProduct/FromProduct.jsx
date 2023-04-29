@@ -3,15 +3,9 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createProduct } from "../../redux/actions";
-import Navigation from "../Navigation/Navigation";
+// import Navigation from "../Navigation/Navigation";
 import styles from "./FromProduct.module.css";
-
-// cloudinary.config({
-// cloud_name: 'djngalumm',
-// api_key: '897654326791657',
-// api_secret: 'UfU4nbhH4-ud3S3bYVrv-U4lICo',
-// // CLOUDINARY_URL=cloudinary://897654326791657:UfU4nbhH4-ud3S3bYVrv-U4lICo@djngalumm
-// });
+import Sidebar from "../Dashboard/Sidebar";
 
 const FormProduct = () => {
   const [isSent, setIsSent] = useState(false);
@@ -34,7 +28,6 @@ const FormProduct = () => {
       }
     );
     const data = await res.json();
-    console.log(data);
 
     // Actualizar los valores de imagen en el formulario
     setFieldValue("imagen[0]", data.secure_url);
@@ -43,7 +36,8 @@ const FormProduct = () => {
 
   return (
     <div className={styles.container}>
-      <Navigation />
+      {/* <Navigation /> */}
+      <Sidebar />
       <div>
         <Formik
           initialValues={{
@@ -85,7 +79,7 @@ const FormProduct = () => {
           }}
           onSubmit={(values, { setSubmitting, resetForm }) => {
             dispatch(createProduct(values));
-          
+
             setIsSent(true);
             setSubmitting(false);
             resetForm();
@@ -94,141 +88,132 @@ const FormProduct = () => {
         >
           {({ isSubmitting, errors, setFieldValue }) => (
             <div className={styles.cntd}>
-              <Form className={styles.formulario}>
-                <label>
-                  Name
-                  <Field type="text" name="name" />
-                  <ErrorMessage
-                    name="name"
-                    component={() => (
-                      <div className={styles.error}>{errors.name}</div>
-                    )}
-                  />
-                </label>
+              <div className="animate__animated animate__fadeIn">
+                <Form className={styles.formulario}>
+                  <label>
+                    Name
+                    <Field type="text" name="name" />
+                    <ErrorMessage
+                      name="name"
+                      component={() => (
+                        <div className={styles.error}>{errors.name}</div>
+                      )}
+                    />
+                  </label>
 
-                {/* <label>
-                Imagen
-                <Field type="url" name="imagen[0]" />
-                <Field type="url" name="imagen[1]" />
-                <ErrorMessage
-                  name="imagen"
-                  component={() => (
-                    <div className={styles.error}>{errors.imagen}</div>
+                  <label>
+                    Image
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => handleImageUpload(e, setFieldValue)}
+                    />
+                    {/* Mostrar error si lo hay */}
+                    <ErrorMessage
+                      name="imagen"
+                      component={() => (
+                        <div className={styles.error}>{errors.imagen}</div>
+                      )}
+                    />
+                  </label>
+                  <label>
+                    Price
+                    <Field type="number" name="price" />
+                    <ErrorMessage
+                      name="price"
+                      component={() => (
+                        <div className={styles.error}>{errors.price}</div>
+                      )}
+                    />
+                  </label>
+
+                  <label>
+                    Available stock
+                    <Field type="number" name="stock" />
+                    <ErrorMessage
+                      name="stock"
+                      component={() => (
+                        <div className={styles.error}>{errors.stock}</div>
+                      )}
+                    />
+                  </label>
+                  <label>
+                    Description
+                    <Field name="description" as="textarea" />
+                    <ErrorMessage name="description" component="div" />
+                  </label>
+                  <div className={styles.selets}>
+                    <label htmlFor="id_brand">
+                      Brand
+                      <Field name="id_brand" as="select">
+                        <option value={0}></option>
+                        <option value={1}>Hurley</option>
+                        <option value={2}>Rip Curl</option>
+                        <option value={3}>Vesl</option>
+                        <option value={4}>Russell</option>
+                        <option value={5}>Wave</option>
+                        <option value={6}>JOBE</option>
+                        <option value={7}>Compact</option>
+                        <option value={8}>SungShot</option>
+                        <option value={9}>Billabong</option>
+                        <option value={10}>O'neill</option>
+                        <option value={11}>Orca</option>
+                        <option value={12}>Gill Zenlite</option>
+                        <option value={13}>Powerjet</option>
+                        <option value={14}>Mundial One</option>
+                      </Field>
+                      <ErrorMessage
+                        name="id_brand"
+                        component={() => (
+                          <div className={styles.error}>{errors.id_brand}</div>
+                        )}
+                      />
+                    </label>
+                    <label htmlFor="id_type">
+                      Type
+                      <Field name="id_type" as="select">
+                        <option value={0}></option>
+                        <option value={1}>Diving fins</option>
+                        <option value={2}>Wetsuit</option>
+                        <option value={3}>Stand Up Paddle Board</option>
+                        <option value={4}>Surfboard</option>
+                        <option value={5}>WakeBoard</option>
+                      </Field>
+                      <ErrorMessage
+                        name="id_type"
+                        component={() => (
+                          <div className={styles.error}>{errors.id_type}</div>
+                        )}
+                      />
+                    </label>
+
+                    <label htmlFor="size">
+                      Size
+                      <Field name="size" as="select">
+                        <option value="none"></option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                        <option value="TU">Unique Size</option>
+                      </Field>
+                      <ErrorMessage
+                        name="size"
+                        component={() => (
+                          <div className={styles.error}>{errors.size}</div>
+                        )}
+                      />
+                    </label>
+                  </div>
+                  <button type="submit" disabled={isSubmitting}>
+                    Submit
+                  </button>
+                  {isSent && (
+                    <p className={styles.exito}>form sent successfully </p>
                   )}
-                />
-              </label> */}
-                <label>
-                  Image
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => handleImageUpload(e, setFieldValue)}
-                  />
-                  {/* Mostrar error si lo hay */}
-                  <ErrorMessage
-                    name="imagen"
-                    component={() => (
-                      <div className={styles.error}>{errors.imagen}</div>
-                    )}
-                  />
-                </label>
-                <label>
-                  Price
-                  <Field type="number" name="price" />
-                  <ErrorMessage
-                    name="price"
-                    component={() => (
-                      <div className={styles.error}>{errors.price}</div>
-                    )}
-                  />
-                </label>
-
-                <label>
-                  Available stock
-                  <Field type="number" name="stock" />
-                  <ErrorMessage
-                    name="stock"
-                    component={() => (
-                      <div className={styles.error}>{errors.stock}</div>
-                    )}
-                  />
-                </label>
-                <label>
-                  Description
-                  <Field name="description" as="textarea" />
-                  <ErrorMessage name="description" component="div" />
-                </label>
-                <div className={styles.selets}>
-                  <label htmlFor="id_brand">
-                    Brand
-                    <Field name="id_brand" as="select">
-                      <option value={0}></option>
-                      <option value={1}>Hurley</option>
-                      <option value={2}>Rip Curl</option>
-                      <option value={3}>Vesl</option>
-                      <option value={4}>Russell</option>
-                      <option value={5}>Wave</option>
-                      <option value={6}>JOBE</option>
-                      <option value={7}>Compact</option>
-                      <option value={8}>SungShot</option>
-                      <option value={9}>Billabong</option>
-                      <option value={10}>O'neill</option>
-                      <option value={11}>Orca</option>
-                      <option value={12}>Gill Zenlite</option>
-                      <option value={13}>Powerjet</option>
-                      <option value={14}>Mundial One</option>
-                    </Field>
-                    <ErrorMessage
-                      name="id_brand"
-                      component={() => (
-                        <div className={styles.error}>{errors.id_brand}</div>
-                      )}
-                    />
-                  </label>
-                  <label htmlFor="id_type">
-                    Type
-                    <Field name="id_type" as="select">
-                      <option value={0}></option>
-                      <option value={1}>Diving fins</option>
-                      <option value={2}>Wetsuit</option>
-                      <option value={3}>Stand Up Paddle Board</option>
-                      <option value={4}>Surfboard</option>
-                      <option value={5}>WakeBoard</option>
-                    </Field>
-                    <ErrorMessage
-                      name="id_type"
-                      component={() => (
-                        <div className={styles.error}>{errors.id_type}</div>
-                      )}
-                    />
-                  </label>
-
-                  <label htmlFor="size">
-                    Size
-                    <Field name="size" as="select">
-                      <option value="none"></option>
-                      <option value="S">S</option>
-                      <option value="M">M</option>
-                      <option value="L">L</option>
-                      <option value="XL">XL</option>
-                      <option value="XXL">XXL</option>
-                      <option value="TU">Unique Size</option>
-                    </Field>
-                    <ErrorMessage
-                      name="size"
-                      component={() => (
-                        <div className={styles.error}>{errors.size}</div>
-                      )}
-                    />
-                  </label>
-                </div>
-                <button type="submit" disabled={isSubmitting}>
-                  Submit
-                </button>
-                {isSent && (
-                  <p className={styles.exito}>form sent successfully </p>
-                )}
-              </Form>
+                </Form>
+              </div>
             </div>
           )}
         </Formik>
