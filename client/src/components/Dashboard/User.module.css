@@ -1,0 +1,6 @@
+.user{
+    display: flex;
+    justify-content: center;
+    border: solid rgb(169, 164, 164) 2px;
+    color: aliceblue;
+}
