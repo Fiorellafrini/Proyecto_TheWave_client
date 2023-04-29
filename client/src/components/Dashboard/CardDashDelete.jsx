@@ -1,12 +1,14 @@
 import axios from "axios";
 import styles from "./CardDash.module.css";
 import React, { useState } from "react";
-import durability from "../../assets/durability.png";
-import hurleyCard from "../../assets/hurleyCard.png";
+// import durability from "../../assets/durability.png";
+// import hurleyCard from "../../assets/hurleyCard.png";
 import { useEffect } from "react";
+import {MdDelete} from "react-icons/md"
+import {VscDebugRestart} from "react-icons/vsc"
 
 
-const CardDash = ({ name, size, price, imagen, id, active }) => {
+const CardDashDelete = ({ name, size, price, imagen, id, active }) => {
   const [isDeleted, setIsDeleted] = useState(false);
   
 
@@ -58,46 +60,19 @@ const CardDash = ({ name, size, price, imagen, id, active }) => {
   return (
     <div className={cardClassName} onClick={handleOnClick}>
       {isDeleted ? (
-        <button onClick={onClose}> Restaurar </button>
+        <button className={styles.eliminar} onClick={onClose}> <VscDebugRestart/> </button>
       ) : (
         <button className={styles.eliminar} onClick={handleDelete}>
           {" "}
-          Eliminar{" "}
+          <MdDelete/>{" "}
         </button>
       )}
-
-      <div className={styles.cuadrado1}>
-        <div className={styles.imgCuadrado1}>
-          <img src={hurleyCard} alt="#" />
-        </div>
-      </div>
-      <div className={styles.cuadrado2} onClick={handleOnClick}>
-        <div className={styles.col1}>
-          <img src={imagen[0]} alt={name} />
-        </div>
-        <div className={styles.col2}>
-          <div className={styles.fila1}>
-            <h1>{name}</h1>
-            <p>${price}</p>
-          </div>
-          <div className={styles.fila2}>
-            <div className={styles.size}>
-              <h1>WEIST</h1>
-              <p>{size}</p>
-            </div>
-            <hr />
-            <div>
-              <img src={durability} alt="" />
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };
 
 
-export default CardDash;
+export default CardDashDelete;
 
 
 
