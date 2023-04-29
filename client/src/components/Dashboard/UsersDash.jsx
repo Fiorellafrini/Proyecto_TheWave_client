@@ -5,7 +5,6 @@ import { users, setCurrentPage } from "../../redux/actions.js";
 import { useDispatch, useSelector } from "react-redux";
 import Paginado from "../Paginado/Paginado";
 import Error404 from "../Error404/Error404";
-import CardDash from "./CardDash";
 import styles from "./User.module.css";
 
 

@@ -16,7 +16,7 @@ function HomeDashboard() {
         </div>
         <div className={styles.cardDash}>
           <Estadisticas/>
-          {/* <CardsDash /> */}
+          <CardsDash /> 
       <Users />
         </div>
       </div>
