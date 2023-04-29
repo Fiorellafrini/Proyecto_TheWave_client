@@ -53,7 +53,7 @@ const linksArray = [
   {
     label: "General",
     icon: <AiOutlineForm />,
-    to: "/general",
+    to: "/admin",
   },
   {
     label: "Comments",

@@ -3,6 +3,7 @@ import styles from "./Dashboard.module.css";
 // import Navbar2 from "./NavBar";
 import Sidebar from "./Sidebar";
 import CardsDash from "./CardsDash";
+import Users from "./UsersDash";
 import Estadisticas from "./Estadisticas";
 
 function HomeDashboard() {
@@ -15,7 +16,8 @@ function HomeDashboard() {
         </div>
         <div className={styles.cardDash}>
           <Estadisticas/>
-          <CardsDash />
+          <CardsDash /> 
+      <Users />
         </div>
       </div>
     </div>
