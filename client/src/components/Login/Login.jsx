@@ -43,12 +43,9 @@ function Login({ isOpen, onClose }) {
               // Validación de Password
               if (!values.password) {
                 errors.password = "Enter your password";
-              } else if (!/^[a-zA-Z]+$/.test(values.password)) {
+              } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(values.password)) {
                 errors.password =
-                  "The password can only contain lower or upper case letters.";
-              } else if (!/^.{5,10}$/.test(values.password)) {
-                errors.password =
-                  "Password Must be between 5 and 10 characters";
+                  " The password must be at least one lowercase letter, one uppercase letter, one number, and one special character, and be at least 8 characters long.";
               }
               // Validación de email
               if (!values.email) {
@@ -111,9 +108,9 @@ function Login({ isOpen, onClose }) {
                 </div>
                 <div className={style.link}>
                   <Link to="/SectionRegister">You are not registered?</Link>
+                  <Link to={"/forgot-password"}>Forgot password?</Link>
                 </div>
                 <div>
-                  <Link to={"/forgot-password"}>Forgot password?</Link>
                   <br />
                   <button
                     className={style.btnsubmit}

@@ -1,24 +1,41 @@
 import React from "react";
 import styles from "./Estadisticas.module.css";
+import { AiFillEye, AiOutlineUser } from "react-icons/ai";
+import { BiNews } from "react-icons/bi";
 
 function Estadisticas() {
   return (
-    <table className={styles.table}>
-      <thead>
-        <tr>
-          <th>Usuarios</th>
-          <th>Visitas</th>
-          <th>Publicaciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>7</td>
-          <td>309</td>
-          <td>27</td>
-        </tr>
-      </tbody>
-    </table>
+    <div>
+      <div className={styles.cardBox}>
+        <div className={styles.card}>
+          <div>
+            <div className={styles.numbers}>7</div>
+            <div className={styles.cardName}>Users</div>
+          </div>
+          <div className={styles.iconBox}>
+            <AiOutlineUser />
+          </div>
+        </div>
+        <div className={styles.card}>
+          <div>
+            <div className={styles.numbers}>309</div>
+            <div className={styles.cardName}>Visits</div>
+          </div>
+          <div className={styles.iconBox}>
+            <AiFillEye />
+          </div>
+        </div>
+        <div className={styles.card}>
+          <div>
+            <div className={styles.numbers}>27</div>
+            <div className={styles.cardName}>Publications</div>
+          </div>
+          <div className={styles.iconBox}>
+            <BiNews />
+          </div>
+        </div>
+      </div>
+    </div>
 
     //    <div class="container">
 

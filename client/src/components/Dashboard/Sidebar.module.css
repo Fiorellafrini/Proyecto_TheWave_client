@@ -1,4 +1,66 @@
 .sidebar {
   width: 14rem;
-  position: fixed;
+  padding-top: 60px;
+  padding-left: 5px;
+  background: #104243;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-right: 8px solid  #1b787a;
+}
+
+.LogoInmobate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+.Links {
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  margin: 5px 0;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  transition: all 0.3s ease;
+}
+.Links:hover {
+  background-color: #1b787a;
+  color: #5edad2;
+}
+.Linkicon {
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  font-size: 1.5rem;
+}
+
+.active {
+  background-color: #1b787a;
+  color: #5edad2;
+}
+
+@media screen and (max-width: 768px) {
+  .LogoInmobate {
+    margin-top: 10px;
+  }
+
+  .Links {
+    padding: 5px;
+    margin: 3px 0;
+    font-size: 0.8rem;
+  }
+
+  .Linkicon {
+    margin-right: 5px;
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 1024px) {
+  /* Estilos para tabletas */
+  .sidebar {
+    width: 14rem;
+  }
 }

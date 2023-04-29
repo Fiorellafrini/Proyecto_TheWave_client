@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 // import InfiniteScroll from "react-infinite-scroll-component";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts, setCurrentPage } from "../../redux/actions";
 import Paginado from "../Paginado/Paginado";
 import styles from "./CardsDash.module.css";
-import Error404 from "../Error404/Error404";
-import CardDash from "./CardDash";
+// import Error404 from "../Error404/Error404";
+import CardDashDelete from "./CardDashDelete";
+import CardDashEdit from "./CardDashEdit";
 
 const CardsDash = () => {
   const dispatch = useDispatch();
@@ -21,35 +22,47 @@ const CardsDash = () => {
   }, [dispatch]);
 
   return (
-    <>
-      <Paginado total={productos.length} />
-      {/* <InfiniteScroll
-        dataLength={productos.length}
-        next={() => dispatch(setCurrentPage(currentPage))}
-        hasMore={true}
-        loader={productos.length >= productos ? "" : <h4>Loading...</h4>}
-      > */}
-      <section className={styles.linkk}>
-        
-        {productos.length ? productos
-          .map((product) => (
-            // <Link to={`/detail/${product.id}`} key={product.id}>
-              <CardDash
-                key={product.id}
-                id={product.id}
-                name={product.name}
-                price={product.price}
-                size={product.size}
-                imagen={product.imagen}
-                
-              />
-            // {/* </Link> */}
-          ))
-          .slice(firstIndex, lastIndex)
-        : <Error404/>}
-      </section>
-      {/* </InfiniteScroll> */}
-    </>
+    <div>
+      <div className={styles.pag}>
+        <Paginado total={productos.length} />
+      </div>
+      <div className={styles.containerDash}>
+        <div className={styles.linkk}>
+          <h2>Products</h2>
+          {/* Tabla de los Producto */}
+          <table>
+            <thead>
+              <tr>
+                {/* <td>ID</td> */}
+                <td>Name</td>
+                <td>Price</td>
+                <td>Size</td>
+                <td colSpan={2}>Status</td>
+              </tr>
+            </thead>
+            {productos.length ? (
+              productos
+                .map((product) => (
+                  <tbody key={product.id}>
+                    <tr>
+                      {/* <td>{product.id}</td> */}
+                      <td>{product.name}</td>
+                      <td>${product.price}</td>
+                      <td>{product.size}</td>
+                      <td><CardDashDelete /></td>
+                      <td><CardDashEdit /></td>
+                    </tr>
+                  </tbody>
+                ))
+                .slice(firstIndex, lastIndex)
+            ) : (
+              // <Error404 />
+              null
+            )}
+          </table>
+        </div>
+      </div>
+    </div>
   );
 };
 export default CardsDash;
