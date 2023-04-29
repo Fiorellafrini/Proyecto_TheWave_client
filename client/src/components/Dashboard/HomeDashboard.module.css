@@ -18,8 +18,19 @@
   justify-content: center;
 }
 
-.cardDash {
-  display: flex;
-  flex-direction: column;
+.Cards{
   width: 100%;
+}
+
+.cardDash {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1280px) {
+  /* Estilos para Laptos */
+  .cardDash {
+
+  }
 }

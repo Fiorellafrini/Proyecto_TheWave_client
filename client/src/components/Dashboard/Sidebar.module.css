@@ -8,12 +8,6 @@
   border-right: 8px solid  #1b787a;
 }
 
-.LogoInmobate {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px;
-}
 .Links {
   display: flex;
   align-items: center;
@@ -23,12 +17,15 @@
   margin: 5px 0;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
-  transition: all 0.3s ease;
+  /* transition: all 0.3s ease; */
 }
+
 .Links:hover {
   background-color: #1b787a;
   color: #5edad2;
+  position: relative;
 }
+
 .Linkicon {
   align-items: center;
   justify-content: center;
@@ -42,10 +39,6 @@
 }
 
 @media screen and (max-width: 768px) {
-  .LogoInmobate {
-    margin-top: 10px;
-  }
-
   .Links {
     padding: 5px;
     margin: 3px 0;
@@ -61,6 +54,16 @@
 @media only screen and (min-width: 481px) and (max-width: 1024px) {
   /* Estilos para tabletas */
   .sidebar {
-    width: 14rem;
+    width: 2rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1280px) {
+  /* Estilos para Laptos */
+  .sidebar {
+    width: 4rem;
+  }
+  .sidebar span{
+    display: none;
   }
 }
