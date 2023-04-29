@@ -1,0 +1,39 @@
+.cardBox {
+  position: relative;
+  width: 100%;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 50px;
+}
+
+.cardBox .card {
+  position: relative;
+  background: #fff;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 8px 8px 5px rgb(38, 37, 36);
+  border-radius: 15px;
+}
+.cardBox .card .numbers {
+  position: relative;
+  font-size: 2em;
+  font-weight: 500;
+}
+
+.cardBox .card .cardName {
+  color: #999;
+}
+
+.cardBox .card .iconBox {
+  font-size: 2.5em;
+  color: #104243;
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1280px) {
+  /* Estilos para Laptos */
+  .cardBox {
+    padding: 10px;
+  }
+}
