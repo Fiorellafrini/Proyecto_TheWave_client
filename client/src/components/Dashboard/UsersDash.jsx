@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
-import { users } from "../../redux/actions.js";
 import { useDispatch, useSelector } from "react-redux";
+
+import { users } from "../../redux/actions.js";
+
 // import Error404 from "../Error404/Error404";
+
 import styles from "./User.module.css";
 
 function Users() {
@@ -28,13 +31,16 @@ function Users() {
                   <td>Lastname</td>
                   <td>Email</td>
                   <td>Address</td>
+                  <td colSpan={2}>Status</td>
                 </tr>
               </thead>
               <tbody>
                 {user.length
                   ? user.map((user) => (
                       <tr key={user.id}>
-                        <td><img src={user.photo} alt="" /></td>
+                        <td>
+                          <img src={user.photo} alt="" />
+                        </td>
                         <td>{user.name}</td>
                         <td>{user.lastName}</td>
                         <td>{user.email}</td>

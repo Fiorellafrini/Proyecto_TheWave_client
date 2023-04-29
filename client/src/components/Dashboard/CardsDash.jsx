@@ -31,6 +31,7 @@ const CardsDash = () => {
         <div className={styles.linkk}>
           <h2>Products</h2>
           {/* Tabla de los Producto */}
+           
           <table>
             <thead>
               <tr>
