@@ -109,6 +109,7 @@ a:visited {
     padding: 0;
     text-align: end;
     cursor: pointer;
+    text-align: center;
 }
 
 .menuList li {

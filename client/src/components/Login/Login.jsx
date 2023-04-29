@@ -108,9 +108,9 @@ function Login({ isOpen, onClose }) {
                 </div>
                 <div className={style.link}>
                   <Link to="/SectionRegister">You are not registered?</Link>
+                  <Link to={"/forgot-password"}>Forgot password?</Link>
                 </div>
                 <div>
-                  <Link to={"/forgot-password"}>Forgot password?</Link>
                   <br />
                   <button
                     className={style.btnsubmit}
