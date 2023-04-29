@@ -1,6 +1,4 @@
 .containerDash{
-  grid-template-columns: 1fr 1fr;
-  /* grid-template-columns: 1fr; */
   display: grid;
   grid-gap: 20px;
   padding: 20px;
@@ -16,10 +14,6 @@
   box-shadow: 8px 8px 5px rgb(38, 37, 36);
   background: #fff;
   border-radius: 15px;
-}
-
-.linkk a {
-  text-decoration: none;
 }
 
 .linkk table{
@@ -63,6 +57,6 @@
 @media only screen and (min-width: 1024px) and (max-width: 1280px) {
   /* Estilos para Laptos */
   .cntd {
-    transform: translatex(250px) translatey(5px);
+    
   }
 }

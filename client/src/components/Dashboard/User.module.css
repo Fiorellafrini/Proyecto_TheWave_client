@@ -1,6 +1,50 @@
-.user{
-    display: flex;
-    justify-content: center;
-    border: solid rgb(169, 164, 164) 2px;
-    color: aliceblue;
+.containerDash {
+  display: grid;
+  grid-gap: 20px;
+  padding: 20px;
+}
+
+.linkk {
+  padding: 1rem;
+  box-shadow: 8px 8px 5px rgb(38, 37, 36);
+  background: #fff;
+  border-radius: 15px;
+}
+
+.linkk table {
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+
+.linkk thead {
+  font-weight: bold;
+}
+
+.linkk table tr td {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.linkk table tr td {
+  padding: 5px 2px;
+}
+
+.linkk table tr td:first-child {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.linkk table tr td:last-child {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.linkk tbody tr:hover {
+  background-color: #1b787a;
+  color: white;
+}
+
+.linkk img {
+  width: 3rem;
 }

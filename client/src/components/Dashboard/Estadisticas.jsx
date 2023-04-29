@@ -1,7 +1,8 @@
 import React from "react";
 import styles from "./Estadisticas.module.css";
-import { AiFillEye, AiOutlineUser } from "react-icons/ai";
-import { BiNews } from "react-icons/bi";
+import { AiOutlineEye, AiOutlineUser } from "react-icons/ai";
+import { GoCommentDiscussion} from "react-icons/go"
+import { MdOutlineShoppingBasket } from "react-icons/md"
 
 function Estadisticas() {
   return (
@@ -19,19 +20,28 @@ function Estadisticas() {
         <div className={styles.card}>
           <div>
             <div className={styles.numbers}>309</div>
-            <div className={styles.cardName}>Visits</div>
+            <div className={styles.cardName}>Daily Views</div>
           </div>
           <div className={styles.iconBox}>
-            <AiFillEye />
+            <AiOutlineEye />
           </div>
         </div>
         <div className={styles.card}>
           <div>
             <div className={styles.numbers}>27</div>
-            <div className={styles.cardName}>Publications</div>
+            <div className={styles.cardName}>Products</div>
           </div>
           <div className={styles.iconBox}>
-            <BiNews />
+            <MdOutlineShoppingBasket />
+          </div>
+        </div>
+        <div className={styles.card}>
+          <div>
+            <div className={styles.numbers}>2227</div>
+            <div className={styles.cardName}>Comments</div>
+          </div>
+          <div className={styles.iconBox}>
+            <GoCommentDiscussion />
           </div>
         </div>
       </div>
