@@ -6,7 +6,8 @@ function RutasAdmin() {
 
     let isLoguin = window.localStorage.getItem("login");
 
-const arrayCorreos = [
+  const arrayCorreos = [
+    "lucassarachu7@gmail.com",
     "Fedeasaad1099@outlook.com.ar",
     "Gerson.reynaga23@gmail.com",
     "cotyespeche@hotmail.com",

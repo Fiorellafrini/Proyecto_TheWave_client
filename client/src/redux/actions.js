@@ -26,9 +26,7 @@ export const STOCKS_PRODUCTS = "STOCKS_PRODUCTS";
 export const GET_USERS = "GET_USERS";
 
 
-export const PAYMENT = "PAYMENT";
-export const ADD_TO_FAV = "ADD_TO_FAV";
-export const DELETE_TO_FAV = "DELETE_TO_FAV";
+
 export const LOGIN = "LOGIN";
 export const REGISTRO = "REGISTRO";
 export const LOGINGOOGLE = "LOGINGOOGLE";
@@ -343,12 +341,15 @@ export const putUser = (id, body, token) => async (dispatch) => {
 };
 //----------------------------------------------GET USERS----------------------------------//
 
-export function getUsers() {
+
+export function users() {
   return async function (dispatch) {
-    var json = await axios.get("/user");
-    return dispatch({
-      type: "GET_USERS",
-      payload: json.data,
-    });
+    try {
+      var json = await axios.get("/user");
+      return dispatch({
+        type: "GET_USERS",
+        payload: json.data,
+      });
+    } catch (error) {}
   };
 }

@@ -10,11 +10,10 @@ import SectionHome from "./components/SectionHome/SectionHome";
 // import SectionLogIn from "./components/SectionLogIn/SectionLogIn";
 import Favorites from "./components/Favoritos/Favoritos";
 import SectionCarrito from "./components/SectionCarrito/SectionCarrito";
-// import SectionRegister from "./components/SectionRegister/SectionRegister";
+import SectionRegister from "./components/SectionRegister/SectionRegister";
 import { Cloudinary } from "@cloudinary/url-gen";
 import React from "react";
 import CardsDash from "./components/Dashboard/CardsDash";
-import Estadisticas from "./components/Dashboard/Estadisticas";
 import HomeDashboard from "./components/Dashboard/HomeDashboard";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import ResetPassword from "./components/ResetPasword/ResetPassword.jsx";
@@ -23,8 +22,9 @@ import Register from "./components/Login/Register";
 import ProteccionRutas from "./components/Routers/ProteccionRutas";
 import Perfil from "./components/perfil/Perfil";
 import ProteccionRutaAdmin from "./components/Routers/ProteccionRutaAdmin";
-//import EstadisticasBar from "./components/Dashboard/Estadisticas/EstadisticasBar";
 import Estadisticas from "./components/Dashboard/Estadisticas/Estadisticas";
+//import UserDash from "./components/Dashboard/UsersDash";
+import Users from "./components/Dashboard/UsersDash";
 
 function App() {
   new Cloudinary({
@@ -49,7 +49,7 @@ function App() {
         <Route path="*" element={<Error404 />}></Route>
         <Route path="/forgot-password/" element={<ForgotPassword />}></Route>
         <Route path="/reset-Password/:id/:token" element={<ResetPassword/>}></Route>
-        <Route element={<ProteccionRutas />}>
+        <Route element={<ProteccionRutas />}/>
           <Route path="/Favorites" element={<Favorites />}></Route>
           <Route path="/MyProfile" element={<Perfil />}></Route>
         <Route path="/SectionRegister" element={<SectionRegister />}></Route>
@@ -68,6 +68,7 @@ function App() {
         <Route element={<ProteccionRutaAdmin />}>
           <Route path="/form" element={<FormProduct />}></Route>
           <Route path="/admin" element={<HomeDashboard />}></Route>
+          <Route path="/admin" element={<Users />}></Route>
           <Route path="/admin" element={<CardsDash />}></Route>
           <Route path="/stats" element={<Estadisticas />}></Route>
         </Route>

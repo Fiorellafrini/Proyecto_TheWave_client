@@ -54,10 +54,7 @@ const reducer = (state = initialState, action) => {
         products: action.payload,
         allProduct: action.payload.slice(),
       };
-    
 
-
-    
     // case STOCKS_PRODUCTS:
     //   return {
     //     ...state,
@@ -260,12 +257,12 @@ const reducer = (state = initialState, action) => {
     case GET_USERS:
       return {
         ...state,
-        users: action.payload
-      }
+        users: action.payload,
+      };
     default:
       return state;
   }
-};
+  };
 
 export default reducer;
 
