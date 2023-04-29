@@ -10,7 +10,6 @@ import {
   deleteToCart,
 } from "../../redux/actions";
 import { useDispatch } from "react-redux";
-import { useDispatch } from "react-redux";
 import { BsBagHeart, BsBagHeartFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 const ProductCard = ({
