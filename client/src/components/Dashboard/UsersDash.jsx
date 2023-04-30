@@ -1,8 +1,13 @@
 import React, { useEffect } from "react";
-import { users } from "../../redux/actions.js";
 import { useDispatch, useSelector } from "react-redux";
+
+import { users } from "../../redux/actions.js";
+
 // import Error404 from "../Error404/Error404";
+
 import styles from "./User.module.css";
+import CardDashEdit from "./CardDashEdit.jsx";
+import UserDashDelete from "./UserDashDelete.jsx";
 
 function Users() {
   const dispatch = useDispatch();
@@ -28,17 +33,26 @@ function Users() {
                   <td>Lastname</td>
                   <td>Email</td>
                   <td>Address</td>
+                  <td colSpan={2}>Status</td>
                 </tr>
               </thead>
               <tbody>
                 {user.length
                   ? user.map((user) => (
                       <tr key={user.id}>
-                        <td><img src={user.photo} alt="" /></td>
+                        <td>
+                          <img src={user.photo} alt="" />
+                        </td>
                         <td>{user.name}</td>
                         <td>{user.lastName}</td>
                         <td>{user.email}</td>
-                        <td>{user.address}</td>
+                      <td>{user.address}</td>
+                      <td>
+                        <UserDashDelete id={user.id}/>
+                      </td>
+                      <td>
+                        <CardDashEdit />
+                      </td>
                       </tr>
                     ))
                   : // <Error404 />

@@ -31,6 +31,7 @@ const CardsDash = () => {
         <div className={styles.linkk}>
           <h2>Products</h2>
           {/* Tabla de los Producto */}
+           
           <table>
             <thead>
               <tr>
@@ -50,7 +51,7 @@ const CardsDash = () => {
                         <td>{product.name}</td>
                         <td>${product.price}</td>
                         <td>{product.size}</td>
-                        <td>
+                        <td> 
                           <CardDashDelete id={product.id} />
                         </td>
                         <td>
