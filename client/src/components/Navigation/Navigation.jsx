@@ -59,7 +59,7 @@ const Navigation = () => {
               </Link>
             </div>
             <div className={styles.column}>
-              <Link to={"/Favorites"}>
+              <Link to={"/Fav"}>
                 <p>Favorites</p>
               </Link>
             </div>
@@ -130,7 +130,7 @@ const Navigation = () => {
                         <Link to={"/SectionCategories"}>
                           <li>Product</li>
                         </Link>
-                        <Link to={"/Favorites"}>
+                        <Link to={"/Fav"}>
                           <li>Favorites</li>
                         </Link>
                         <Link to={"/SectionCarrito"}>
@@ -153,7 +153,7 @@ const Navigation = () => {
                         <Link to={"/SectionCategories"}>
                           <li>Product</li>
                         </Link>
-                        <Link to={"/Favorites"}>
+                        <Link to={"/Fav"}>
                           <li>Favorites</li>
                         </Link>
                         <Link to={"/SectionCarrito"}>
@@ -188,7 +188,7 @@ const Navigation = () => {
           </Link>
         </div>
         <div className={styles.column}>
-          <Link to={"/Favorites"}>
+          <Link to={"/Fav"}>
             <p>Favorites</p>
           </Link>
         </div>
@@ -249,7 +249,7 @@ const Navigation = () => {
                       <Link to={"/SectionCategories"}>
                         <li>Product</li>
                       </Link>
-                      <Link to={"/Favorites"}>
+                      <Link to={"/Fav"}>
                         <li>Favorites</li>
                       </Link>
                       <Link to={"/SectionCarrito"}>
@@ -272,7 +272,7 @@ const Navigation = () => {
                       <Link to={"/SectionCategories"}>
                         <li>Product</li>
                       </Link>
-                      <Link to={"/Favorites"}>
+                      <Link to={"/Fav"}>
                         <li>Favorites</li>
                       </Link>
                       <Link to={"/SectionCarrito"}>

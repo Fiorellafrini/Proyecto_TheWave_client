@@ -42,6 +42,9 @@ const Infinite = () => {
                 imagen={product.imagen}
                 quantity={product.quantity}
                 stock={product.stock}
+                // user_id={product.user_id}
+                // productId={product.productId}
+                
               />
             ))
             .slice(firstIndex, lastIndex)

@@ -29,9 +29,11 @@ const ProductCard = ({
   const [isSelected, setIsSelected] = useState(false);
   const navigate = useNavigate();
   let token = window.localStorage.getItem("login");
+  
   const handleFav = () => {
     const product = { name, size, price, imagen, id };
     if (isFav === false) {
+      console.log(product);
       dispatch(addToFav(product));
       setIsFav(true);
     } else if (isFav === true) {
@@ -51,16 +53,16 @@ const ProductCard = ({
     }
   };
 
-    const handleSinPermisos = () => {
-      alert("You need to be logged in to be able to add to favorites");
-      navigate("/SectionRegister");
-    };
-    const handleSinPermisosAñadir = () => {
-      alert(
-        "You need to be logged in to be able to add products to the shopping cart"
-      );
-      navigate("/SectionRegister");
-    };
+  const handleSinPermisos = () => {
+    alert("You need to be logged in to be able to add to favorites");
+    navigate("/SectionRegister");
+  };
+  const handleSinPermisosAñadir = () => {
+    alert(
+      "You need to be logged in to be able to add products to the shopping cart"
+    );
+    navigate("/SectionRegister");
+  };
   return (
     <div className="animate__animated animate__fadeIn">
       <div className={styles.containerCard}>

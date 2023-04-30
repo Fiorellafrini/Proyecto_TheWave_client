@@ -22,6 +22,7 @@ export const DECREMENT_QUANTITY = "DECREMENT_QUANTITY";
 export const PAYMENT = "PAYMENT";
 export const ADD_TO_FAV = "ADD_TO_FAV";
 export const DELETE_TO_FAV = "DELETE_TO_FAV";
+export const GET_FAV = "GET_FAV";
 export const LOGIN = "LOGIN";
 export const REGISTRO = "REGISTRO";
 export const LOGINGOOGLE = "LOGINGOOGLE";
@@ -46,9 +47,7 @@ export function listProducts() {
         type: "GET_ALL_PRODUCTS",
         payload: json.data,
       });
-    } catch (error) {
-      
-    }
+    } catch (error) {}
   };
 }
 // -----------------------------------FILTER_BY_NAME---------------------------------------------------//
@@ -261,7 +260,7 @@ export const login = (body) => async (dipatch) => {
   }
 };
 
-//-------------------------------------FAVORITOS-----------------------------------------------------//
+// -------------------------------------FAVORITOS-----------------------------------------------------//
 export const addToFav = (product) => {
   return { type: ADD_TO_FAV, payload: product };
 };
@@ -269,7 +268,42 @@ export const addToFav = (product) => {
 export const deleteToFav = (id) => {
   return { type: DELETE_TO_FAV, payload: id };
 };
+//--------------------------PARA CONECTAR CON EL BACK QUE SI FUNCIONA----------------
 
+
+
+// export const addToFav = (user_id, product) => {
+//   // console.log('product_id:', product_id);
+//   const productId = product.id;
+//   // console.log('user_id:', user_id);
+//   // console.log('product_id:', product_id);
+//   return async (dispatch) => {
+//     try {
+//       const response = await axios.post(`/fav/${user_id}/${productId}`);
+//       dispatch({ type: ADD_TO_FAV, payload: response.data });
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   };
+// };
+
+// export const deleteToFav = (user_id, product_id) => {
+//   return async (dispatch) => {
+//     try {
+//       await axios.delete(`/fav/${user_id}/${product_id}`);
+//       dispatch({ type: DELETE_TO_FAV, payload: product_id });
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   };
+// };
+
+// export const getFav = (user_id) => {
+//   return async (dispatch) => {
+//     const response = await axios.get(`/fav/${user_id}`);
+//     dispatch({ type: "GET_FAV", payload: response.data });
+//   };
+// };
 
 //---------------------------------------PUT USER --------------------------------------------------//
 

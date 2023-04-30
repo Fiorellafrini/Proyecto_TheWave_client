@@ -21,6 +21,7 @@ import {
   EMPTY_CART,
   ADD_TO_FAV,
   DELETE_TO_FAV,
+  GET_FAV,
   // LOGIN,
 } from "./actions";
 
@@ -161,6 +162,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         favorites: [...state.favorites, action.payload],
       };
+
+      
     //--------------------------------DELETE_TO_FAV-------------------------------\\
     case DELETE_TO_FAV:
       const newFavorites = state.favorites.filter(
@@ -170,6 +173,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         favorites: newFavorites,
+      };
+    //--------------------------------GET FAV------------------------------------------//
+    case GET_FAV:
+      return {
+        ...state,
+        favorites: action.payload,
       };
 
     //--------------------------------PAYMENT------------------------------------------------------\\
