@@ -29,6 +29,8 @@ export const LOGINFACEBOOK = "LOGINFACEBOOK";
 export const RGOOGLE = "RGOOGLE";
 export const PUTUSER = "PUTUSER";
 export const GET_BY_ID = "GET_BY_ID";
+export const GET_USERS = "GET_USERS";
+export const CLEAN_USER = "CLEAN_USER";
 //-------------------------------------------CREATE PRODUCT---------------------------------------------------------//
 export const createProduct = (body) => async (dipatch) => {
   const { data } = await axios.post("/product", body);
@@ -309,3 +311,9 @@ export function userById(id) {
     } catch (error) {}
   };
 }
+
+export const cleanUser = () => {
+  return {
+    type: CLEAN_USER,
+  };
+};

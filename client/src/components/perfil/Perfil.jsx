@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 // import perfil from "./perfil.png";
 import jwt from "jwt-decode";
 import styles from "./Perfil.module.css";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import "animate.css";
-import {putUser,userById} from '../../redux/actions.js'
+import { putUser, cleanUser } from "../../redux/actions.js";
 import {useDispatch, useSelector} from 'react-redux'
 import {FiEdit} from "react-icons/fi"
 
@@ -19,30 +19,25 @@ function Perfil() {
   const user = jwt(token);
   const dispatch = useDispatch();
   const datosUser = useSelector((state) => state.user.userID);
+
+  const [editar, setEditar] = useState(true);
+  const [editarDireccion, setEditarDireccion] = useState(true);
+  const [editarPassword, setEditarPassword] = useState(true);
+
+
+
+  const handleEditar = () => {
+    setEditar(!editar);
+  };
+  const handleEditarDireccion = () => {
+    setEditarDireccion(!editarDireccion);
+  };
+
+  const handleEditarpassword = () => {
+    setEditarPassword(!editarPassword);
+  };
+
   // Función para manejar la carga de imágenes
-  const [editar, setEditar]=useState(true)
-    const [editarDireccion, setEditarDireccion] = useState(true);
-    const [editarPassword, setEditarPassword] = useState(true);
-
-
-
-
-useEffect(()=>{
-dispatch(userById(user.id))
-},[dispatch,user.id])
-
-const handleEditar = ()=>{
-  setEditar(!editar);
-}
-const handleEditarDireccion = () => {
-  setEditarDireccion(!editarDireccion);
-};
-
-const handleEditarpassword = () => {
-  setEditarPassword(!editarPassword);
-};
-
-
   const handleImageUpload = async (e, setFieldValue) => {
     const files = e.target.files;
     const formData = new FormData();
@@ -70,7 +65,7 @@ const handleEditarpassword = () => {
         <div className={styles.contenedor}>
           <div className={styles.contenedor2}>
             <img
-              src={!datosUser.photo ? user.photo : datosUser.photo}
+              src={datosUser.photo}
               alt="#"
             />
             <h2>{datosUser.name + "  " + datosUser.lastName}</h2>
@@ -120,7 +115,7 @@ const handleEditarpassword = () => {
               }}
               onSubmit={(values, { resetForm, setSubmitting }) => {
                 dispatch(putUser(user.id, values));
-                console.log(values);
+                dispatch(cleanUser());
                 navigate("/SectionHome");
                 resetForm();
                 setSubmitting(false);
