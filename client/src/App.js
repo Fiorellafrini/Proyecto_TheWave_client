@@ -23,6 +23,7 @@ import Register from "./components/Login/Register";
 import ProteccionRutas from "./components/Routers/ProteccionRutas";
 import Perfil from "./components/perfil/Perfil";
 import ProteccionRutaAdmin from "./components/Routers/ProteccionRutaAdmin";
+import ShopDetail from "./components/ShopDetail/ShopDetail";
 
 
 function App() {
@@ -34,7 +35,7 @@ function App() {
   const location = useLocation();
   return (
     <div className="App">
-      {["/SectionHome","/SectionCategories","/Favorites"].includes(
+      {["/SectionHome","/SectionCategories","/Favorites", "/ShopDetail"].includes(
         location.pathname
       ) ? <NavVertical /> : null}
       <Routes>
@@ -51,6 +52,7 @@ function App() {
         <Route element={<ProteccionRutas />}>
           <Route path="/Favorites" element={<Favorites />}></Route>
           <Route path="/MyProfile" element={<Perfil />}></Route>
+          <Route path="/ShopDetail" element={<ShopDetail />}></Route>
         </Route>
 
         <Route element={<ProteccionRutaAdmin />}>

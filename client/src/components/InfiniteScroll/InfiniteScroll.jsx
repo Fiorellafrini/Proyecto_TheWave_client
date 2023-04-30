@@ -51,7 +51,6 @@ const Infinite = () => {
           <Error404 />
         )}
       </section>
-      {/* </InfiniteScroll> */}
     </>
   );
 };

@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { paymentMercadoPago } from "../../redux/actions";
+import {
+  paymentMercadoPago,
+  createShop,
+  createShopDetail,
+} from "../../redux/actions";
 import { addToCart, deleteToCart, productsById } from "../../redux/actions.js";
 import Navigation from "../Navigation/Navigation.jsx";
 import styles from "./Detail.module.css";
@@ -15,6 +19,7 @@ import vesl from "../../assets/vesl.png";
 import russel from "../../assets/russel.png";
 import target1 from "../Detail/iconos/master.png";
 import target2 from "../Detail/iconos/visa.png";
+import jwt from "jwt-decode";
 
 function Detail() {
   const dispatch = useDispatch();
@@ -25,7 +30,22 @@ function Detail() {
 
   const [loading, setLoading] = useState(true);
 
-  const handlePayment = () => {
+  //user
+  let isLoguin = window.localStorage.getItem("login");
+  const user = jwt(isLoguin);
+  const userId = user.id;
+
+  const handlePayment = async () => {
+    dispatch(createShop(new Date(), userId)).then((newShop) => {
+      dispatch(
+        createShopDetail(
+          detalle.quantity,
+          detalle.price,
+          detalle.id,
+          newShop.shop_id
+        )
+      );
+    });
     dispatch(paymentMercadoPago(detalle));
   };
 

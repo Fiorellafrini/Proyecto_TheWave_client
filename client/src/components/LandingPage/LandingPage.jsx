@@ -71,7 +71,7 @@ const LandingPage = () => {
                         <li onClick={() => handleNavItemClick("About Us")}>
                           About Us
                         </li>
-                        <button onClick={handleLogout}>Log out</button>
+                        <li onClick={handleLogout}>Log out</li>
                       </ul>
                     </div>
                   ))}

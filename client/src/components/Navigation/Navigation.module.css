@@ -11,7 +11,9 @@
 }
 
 .containerNav:hover {
-    backdrop-filter: blur(5px);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    backdrop-filter: blur(10px);
     position: relative;
     z-index: 2;
 }

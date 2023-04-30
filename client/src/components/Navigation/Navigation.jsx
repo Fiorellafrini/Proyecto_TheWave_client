@@ -29,7 +29,7 @@ const Navigation = () => {
   let isLoguin = window.localStorage.getItem("login");
 
   const navegar = useNavigate();
-  
+
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
@@ -90,8 +90,11 @@ const Navigation = () => {
                 ) : (
                   <div className={styles.dropdownMenu}>
                     <ul className={styles.menuList}>
-                      <Link to={"/My Profile"}>
+                      <Link to={"/MyProfile"}>
                         <li>My Profile</li>
+                      </Link>{" "}
+                      <Link to={"/ShopDetail"}>
+                        <li>My Payments</li>
                       </Link>
                       <li onClick={handleLogout}>Log out</li>
                     </ul>
@@ -99,8 +102,8 @@ const Navigation = () => {
                 ))}
             </div>
             <div className={styles.cart}>
-            <Link to={"/SectionCarrito"}>
-              <HiShoppingCart style={{ color: "#ffffffb7" }}/>
+              <Link to={"/SectionCarrito"}>
+                <HiShoppingCart style={{ color: "#ffffffb7" }} />
               </Link>
               {userCartShopping.length > 0 && (
                 <div className={styles.cartCount}>
@@ -219,6 +222,9 @@ const Navigation = () => {
                     <ul className={styles.menuList}>
                       <Link to={"/My Profile"}>
                         <li>My Profile</li>
+                      </Link>
+                      <Link to={"/ShopDetail"}>
+                        <li>My Payments</li>
                       </Link>
                       <Link to={"/SectionCarrito"}>
                         <li>Shopping Cart</li>
