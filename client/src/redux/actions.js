@@ -212,7 +212,13 @@ export const registro = (body) => async (dipatch) => {
       }
     });
   } catch (error) {
-    
+    Swal.fire({
+      icon: "error",
+      title: "Failed Register",
+      color: "white",
+      background: "#1e1e1e",
+      confirmButtonColor: '#224145',
+    })
   }
 };
 // ----------------------------------ADD TO CART-----------------------------------------------//
