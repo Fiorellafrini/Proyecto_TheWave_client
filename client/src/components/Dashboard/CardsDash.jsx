@@ -51,7 +51,7 @@ const CardsDash = () => {
                         <td>{product.name}</td>
                         <td>${product.price}</td>
                         <td>{product.size}</td>
-                        <td>
+                        <td> 
                           <CardDashDelete id={product.id} />
                         </td>
                         <td>

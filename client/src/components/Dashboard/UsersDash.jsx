@@ -6,6 +6,8 @@ import { users } from "../../redux/actions.js";
 // import Error404 from "../Error404/Error404";
 
 import styles from "./User.module.css";
+import CardDashEdit from "./CardDashEdit.jsx";
+import UserDashDelete from "./UserDashDelete.jsx";
 
 function Users() {
   const dispatch = useDispatch();
@@ -44,7 +46,13 @@ function Users() {
                         <td>{user.name}</td>
                         <td>{user.lastName}</td>
                         <td>{user.email}</td>
-                        <td>{user.address}</td>
+                      <td>{user.address}</td>
+                      <td>
+                        <UserDashDelete id={user.id}/>
+                      </td>
+                      <td>
+                        <CardDashEdit />
+                      </td>
                       </tr>
                     ))
                   : // <Error404 />
