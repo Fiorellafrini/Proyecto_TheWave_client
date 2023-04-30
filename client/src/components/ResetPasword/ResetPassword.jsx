@@ -31,6 +31,13 @@ const ResetPassword = () => {
         if (!values.password) {
           errors.password =
             "Please provide the necessary information to reset your password.";
+        } else if (
+          !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
+            values.password
+          )
+        ) {
+          errors.password =
+            " The password must be at least one lowercase letter, one uppercase letter, one number, and one special character, and be at least 8 characters long.";
         }
         if (!values.password1) {
           errors.password1 = "Please enter a imagen for this product";

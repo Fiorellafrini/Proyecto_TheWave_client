@@ -7,13 +7,13 @@ import { AiOutlineUserSwitch } from "react-icons/ai";
 // import { HiShoppingCart } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import jwt from "jwt-decode";
-import perfil from "../perfil//perfil.png";
-// import { useSelector } from "react-redux";
+// import perfil from "../perfil//perfil.png";
+import { useSelector } from "react-redux";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // const userCartShopping = useSelector((state) => state.products.shoppingCart);
+  const datosUser = useSelector((state) => state.user.userID);
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -27,7 +27,6 @@ const Navigation = () => {
     setIsOpen(false);
   };
   let isLoguin = window.localStorage.getItem("login");
-
   const navegar = useNavigate();
   
   const toggleDropdown = () => {
@@ -70,7 +69,10 @@ const Navigation = () => {
                   className={styles.dropdownToggle}
                   onClick={toggleDropdown}
                 >
-                  <img src={user.photo ? user?.photo : perfil} alt="#" />
+                  <img
+                    src={!user.photo ? datosUser.photo : user.photo}
+                    alt="#"
+                  />
                 </button>
                 {isOpen &&
                   (!isLoguin ? (
