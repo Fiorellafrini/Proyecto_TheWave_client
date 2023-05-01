@@ -14,10 +14,10 @@ import {
   ADD_TO_CART,
   DELETE_TO_CART,
   PAYMENT,
-  UPDATE_STOCK_PRODUCT_INC,
-  UPDATE_STOCK_PRODUCT_DEC,
   INCREMENT_QUANTITY,
   DECREMENT_QUANTITY,
+  GET_ALL_DETAILS,
+  UPDATE_STOCK_PRODUCT_DEC,
   EMPTY_CART,
   ADD_TO_FAV,
   DELETE_TO_FAV,
@@ -36,6 +36,7 @@ const initialState = {
   setPage: 0,
   filters: {},
   favorites: [],
+  shop: [],
   users:[],
 };
 
@@ -157,7 +158,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         shoppingCart: deleteCar,
       };
-
+    //--------------------------------EMPTY_CART--------------------------------\\
     case EMPTY_CART:
       return {
         ...state,
@@ -181,40 +182,17 @@ const reducer = (state = initialState, action) => {
         ...state,
         favorites: newFavorites,
       };
-
     //--------------------------------PAYMENT------------------------------------------------------\\
     case PAYMENT:
       return {
         ...state,
         shoppingCart: action.payload,
       };
-    //--------------------------------UPDATE_STOCK_PRODUCT_DEC----------------------------------------\\
-    case UPDATE_STOCK_PRODUCT_DEC:
-      const updatedProductDec = action.payload;
-      const updatedProductsDec = state.products.map((product) => {
-        if (product.id === updatedProductDec.id) {
-          return updatedProductDec;
-        } else {
-          return product;
-        }
-      });
+    //--------------------------------GET_ALL_DETAILS------------------------------------------------------\\
+    case GET_ALL_DETAILS:
       return {
         ...state,
-        products: updatedProductsDec,
-      };
-    //--------------------------------UPDATE_STOCK_PRODUCT_INC---------------------------------------\\
-    case UPDATE_STOCK_PRODUCT_INC:
-      const updatedProductInc = action.payload;
-      const updatedProductsInc = state.products.map((product) => {
-        if (product.id === updatedProductInc.id) {
-          return updatedProductInc;
-        } else {
-          return product;
-        }
-      });
-      return {
-        ...state,
-        products: updatedProductsInc,
+        shop: action.payload,
       };
     //--------------------------------INCREMENT_QUANTITY------------------------------------------------\\
     case INCREMENT_QUANTITY:
@@ -233,7 +211,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         shoppingCart: updatedCart,
       };
-
     //--------------------------------DECREMENT_QUANTITY-----------------------------------------------\\
     case DECREMENT_QUANTITY:
       const idLess = action.payload;
@@ -253,6 +230,20 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         shoppingCart: updatedCartLess,
+      };
+    //--------------------------------UPDATE_STOCK_PRODUCT_DEC----------------------------------------\\
+    case UPDATE_STOCK_PRODUCT_DEC:
+      const updatedProductDec = action.payload;
+      const updatedProductsDec = state.products.map((product) => {
+        if (product.id === updatedProductDec.id) {
+          return updatedProductDec;
+        } else {
+          return product;
+        }
+      });
+      return {
+        ...state,
+        products: updatedProductsDec,
       };
     case GET_USERS:
       return {
