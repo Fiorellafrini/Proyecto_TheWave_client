@@ -24,7 +24,9 @@ import {
   GET_FAV,
   // LOGIN,
   STOCKS_PRODUCTS,
+  // STOCKS_PRODUCTS,
   GET_USERS,
+  PUT_PRODUCT
 } from "./actions";
 
 const initialState = {
@@ -261,6 +263,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         users: action.payload,
       };
+    case PUT_PRODUCT:
+      return{
+        ...state,
+        product:action.payload
+      }
     default:
       return state;
   }
@@ -268,41 +275,3 @@ const reducer = (state = initialState, action) => {
 
 export default reducer;
 
-//----------------------------------------FILTROS PARA HACERLOS DESDE EL BACK-------------------------//
-
-//--------------------------------FILTER_BY_NAME_ASC--------------------------------------------------\\
-// case FILTER_BY_ASC:
-//   return {
-//     ...state,
-//     products: action.payload,
-//   };
-//--------------------------------FILTER_BY_NAME_DESC--------------------------------------------------\\
-// case FILTER_BY_DESC:
-//   return {
-//     ...state,
-//     products: action.payload,
-//   };
-//--------------------------------ORDER_BY_NAME--------------------------------------------------------\\
-// case ORDER_BY_NAME:
-//   return {
-//     ...state,
-//     products: action.payload,
-//   };
-//--------------------------------FILTER_BY_PRICE_ASC----------------------------------------------------\\
-// case FILTER_BY_PRICE_ASC:
-//   return {
-//     ...state,
-//     products: action.payload,
-//   };
-//--------------------------------FILTER_BY_PRICE_DESC--------------------------------------------------\\
-// case FILTER_BY_PRICE_DESC:
-//   return {
-//     ...state,
-//     products: action.payload,
-//   };
-//--------------------------------ORDER_BY_PRICE-----------------------------------------------------\\
-// case ORDER_BY_PRICE:
-//   return {
-//     ...state,
-//     products: action.payload,
-//   };

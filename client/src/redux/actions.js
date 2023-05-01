@@ -25,7 +25,7 @@ export const ADD_TO_FAV = "ADD_TO_FAV";
 export const DELETE_TO_FAV = "DELETE_TO_FAV";
 export const STOCKS_PRODUCTS = "STOCKS_PRODUCTS";
 export const GET_USERS = "GET_USERS";
-
+export const PUT_PRODUCT = "PUT_PRODUCT";
 
 
 export const GET_FAV = "GET_FAV";
@@ -37,6 +37,8 @@ export const GET_ALL_DETAILS = "GET_ALL_DETAILS";
 export const RGOOGLE = "RGOOGLE";
 export const PUTUSER = "PUTUSER";
 export const GET_BY_ID = "GET_BY_ID";
+
+export const CLEAN_USER = "CLEAN_USER";
 //-------------------------------------------CREATE PRODUCT---------------------------------------------------------//
 
 
@@ -432,3 +434,17 @@ export function users() {
     } catch (error) {}
   };
 }
+
+export const cleanUser = () => {
+  return {
+    type: CLEAN_USER,
+  };
+};
+
+export const editarProduct = (id,body) => async (dipatch) => {
+  const { data } = await axios.put(`/product/${id}`, body);
+  return dipatch({
+    type: "PUT_PRODUCT",
+    payload: data,
+  });
+};
