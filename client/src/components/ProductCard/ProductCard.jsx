@@ -21,7 +21,7 @@ const ProductCard = ({
   quantity,
   stock,
   deletePropInFav = true,
-  handleDelete
+  // handleDelete,
 }) => {
   const [imageSrc] = useState(imagen[0]);
   const dispatch = useDispatch();
@@ -41,8 +41,7 @@ const ProductCard = ({
   };
 
   const handleAddToShoppingCart = () => {
-    const product = { name, size, price, imagen, id,  quantity,
-      stock, };
+    const product = { name, size, price, imagen, id, quantity, stock };
     if (isSelected === false) {
       dispatch(addToCart(product));
       setIsSelected(true);
@@ -50,7 +49,7 @@ const ProductCard = ({
       dispatch(deleteToCart(id));
       setIsSelected(false);
     }
-  };  
+  };
 
     const handleSinPermisos = () => {
       alert("You need to be logged in to be able to add to favorites");
@@ -63,72 +62,58 @@ const ProductCard = ({
       navigate("/SectionRegister");
     };
   return (
-    <div className={styles.containerCard}>
-      <div className={styles.cuadrado1}>
-        <div className={styles.imgCuadrado1}>
-          <img src={hurleyCard} alt="#" />
-        </div>
-      </div>
-      <div className={styles.cuadrado2}>
-        <div className={styles.col1}>
-          <img src={imageSrc} alt={name} />
-        </div>
-        <div className={styles.col2}>
-          <div className={styles.fila1}>
-            <h1>{name}</h1>
-            <p>${price}</p>
+    <div className="animate__animated animate__fadeIn">
+      <div className={styles.containerCard}>
+        <div className={styles.cuadrado1}>
+          <div className={styles.imgCuadrado1}>
+            <img src={hurleyCard} alt="#" />
           </div>
-          <div className={styles.fila2}>
-            <div className={styles.size}>
-              <h1>WEIST</h1>
-              <p>{size}</p>
+        </div>
+        <div className={styles.cuadrado2}>
+          <div className={styles.col1}>
+            <img src={imageSrc} alt={name} />
+          </div>
+          <div className={styles.col2}>
+            <div className={styles.fila1}>
+              <h1>{name}</h1>
+              <p>${price}</p>
             </div>
-            <hr />
-            <div>
-              <img src={durability} alt="" />
+            <div className={styles.fila2}>
+              <div className={styles.size}>
+                <h1>WEIST</h1>
+                <p>{size}</p>
+              </div>
+              <hr />
+              <div>
+                <img src={durability} alt="" />
+              </div>
+              {deletePropInFav &&
+                (isFav ? (
+                  <button id={styles.carrito} onClick={handleFav}>
+                    <BsBagHeartFill />
+                  </button>
+                ) : (
+                  <button id={styles.carrito} onClick={handleFav}>
+                    <BsBagHeart />
+                  </button>
+                ))}
             </div>
-            {deletePropInFav &&
-              (isFav ? (
-                <button
-                  id={styles.carrito}
-                  onClick={!token ? handleSinPermisos : handleFav}
-                >
-                  <BsBagHeartFill />
+            {deletePropInFav && (
+              <div className={styles.fila3}>
+                <Link to={`/detail/${id}`}>
+                  <button>DETAILS</button>
+                </Link>
+              </div>
+            )}
+            <div className={styles.fila3}>
+              {isSelected ? (
+                <button onClick={handleAddToShoppingCart}>
+                  REMOVE FROM CART
                 </button>
               ) : (
-                <button
-                  id={styles.carrito}
-                  onClick={!token ? handleSinPermisos : handleFav}
-                >
-                  <BsBagHeart />
-                </button>
-              ))}
-          </div>
-          {deletePropInFav && (
-            <div className={styles.fila3}>
-              <Link to={`/detail/${id}`}>
-                <button>DETAILS</button>
-              </Link>
+                <button onClick={handleAddToShoppingCart}>ADD TO CART</button>
+              )}
             </div>
-          )}
-          <div className={styles.fila3}>
-            {isSelected ? (
-              <button
-                onClick={
-                  !token ? handleSinPermisosAñadir : handleAddToShoppingCart
-                }
-              >
-                REMOVE FROM CART
-              </button>
-            ) : (
-              <button
-                onClick={
-                  !token ? handleSinPermisosAñadir : handleAddToShoppingCart
-                }
-              >
-                ADD TO CART
-              </button>
-            )}
           </div>
         </div>
       </div>
@@ -137,5 +122,3 @@ const ProductCard = ({
 };
 
 export default ProductCard;
-
-

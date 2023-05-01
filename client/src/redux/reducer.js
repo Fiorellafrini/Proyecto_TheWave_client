@@ -20,7 +20,9 @@ import {
   DECREMENT_QUANTITY,
   EMPTY_CART,
   ADD_TO_FAV,
-  DELETE_TO_FAV
+  DELETE_TO_FAV,
+  STOCKS_PRODUCTS,
+  GET_USERS,
 } from "./actions";
 
 const initialState = {
@@ -34,7 +36,7 @@ const initialState = {
   setPage: 0,
   filters: {},
   favorites: [],
-  users:[]
+  users:[],
 };
 
 const reducer = (state = initialState, action) => {
@@ -52,6 +54,14 @@ const reducer = (state = initialState, action) => {
         products: action.payload,
         allProduct: action.payload.slice(),
       };
+
+    // case STOCKS_PRODUCTS:
+    //   return {
+    //     ...state,
+    //     products: action.payload,
+    //     allProduct: action.payload,
+
+    //   }
     //--------------------------------FILTROS--------------------------------------------------\\
     case FILTER_BY_NAME:
       return {
@@ -244,10 +254,15 @@ const reducer = (state = initialState, action) => {
         ...state,
         shoppingCart: updatedCartLess,
       };
+    case GET_USERS:
+      return {
+        ...state,
+        users: action.payload,
+      };
     default:
       return state;
   }
-};
+  };
 
 export default reducer;
 

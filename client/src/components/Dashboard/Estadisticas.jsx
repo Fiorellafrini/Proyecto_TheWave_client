@@ -1,24 +1,51 @@
 import React from "react";
 import styles from "./Estadisticas.module.css";
+import { AiOutlineEye, AiOutlineUser } from "react-icons/ai";
+import { GoCommentDiscussion} from "react-icons/go"
+import { MdOutlineShoppingBasket } from "react-icons/md"
 
 function Estadisticas() {
   return (
-    <table className={styles.table}>
-      <thead>
-        <tr>
-          <th>Usuarios</th>
-          <th>Visitas</th>
-          <th>Publicaciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>7</td>
-          <td>309</td>
-          <td>27</td>
-        </tr>
-      </tbody>
-    </table>
+    <div>
+      <div className={styles.cardBox}>
+        <div className={styles.card}>
+          <div>
+            <div className={styles.numbers}>7</div>
+            <div className={styles.cardName}>Users</div>
+          </div>
+          <div className={styles.iconBox}>
+            <AiOutlineUser />
+          </div>
+        </div>
+        <div className={styles.card}>
+          <div>
+            <div className={styles.numbers}>309</div>
+            <div className={styles.cardName}>Daily Views</div>
+          </div>
+          <div className={styles.iconBox}>
+            <AiOutlineEye />
+          </div>
+        </div>
+        <div className={styles.card}>
+          <div>
+            <div className={styles.numbers}>27</div>
+            <div className={styles.cardName}>Products</div>
+          </div>
+          <div className={styles.iconBox}>
+            <MdOutlineShoppingBasket />
+          </div>
+        </div>
+        <div className={styles.card}>
+          <div>
+            <div className={styles.numbers}>2227</div>
+            <div className={styles.cardName}>Comments</div>
+          </div>
+          <div className={styles.iconBox}>
+            <GoCommentDiscussion />
+          </div>
+        </div>
+      </div>
+    </div>
 
     //    <div class="container">
 

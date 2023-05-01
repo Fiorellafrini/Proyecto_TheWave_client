@@ -22,6 +22,11 @@ export const DECREMENT_QUANTITY = "DECREMENT_QUANTITY";
 export const PAYMENT = "PAYMENT";
 export const ADD_TO_FAV = "ADD_TO_FAV";
 export const DELETE_TO_FAV = "DELETE_TO_FAV";
+export const STOCKS_PRODUCTS = "STOCKS_PRODUCTS";
+export const GET_USERS = "GET_USERS";
+
+
+
 export const LOGIN = "LOGIN";
 export const REGISTRO = "REGISTRO";
 export const LOGINGOOGLE = "LOGINGOOGLE";
@@ -29,9 +34,11 @@ export const LOGINFACEBOOK = "LOGINFACEBOOK";
 export const RGOOGLE = "RGOOGLE";
 export const PUTUSER = "PUTUSER";
 export const GET_BY_ID = "GET_BY_ID";
-export const GET_USERS = "GET_USERS";
+
 export const CLEAN_USER = "CLEAN_USER";
 //-------------------------------------------CREATE PRODUCT---------------------------------------------------------//
+
+
 export const createProduct = (body) => async (dipatch) => {
   const { data } = await axios.post("/product", body);
   return dipatch({
@@ -53,6 +60,39 @@ export function listProducts() {
     }
   };
 }
+//-------------------------------------LIST IN STOCK - OUT STOCK-------------------
+// export function stocksProducts(id) {
+//   return async function (dispatch) {
+//     const response = await axios.put(`/product/${id}`);
+//     return dispatch({
+//       type: "STOCKS_PRODUCTS",
+//       payload: response.data
+//     }) 
+//   }
+// }
+
+
+
+
+
+
+// export const updateStockIncrement = (id) => async (dispatch) => {
+//   try {
+//     const response = await axios.get(`/product/${id}`);
+//     const currentStockValue = response.data.stock;
+
+//     const newStockValue = currentStockValue + 1;
+
+//     const updateResponse = await axios.put(`/product/${id}`, {
+//       stock: newStockValue,
+//     });
+
+//     dispatch({ type: UPDATE_STOCK_PRODUCT_DEC, payload: updateResponse.data });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
 // -----------------------------------FILTER_BY_NAME---------------------------------------------------//
 export function filterByName(payload) {
   return async function (dispatch) {
@@ -174,7 +214,13 @@ export const registro = (body) => async (dipatch) => {
       }
     });
   } catch (error) {
-    
+    Swal.fire({
+      icon: "error",
+      title: "Failed Register",
+      color: "white",
+      background: "#1e1e1e",
+      confirmButtonColor: '#224145',
+    })
   }
 };
 // ----------------------------------ADD TO CART-----------------------------------------------//
@@ -185,6 +231,8 @@ export const addToCart = (product) => {
 export const deleteToCart = (id) => {
   return { type: DELETE_TO_CART, payload: id };
 };
+
+
 // ----------------------------------PAYMENT----------------------------------------------------//
 export const paymentMercadoPago = (body) => {
   return async (dispatch) => {
@@ -306,6 +354,20 @@ export function userById(id) {
       var json = await axios.get(`/user/${id}`);
       return dispatch({
         type: "GET_BY_ID",
+        payload: json.data,
+      });
+    } catch (error) {}
+  };
+}
+//----------------------------------------------GET USERS----------------------------------//
+
+
+export function users() {
+  return async function (dispatch) {
+    try {
+      var json = await axios.get("/user");
+      return dispatch({
+        type: "GET_USERS",
         payload: json.data,
       });
     } catch (error) {}

@@ -24,6 +24,9 @@ function Perfil() {
   const [editarDireccion, setEditarDireccion] = useState(true);
   const [editarPassword, setEditarPassword] = useState(true);
 
+  useEffect(() => {
+    dispatch(userById(user.id));
+  }, [dispatch, user.id]);
 
 
   const handleEditar = () => {
@@ -235,18 +238,20 @@ function Perfil() {
                       )}
                     />
                   </div>
-                  <button
-                    className="btn-submit"
-                    type="submit"
-                    disabled={
-                      editar && editarDireccion && editarPassword === true
-                        ? true
-                        : false
-                    }
-                  >
-                    Confirm
-                  </button>
-                  <button onClick={handleNavigate}>Cancel</button>
+                  <div className={styles.botones}>
+                    <button
+                      className="btn-submit"
+                      type="submit"
+                      disabled={
+                        editar && editarDireccion && editarPassword === true
+                          ? true
+                          : false
+                      }
+                    >
+                      Confirm
+                    </button>
+                    <button onClick={handleNavigate}>Cancel</button>
+                  </div>
                 </Form>
               )}
             </Formik>

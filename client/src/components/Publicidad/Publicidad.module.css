@@ -29,21 +29,21 @@
 @media only screen and (min-width: 481px) and (max-width: 1024px) {
   /* Estilos para tabletas */
   .containerPublicidad {
-    gap: 50px;
+    gap: 0px;
     height: 250px;
   }
   .col1 img {
     width: 15rem;
   }
   .col2 img {
-    width: 15rem;
+    width: 25rem;
   }
 }
 
 @media only screen and (min-width: 1024px) and (max-width: 1280px) {
   /* Estilos para Laptos */
   .containerPublicidad {
-    gap: 50px;
+    gap: 10px;
   }
   .col1 img {
     width: 30rem;
