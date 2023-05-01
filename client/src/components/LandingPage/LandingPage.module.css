@@ -38,6 +38,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 10px;
 }
 
 .col img {
@@ -64,9 +65,10 @@
 
 .dropdownMenu {
     position: absolute;
+    padding: 10px;
     top: 100%;
     right: 0;
-    min-width: 300px;
+    min-width: 250px;
     max-height: 500px;
     background-color: #d5d8d8da;
     border-radius: 10px;
@@ -88,7 +90,7 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    text-align: center;
+    text-align: end;
     cursor: pointer;
 }
 

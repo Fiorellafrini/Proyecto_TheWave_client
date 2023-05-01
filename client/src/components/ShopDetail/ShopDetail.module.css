@@ -1,0 +1,136 @@
+.container {
+    width: 100%;
+    min-height: 100vh;
+    background-image: url(../../assets/hoal.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding-bottom: 20px;
+}
+
+.containerPayments {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 100px;
+}
+
+.payment {
+    width: 90%;
+    padding: 30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0px -2px 31px -5px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px -2px 31px -5px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px -2px 31px -5px rgba(0, 0, 0, 0.75);
+}
+
+.logoPage {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logoPage img {
+    width: 100px;
+}
+
+.logoPage hr {
+    width: 95%;
+    height: 2px;
+}
+
+.tituloPage {
+    width: 100%;
+    margin-top: 300px;
+    line-height: 85px;
+}
+
+.tituloPage h1 {
+    font-size: 7vw;
+    font-family: 'Poppins', sans-serif;
+    color: rgba(255, 140, 0, 0.493);
+}
+
+.tituloPage p {
+    font-size: 1.50vw;
+    color: white;
+}
+
+.paymentColor {
+    background-color: rgba(240, 248, 255, 0.774);
+    border-radius: 10px;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.tablaSurf img {
+    width: 230px;
+    position: relative;
+    bottom: 300px;
+}
+
+.detail {
+    width: 100%;
+}
+
+.detail h2 {
+    font-size: 2.50vw;
+    color: #224145;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+}
+
+.detail p {
+    color: black;
+    font-size: 1.20vw;
+}
+
+.detail h3 {
+    font-size: 1.50vw;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: rgb(36, 35, 33);
+    margin-top: 5px;
+}
+
+.products {
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(85, 84, 84, 0.288);
+    padding: 10px;
+}
+
+/* ----------------------------------------Spinner---------------------------------------- */
+.containerSpinner {
+    width: 100%;
+    height: 1500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 9px solid;
+    border-color: #dbdcef37;
+    border-right-color: #224145;
+    text-align: center;
+    animation: spinner-d3wgkg 1s infinite linear;
+}
+
+@keyframes spinner-d3wgkg {
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+/* ----------------------------------------Spinner---------------------------------------- */
