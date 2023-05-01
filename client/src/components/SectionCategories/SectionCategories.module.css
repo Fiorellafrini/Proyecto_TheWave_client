@@ -93,4 +93,17 @@
     flex-direction: column;
     gap: 30px;
   }
+
+  .filters{
+    flex-wrap: wrap;
+    row-gap: 1rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1280px) {
+  /* Estilos para Laptos */
+  .bar {
+    flex-direction: column;
+    gap: 30px;
+  }
 }

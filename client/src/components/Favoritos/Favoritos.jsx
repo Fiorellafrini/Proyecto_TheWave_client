@@ -12,6 +12,7 @@ import { BsHeartbreakFill } from "react-icons/bs";
 const Favorites = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
+
   const fav = useSelector((state) => state.products.favorites);
 
   const handleDelete = (product) => {

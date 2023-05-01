@@ -4,16 +4,16 @@ import logoPage from "../../assets/logoPage.png";
 import { Link } from "react-router-dom";
 import { TfiMenu } from "react-icons/tfi";
 import { AiOutlineUserSwitch } from "react-icons/ai";
-import { HiShoppingCart } from "react-icons/hi";
+// import { HiShoppingCart } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import jwt from "jwt-decode";
-import perfil from "../perfil//perfil.png";
+// import perfil from "../perfil//perfil.png";
 import { useSelector } from "react-redux";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const userCartShopping = useSelector((state) => state.products.shoppingCart);
+  const datosUser = useSelector((state) => state.user.userID);
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -27,7 +27,6 @@ const Navigation = () => {
     setIsOpen(false);
   };
   let isLoguin = window.localStorage.getItem("login");
-
   const navegar = useNavigate();
 
   const toggleDropdown = () => {
@@ -70,7 +69,7 @@ const Navigation = () => {
                 className={styles.dropdownToggle}
                 onClick={toggleDropdown}
               >
-                <img src={user.photo ? user.photo : perfil} alt="foto" />
+                <img src={!user.photo ? datosUser.photo : user.photo} alt="#" />
               </button>
               {isOpen &&
                 (!isLoguin ? (
@@ -92,24 +91,20 @@ const Navigation = () => {
                     <ul className={styles.menuList}>
                       <Link to={"/MyProfile"}>
                         <li>My Profile</li>
-                      </Link>{" "}
+                      </Link>
+                      <Link to={"/SectionCarrito"}>
+                        <li>Shopping Cart</li>
+                      </Link>
                       <Link to={"/ShopDetail"}>
                         <li>My Payments</li>
                       </Link>
-                      <li onClick={handleLogout}>Log out</li>
+                      <button onClick={handleLogout}>Log out</button>
+                      <Link to={"/admin"}>
+                        <li>Dashboard</li>
+                      </Link>
                     </ul>
                   </div>
                 ))}
-            </div>
-            <div className={styles.cart}>
-              <Link to={"/SectionCarrito"}>
-                <HiShoppingCart style={{ color: "#ffffffb7" }} />
-              </Link>
-              {userCartShopping.length > 0 && (
-                <div className={styles.cartCount}>
-                  {userCartShopping.length}
-                </div>
-              )}
             </div>
           </div>
         </div>
@@ -209,6 +204,9 @@ const Navigation = () => {
                 (!isLoguin ? (
                   <div className={styles.dropdownMenu}>
                     <ul className={styles.menuList}>
+                      <Link to={"/SectionCarrito"}>
+                        <li>Shopping Cart</li>
+                      </Link>
                       <Link to={"/SectionRegister"}>
                         <li>Register</li>
                       </Link>
@@ -220,12 +218,9 @@ const Navigation = () => {
                 ) : (
                   <div className={styles.dropdownMenu}>
                     <ul className={styles.menuList}>
-                      <Link to={"/My Profile"}>
+                      <Link to={"/MyProfile"}>
                         <li>My Profile</li>
                       </Link>
-                      <Link to={"/ShopDetail"}>
-                        <li>My Payments</li>
-                      </Link>
                       <Link to={"/SectionCarrito"}>
                         <li>Shopping Cart</li>
                       </Link>
@@ -234,73 +229,63 @@ const Navigation = () => {
                   </div>
                 ))}
             </div>
-            <div className={styles.cart}>
-              <Link to={"/SectionCarrito"}>
-                <HiShoppingCart style={{ color: "#ffffffb7" }} />
-              </Link>
-              {userCartShopping.length > 0 && (
-                <div className={styles.cartCount}>
-                  {userCartShopping.length}
-                </div>
-              )}
+          </div>
+          <div className={styles.nav2}>
+            <div className={styles.columnResponsive}>
+              <img src={logoPage} alt="" />
             </div>
-          </div>
-        </div>
-        <div className={styles.nav2}>
-          <div className={styles.columnResponsive}>
-            <img src={logoPage} alt="" />
-          </div>
-          <div className={styles.columnResponsive}>
-            <div className={styles.dropdown}>
-              <button
-                className={styles.dropdownToggle}
-                onClick={toggleDropdown}
-              >
-                <TfiMenu />
-              </button>
-              {isOpen &&
-                (!isLoguin ? (
-                  <div className={styles.dropdownMenu}>
-                    <ul className={styles.menuList}>
-                      <Link to={"/SectionHome"}>
-                        <li>Home</li>
-                      </Link>
-                      <Link to={"/SectionCategories"}>
-                        <li>Product</li>
-                      </Link>
-                      <Link to={"/Favorites"}>
-                        <li>Favorites</li>
-                      </Link>
-                      <Link to={"/SectionCarrito"}>
-                        <li>Shopping Cart</li>
-                      </Link>
-                      <Link to={"/SectionRegister"}>
-                        <li>Register</li>
-                      </Link>
-                      <Link to={"/SectionLogIn"}>
-                        <li>Log in</li>
-                      </Link>
-                    </ul>
-                  </div>
-                ) : (
-                  <div className={styles.dropdownMenu}>
-                    <ul className={styles.menuList}>
-                      <Link to={"/SectionHome"}>
-                        <li>Home</li>
-                      </Link>
-                      <Link to={"/SectionCategories"}>
-                        <li>Product</li>
-                      </Link>
-                      <Link to={"/Favorites"}>
-                        <li>Favorites</li>
-                      </Link>
-                      <Link to={"/SectionCarrito"}>
-                        <li>Shopping Cart</li>
-                      </Link>
-                      <button onClick={handleLogout}>Log out</button>
-                    </ul>
-                  </div>
-                ))}
+            <div className={styles.columnResponsive}>
+              <div className={styles.dropdown}>
+                <button
+                  className={styles.dropdownToggle}
+                  onClick={toggleDropdown}
+                >
+                  <TfiMenu />
+                </button>
+                {isOpen &&
+                  (!isLoguin ? (
+                    <div className={styles.dropdownMenu}>
+                      <ul className={styles.menuList}>
+                        <Link to={"/SectionHome"}>
+                          <li>Home</li>
+                        </Link>
+                        <Link to={"/SectionCategories"}>
+                          <li>Product</li>
+                        </Link>
+                        <Link to={"/Favorites"}>
+                          <li>Favorites</li>
+                        </Link>
+                        <Link to={"/SectionCarrito"}>
+                          <li>Shopping Cart</li>
+                        </Link>
+                        <Link to={"/SectionRegister"}>
+                          <li>Register</li>
+                        </Link>
+                        <Link to={"/SectionLogIn"}>
+                          <li>Log in</li>
+                        </Link>
+                      </ul>
+                    </div>
+                  ) : (
+                    <div className={styles.dropdownMenu}>
+                      <ul className={styles.menuList}>
+                        <Link to={"/SectionHome"}>
+                          <li>Home</li>
+                        </Link>
+                        <Link to={"/SectionCategories"}>
+                          <li>Product</li>
+                        </Link>
+                        <Link to={"/Favorites"}>
+                          <li>Favorites</li>
+                        </Link>
+                        <Link to={"/SectionCarrito"}>
+                          <li>Shopping Cart</li>
+                        </Link>
+                        <button onClick={handleLogout}>Log out</button>
+                      </ul>
+                    </div>
+                  ))}
+              </div>
             </div>
           </div>
         </div>

@@ -22,18 +22,16 @@ const Infinite = () => {
     // console.log(currentPage);
   }, [dispatch]);
 
+
+
+  const activeProductos = productos.filter((product) => product.active);
+
   return (
     <>
-      <Paginado total={productos.length} />
-      {/* <InfiniteScroll
-        dataLength={productos.length}
-        next={() => dispatch(setCurrentPage(currentPage + 1))}
-        hasMore={true}
-        loader={productos.length >= productos ? "" : <h4>Loading...</h4>}
-      > */}
+      <Paginado total={activeProductos.length} />
       <section className={styles.linkk}>
-        {productos.length ? (
-          productos
+        {activeProductos.length ? (
+          activeProductos
             .map((product) => (
               <ProductCard
                 key={product.id}
@@ -53,5 +51,5 @@ const Infinite = () => {
       </section>
     </>
   );
-};
+        }  
 export default Infinite;

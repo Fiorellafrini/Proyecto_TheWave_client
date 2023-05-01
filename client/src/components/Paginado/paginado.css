@@ -1,27 +1,25 @@
 .paginas {
-    text-align: center;
-    padding: 20px;
+  text-align: center;
 }
 
 .paginas ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    border-radius: 1px;
-    flex-wrap: wrap;
-    list-style: none;
-    gap : 0.5rem;
-    /* cursor: pointer; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1px;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 0.5rem;
+  /* cursor: pointer; */
 }
 
 .paginas ul button {
-    
-    border: 1px solid #224145;
-    border-radius: 10px;
-    padding: 10px;
-    transition: all 0.3s;
-    cursor: pointer;
+  border: 1px solid #224145;
+  border-radius: 10px;
+  padding: 10px;
+  transition: all 0.3s;
+  cursor: pointer;
 }
 /* .paginas ul div button{
     border: 1px solid #224145;
@@ -31,22 +29,22 @@
 } */
 
 .paginas ul li button:hover {
-    color: white;
-    background: #224145;
+  color: white;
+  background: #224145;
 }
 
-.pagin{
-    background:#224145 ;
-    color: white;
+.pagin {
+  background: #224145;
+  color: white;
 }
 
 @media only screen and (max-width: 375px) {
-    .paginas {
+  .paginas {
     text-align: center;
     padding: 20px;
-}
+  }
 
-.paginas ul {
+  .paginas ul {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -54,40 +52,35 @@
     border-radius: 1px;
     flex-wrap: wrap;
     list-style: none;
-    gap : 0.1rem;
-}
+    gap: 0.1rem;
+  }
 
-.paginas ul li button {
+  .paginas ul li button {
     border: 1px solid #224145;
     border-radius: 10px;
     padding: 10px;
     transition: all 0.3s;
-}
-.paginas ul div button{
+  }
+  .paginas ul div button {
     border: 1px solid #224145;
     border-radius: 10px;
     padding: 10px;
     transition: all 0.3s;
-}
+  }
 
-.paginas ul li button:hover {
+  .paginas ul li button:hover {
     color: white;
     background: #224145;
-}
+  }
 }
 
-.pagin{
-    background:#224145 ;
-    color: white;
+.pagin {
+  background: #224145;
+  color: white;
 }
 
 @media only screen and (max-width: 540px) {
-    .paginas {
-    text-align: center;
-    padding: 20px;
-}
-
-.paginas ul {
+  .paginas ul {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -95,28 +88,29 @@
     border-radius: 1px;
     flex-wrap: wrap;
     list-style: none;
-    gap : 0.1rem;
-}
+    gap: 0.1rem;
+  }
 
-.paginas ul li button {
+  .paginas ul li button {
     border: 1px solid #224145;
     border-radius: 10px;
     padding: 10px;
     transition: all 0.3s;
-}
-.paginas ul div button{
+  }
+  .paginas ul div button {
     border: 1px solid #224145;
     border-radius: 10px;
     padding: 10px;
     transition: all 0.3s;
-}
+  }
 
-.paginas ul li button:hover {
+  .paginas ul li button:hover {
     color: white;
     background: #224145;
-}
-.pagin{
-    background:#224145 ;
+  }
+  .pagin {
+    background: #224145;
     color: white;
+  }
 }
-}
+  

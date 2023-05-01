@@ -101,24 +101,25 @@ const LandingPage = () => {
             <div className={styles.titulo}>
               <h1>About Us</h1>
               <p className={styles.aboutUsP}>
-                Bienvenido a nuestra tienda online de productos náuticos,
-                especializada en surf. Somos apasionados por el mar y los
-                deportes acuáticos, y queremos compartir nuestra pasión contigo
-                ofreciéndote los mejores productos para disfrutar de tus
-                sesiones de surf. En nuestra tienda encontrarás una amplia
-                selección de productos de alta calidad, desde tablas de surf y
-                accesorios, hasta trajes de neopreno y complementos para
-                protegerte del sol y el viento. Trabajamos con las mejores
-                marcas del mercado, garantizándote productos duraderos y de
-                excelente rendimiento. Además, contamos con un equipo de
-                expertos en surf que estarán encantados de asesorarte y ayudarte
-                en todo lo que necesites para elegir el equipo perfecto para ti.
-                Ofrecemos envío gratuito en pedidos superiores a cierta
-                cantidad, y estamos comprometidos con la satisfacción de
-                nuestros clientes, por lo que si no estás satisfecho con tu
-                compra, puedes devolverla sin problemas. Únete a nuestra
-                comunidad de surfistas y descubre lo que tenemos para ofrecerte.
-                ¡Gracias por elegirnos!
+              Welcome to our online store of nautical products,
+                specialized in surfing. We are passionate about the sea and the
+                water sports, and we want to share our passion with you
+                offering you the best products to enjoy your
+                surf sessions. In our store you will find a wide
+                selection of high quality products, from surfboards and
+                accessories, even wetsuits and accessories for
+                protect you from the sun and wind. We work with the best
+                brands in the market, guaranteeing you long-lasting and high-quality products.
+                excellent performance. In addition, we have a team of
+                surf experts who will be happy to advise and help you
+                in everything you need to choose the perfect equipment for you.
+                We offer free shipping on orders over a certain
+                quantity, and we are committed to the satisfaction of
+                our customers, so if you are not satisfied with your
+                purchase, you can return it without problems. join our
+                surfing community and discover what we have to offer you.
+               
+                Thank you for choosing us!
               </p>
             </div>
           )}

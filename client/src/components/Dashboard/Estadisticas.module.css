@@ -1,42 +1,39 @@
-.container {
-  margin-top: 100px;
+.cardBox {
+  position: relative;
+  width: 100%;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 50px;
 }
 
-.counter-box {
-  display: block;
-  background: #ff83cd;
-  padding: 40px 20px 37px;
-  text-align: center;
+.cardBox .card {
+  position: relative;
+  background: #fff;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 8px 8px 5px rgb(38, 37, 36);
+  border-radius: 15px;
 }
-
-.counter-box p {
-  margin: 5px 0 0;
-  padding: 0;
-  color: #fffdfd;
-  font-size: 18px;
+.cardBox .card .numbers {
+  position: relative;
+  font-size: 2em;
   font-weight: 500;
 }
 
-.counter-box i {
-  font-size: 60px;
-  margin: 0 0 15px;
-  color: #e4ff5b;
+.cardBox .card .cardName {
+  color: #999;
 }
 
-.counter {
-  display: block;
-  font-size: 32px;
-  font-weight: 700;
-  color: #fffafa;
-  line-height: 28px;
+.cardBox .card .iconBox {
+  font-size: 2.5em;
+  color: #104243;
 }
 
-.counter-box.colored {
-  background: #ff83cd;
-}
-
-.counter-box.colored p,
-.counter-box.colored i,
-.counter-box.colored .counter {
-  color: #fff;
+@media only screen and (min-width: 1024px) and (max-width: 1280px) {
+  /* Estilos para Laptos */
+  .cardBox {
+    padding: 10px;
+  }
 }
