@@ -14,7 +14,7 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch()
   const datosUser = useSelector((state) => state.user.userID);
-
+  
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
@@ -28,12 +28,12 @@ const Navigation = () => {
   };
   const navegar = useNavigate();
   let isLoguin = window.localStorage.getItem("login");
+  let user = ""
+  if(isLoguin)  user = jwt(isLoguin);
 
-  if(isLoguin){
-    const user = jwt(isLoguin);
-    dispatch(userById(user.id));
-  }
-  
+    useEffect(() => {
+      dispatch(userById(user.id));
+    }, [dispatch, user.id]);
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
@@ -74,10 +74,7 @@ const Navigation = () => {
                   className={styles.dropdownToggle}
                   onClick={toggleDropdown}
                 >
-                  <img
-                    src={ datosUser.photo }
-                    alt="#"
-                  />
+                  <img src={datosUser.photo} alt="#" />
                 </button>
                 {isOpen &&
                   (!isLoguin ? (
@@ -103,10 +100,13 @@ const Navigation = () => {
                         <Link to={"/SectionCarrito"}>
                           <li>Shopping Cart</li>
                         </Link>
-                        <button onClick={handleLogout}>Log out</button>
+                        <Link to={"/ShopDetail"}>
+                          <li>My Payments</li>
+                        </Link>
                         <Link to={"/admin"}>
                           <li>Dashboard</li>
                         </Link>
+                        <button onClick={handleLogout}>Log out</button>
                       </ul>
                     </div>
                   ))}

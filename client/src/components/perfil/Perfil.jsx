@@ -24,9 +24,7 @@ function Perfil() {
   const [editarDireccion, setEditarDireccion] = useState(true);
   const [editarPassword, setEditarPassword] = useState(true);
 
-  useEffect(() => {
-    dispatch(userById(user.id));
-  }, [dispatch, user.id]);
+
 
 
   const handleEditar = () => {
