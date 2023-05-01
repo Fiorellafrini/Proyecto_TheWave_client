@@ -42,10 +42,14 @@
   padding: 0.5rem;
   border: none;
   border-radius: 5px;
-  margin-left: 5rem;
+  margin-left: 1rem;
   background: #104243;
   color: white;
   font-size: 1rem;
+}
+
+.editar button:active{
+  opacity: 0.8;
 }
 
 .formulario div {
@@ -59,6 +63,11 @@
   border: none;
   font-size: 1rem;
   padding: 0.5rem;
+}
+
+.botones{
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .error {

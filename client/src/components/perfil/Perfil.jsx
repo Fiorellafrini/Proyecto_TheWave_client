@@ -1,16 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 // import perfil from "./perfil.png";
 import jwt from "jwt-decode";
 import styles from "./Perfil.module.css";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import "animate.css";
-import {putUser,userById} from '../../redux/actions.js'
-import {useDispatch, useSelector} from 'react-redux'
-import {FiEdit} from "react-icons/fi"
-
-
-
+import { putUser, userById } from "../../redux/actions.js";
+import { useDispatch, useSelector } from "react-redux";
+import { FiEdit } from "react-icons/fi";
 
 function Perfil() {
   const navigate = useNavigate();
@@ -20,28 +17,24 @@ function Perfil() {
   const dispatch = useDispatch();
   const datosUser = useSelector((state) => state.user.userID);
   // Función para manejar la carga de imágenes
-  const [editar, setEditar]=useState(true)
-    const [editarDireccion, setEditarDireccion] = useState(true);
-    const [editarPassword, setEditarPassword] = useState(true);
+  const [editar, setEditar] = useState(true);
+  const [editarDireccion, setEditarDireccion] = useState(true);
+  const [editarPassword, setEditarPassword] = useState(true);
 
+  useEffect(() => {
+    dispatch(userById(user.id));
+  }, [dispatch, user.id]);
 
+  const handleEditar = () => {
+    setEditar(!editar);
+  };
+  const handleEditarDireccion = () => {
+    setEditarDireccion(!editarDireccion);
+  };
 
-
-useEffect(()=>{
-dispatch(userById(user.id))
-},[dispatch,user.id])
-
-const handleEditar = ()=>{
-  setEditar(!editar);
-}
-const handleEditarDireccion = () => {
-  setEditarDireccion(!editarDireccion);
-};
-
-const handleEditarpassword = () => {
-  setEditarPassword(!editarPassword);
-};
-
+  const handleEditarpassword = () => {
+    setEditarPassword(!editarPassword);
+  };
 
   const handleImageUpload = async (e, setFieldValue) => {
     const files = e.target.files;
@@ -240,18 +233,20 @@ const handleEditarpassword = () => {
                       )}
                     />
                   </div>
-                  <button
-                    className="btn-submit"
-                    type="submit"
-                    disabled={
-                      editar && editarDireccion && editarPassword === true
-                        ? true
-                        : false
-                    }
-                  >
-                    Send
-                  </button>
-                  <button onClick={handleNavigate}>Cancel</button>
+                  <div className={styles.botones}>
+                    <button
+                      className="btn-submit"
+                      type="submit"
+                      disabled={
+                        editar && editarDireccion && editarPassword === true
+                          ? true
+                          : false
+                      }
+                    >
+                      Confirm
+                    </button>
+                    <button onClick={handleNavigate}>Cancel</button>
+                  </div>
                 </Form>
               )}
             </Formik>

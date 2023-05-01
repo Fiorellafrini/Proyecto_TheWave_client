@@ -93,4 +93,9 @@
     flex-direction: column;
     gap: 30px;
   }
+
+  .filters{
+    flex-wrap: wrap;
+    row-gap: 1rem;
+  }
 }

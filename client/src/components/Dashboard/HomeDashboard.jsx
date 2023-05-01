@@ -1,8 +1,9 @@
 import React from "react";
-import styles from "./Dashboard.module.css";
+import styles from "./HomeDashboard.module.css";
 // import Navbar2 from "./NavBar";
 import Sidebar from "./Sidebar";
 import CardsDash from "./CardsDash";
+import Users from "./UsersDash";
 import Estadisticas from "./Estadisticas";
 
 function HomeDashboard() {
@@ -11,11 +12,16 @@ function HomeDashboard() {
       {/* <Navbar2 /> */}
       <div className={styles.dash}>
         <div className={styles.sidebar}>
-        <Sidebar />
+          <Sidebar />
         </div>
-        <div className={styles.cardDash}>
-          <Estadisticas/>
-          <CardsDash />
+        <div className={styles.Cards}>
+          <div className="animate__animated animate__fadeIn">
+            <Estadisticas />
+            <div className={styles.cardDash}>
+              <CardsDash />
+              <Users />
+            </div>
+          </div>
         </div>
       </div>
     </div>

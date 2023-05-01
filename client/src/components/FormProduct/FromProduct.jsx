@@ -87,8 +87,8 @@ const FormProduct = () => {
           }}
         >
           {({ isSubmitting, errors, setFieldValue }) => (
-            <div className={styles.cntd}>
-              <div className="animate__animated animate__fadeIn">
+            <div className="animate__animated animate__fadeIn">
+              <div className={styles.cntd}>
                 <Form className={styles.formulario}>
                   <label>
                     Name
