@@ -89,11 +89,17 @@ const ProductCard = ({
               </div>
               {deletePropInFav &&
                 (isFav ? (
-                  <button id={styles.carrito} onClick={handleFav}>
+                  <button
+                    id={styles.carrito}
+                    onClick={!token ? handleSinPermisos : handleFav}
+                  >
                     <BsBagHeartFill />
                   </button>
                 ) : (
-                  <button id={styles.carrito} onClick={handleFav}>
+                  <button
+                    id={styles.carrito}
+                    onClick={!token ? handleSinPermisos : handleFav}
+                  >
                     <BsBagHeart />
                   </button>
                 ))}
@@ -107,11 +113,21 @@ const ProductCard = ({
             )}
             <div className={styles.fila3}>
               {isSelected ? (
-                <button onClick={handleAddToShoppingCart}>
+                <button
+                  onClick={
+                    !token ? handleSinPermisosAñadir : handleAddToShoppingCart
+                  }
+                >
                   REMOVE FROM CART
                 </button>
               ) : (
-                <button onClick={handleAddToShoppingCart}>ADD TO CART</button>
+                <button
+                  onClick={
+                    !token ? handleSinPermisosAñadir : handleAddToShoppingCart
+                  }
+                >
+                  ADD TO CART
+                </button>
               )}
             </div>
           </div>

@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
-import styles from './Estadisticas.module.css';
+import React from 'react'
+// import styles from './Estadisticas.module.css';
 //import { useDispatch, useSelector } from "react-redux";
 //import { useState, useEffect } from 'react';
 //import { getUsers } from '../../redux/actions';
 //import { listProducts, setCurrentPage } from "../../redux/actions.js";
 //import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis, Pie, PieChart, Cell } from "recharts"
 //import { DataStats } from './DataStats';
-import { LineChart, BarChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import {  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
-const EstadisticasBar = ({ }) => {
+const EstadisticasBar = () => {
 //   const [userData, setUserData] = useState({
 //     labels: DataStats.map((data) => data.name),
 //     datasets: [
