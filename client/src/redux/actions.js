@@ -107,7 +107,7 @@ export function filterByName(payload) {
         // position: "top-end",color: "white",
         showConfirmButton: false,
         // confirmButtonColor: '#224145',
-        timer: 2000,
+        timer: 1000,
         timerProgressBar: true,
       });
     }

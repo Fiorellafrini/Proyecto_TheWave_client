@@ -15,8 +15,8 @@ const CardsDash = () => {
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.products.products);
   const setPage = useSelector((state) => state.products.setPage);
-  const lastIndex = setPage * 10;
-  const firstIndex = lastIndex - 10;
+  const lastIndex = setPage * 8;
+  const firstIndex = lastIndex - 8;
 
   useEffect(() => {
     dispatch(listProducts());
@@ -57,7 +57,9 @@ const CardsDash = () => {
                           <CardDashDelete id={product.id} />
                         </td>
                         <td>
-                          <FiEdit className={styles.editar} />
+                          <button className={styles.editar}>
+                            <FiEdit />
+                          </button>
                         </td>
                       </tr>
                     </tbody>

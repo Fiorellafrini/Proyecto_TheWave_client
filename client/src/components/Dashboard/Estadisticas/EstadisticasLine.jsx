@@ -23,25 +23,35 @@ ChartJS.register(
 
 export default function EstadisticasLine() {
   const productos = useSelector((state) => state.products.products);
+  // const user = useSelector((state) => state.products.users);
 
   const name = productos.length ? productos.map((prod) => prod.name) : null;
   const price = productos.length ? productos.map((prod) => prod.price) : null;
 
+  // const users = user.length ? user.map((user) => user.name) : null;
+  // const active = user.length ? user.map((user) => user.active) : null;
+
   var midata = {
-    labels: name,
+    labels : name,
     datasets: [
       {
-        label: "Stock",
+        // label: "Users Active",
         data: price,
-        backgroundColor: ["rgba(255, 99, 132, 0.2)"],
-        borderColor: ["rgba(255, 99, 132, 1)"],
+        backgroundColor: ["rgb(255, 99, 132)"],
+        borderColor: ["rgba(255, 99, 132, 0.5)"],
+      },
+      {
+        // label: "Users No Active",
+        data: price,
+        backgroundColor: ["rgb(53, 162, 235)"],
+        borderColor: ["rgba(53, 162, 235, 0.5)"],
       },
     ],
   };
 
   return (
     <div>
-      <Line data={midata} />
+      <Line data={midata}/>
     </div>
   );
 }

@@ -1,27 +1,37 @@
 import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import jwt from "jwt-decode"
+import jwt from "jwt-decode";
+import Swal from "sweetalert2";
 
 function RutasAdmin() {
-
-    let isLoguin = window.localStorage.getItem("login");
+  let isLoguin = window.localStorage.getItem("login");
 
   const arrayCorreos = [
     "lucassarachu7@gmail.com",
-  "Fedeasaad1099@outlook.com.ar",
-  "Gerson.reynaga23@gmail.com",
-  "cotyespeche@hotmail.com",
-  "fiorella_frini@hotmail.com",
-  "jonataniturriagovizcaino@gmail.com",
-  "henrydjpacheco@gmail.com",
-  "lucassarachu7@gmail.com",
-  "diazangly@gmail.com"
-];
+    "Fedeasaad1099@outlook.com.ar",
+    "Gerson.reynaga23@gmail.com",
+    "cotyespeche@hotmail.com",
+    "fiorella_frini@hotmail.com",
+    "jonataniturriagovizcaino@gmail.com",
+    "henrydjpacheco@gmail.com",
+    "lucassarachu7@gmail.com",
+    "diazangly@gmail.com",
+  ];
 
   if (isLoguin) {
     const user = jwt(isLoguin);
     if (!arrayCorreos.includes(user.email)) {
-      return  <Navigate to="/" />
+      return (
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "You are not an administrator",
+          color: "white",
+          background: "#1e1e1e",
+          confirmButtonColor: "#224145"
+        }),
+        (<Navigate to="/" />)
+      );
     }
     return <Outlet />;
   }
