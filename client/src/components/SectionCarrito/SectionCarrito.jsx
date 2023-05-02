@@ -20,11 +20,11 @@ const SectionCarrito = () => {
 
   //user
   let isLoguin = window.localStorage.getItem("login");
-  const user = jwt(isLoguin);
-  const userId = user.id;
+  let user = "";
+  if (isLoguin) user = jwt(isLoguin);
 
   const handlePayment = async () => {
-    dispatch(createShop(new Date(), userId)).then((newShop) => {
+    dispatch(createShop(new Date(), user.id)).then((newShop) => {
       for (let i = 0; i < userCartShopping.length; i++) {
         const product = userCartShopping[i];
         dispatch(
@@ -37,12 +37,12 @@ const SectionCarrito = () => {
         );
       }
     });
-    dispatch(paymentMercadoPago(userCartShopping)).then((response) => {
-      for (let i = 0; i < userCartShopping.length; i++) {
-        const product = userCartShopping[i];
-        dispatch(updateStockDecrement(product.id, product.quantity));
-      }
-    });
+    // dispatch(paymentMercadoPago(userCartShopping)).then((response) => {
+    //   for (let i = 0; i < userCartShopping.length; i++) {
+    //     const product = userCartShopping[i];
+    //     dispatch(updateStockDecrement(product.id, product.quantity));
+    //   }
+    // });
   };
 
   const handleDelete = (product) => {
