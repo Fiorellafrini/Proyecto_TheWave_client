@@ -26,8 +26,10 @@ export const DELETE_TO_FAV = "DELETE_TO_FAV";
 export const STOCKS_PRODUCTS = "STOCKS_PRODUCTS";
 export const GET_USERS = "GET_USERS";
 export const PUT_PRODUCT = "PUT_PRODUCT";
+export const SAVE_FILTERS_AND_PAGE = "SAVE_FILTERS_AND_PAGE";
+export const CLEAR_FILTERS = "CLEAR_FILTERS";
 
-
+export const GET_FAV = "GET_FAV";
 export const LOGIN = "LOGIN";
 export const REGISTRO = "REGISTRO";
 export const LOGINGOOGLE = "LOGINGOOGLE";
@@ -36,9 +38,10 @@ export const GET_ALL_DETAILS = "GET_ALL_DETAILS";
 export const RGOOGLE = "RGOOGLE";
 export const PUTUSER = "PUTUSER";
 export const GET_BY_ID = "GET_BY_ID";
-
+export const SET_FAVORITES = "SET_FAVORITES";
 export const CLEAN_USER = "CLEAN_USER";
 //-------------------------------------------CREATE PRODUCT---------------------------------------------------------//
+
 export const createProduct = (body) => async (dipatch) => {
   const { data } = await axios.post("/product", body);
   return dipatch({
@@ -48,15 +51,35 @@ export const createProduct = (body) => async (dipatch) => {
 };
 
 // -----------------------------------LIST-PRODUCT-----------------------------------------------------//
-export function listProducts() {
+// export function listProducts() {
+//   return async function (dispatch) {
+//     try {
+//       var json = await axios.get("/product");
+//       return dispatch({
+//         type: "GET_ALL_PRODUCTS",
+//         payload: json.data,
+//       });
+//     } catch (error) {}
+//   };
+// }
+
+export function listProducts(filters, page) {
   return async function (dispatch) {
     try {
-      var json = await axios.get("/product");
+      const params = { filters, page };
+      const json = await axios.get(`/product`, { params });
       return dispatch({
         type: "GET_ALL_PRODUCTS",
         payload: json.data,
       });
     } catch (error) {}
+  };
+}
+
+export function saveFiltersAndPage(filters, page) {
+  return {
+    type: SAVE_FILTERS_AND_PAGE,
+    payload: { filters, page },
   };
 }
 
@@ -123,6 +146,13 @@ export const orderByName = (criteria) => {
 export const orderByPrice = (criteria) => {
   return { type: ORDER_BY_PRICE, payload: criteria };
 };
+
+//--------------------------------CLEAR FILTER------------------------------------------------------------//
+
+export const clearFilters = () => ({
+  type: CLEAR_FILTERS,
+});
+
 // -----------------------------------DETAIL-----------------------------------//
 export function productsById(id) {
   return async function (dispatch) {
@@ -159,6 +189,7 @@ export const setCurrentPage = (payload) => {
     payload,
   };
 };
+
 // -------------------FILTER-BRAND---------------------------------------------------------------//
 export function filterBrand(id) {
   return async function (dispatch) {
@@ -240,7 +271,7 @@ export const paymentMercadoPago = (body) => {
         .post("/payment", body)
         .then((res) => {
           window.location.href = res.data.response.body.init_point;
-        console.log('data', res.data);
+          console.log("data", res.data);
         })
         .catch((error) => {});
       return dispatch({
@@ -270,11 +301,12 @@ export const createShop = (date, userId) => async (dispatch) => {
 // ----------------------------------SHOP_DETAIL----------------------------------------------------//
 export const createShopDetail =
   (quantity, price, productId, shopId) => async (dispatch) => {
+    console.log(productId);
     try {
       const response = await axios.post("/shop_detail", {
         quantity,
         price,
-        product_id: productId,
+        id_product: productId,
         shop_id: shopId,
       });
       dispatch({ type: CREATE_SHOP_DETAIL_SUCCESS, payload: response.data });
@@ -335,7 +367,7 @@ export const login = (body) => async (dipatch) => {
     });
     Swal.fire({
       icon: "success",
-      title: "Login Successful",
+      title: "Login successful",
       color: "white",
       background: "#1e1e1e",
       showConfirmButton: false,
@@ -355,7 +387,7 @@ export const login = (body) => async (dipatch) => {
   }
 };
 
-//-------------------------------------FAVORITOS-----------------------------------------------------//
+// -------------------------------------FAVORITOS-----------------------------------------------------//
 export const addToFav = (product) => {
   return { type: ADD_TO_FAV, payload: product };
 };
@@ -364,6 +396,40 @@ export const addToFav = (product) => {
 export const deleteToFav = (id) => {
   return { type: DELETE_TO_FAV, payload: id };
 };
+//--------------------------PARA CONECTAR CON EL BACK QUE SI FUNCIONA----------------
+
+// export const addToFav = (userId, productId) => async (dispatch) => {
+//   try {
+//     const res = await axios.post(`/favorites/${userId}/${productId}`);
+//     // (`/favorites`, { userId, productId });
+//     dispatch({ type: ADD_TO_FAV, payload: res.data });
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
+
+// export const deleteToFav = (userId, productId) => async (dispatch) => {
+//   try {
+//     await axios.delete(`/favorites/${userId}/${productId}`);
+//     dispatch({ type: DELETE_TO_FAV, payload: productId });
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
+
+export const getFav = (userId) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/favorites/${userId}`);
+    dispatch({ type: GET_FAV, payload: res.data });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const setFavorites = (favorites) => ({
+  type: SET_FAVORITES,
+  payload: favorites,
+});
 
 //---------------------------------------PUT USER --------------------------------------------------//
 export const putUser = (id, body, token) => async (dispatch) => {
@@ -388,6 +454,7 @@ export function userById(id) {
 }
 
 //----------------------------------------------GET USERS----------------------------------//
+
 export function users() {
   return async function (dispatch) {
     try {
@@ -421,7 +488,7 @@ export const cleanUser = () => {
   };
 };
 
-export const editarProduct = (id,body) => async (dipatch) => {
+export const editarProduct = (id, body) => async (dipatch) => {
   const { data } = await axios.put(`/product/${id}`, body);
   return dipatch({
     type: "PUT_PRODUCT",
