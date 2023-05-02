@@ -32,11 +32,11 @@ function Detail() {
 
   //user
   let isLoguin = window.localStorage.getItem("login");
-  const user = jwt(isLoguin);
-  const userId = user.id;
+  let user = "";
+  if (isLoguin) user = jwt(isLoguin);
 
   const handlePayment = async () => {
-    dispatch(createShop(new Date(), userId)).then((newShop) => {
+    dispatch(createShop(new Date(), user.id)).then((newShop) => {
       dispatch(
         createShopDetail(
           detalle.quantity,
