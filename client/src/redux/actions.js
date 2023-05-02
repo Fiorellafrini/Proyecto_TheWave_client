@@ -268,11 +268,12 @@ export const createShop = (date, userId) => async (dispatch) => {
 // ----------------------------------SHOP_DETAIL----------------------------------------------------//
 export const createShopDetail =
   (quantity, price, productId, shopId) => async (dispatch) => {
+    console.log(productId);
     try {
       const response = await axios.post("/shop_detail", {
         quantity,
         price,
-        product_id: productId,
+        id_product: productId,
         shop_id: shopId,
       });
       dispatch({ type: CREATE_SHOP_DETAIL_SUCCESS, payload: response.data });
