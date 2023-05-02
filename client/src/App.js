@@ -12,7 +12,7 @@ import Favorites from "./components/Favoritos/Favoritos";
 import SectionCarrito from "./components/SectionCarrito/SectionCarrito";
 import SectionRegister from "./components/SectionRegister/SectionRegister";
 import { Cloudinary } from "@cloudinary/url-gen";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CardsDash from "./components/Dashboard/CardsDash";
 import HomeDashboard from "./components/Dashboard/HomeDashboard";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
@@ -26,8 +26,24 @@ import ShopDetail from "./components/ShopDetail/ShopDetail";
 import Estadisticas from "./components/Dashboard/Estadisticas/Estadisticas";
 //import UserDash from "./components/Dashboard/UsersDash";
 import Users from "./components/Dashboard/UsersDash";
+import { useDispatch } from "react-redux";
+import { listProducts, setCurrentPage } from "./redux/actions";
+
 
 function App() {
+  const dispatch = useDispatch();
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
+
+
+  useEffect(() => {
+    if (isFirstLoad) {
+        dispatch(listProducts());
+        dispatch(setCurrentPage(1));
+        setIsFirstLoad(false);
+    }
+}, [dispatch, isFirstLoad]);
+
+
   new Cloudinary({
     cloud: {
       cloudName: "djngalumm",

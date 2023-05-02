@@ -30,10 +30,13 @@ const ProductCard = ({
   const navigate = useNavigate();
   let token = window.localStorage.getItem("login");
   
+
+
   const handleFav = () => {
     const product = { name, size, price, imagen, id };
+  // console.log(product);
     if (isFav === false) {
-      console.log(product);
+      // console.log(product);
       dispatch(addToFav(product));
       setIsFav(true);
     } else if (isFav === true) {

@@ -26,7 +26,10 @@ import {
   STOCKS_PRODUCTS,
   // STOCKS_PRODUCTS,
   GET_USERS,
-  PUT_PRODUCT
+  PUT_PRODUCT,
+  SAVE_FILTERS_AND_PAGE,
+  CLEAR_FILTERS,
+  SET_FAVORITES,
 } from "./actions";
 
 const initialState = {
@@ -41,7 +44,7 @@ const initialState = {
   filters: {},
   favorites: [],
   shop: [],
-  users:[],
+  users: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -137,6 +140,14 @@ const reducer = (state = initialState, action) => {
         ...state,
         setPage: action.payload,
       };
+
+    case SAVE_FILTERS_AND_PAGE:
+      return {
+        ...state,
+        filters: action.payload.filters,
+        setPage: action.payload.page,
+      };
+
     case FILTER_BRAND:
       return {
         ...state,
@@ -146,6 +157,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         products: action.payload,
+      };
+
+    case CLEAR_FILTERS:
+      return {
+        ...state,
+        filters: {},
+        setPage: 1,
       };
     //--------------------------------ADD_TO_CART--------------------------------\\
     case ADD_TO_CART:
@@ -177,7 +195,6 @@ const reducer = (state = initialState, action) => {
         favorites: [...state.favorites, action.payload],
       };
 
-      
     //--------------------------------DELETE_TO_FAV-------------------------------\\
     case DELETE_TO_FAV:
       const newFavorites = state.favorites.filter(
@@ -188,8 +205,15 @@ const reducer = (state = initialState, action) => {
         ...state,
         favorites: newFavorites,
       };
-    //--------------------------------GET FAV------------------------------------------//
+    // //--------------------------------GET FAV------------------------------------------//
     case GET_FAV:
+      return {
+        ...state,
+        favorites: action.payload,
+      };
+    // //--------------------------------SET FAV------------------------------------------//
+
+    case SET_FAVORITES:
       return {
         ...state,
         favorites: action.payload,
@@ -264,14 +288,13 @@ const reducer = (state = initialState, action) => {
         users: action.payload,
       };
     case PUT_PRODUCT:
-      return{
+      return {
         ...state,
-        product:action.payload
-      }
+        product: action.payload,
+      };
     default:
       return state;
   }
-  };
+};
 
 export default reducer;
-
