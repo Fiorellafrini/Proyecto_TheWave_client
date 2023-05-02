@@ -21,7 +21,7 @@ import {
   EMPTY_CART,
   ADD_TO_FAV,
   DELETE_TO_FAV,
-  STOCKS_PRODUCTS,
+  // STOCKS_PRODUCTS,
   GET_USERS,
 } from "./actions";
 
@@ -36,7 +36,7 @@ const initialState = {
   setPage: 0,
   filters: {},
   favorites: [],
-  users:[],
+  users: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -176,7 +176,6 @@ const reducer = (state = initialState, action) => {
       const newFavorites = state.favorites.filter(
         (product) => product.id !== action.payload
       );
-      console.log(newFavorites);
       return {
         ...state,
         favorites: newFavorites,
@@ -262,7 +261,7 @@ const reducer = (state = initialState, action) => {
     default:
       return state;
   }
-  };
+};
 
 export default reducer;
 
