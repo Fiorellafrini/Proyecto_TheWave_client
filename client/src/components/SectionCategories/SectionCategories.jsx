@@ -3,7 +3,7 @@ import styles from "../SectionCategories/SectionCategories.module.css";
 import SearchBar from "../SearchBar/SearchBar";
 
 import { useDispatch } from "react-redux";
-import { orderByName, orderByPrice } from "../../redux/actions";
+import { orderByName, orderByPrice, listProducts } from "../../redux/actions";
 import Infinite from "../InfiniteScroll/InfiniteScroll";
 import FiltroMarca from "../Filtros/FiltroMarca";
 import FiltroType from "../Filtros/FiltroType";
@@ -13,6 +13,20 @@ import Publicidad from "../Publicidad/Publicidad";
 const SectionCategories = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
+
+  const [filters, setFilters] = useState({});
+  const [page, setPage] = useState(1);
+  
+  const handleFilterChange = (newFilters) => {
+    dispatch(listProducts(newFilters, page));
+    setFilters(newFilters);
+  };
+  
+  const handlePageChange = (newPage) => {
+    dispatch(listProducts(filters, newPage));
+    setPage(newPage);
+  };
+  
 
   useEffect(() => {
     setTimeout(() => {

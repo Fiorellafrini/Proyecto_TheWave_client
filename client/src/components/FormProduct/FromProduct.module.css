@@ -5,8 +5,8 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  border-radius: 15px;
-  display: flex ;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
 .formulario > div {
@@ -100,7 +100,7 @@
 @media only screen and (min-width: 481px) and (max-width: 1024px) {
   /* Estilos para tabletas */
   .cntd {
-    transform: translatex(35px) translatey(120px);
+    transform: translatex(5px) translatey(120px);
   }
 }
 @media only screen and (min-width: 1024px) and (max-width: 1280px) {

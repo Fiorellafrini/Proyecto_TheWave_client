@@ -21,12 +21,6 @@ const LandingPage = () => {
   const handleNavItemClick = (item) => {
     setSelectedNavItem(item);
   };
-  const handleLogin = () => {
-    navgigate("/SectionLogIn");
-  };
-  const handleRegister = () => {
-    navgigate("/SectionRegister");
-  };
   const handleLogout = () => {
     window.localStorage.removeItem("login");
     navgigate("/");
@@ -55,12 +49,6 @@ const LandingPage = () => {
                         <li onClick={() => handleNavItemClick("Shop")}>Shop</li>
                         <li onClick={() => handleNavItemClick("About Us")}>
                           About Us
-                        </li>
-                        <li onClick={() => handleLogin("Log in")}>
-                          Log in
-                        </li>
-                        <li onClick={() => handleRegister("Register")}>
-                          Register
                         </li>
                       </ul>
                     </div>

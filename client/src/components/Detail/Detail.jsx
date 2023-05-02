@@ -1,3 +1,4 @@
+import jwt from "jwt-decode";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
@@ -10,7 +11,11 @@ import talleM from "../../assets/talleM.png";
 import talleS from "../../assets/talleS.png";
 import talleXL from "../../assets/talleXL.png";
 import vesl from "../../assets/vesl.png";
-import { paymentMercadoPago } from "../../redux/actions";
+import {
+  createShop,
+  createShopDetail,
+  paymentMercadoPago,
+} from "../../redux/actions";
 import { addToCart, deleteToCart, productsById } from "../../redux/actions.js";
 import target1 from "../Detail/iconos/master.png";
 import target2 from "../Detail/iconos/visa.png";
@@ -33,7 +38,22 @@ function Detail() {
     setIsOpen(!isOpen);
   }
 
-  const handlePayment = () => {
+  //user
+  let isLoguin = window.localStorage.getItem("login");
+  let user = "";
+  if (isLoguin) user = jwt(isLoguin);
+
+  const handlePayment = async () => {
+    dispatch(createShop(new Date(), user.id)).then((newShop) => {
+      dispatch(
+        createShopDetail(
+          detalle.quantity,
+          detalle.price,
+          detalle.id,
+          newShop.shop_id
+        )
+      );
+    });
     dispatch(paymentMercadoPago(detalle));
   };
 
@@ -70,7 +90,12 @@ function Detail() {
     );
     navigate("/SectionRegister");
   };
-  
+  const handleSinPermisosReview= () => {
+    alert(
+      "You need to be logged in to be able to add Reviews to this product"
+    );
+    navigate("/SectionRegister");
+  };
   const reviews = detalle.Reviews;
   const reviewCount = reviews && reviews.length ? reviews.length : 0;
 
@@ -175,7 +200,7 @@ function Detail() {
         <div className={styles.commentContainer}> 
         <p>Be the first to add a review</p>
         <div>
-      <button onClick={handleOpen}>Add Review</button>
+      <button onClick={!token ? handleSinPermisosReview :handleOpen}>Add Review</button>
       { isOpen && <AddReview isOpen={isOpen} setOpen={setIsOpen}/> }
     </div>
         

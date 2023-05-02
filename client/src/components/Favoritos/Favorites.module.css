@@ -1,7 +1,7 @@
 .container {
   width: 100%;
   min-height: 100vh;
-  background-image: url(../../assets/fondoHome.png);
+  background-image: url(../../assets/wp5555852-surfing-desktop-4k-wallpapers.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -9,25 +9,67 @@
   border-bottom-right-radius: 15px;
   padding-bottom: 20px;
 }
-.fav {
-  width: 200px;
-  height: 60px;
-  margin: 10px;
-  border-radius: 40px;
-  background-color: #224145;
-  border: none;
-  color: aliceblue;
-  font-family: "Work Sans";
-  font-size: 1.2em;
-  box-shadow: 7px 14px 12px 0px rgba(0, 0, 0, 0.37);
-  -webkit-box-shadow: 7px 14px 12px 0px rgba(0, 0, 0, 0.37);
-  -moz-box-shadow: 7px 14px 12px 0px rgba(0, 0, 0, 0.37);
-}
 
 .cards {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 100px;
+}
+
+.payment {
+  width: 90%;
+  padding: 30px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0px -2px 31px -5px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px -2px 31px -5px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px -2px 31px -5px rgba(0, 0, 0, 0.75);
+}
+
+.logoPage {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logoPage img {
+  width: 100px;
+}
+
+.logoPage hr {
+  width: 95%;
+  height: 2px;
+}
+
+.tituloPage {
+  width: 100%;
+  margin-top: 300px;
+}
+
+.tituloPage h1 {
+  font-size: 7vw;
+  font-family: 'Poppins', sans-serif;
+  color: rgba(255, 140, 0, 0.493);
+}
+
+
+.paymentColor {
+  background-color: rgba(240, 248, 255, 0.774);
+  border-radius: 10px;
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tablaSurf img {
+  width: 230px;
+  position: relative;
+  bottom: 300px;
 }
 
 .shoppingCartContainer {
@@ -35,28 +77,6 @@
   border-radius: 15px;
   background-color: #1e1e1ed0;
   padding: 20px;
-}
-
-.delete{
-  display: flex;
-  justify-content: flex-end;
-  position: relative;
-  right: 4rem;
-  top: 8rem;
-  z-index: 1;
-}
-
-.button {
-  display: flex;
-  border: none;
-  background-color: transparent;
-  color: #224145;
-  font-size: 2em;
-  cursor: pointer;
-}
-
-.button:active{
-  opacity: 0.3;
 }
 
 /* ----------------------------------------Spinner---------------------------------------- */
@@ -78,11 +98,19 @@
   text-align: center;
   animation: spinner-d3wgkg 1s infinite linear;
 }
+
 @keyframes spinner-d3wgkg {
-  to {
-    transform: rotate(1turn);
-  }
+    to {
+        transform: rotate(1turn);
+    }
 }
+
+/* ----------------------------------------Spinner---------------------------------------- */
+.name{
+    color: rgb(255, 255, 255);
+    font-size:5em;
+}
+
 /* ----------------------------------------Spinner---------------------------------------- */
 .name {
   color: rgb(255, 255, 255);

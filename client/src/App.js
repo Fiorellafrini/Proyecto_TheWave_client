@@ -8,26 +8,42 @@ import NavVertical from "./components/NavVertical/NavVertical";
 import SectionCategories from "./components/SectionCategories/SectionCategories";
 import SectionHome from "./components/SectionHome/SectionHome";
 // import SectionLogIn from "./components/SectionLogIn/SectionLogIn";
+import Favorites from "./components/Favoritos/Favoritos";
+import SectionCarrito from "./components/SectionCarrito/SectionCarrito";
+// import SectionRegister from "./components/SectionRegister/SectionRegister";
 import { Cloudinary } from "@cloudinary/url-gen";
-import React from "react";
-import CardsDash from "./components/Dashboard/CardsDash";
+import React, { useEffect, useState } from "react";
+// import CardsDash from "./components/Dashboard/CardsDash";
 import Estadisticas from "./components/Dashboard/Estadisticas/Estadisticas";
 import HomeDashboard from "./components/Dashboard/HomeDashboard";
-import Favorites from "./components/Favoritos/Favoritos";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import Login from "./components/Login/Login";
 import Register from "./components/Login/Register";
 import ResetPassword from "./components/ResetPasword/ResetPassword.jsx";
-import AddReview from "./components/Review/AddReview";
 import ProteccionRutaAdmin from "./components/Routers/ProteccionRutaAdmin";
 import ProteccionRutas from "./components/Routers/ProteccionRutas";
-import SectionCarrito from "./components/SectionCarrito/SectionCarrito";
-import SectionRegister from "./components/SectionRegister/SectionRegister";
+import ShopDetail from "./components/ShopDetail/ShopDetail";
 import Perfil from "./components/perfil/Perfil";
 //import UserDash from "./components/Dashboard/UsersDash";
-import Users from "./components/Dashboard/UsersDash";
+// import Users from "./components/Dashboard/UsersDash";
+import { useDispatch } from "react-redux";
+import Sidebar from "./components/Dashboard/Sidebar";
+import { listProducts, setCurrentPage } from "./redux/actions";
 
 function App() {
+  const dispatch = useDispatch();
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
+
+
+  useEffect(() => {
+    if (isFirstLoad) {
+        dispatch(listProducts());
+        dispatch(setCurrentPage(1));
+        setIsFirstLoad(false);
+    }
+}, [dispatch, isFirstLoad]);
+
+
   new Cloudinary({
     cloud: {
       cloudName: "djngalumm",
@@ -36,9 +52,12 @@ function App() {
   const location = useLocation();
   return (
     <div className="App">
-      {["/SectionHome","/SectionCategories","/Favorites"].includes(
+      {["/SectionHome","/SectionCategories","/Favorites", "/ShopDetail"].includes(
         location.pathname
       ) ? <NavVertical /> : null}
+      {["/form","/stats","/admin"].includes(
+        location.pathname
+      ) ? <Sidebar /> : null}
       <Routes>
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="/SectionHome" element={<SectionHome />}></Route>
@@ -50,11 +69,11 @@ function App() {
         <Route path="*" element={<Error404 />}></Route>
         <Route path="/forgot-password/" element={<ForgotPassword />}></Route>
         <Route path="/reset-Password/:id/:token" element={<ResetPassword/>}></Route>
-        <Route element={<ProteccionRutas />}/>
-          <Route path="/Favorites" element={<Favorites />}></Route>
+        <Route element={<ProteccionRutas />} />
+          <Route path="/Fav" element={<Favorites />}></Route>
           <Route path="/MyProfile" element={<Perfil />}></Route>
-        <Route path="/SectionRegister" element={<SectionRegister />}></Route>
-        <Route path="review" element={<AddReview/>}></Route>
+        <Route path="/SectionRegister" element={<Register />}></Route>
+          <Route path="/ShopDetail" element={<ShopDetail />}></Route>
         <Route
           path="/SectionCategories"
           element={<SectionCategories />}
@@ -70,8 +89,8 @@ function App() {
         <Route element={<ProteccionRutaAdmin />}>
           <Route path="/form" element={<FormProduct />}></Route>
           <Route path="/admin" element={<HomeDashboard />}></Route>
-          <Route path="/admin" element={<Users />}></Route>
-          <Route path="/admin" element={<CardsDash />}></Route>
+          {/* <Route path="/admin" element={<Users />}></Route> */}
+          {/* <Route path="/admin" element={<CardsDash />}></Route> */}
           <Route path="/stats" element={<Estadisticas />}></Route>
 
         </Route>
