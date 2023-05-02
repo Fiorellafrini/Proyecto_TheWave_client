@@ -2,21 +2,21 @@ import React from "react";
 // import { variables } from "./ItemSidebar";
 import {
   AiFillHome,
-  
   AiOutlineUpload,
   // AiOutlineShoppingCart,
 } from "react-icons/ai";
 // import { ImStatsBars } from "react-icons/im";
 import { MdSpaceDashboard } from "react-icons/md";
 import { BiLogOut } from "react-icons/bi";
-import { GoComment } from "react-icons/go"
+import { FaCommentAlt } from "react-icons/fa";
+import { IoStatsChartSharp, IoAddCircle } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 import style from "./Sidebar.module.css";
 
 export default function Sidebar({ sidebarOpen, setsidebarOpen }) {
   return (
     <div className={style.sidebar}>
-      <div isOpen={!sidebarOpen}>
+      <div>
         {linksArray.map(({ icon, label, to }) => (
           <div key={label}>
             <NavLink
@@ -46,14 +46,19 @@ const linksArray = [
     to: "/admin",
   },
   {
-    label: "Add Products",
-    icon: <AiOutlineUpload />,
-    to: "/form",
+    label: "Stats",
+    icon: <IoStatsChartSharp />,
+    to: "/stats",
   },
   {
     label: "Comments",
-    icon: <GoComment />,
+    icon: <FaCommentAlt />,
     to: "/comments",
+  },
+  {
+    label: "Add Products",
+    icon: <IoAddCircle />,
+    to: "/form",
   },
   {
     label: "Sign Out",
