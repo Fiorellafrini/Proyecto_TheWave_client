@@ -1,0 +1,21 @@
+.filters input {
+    width: 300px;
+    height: 60px;
+    border: 1px solid #e5f0f1;
+    border-radius: 15px;
+    background-color: transparent;
+    text-decoration: none;
+    padding-left: 10px;
+    font-family: 'Work Sans';
+    font-size: 1.23em;
+    font-weight: 700;
+    outline: none;
+    color: white;
+}
+/* .filters input:hover {
+
+} */
+
+.filters input::placeholder{
+    color: #224145;
+}

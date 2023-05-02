@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { createProduct } from "../../redux/actions";
 // import Navigation from "../Navigation/Navigation";
 import styles from "./FromProduct.module.css";
-import Sidebar from "../Dashboard/Sidebar";
 
 const FormProduct = () => {
   const [isSent, setIsSent] = useState(false);
@@ -36,8 +35,6 @@ const FormProduct = () => {
 
   return (
     <div className={styles.container}>
-      {/* <Navigation /> */}
-      <Sidebar />
       <div>
         <Formik
           initialValues={{

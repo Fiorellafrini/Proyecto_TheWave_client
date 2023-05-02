@@ -5,6 +5,18 @@ import { useNavigate } from "react-router-dom";
 import billabong from "../../assets/billabong.png";
 import hurley from "../../assets/hurley.png";
 import russel from "../../assets/russel.png";
+
+import {
+  paymentMercadoPago,
+  createShop,
+  createShopDetail,
+} from "../../redux/actions";
+import { addToCart, deleteToCart, productsById } from "../../redux/actions.js";
+import Navigation from "../Navigation/Navigation.jsx";
+import styles from "./Detail.module.css";
+import talleS from "../../assets/talleS.png";
+import talleM from "../../assets/talleM.png";
+
 import talleL from "../../assets/talleL.png";
 import talleM from "../../assets/talleM.png";
 import talleS from "../../assets/talleS.png";
@@ -14,11 +26,14 @@ import { paymentMercadoPago } from "../../redux/actions";
 import { addToCart, deleteToCart, productsById } from "../../redux/actions.js";
 import target1 from "../Detail/iconos/master.png";
 import target2 from "../Detail/iconos/visa.png";
+
 import Navigation from "../Navigation/Navigation.jsx";
 import AddReview from "../Review/AddReview";
 import ReviewCard from "../Review/ReviewCard";
 import StarRender from "../Review/StartRender";
 import styles from "./Detail.module.css";
+import jwt from "jwt-decode";
+
 
 function Detail() {
   const dispatch = useDispatch();
@@ -33,7 +48,22 @@ function Detail() {
     setIsOpen(!isOpen);
   }
 
-  const handlePayment = () => {
+  //user
+  let isLoguin = window.localStorage.getItem("login");
+  let user = "";
+  if (isLoguin) user = jwt(isLoguin);
+
+  const handlePayment = async () => {
+    dispatch(createShop(new Date(), user.id)).then((newShop) => {
+      dispatch(
+        createShopDetail(
+          detalle.quantity,
+          detalle.price,
+          detalle.id,
+          newShop.shop_id
+        )
+      );
+    });
     dispatch(paymentMercadoPago(detalle));
   };
 
