@@ -1,30 +1,30 @@
-// import React from 'react'
-import EstadisticasBar from './EstadisticasBar'
-import EstadisticasTorta from './EstadisticasTorta';
-import styles from './Estadisticas.module.css';
-
-// import { useState } from 'react'
-// import { DataStats } from './DataStats'
-// import { Chart, Line, Bar } from "react-chartjs-2";
-
+import EstadisticasBar from "./EstadisticasBar";
+import EstadisticasTorta from "./EstadisticasTorta";
+import EstadisticasLine from "./EstadisticasLine";
+import styles from "./Estadisticas.module.css";
 
 //listDetail() trae las compras 
 //listProducts() trae prodcutos
 
 
 function Estadisticas() {
-   
-  
   return (
-    <div>
-      <h3 className={styles.titulo}>Stocks for Product</h3>
-      <EstadisticasBar />
-      <h3 className={styles.titulo}>Price</h3>
-      <EstadisticasTorta />
-      
+    <div className={styles.container}>
+      <div className={styles.containerStats}>
+        <div className={styles.bar}>
+          <div className={styles.stats}>
+            <EstadisticasBar />
+          </div>
+          <div className={styles.stats}>
+            <EstadisticasLine />
+          </div>
+        </div>
+        <div className={styles.pie}>
+          <EstadisticasTorta />
+        </div>
       </div>
-    
-  )
+    </div>
+  );
 }
 
-export default Estadisticas
+export default Estadisticas;

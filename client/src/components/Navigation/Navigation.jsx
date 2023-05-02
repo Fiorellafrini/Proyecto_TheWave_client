@@ -4,16 +4,18 @@ import logoPage from "../../assets/logoPage.png";
 import { Link } from "react-router-dom";
 import { TfiMenu } from "react-icons/tfi";
 import { AiOutlineUserSwitch } from "react-icons/ai";
-// import { HiShoppingCart } from "react-icons/hi";
+import { HiShoppingCart } from "react-icons/hi";
+import { cleanUser, userById } from "../../redux/actions.js";
 import { useNavigate } from "react-router-dom";
 import jwt from "jwt-decode";
-// import perfil from "../perfil//perfil.png";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const dispatch = useDispatch();
   const datosUser = useSelector((state) => state.user.userID);
+  const userCartShopping = useSelector((state) => state.products.shoppingCart);
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -26,20 +28,25 @@ const Navigation = () => {
     if (event.target.closest(`.${styles.dropdownMenu}`)) return;
     setIsOpen(false);
   };
-  let isLoguin = window.localStorage.getItem("login");
   const navegar = useNavigate();
+  let isLoguin = window.localStorage.getItem("login");
+  let user = "";
+  if (isLoguin) user = jwt(isLoguin);
 
+  useEffect(() => {
+    dispatch(userById(user.id));
+  }, [dispatch, user.id]);
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
   const handleLogout = () => {
     window.localStorage.removeItem("login");
+    dispatch(cleanUser());
     navegar("/");
   };
 
   if (isLoguin) {
-    const user = jwt(isLoguin);
     return (
       <div className={styles.containerNav}>
         <div className={styles.nav}>
@@ -69,7 +76,7 @@ const Navigation = () => {
                 className={styles.dropdownToggle}
                 onClick={toggleDropdown}
               >
-                <img src={!user.photo ? datosUser.photo : user.photo} alt="#" />
+                <img src={datosUser.photo} alt="#" />
               </button>
               {isOpen &&
                 (!isLoguin ? (
@@ -92,19 +99,26 @@ const Navigation = () => {
                       <Link to={"/MyProfile"}>
                         <li>My Profile</li>
                       </Link>
-                      <Link to={"/SectionCarrito"}>
-                        <li>Shopping Cart</li>
-                      </Link>
                       <Link to={"/ShopDetail"}>
                         <li>My Payments</li>
                       </Link>
-                      <button onClick={handleLogout}>Log out</button>
                       <Link to={"/admin"}>
                         <li>Dashboard</li>
                       </Link>
+                      <li onClick={handleLogout}>Log out</li>
                     </ul>
                   </div>
                 ))}
+            </div>
+            <div className={styles.cart}>
+              <Link to={"/SectionCarrito"}>
+                <HiShoppingCart style={{ color: "#ffffffb7" }} />
+              </Link>
+              {userCartShopping.length > 0 && (
+                <div className={styles.cartCount}>
+                  {userCartShopping.length}
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -204,9 +218,6 @@ const Navigation = () => {
                 (!isLoguin ? (
                   <div className={styles.dropdownMenu}>
                     <ul className={styles.menuList}>
-                      <Link to={"/SectionCarrito"}>
-                        <li>Shopping Cart</li>
-                      </Link>
                       <Link to={"/SectionRegister"}>
                         <li>Register</li>
                       </Link>
@@ -228,6 +239,16 @@ const Navigation = () => {
                     </ul>
                   </div>
                 ))}
+            </div>
+            <div className={styles.cart}>
+              <Link to={"/SectionCarrito"}>
+                <HiShoppingCart style={{ color: "#ffffffb7" }} />
+              </Link>
+              {userCartShopping.length > 0 && (
+                <div className={styles.cartCount}>
+                  {userCartShopping.length}
+                </div>
+              )}
             </div>
           </div>
           <div className={styles.nav2}>
@@ -281,7 +302,7 @@ const Navigation = () => {
                         <Link to={"/SectionCarrito"}>
                           <li>Shopping Cart</li>
                         </Link>
-                        <button onClick={handleLogout}>Log out</button>
+                        <li onClick={handleLogout}>Log out</li>
                       </ul>
                     </div>
                   ))}

@@ -25,7 +25,7 @@ export const ADD_TO_FAV = "ADD_TO_FAV";
 export const DELETE_TO_FAV = "DELETE_TO_FAV";
 export const STOCKS_PRODUCTS = "STOCKS_PRODUCTS";
 export const GET_USERS = "GET_USERS";
-
+export const PUT_PRODUCT = "PUT_PRODUCT";
 
 
 export const LOGIN = "LOGIN";
@@ -36,9 +36,9 @@ export const GET_ALL_DETAILS = "GET_ALL_DETAILS";
 export const RGOOGLE = "RGOOGLE";
 export const PUTUSER = "PUTUSER";
 export const GET_BY_ID = "GET_BY_ID";
+
+export const CLEAN_USER = "CLEAN_USER";
 //-------------------------------------------CREATE PRODUCT---------------------------------------------------------//
-
-
 export const createProduct = (body) => async (dipatch) => {
   const { data } = await axios.post("/product", body);
   return dipatch({
@@ -46,6 +46,7 @@ export const createProduct = (body) => async (dipatch) => {
     payload: data,
   });
 };
+
 // -----------------------------------LIST-PRODUCT-----------------------------------------------------//
 export function listProducts() {
   return async function (dispatch) {
@@ -58,6 +59,7 @@ export function listProducts() {
     } catch (error) {}
   };
 }
+
 //-------------------------------------LIST IN STOCK - OUT STOCK-------------------
 // export function stocksProducts(id) {
 //   return async function (dispatch) {
@@ -65,14 +67,9 @@ export function listProducts() {
 //     return dispatch({
 //       type: "STOCKS_PRODUCTS",
 //       payload: response.data
-//     }) 
+//     })
 //   }
 // }
-
-
-
-
-
 
 // export const updateStockIncrement = (id) => async (dispatch) => {
 //   try {
@@ -116,10 +113,12 @@ export function filterByName(payload) {
     }
   };
 }
+
 // -----------------------------------ORDER_BY_NAME-----------------------------------------------------//
 export const orderByName = (criteria) => {
   return { type: ORDER_BY_NAME, payload: criteria };
 };
+
 // -----------------------------------ORDER_BY_PRICE----------------------------------------------------//
 export const orderByPrice = (criteria) => {
   return { type: ORDER_BY_PRICE, payload: criteria };
@@ -138,6 +137,7 @@ export function productsById(id) {
     }
   };
 }
+
 // -------------------PAGE-----------------------------------------------------------------//
 export function productsData(page) {
   return async function (dispatch) {
@@ -152,6 +152,7 @@ export function productsData(page) {
     }
   };
 }
+
 export const setCurrentPage = (payload) => {
   return {
     type: SET_CURRENTPAGE,
@@ -173,6 +174,7 @@ export function filterBrand(id) {
     }
   };
 }
+
 // -----------------------------------FILTER-BY-TYPE-----------------------------------------//
 export function filterType(id) {
   return async function (dispatch) {
@@ -188,6 +190,7 @@ export function filterType(id) {
     }
   };
 }
+
 //---------------------LOGIN---------------------------------------------//
 export const registro = (body) => async (dipatch) => {
   const { data } = await axios.post("/user", body);
@@ -201,7 +204,7 @@ export const registro = (body) => async (dipatch) => {
       title: "Register Successful",
       color: "white",
       background: "#1e1e1e",
-      confirmButtonColor: '#224145',
+      confirmButtonColor: "#224145",
     }).then((result) => {
       if (result.isConfirmed) {
         // Redireccionar a la ruta deseada
@@ -214,19 +217,20 @@ export const registro = (body) => async (dipatch) => {
       title: "Failed Register",
       color: "white",
       background: "#1e1e1e",
-      confirmButtonColor: '#224145',
-    })
+      confirmButtonColor: "#224145",
+    });
   }
 };
+
 // ----------------------------------ADD TO CART-----------------------------------------------//
 export const addToCart = (product) => {
   return { type: ADD_TO_CART, payload: product };
 };
+
 // ----------------------------------DELETE TO CART----------------------------------
 export const deleteToCart = (id) => {
   return { type: DELETE_TO_CART, payload: id };
 };
-
 
 // ----------------------------------PAYMENT----------------------------------------------------//
 export const paymentMercadoPago = (body) => {
@@ -266,11 +270,12 @@ export const createShop = (date, userId) => async (dispatch) => {
 // ----------------------------------SHOP_DETAIL----------------------------------------------------//
 export const createShopDetail =
   (quantity, price, productId, shopId) => async (dispatch) => {
+    console.log(productId);
     try {
       const response = await axios.post("/shop_detail", {
         quantity,
         price,
-        product_id: productId,
+        id_product: productId,
         shop_id: shopId,
       });
       dispatch({ type: CREATE_SHOP_DETAIL_SUCCESS, payload: response.data });
@@ -295,6 +300,7 @@ export function listDetail() {
 export const incrementQuantity = (id) => {
   return { type: INCREMENT_QUANTITY, payload: id };
 };
+
 export const decrementQuantity = (id) => {
   return { type: DECREMENT_QUANTITY, payload: id };
 };
@@ -354,14 +360,13 @@ export const login = (body) => async (dipatch) => {
 export const addToFav = (product) => {
   return { type: ADD_TO_FAV, payload: product };
 };
+
 // ----------------------------------DELETE TO CART----------------------------------
 export const deleteToFav = (id) => {
   return { type: DELETE_TO_FAV, payload: id };
 };
 
-
 //---------------------------------------PUT USER --------------------------------------------------//
-
 export const putUser = (id, body, token) => async (dispatch) => {
   // const authToken =  window.localStorage.getItem("login");
   const { data } = await axios.put(`/user/${id}`, body);
@@ -382,9 +387,8 @@ export function userById(id) {
     } catch (error) {}
   };
 }
+
 //----------------------------------------------GET USERS----------------------------------//
-
-
 export function users() {
   return async function (dispatch) {
     try {
@@ -396,3 +400,32 @@ export function users() {
     } catch (error) {}
   };
 }
+
+//----------------------------------------------GET BRANDS----------------------------------//
+
+export function brands() {
+  return async function (dispatch) {
+    try {
+      var json = await axios.get("/brand");
+      console.log(json);
+      dispatch({ type: "GET_ALL_BRANDS", payload: json.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+
+export const cleanUser = () => {
+  return {
+    type: CLEAN_USER,
+  };
+};
+
+export const editarProduct = (id,body) => async (dipatch) => {
+  const { data } = await axios.put(`/product/${id}`, body);
+  return dipatch({
+    type: "PUT_PRODUCT",
+    payload: data,
+  });
+};

@@ -54,6 +54,20 @@
   color: white;
 }
 
+.editar {
+  font-family: "Work Sans";
+  font-size: 0.1rem;
+  width: 106px;
+  height: 37px;
+  cursor: pointer;
+  position: relative;
+  background: #01187f;
+  border-radius: 20px;
+  color: white;
+  text-decoration: none;
+  border: none;
+}
+
 @media only screen and (min-width: 1024px) and (max-width: 1280px) {
   /* Estilos para Laptos */
   .cntd {

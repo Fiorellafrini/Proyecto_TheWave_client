@@ -7,8 +7,9 @@ import { listProducts, setCurrentPage } from "../../redux/actions";
 import styles from "./CardsDash.module.css";
 // import Error404 from "../Error404/Error404";
 import CardDashDelete from "./CardDashDelete";
-import CardDashEdit from "./CardDashEdit";
+import { FiEdit } from "react-icons/fi";
 import PaginadoDash from "./PaginadoDash";
+import SearchBarDash from "./SearchBarDash";
 
 const CardsDash = () => {
   const dispatch = useDispatch();
@@ -27,12 +28,13 @@ const CardsDash = () => {
     <div>
       <div className={styles.pag}>
         <PaginadoDash total={productos.length} />
+        <SearchBarDash />
       </div>
       <div className={styles.containerDash}>
         <div className={styles.linkk}>
           <h2>Products</h2>
           {/* Tabla de los Producto */}
-           
+
           <table>
             <thead>
               <tr>
@@ -52,11 +54,11 @@ const CardsDash = () => {
                         <td>{product.name}</td>
                         <td>${product.price}</td>
                         <td>{product.size}</td>
-                        <td> 
+                        <td>
                           <CardDashDelete id={product.id} />
                         </td>
                         <td>
-                          <CardDashEdit />
+                          <FiEdit className={styles.editar} />
                         </td>
                       </tr>
                     </tbody>
