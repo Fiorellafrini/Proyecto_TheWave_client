@@ -5,7 +5,8 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  border-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
 .dash {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { listProducts, setCurrentPage } from "../../redux/actions.js";
+import { listProducts } from "../../redux/actions.js";
 import Error404 from "../Error404/Error404";
 import Paginado from "../Paginado/Paginado";
 import ProductCard from "../ProductCard/ProductCard";

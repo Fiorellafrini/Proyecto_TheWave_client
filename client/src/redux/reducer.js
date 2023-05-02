@@ -200,7 +200,6 @@ const reducer = (state = initialState, action) => {
       const newFavorites = state.favorites.filter(
         (product) => product.id !== action.payload
       );
-      console.log(newFavorites);
       return {
         ...state,
         favorites: newFavorites,
