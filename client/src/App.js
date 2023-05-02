@@ -8,21 +8,22 @@ import NavVertical from "./components/NavVertical/NavVertical";
 import SectionCategories from "./components/SectionCategories/SectionCategories";
 import SectionHome from "./components/SectionHome/SectionHome";
 // import SectionLogIn from "./components/SectionLogIn/SectionLogIn";
-import Favorites from "./components/Favoritos/Favoritos";
-import SectionCarrito from "./components/SectionCarrito/SectionCarrito";
-import SectionRegister from "./components/SectionRegister/SectionRegister";
 import { Cloudinary } from "@cloudinary/url-gen";
 import React from "react";
 import CardsDash from "./components/Dashboard/CardsDash";
+import Estadisticas from "./components/Dashboard/Estadisticas/Estadisticas";
 import HomeDashboard from "./components/Dashboard/HomeDashboard";
+import Favorites from "./components/Favoritos/Favoritos";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
-import ResetPassword from "./components/ResetPasword/ResetPassword.jsx";
 import Login from "./components/Login/Login";
 import Register from "./components/Login/Register";
-import ProteccionRutas from "./components/Routers/ProteccionRutas";
-import Perfil from "./components/perfil/Perfil";
+import ResetPassword from "./components/ResetPasword/ResetPassword.jsx";
+import AddReview from "./components/Review/AddReview";
 import ProteccionRutaAdmin from "./components/Routers/ProteccionRutaAdmin";
-import Estadisticas from "./components/Dashboard/Estadisticas/Estadisticas";
+import ProteccionRutas from "./components/Routers/ProteccionRutas";
+import SectionCarrito from "./components/SectionCarrito/SectionCarrito";
+import SectionRegister from "./components/SectionRegister/SectionRegister";
+import Perfil from "./components/perfil/Perfil";
 //import UserDash from "./components/Dashboard/UsersDash";
 import Users from "./components/Dashboard/UsersDash";
 
@@ -53,6 +54,7 @@ function App() {
           <Route path="/Favorites" element={<Favorites />}></Route>
           <Route path="/MyProfile" element={<Perfil />}></Route>
         <Route path="/SectionRegister" element={<SectionRegister />}></Route>
+        <Route path="review" element={<AddReview/>}></Route>
         <Route
           path="/SectionCategories"
           element={<SectionCategories />}
@@ -71,6 +73,7 @@ function App() {
           <Route path="/admin" element={<Users />}></Route>
           <Route path="/admin" element={<CardsDash />}></Route>
           <Route path="/stats" element={<Estadisticas />}></Route>
+
         </Route>
       </Routes>
     </div>
