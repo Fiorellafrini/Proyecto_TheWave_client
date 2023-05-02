@@ -4,17 +4,17 @@ import logoPage from "../../assets/logoPage.png";
 import { Link } from "react-router-dom";
 import { TfiMenu } from "react-icons/tfi";
 import { AiOutlineUserSwitch } from "react-icons/ai";
-// import { HiShoppingCart } from "react-icons/hi";
+import { cleanUser, userById } from "../../redux/actions.js";
 import { useNavigate } from "react-router-dom";
 import jwt from "jwt-decode";
-// import perfil from "../perfil//perfil.png";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const dispatch = useDispatch()
   const datosUser = useSelector((state) => state.user.userID);
-
+  
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
@@ -26,20 +26,25 @@ const Navigation = () => {
     if (event.target.closest(`.${styles.dropdownMenu}`)) return;
     setIsOpen(false);
   };
-  let isLoguin = window.localStorage.getItem("login");
   const navegar = useNavigate();
-  
+  let isLoguin = window.localStorage.getItem("login");
+  let user = ""
+  if(isLoguin)  user = jwt(isLoguin);
+
+    useEffect(() => {
+      dispatch(userById(user.id));
+    }, [dispatch, user.id]);
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
   const handleLogout = () => {
     window.localStorage.removeItem("login");
+    dispatch(cleanUser())
     navegar("/");
   };
 
     if(isLoguin){
-      const user = jwt(isLoguin)
       return (
         <div className={styles.containerNav}>
           <div className={styles.nav}>
@@ -69,10 +74,7 @@ const Navigation = () => {
                   className={styles.dropdownToggle}
                   onClick={toggleDropdown}
                 >
-                  <img
-                    src={!user.photo ? datosUser.photo : user.photo}
-                    alt="#"
-                  />
+                  <img src={datosUser.photo} alt="#" />
                 </button>
                 {isOpen &&
                   (!isLoguin ? (
@@ -98,10 +100,13 @@ const Navigation = () => {
                         <Link to={"/SectionCarrito"}>
                           <li>Shopping Cart</li>
                         </Link>
-                        <button onClick={handleLogout}>Log out</button>
+                        <Link to={"/ShopDetail"}>
+                          <li>My Payments</li>
+                        </Link>
                         <Link to={"/admin"}>
                           <li>Dashboard</li>
                         </Link>
+                        <button onClick={handleLogout}>Log out</button>
                       </ul>
                     </div>
                   ))}

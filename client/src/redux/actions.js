@@ -1,7 +1,6 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 export const POST_PRODUCT = "POST_PRODUCT";
-export const UPDATE_STOCK_PRODUCT_INC = "UPDATE_STOCK_PRODUCT_INC";
 export const UPDATE_STOCK_PRODUCT_DEC = "UPDATE_STOCK_PRODUCT_DEC";
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const GET_All_TYPES = "GET_ALL_TYPES";
@@ -20,21 +19,25 @@ export const EMPTY_CART = "EMPTY CART";
 export const INCREMENT_QUANTITY = "INCREMENT_QUANTITY";
 export const DECREMENT_QUANTITY = "DECREMENT_QUANTITY";
 export const PAYMENT = "PAYMENT";
+export const CREATE_SHOP_SUCCESS = "CREATE_SHOP_SUCCESS";
+export const CREATE_SHOP_DETAIL_SUCCESS = "CREATE_SHOP_DETAIL_SUCCESS";
 export const ADD_TO_FAV = "ADD_TO_FAV";
 export const DELETE_TO_FAV = "DELETE_TO_FAV";
 export const STOCKS_PRODUCTS = "STOCKS_PRODUCTS";
 export const GET_USERS = "GET_USERS";
-
+export const PUT_PRODUCT = "PUT_PRODUCT";
 
 
 export const LOGIN = "LOGIN";
 export const REGISTRO = "REGISTRO";
 export const LOGINGOOGLE = "LOGINGOOGLE";
 export const LOGINFACEBOOK = "LOGINFACEBOOK";
+export const GET_ALL_DETAILS = "GET_ALL_DETAILS";
 export const RGOOGLE = "RGOOGLE";
 export const PUTUSER = "PUTUSER";
 export const GET_BY_ID = "GET_BY_ID";
 
+export const CLEAN_USER = "CLEAN_USER";
 //-------------------------------------------CREATE PRODUCT---------------------------------------------------------//
 export const createProduct = (body) => async (dipatch) => {
   const { data } = await axios.post("/product", body);
@@ -120,8 +123,7 @@ export const orderByName = (criteria) => {
 export const orderByPrice = (criteria) => {
   return { type: ORDER_BY_PRICE, payload: criteria };
 };
-
-// -------------------DETAIL----------------------------------------------------------------------------//
+// -----------------------------------DETAIL-----------------------------------//
 export function productsById(id) {
   return async function (dispatch) {
     try {
@@ -157,9 +159,7 @@ export const setCurrentPage = (payload) => {
     payload,
   };
 };
-
 // -------------------FILTER-BRAND---------------------------------------------------------------//
-
 export function filterBrand(id) {
   return async function (dispatch) {
     try {
@@ -240,6 +240,7 @@ export const paymentMercadoPago = (body) => {
         .post("/payment", body)
         .then((res) => {
           window.location.href = res.data.response.body.init_point;
+        console.log('data', res.data);
         })
         .catch((error) => {});
       return dispatch({
@@ -251,42 +252,48 @@ export const paymentMercadoPago = (body) => {
     }
   };
 };
-
-// -----------------------------------UPDATE_STOCK_PRODUCT_DEC-----------------------------------//
-export const updateStockDecrement = (id) => async (dispatch) => {
+// ----------------------------------SHOP----------------------------------------------------//
+export const createShop = (date, userId) => async (dispatch) => {
   try {
-    const response = await axios.get(`/product/${id}`);
-    const currentStockValue = response.data.stock;
-
-    const newStockValue = currentStockValue - 1;
-
-    const updateResponse = await axios.put(`/product/${id}`, {
-      stock: newStockValue,
+    const response = await axios.post("/shop", {
+      date,
+      user_id: userId,
     });
-
-    dispatch({ type: UPDATE_STOCK_PRODUCT_INC, payload: updateResponse.data });
+    const newShop = response.data.order;
+    dispatch({ type: CREATE_SHOP_SUCCESS, payload: newShop });
+    return newShop;
   } catch (error) {
     console.log(error);
   }
 };
 
-// -----------------------------------UPDATE_STOCK_PRODUCT_INC-----------------------------------
-export const updateStockIncrement = (id) => async (dispatch) => {
-  try {
-    const response = await axios.get(`/product/${id}`);
-    const currentStockValue = response.data.stock;
-
-    const newStockValue = currentStockValue + 1;
-
-    const updateResponse = await axios.put(`/product/${id}`, {
-      stock: newStockValue,
-    });
-
-    dispatch({ type: UPDATE_STOCK_PRODUCT_DEC, payload: updateResponse.data });
-  } catch (error) {
-    console.log(error);
-  }
-};
+// ----------------------------------SHOP_DETAIL----------------------------------------------------//
+export const createShopDetail =
+  (quantity, price, productId, shopId) => async (dispatch) => {
+    try {
+      const response = await axios.post("/shop_detail", {
+        quantity,
+        price,
+        product_id: productId,
+        shop_id: shopId,
+      });
+      dispatch({ type: CREATE_SHOP_DETAIL_SUCCESS, payload: response.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+// ----------------------------------ALL_SHOP_DETAIL----------------------------------------------------//
+export function listDetail() {
+  return async function (dispatch) {
+    try {
+      var json = await axios.get("/shop");
+      return dispatch({
+        type: "GET_ALL_DETAILS",
+        payload: json.data,
+      });
+    } catch (error) {}
+  };
+}
 
 // -----------------------------------QUANTITY--------------------------------------------------//
 export const incrementQuantity = (id) => {
@@ -299,6 +306,24 @@ export const decrementQuantity = (id) => {
 
 export const empty_cart = (product) => {
   return { type: EMPTY_CART, payload: product };
+};
+
+// -----------------------------------UPDATE_STOCK_PRODUCT_DEC-----------------------------------//
+export const updateStockDecrement = (id, quantity) => async (dispatch) => {
+  try {
+    const response = await axios.get(`/product/${id}`);
+    const currentStockValue = response.data.stock;
+
+    const newStockValue = currentStockValue - quantity;
+
+    const updateResponse = await axios.put(`/product/${id}`, {
+      stock: newStockValue,
+    });
+
+    dispatch({ type: UPDATE_STOCK_PRODUCT_DEC, payload: updateResponse.data });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const login = (body) => async (dipatch) => {
@@ -388,3 +413,18 @@ export function brands() {
     }
   };
 }
+
+
+export const cleanUser = () => {
+  return {
+    type: CLEAN_USER,
+  };
+};
+
+export const editarProduct = (id,body) => async (dipatch) => {
+  const { data } = await axios.put(`/product/${id}`, body);
+  return dipatch({
+    type: "PUT_PRODUCT",
+    payload: data,
+  });
+};

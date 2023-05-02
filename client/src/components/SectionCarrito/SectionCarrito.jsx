@@ -3,18 +3,48 @@ import Navigation from "../Navigation/Navigation";
 import styles from "../SectionCarrito/SectionCarrito.module.css";
 import ShoppingCartCard from "../ShoppingCartCard/ShoppingCartCard";
 import { useSelector } from "react-redux";
-import { paymentMercadoPago, deleteToCart } from "../../redux/actions";
+import {
+  paymentMercadoPago,
+  deleteToCart,
+  createShop,
+  createShopDetail,
+  updateStockDecrement,
+} from "../../redux/actions";
 import { useDispatch } from "react-redux";
+import jwt from "jwt-decode";
 
 const SectionCarrito = () => {
   const [loading, setLoading] = useState(true);
   const userCartShopping = useSelector((state) => state.products.shoppingCart);
-
   const dispatch = useDispatch();
 
-  const handlePayment = () => {
-    dispatch(paymentMercadoPago(userCartShopping));
+  //user
+  let isLoguin = window.localStorage.getItem("login");
+  const user = jwt(isLoguin);
+  const userId = user.id;
+
+  const handlePayment = async () => {
+    dispatch(createShop(new Date(), userId)).then((newShop) => {
+      for (let i = 0; i < userCartShopping.length; i++) {
+        const product = userCartShopping[i];
+        dispatch(
+          createShopDetail(
+            product.quantity,
+            product.price,
+            product.id,
+            newShop.shop_id
+          )
+        );
+      }
+    });
+    dispatch(paymentMercadoPago(userCartShopping)).then((response) => {
+      for (let i = 0; i < userCartShopping.length; i++) {
+        const product = userCartShopping[i];
+        dispatch(updateStockDecrement(product.id, product.quantity));
+      }
+    });
   };
+
   const handleDelete = (product) => {
     dispatch(deleteToCart(product));
   };
@@ -58,6 +88,7 @@ const SectionCarrito = () => {
                 <div className={styles.totalPay}>
                   <p>Total</p>
                   <p>
+                    $
                     {userCartShopping.reduce(
                       (total, product) =>
                         total + product.price * product.quantity,

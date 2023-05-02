@@ -1,4 +1,4 @@
-import { REGISTRO, LOGIN, PUTUSER, GET_BY_ID } from "./actions";
+import { REGISTRO, LOGIN, PUTUSER, GET_BY_ID, CLEAN_USER } from "./actions";
 
 const initialState = {
   user: [],
@@ -29,6 +29,11 @@ const authReducer = (state = initialState, action) => {
         ...state,
         userID: action.payload,
       };
+    case CLEAN_USER:
+      return{
+        ...state,
+        userID:[]
+      }
     default:
       return state;
   }

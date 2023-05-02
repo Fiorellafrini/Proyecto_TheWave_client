@@ -2,8 +2,7 @@ import React from "react";
 // import { variables } from "./ItemSidebar";
 import {
   AiFillHome,
-  // AiOutlineForm,
-  // AiOutlineUpload,
+  AiOutlineUpload,
   // AiOutlineShoppingCart,
 } from "react-icons/ai";
 // import { ImStatsBars } from "react-icons/im";
