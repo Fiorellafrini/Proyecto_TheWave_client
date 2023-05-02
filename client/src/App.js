@@ -12,7 +12,7 @@ import Favorites from "./components/Favoritos/Favoritos";
 import SectionCarrito from "./components/SectionCarrito/SectionCarrito";
 // import SectionRegister from "./components/SectionRegister/SectionRegister";
 import { Cloudinary } from "@cloudinary/url-gen";
-import React from "react";
+import React, { useEffect, useState } from "react";
 // import CardsDash from "./components/Dashboard/CardsDash";
 import HomeDashboard from "./components/Dashboard/HomeDashboard";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
@@ -26,9 +26,24 @@ import ShopDetail from "./components/ShopDetail/ShopDetail";
 import Estadisticas from "./components/Dashboard/Estadisticas/Estadisticas";
 //import UserDash from "./components/Dashboard/UsersDash";
 // import Users from "./components/Dashboard/UsersDash";
+import { listProducts, setCurrentPage } from "./redux/actions";
+import { useDispatch } from "react-redux";
 import Sidebar from "./components/Dashboard/Sidebar";
 
 function App() {
+  const dispatch = useDispatch();
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
+
+
+  useEffect(() => {
+    if (isFirstLoad) {
+        dispatch(listProducts());
+        dispatch(setCurrentPage(1));
+        setIsFirstLoad(false);
+    }
+}, [dispatch, isFirstLoad]);
+
+
   new Cloudinary({
     cloud: {
       cloudName: "djngalumm",
@@ -54,8 +69,8 @@ function App() {
         <Route path="*" element={<Error404 />}></Route>
         <Route path="/forgot-password/" element={<ForgotPassword />}></Route>
         <Route path="/reset-Password/:id/:token" element={<ResetPassword/>}></Route>
-        <Route element={<ProteccionRutas />}/>
-          <Route path="/Favorites" element={<Favorites />}></Route>
+        <Route element={<ProteccionRutas />} />
+          <Route path="/Fav" element={<Favorites />}></Route>
           <Route path="/MyProfile" element={<Perfil />}></Route>
         <Route path="/SectionRegister" element={<Register />}></Route>
           <Route path="/ShopDetail" element={<ShopDetail />}></Route>
