@@ -8,7 +8,7 @@ function RutasAdmin() {
 
   const arrayCorreos = [
     "lucassarachu7@gmail.com",
-    "Fedeasaad1099@outlook.com.ar",
+    "fedeasaad1099@outlook.com.ar",
     "Gerson.reynaga23@gmail.com",
     "cotyespeche@hotmail.com",
     "fiorella_frini@hotmail.com",
