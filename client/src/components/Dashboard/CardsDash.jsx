@@ -13,6 +13,7 @@ import PaginadoDash from "./PaginadoDash";
 const CardsDash = () => {
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.products.products);
+  console.log(productos);
   const setPage = useSelector((state) => state.products.setPage);
   const lastIndex = setPage * 10;
   const firstIndex = lastIndex - 10;

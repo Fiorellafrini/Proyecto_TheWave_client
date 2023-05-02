@@ -8,6 +8,10 @@ import styles from './Estadisticas.module.css';
 // import { Chart, Line, Bar } from "react-chartjs-2";
 
 
+//listDetail() trae las compras 
+//listProducts() trae prodcutos
+
+
 function Estadisticas() {
    
   

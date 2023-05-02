@@ -1,5 +1,5 @@
 import React from 'react'
-import { Pie, PieChart, Tooltip, Cell } from 'recharts';
+//import { Pie, PieChart, Tooltip, Cell } from 'recharts';
 
 
 
@@ -372,26 +372,12 @@ function EstadisticasTorta() {
       "These Bare Powerjet diving fins are ideal for any type of diving. With an aerodynamic design and a high-strength structure, these fins provide great propulsion in the water, allowing the diver to move with ease and speed.",
   },
     ];
-    const COLORS = ['#ce93d8', '#5c6bc0', '#b39ddb', '#4dd0e1', '#f48fb1', '#d500f9']
+ //   const COLORS = ['#ce93d8', '#5c6bc0', '#b39ddb', '#4dd0e1', '#f48fb1', '#d500f9']
   return (
-    
-      <PieChart
-      width={550}
-          height={550}>
-              <Pie
-                  dataKey="price"
-                  data={DataStats}
-                  innerRadius={40}
-              >
-                   {DataStats.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                   ))}   
-                  
-              </Pie>
-                  <Tooltip/>
-      </PieChart>
-    
-  )
+    <div>
+      
+ </div>
+  );
 }
 
 export default EstadisticasTorta;
