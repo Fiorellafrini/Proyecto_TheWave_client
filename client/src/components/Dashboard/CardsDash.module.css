@@ -1,29 +1,30 @@
-.containerDash{
+.containerDash {
   display: grid;
   grid-gap: 20px;
   padding: 20px;
 }
 
-.pag{
+.pag {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  place-items: center;
 }
 
-.linkk{
+.linkk {
   padding: 1rem;
   box-shadow: 8px 8px 5px rgb(38, 37, 36);
   background: #fff;
   border-radius: 15px;
 }
 
-.linkk table{
+.linkk table {
   width: 100%;
   text-align: center;
   border-collapse: collapse;
   font-size: 1rem;
 }
 
-.linkk thead{
+.linkk thead {
   font-weight: bold;
 }
 
@@ -32,15 +33,15 @@
 }
 
 .linkk table tr td {
-  padding: 5px 2px
+  padding: 5px 2px;
 }
 
-.linkk table tr td:first-child{
+.linkk table tr td:first-child {
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
 }
 
-.linkk table tr td:last-child{
+.linkk table tr td:last-child {
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
 }
@@ -49,15 +50,14 @@
   border-bottom: none;
 }
 
-.linkk tbody tr:hover{
+.linkk tbody tr:hover {
   background-color: #1b787a;
   color: white;
 }
 
 .editar {
-  font-family: "Work Sans";
-  font-size: 0.1rem;
-  width: 106px;
+  font-size: 1rem;
+  width: 80px;
   height: 37px;
   cursor: pointer;
   position: relative;
@@ -70,7 +70,7 @@
 
 @media only screen and (min-width: 1024px) and (max-width: 1280px) {
   /* Estilos para Laptos */
-  .cntd {
-    
+  .editar {
+    width: 50px;
   }
 }

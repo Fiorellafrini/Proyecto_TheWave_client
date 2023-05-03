@@ -7,7 +7,7 @@ function PaginadoDash({total }) {
   const setPage = useSelector((state) => state.products.setPage);
   const dispatch = useDispatch();
   const numeroPagina = [];
-  for (let i = 1; i <= Math.ceil(total / 10); i++) {
+  for (let i = 1; i <= Math.ceil(total / 8); i++) {
     numeroPagina.push(i);
   }
 

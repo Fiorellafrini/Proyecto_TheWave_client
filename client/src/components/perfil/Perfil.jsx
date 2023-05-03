@@ -64,7 +64,6 @@ function Perfil() {
             <h2>{datosUser.email}</h2>
             <h2>{datosUser.address}</h2>
           </div>
-
           <div className={styles.editar}>
             <h1>Edit Profile</h1>
             <hr />
