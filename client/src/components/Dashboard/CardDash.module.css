@@ -1,27 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@200&display=swap");
 
 .eliminar {
-  /* font-family: "Work Sans"; */
   font-size: 1rem;
   width: 80px;
   height: 37px;
   cursor: pointer;
   position: relative;
   background: #ff0000;
-  border-radius: 20px;
-  color: white;
-  text-decoration: none;
-  border: none;
-}
-
-.editar {
-  /* font-family: "Work Sans"; */
-  font-size: 1rem;
-  width: 80px;
-  height: 37px;
-  cursor: pointer;
-  position: relative;
-  background: #01187f;
   border-radius: 20px;
   color: white;
   text-decoration: none;
@@ -35,9 +20,6 @@
 @media only screen and (min-width: 1024px) and (max-width: 1280px) {
   /* Estilos para Laptos */
   .eliminar{
-    width: 50px;
-  }
-  .editar{
     width: 50px;
   }
 }

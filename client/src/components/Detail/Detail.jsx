@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import billabong from "../../assets/billabong.png";
 import hurley from "../../assets/hurley.png";
 import russel from "../../assets/russel.png";
+import Swal from "sweetalert2";
 
 import {
   paymentMercadoPago,
@@ -81,13 +82,29 @@ function Detail() {
   const nombreEnMayusculas = detalle?.name?.toUpperCase();
 
   const handleSinPermisos = () => {
-    alert("You need to be logged in to be able to buy");
+    // alert("You need to be logged in to be able to buy");
+    Swal.fire({
+      icon: "info",
+      title: "You need to be logged in to be able to buy",
+      color: "white",
+      background: "#1e1e1e",
+      showConfirmButton: false,
+      timer: 1500,
+    });
     navigate("/SectionRegister");
   };
   const handleSinPermisosAñadir = () => {
-    alert(
-      "You need to be logged in to be able to add products to the shopping cart"
-    );
+    // alert(
+    //   "You need to be logged in to be able to add products to the shopping cart"
+    // );
+    Swal.fire({
+      icon: "info",
+      title: "You need to be logged in to be able to add products to the shopping cart",
+      color: "white",
+      background: "#1e1e1e",
+      showConfirmButton: false,
+      timer: 1500,
+    });
     navigate("/SectionRegister");
   };
 

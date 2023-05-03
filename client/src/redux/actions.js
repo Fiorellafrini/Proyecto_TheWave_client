@@ -93,7 +93,7 @@ export function filterByName(payload) {
         // position: "top-end",color: "white",
         showConfirmButton: false,
         // confirmButtonColor: '#224145',
-        timer: 2000,
+        timer: 1000,
         timerProgressBar: true,
       });
     }
@@ -415,14 +415,14 @@ export function users() {
 
 //----------------------------------------------GET BRANDS----------------------------------//
 
-export function brands() {
+export function listBrands() {
   return async function (dispatch) {
     try {
-      var json = await axios.get("/brand");
-      console.log(json);
-      dispatch({ type: "GET_ALL_BRANDS", payload: json.data });
+      const json = await axios.get("http://localhost:3001/brand");
+      const brands = json.data
+      dispatch({ type: GET_ALL_BRANDS, payload: brands });
     } catch (error) {
-      console.log(error);
+      return "Something went wrong" +  error.message
     }
   };
 }
@@ -452,6 +452,17 @@ export function productsByIdEditar(id) {
       });
     } catch (error) {
       alert(error.message);
+    }
+  };
+}
+export function listTypes() {
+  return async function (dispatch) {
+    try {
+      const json = await axios.get("http://localhost:3001/type");
+      const types = json.data
+      dispatch({ type: GET_All_TYPES, payload: types });
+    } catch (error) {
+      return "Something went wrong" +  error.message
     }
   };
 }

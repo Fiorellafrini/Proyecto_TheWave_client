@@ -16,8 +16,8 @@ const CardsDash = () => {
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.products.products);
   const setPage = useSelector((state) => state.products.setPage);
-  const lastIndex = setPage * 10;
-  const firstIndex = lastIndex - 10;
+  const lastIndex = setPage * 8;
+  const firstIndex = lastIndex - 8;
 
   useEffect(() => {
     dispatch(listProducts());
@@ -45,12 +45,13 @@ const CardsDash = () => {
                 <td colSpan={2}>Status</td>
               </tr>
             </thead>
+            <tbody>
             {productos.length
               ? productos
                   .map((product) => (
-                    <tbody key={product.id}>
-                      <tr>
-                        <td>{product.id}</td>
+                    <tr key={product.id}>
+                      
+                        {/* <td>{product.id}</td> */}
                         <td>{product.name}</td>
                         <td>${product.price}</td>
                         <td>{product.size}</td>
@@ -59,15 +60,18 @@ const CardsDash = () => {
                         </td>
                         <td>
                           <Link to={`/editarProducto/${product.id}`}>
-                          <FiEdit className={styles.editar} />
+                          <button className={styles.editar}>
+                            <FiEdit />
+                          </button>
                           </Link>
                         </td>
-                      </tr>
-                    </tbody>
+                      
+                    </tr>
                   ))
                   .slice(firstIndex, lastIndex)
               : // <Error404 />
                 null}
+                </tbody>
           </table>
         </div>
       </div>
