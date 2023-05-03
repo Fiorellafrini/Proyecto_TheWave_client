@@ -1,5 +1,5 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BiX } from "react-icons/bi";
 import { useDispatch } from "react-redux";
 import { registro } from "../../redux/actions";
@@ -9,12 +9,26 @@ import style from "./Register.module.css";
 function Register({ Open, onClose }) {
   const dispatch = useDispatch();
   const [sendForm, setSendForm] = useState(false);
+  const [isLoading, setLoading] = useState(true);
   const navigate = useNavigate();
   const handleNavigate = () => navigate("/SectionHome");
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
+
 
   return (
     <div className={style.container}>
       <div className="animate__animated animate__fadeIn">
+     
+      {isLoading ? ( 
+           <div className={style.containerSpinner}>
+           <div className={style.spinner}></div>
+         </div>
+      ):(
         <div className={style.Form}>
           <div className={style.close}>
             <button onClick={handleNavigate}>
@@ -56,20 +70,24 @@ function Register({ Open, onClose }) {
               }
               // validacion de password
               if (!values.password) {
-                errors.password = "Enter your password";
+                errors.password =
+                  " Password must have: At least 8 characters. At least one lowercase letter, At least one capital letter, At least number, At least one special character";
+                // " The password must be at least one lowercase letter, one uppercase letter, one number, and one special character, and be at least 8 characters long.";
+                // errors.password = "Enter your password";
               } else if (
                 !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
                   values.password
                 )
               ) {
-                errors.password =
-                  " The password must be at least one lowercase letter, one uppercase letter, one number, and one special character, and be at least 8 characters long.";
+                // errors.password =
+                // " The password must be at least one lowercase letter, one uppercase letter, one number, and one special character, and be at least 8 characters long.";
               }
               if (!values.address) {
-                errors.address = "enter an address";
+                errors.address = "Enter an address";
               }
               return errors;
             }}
+            
             onSubmit={(values, { resetForm, setSubmitting }) => {
               console.log(values);
               dispatch(registro(values));
@@ -188,6 +206,7 @@ function Register({ Open, onClose }) {
             )}
           </Formik>
         </div>
+        )}
       </div>
     </div>
   );

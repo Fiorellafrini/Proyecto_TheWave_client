@@ -24,3 +24,29 @@
   border: 1px solid #181818;  
   border-radius: 15px;
 } */
+
+
+/* ----------------------------------------Spinner---------------------------------------- */
+.containerSpinner {
+  height: 1500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 9px solid;
+  border-color: #dbdcef37;
+  border-right-color: #224145;
+  text-align: center;
+  animation: spinner-d3wgkg 1s infinite linear;
+}
+
+@keyframes spinner-d3wgkg {
+  to {
+    transform: rotate(1turn);
+  }
+}
