@@ -1,0 +1,68 @@
+.commentContainer {
+  margin-top: 21px;
+  margin-left: 24px;
+  display: grid;
+  width: 50%;
+  height: auto;
+  grid-template-rows: 33% 30% 37%;
+  background: #ffff;
+  border-radius: 15px 15px 15px 0px;
+}
+.userInfo {
+  display: flex;
+  margin: 15px;
+  justify-content: space-between;
+}
+.userInfo img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  margin-left: 15px;
+  margin-right: 9px;
+}
+.userInfo button {
+  display: flex-end;
+  background: transparent;
+  border: transparent;
+  font-size: 22px;
+  text-align: center;
+}
+.personal {
+  display: flex;
+}
+.userInfo h2 {
+  text-align: center;
+  margin-left: 6px;
+}
+.score {
+  display: flex;
+  align-items: center;
+  margin: 15px;
+  margin-top: 15px;
+}
+.score h2 {
+  text-align: center;
+  margin-left: 15px;
+}
+h2::first-letter {
+  text-transform: uppercase;
+}
+h1::first-letter {
+    text-transform: uppercase;
+  
+  }
+  .comment{
+    display: flex;
+    height: 100%;
+  }
+  .comment h1{
+   font-family: 'Roboto', sans-serif;
+    margin-left: 30px;
+    
+    padding-right: 33px;
+    margin-bottom: 33px;
+  }
+.score h5 {
+  color: #b2b3b3;
+  margin-left: 15px;
+}

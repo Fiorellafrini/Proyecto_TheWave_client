@@ -12,6 +12,7 @@ import {
 import { useDispatch } from "react-redux";
 import { BsBagHeart, BsBagHeartFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 const ProductCard = ({
   name,
   size,
@@ -57,13 +58,29 @@ const ProductCard = ({
   };
 
   const handleSinPermisos = () => {
-    alert("You need to be logged in to be able to add to favorites");
+    // alert("You need to be logged in to be able to add to favorites");
+    Swal.fire({
+      icon: "info",
+      title: "You need to be logged in to be able to add to favorites",
+      color: "white",
+      background: "#1e1e1e",
+      showConfirmButton: false,
+      timer: 1500,
+    });
     navigate("/SectionRegister");
   };
   const handleSinPermisosAñadir = () => {
-    alert(
-      "You need to be logged in to be able to add products to the shopping cart"
-    );
+    // alert(
+    //   "You need to be logged in to be able to add products to the shopping cart"
+    // );
+    Swal.fire({
+      icon: "info",
+      title: "You need to be logged in to be able to add products to the shopping cart",
+      color: "white",
+      background: "#1e1e1e",
+      showConfirmButton: false,
+      timer: 1500,
+    });
     navigate("/SectionRegister");
   };
   return (

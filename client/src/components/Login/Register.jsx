@@ -182,8 +182,8 @@ function Register({ Open, onClose }) {
                   >
                     Register
                   </button>
-                  {sendForm && <p>"User successfully added"</p>}
                 </div>
+                {sendForm && <p>"User successfully added"</p>}
               </Form>
             )}
           </Formik>

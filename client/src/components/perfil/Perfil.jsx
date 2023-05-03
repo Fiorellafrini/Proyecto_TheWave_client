@@ -19,9 +19,16 @@ function Perfil() {
 
   const [editar, setEditar] = useState(true);
   const [editarDireccion, setEditarDireccion] = useState(true);
+<<<<<<< HEAD
   const [editarPassword, setEditarPassword] = useState(true);
   const [imagePreview, setImagePreview] = useState(""); // Agrego para la vista previa
   const [imagenSeleccionada, setImagenSeleccionada] = useState(null);
+=======
+  // const [editarPassword, setEditarPassword] = useState(true);
+
+
+
+>>>>>>> 8a340a1441b0dfe9e35c5d97ebfaaa9958f37ff2
 
   const handleEditar = () => {
     setEditar(!editar);
@@ -30,9 +37,9 @@ function Perfil() {
     setEditarDireccion(!editarDireccion);
   };
 
-  const handleEditarpassword = () => {
-    setEditarPassword(!editarPassword);
-  };
+  // const handleEditarpassword = () => {
+  //   setEditarPassword(!editarPassword);
+  // };
 
   // Función para manejar la carga de imágenes
   const handleImageUpload = async (e, setFieldValue) => {
@@ -85,18 +92,18 @@ function Perfil() {
               validate={(values) => {
                 let errors = {};
                 // validacion de password
-                if (editarPassword !== true) {
-                  if (!values.password) {
-                    errors.password = "Enter your password";
-                  } else if (
-                    !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
-                      values.password
-                    )
-                  ) {
-                    errors.password =
-                      " The password must be at least one lowercase letter, one uppercase letter, one number, and one special character, and be at least 8 characters long.";
-                  }
-                }
+                // if (editarPassword !== true) {
+                //   if (!values.password) {
+                //     errors.password = "Enter your password";
+                //   } else if (
+                //     !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
+                //       values.password
+                //     )
+                //   ) {
+                //     errors.password =
+                //       " The password must be at least one lowercase letter, one uppercase letter, one number, and one special character, and be at least 8 characters long.";
+                //   }
+                // }
                 if (editarDireccion !== true) {
                   if (!values.address) {
                     errors.address = "Please enter an address";
@@ -192,7 +199,7 @@ function Perfil() {
                       disabled={true}
                     />
                   </div>
-                  <div>
+                  {/* <div>
                     <label>
                       <Field
                         className="inputs"
@@ -212,8 +219,8 @@ function Perfil() {
                         <div className={styles.error}>{errors.password}</div>
                       )}
                     />
-                  </div>
-                  <div>
+                  </div> */}
+                  {/* <div>
                     <label>
                       <Field
                         className="inputs"
@@ -232,13 +239,13 @@ function Perfil() {
                         </div>
                       )}
                     />
-                  </div>
+                  </div> */}
                   <div className={styles.botones}>
                     <button
                       className="btn-submit"
                       type="submit"
                       disabled={
-                        editar && editarDireccion && editarPassword === true
+                        editar && editarDireccion === true
                           ? true
                           : false
                       }
