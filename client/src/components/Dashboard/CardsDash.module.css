@@ -55,9 +55,8 @@
 }
 
 .editar {
-  font-family: "Work Sans";
-  font-size: 0.1rem;
-  width: 106px;
+  font-size: 1rem;
+  width: 80px;
   height: 37px;
   cursor: pointer;
   position: relative;
@@ -69,8 +68,9 @@
 }
 
 @media only screen and (min-width: 1024px) and (max-width: 1280px) {
+
   /* Estilos para Laptos */
-  .cntd {
-    
+  .editar {
+    width: 50px;
   }
 }

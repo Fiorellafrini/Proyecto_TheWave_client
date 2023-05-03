@@ -38,7 +38,7 @@ const initialState = {
   shoppingCart: [],
   types: [],
   detail: [],
-  brands: [],
+  brand: [],
   infinity: [],
   setPage: 0,
   filters: {},
@@ -123,7 +123,7 @@ const reducer = (state = initialState, action) => {
     case GET_ALL_BRANDS:
       return {
         ...state,
-        brands: action.payload,
+        brand: action.payload,
       };
     case DETAIL_PRODUCT:
       return {
