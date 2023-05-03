@@ -17,6 +17,7 @@ function Perfil() {
   const user = jwt(token);
   const dispatch = useDispatch();
   const datosUser = useSelector((state) => state.user.userID);
+// console.log(datosUser);
 
   const [editar, setEditar] = useState(true);
   const [editarDireccion, setEditarDireccion] = useState(true);
