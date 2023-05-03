@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 // import perfil from "./perfil.png";
 import jwt from "jwt-decode";
 import styles from "./Perfil.module.css";
@@ -6,11 +6,8 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import "animate.css";
 import { putUser, cleanUser } from "../../redux/actions.js";
-import {useDispatch, useSelector} from 'react-redux'
-import {FiEdit} from "react-icons/fi"
-
-
-
+import { useDispatch, useSelector } from "react-redux";
+import { FiEdit } from "react-icons/fi";
 
 function Perfil() {
   const navigate = useNavigate();
@@ -23,9 +20,8 @@ function Perfil() {
   const [editar, setEditar] = useState(true);
   const [editarDireccion, setEditarDireccion] = useState(true);
   const [editarPassword, setEditarPassword] = useState(true);
-
-
-
+  const [imagePreview, setImagePreview] = useState(""); // Agrego para la vista previa
+  const [imagenSeleccionada, setImagenSeleccionada] = useState(null);
 
   const handleEditar = () => {
     setEditar(!editar);
@@ -58,6 +54,8 @@ function Perfil() {
     // Actualizar los valores de imagen en el formulario
     setFieldValue("photo", data.secure_url);
     // setFieldValue("imagen[1]", data.secure_url);
+    setImagePreview(data.secure_url); // Agrego para la vista previa
+    setImagenSeleccionada(data.secure_url);
   };
 
   return (
@@ -65,10 +63,7 @@ function Perfil() {
       <div className="animate__animated animate__fadeIn">
         <div className={styles.contenedor}>
           <div className={styles.contenedor2}>
-            <img
-              src={datosUser.photo}
-              alt="#"
-            />
+            <img src={imagenSeleccionada || datosUser.photo} alt="#" />
             <h2>{datosUser.name + "  " + datosUser.lastName}</h2>
             <h2>{datosUser.email}</h2>
             <h2>{datosUser.address}</h2>
@@ -153,10 +148,12 @@ function Perfil() {
                         disabled={editar}
                         onChange={(e) => handleImageUpload(e, setFieldValue)}
                       />
+
                       <button type="button" onClick={handleEditar}>
                         <FiEdit />
                       </button>
                     </label>
+
                     <ErrorMessage
                       name="photo"
                       component={() => (

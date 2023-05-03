@@ -374,19 +374,35 @@ export const login = (body) => async (dipatch) => {
       timer: 1500,
     });
   } catch (error) {
-    // alert(error.message);
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "Incorrect Credentials",
-      color: "white",
-      background: "#1e1e1e",
-      showConfirmButton: false,
-      timer: 1500,
-    });
+    if (
+      error.response &&
+      error.response.status === 401 &&
+      error.response.data.error === "El usuario ha sido dado de baja."
+    ) {
+      // Si el usuario no está activo, mostrar una alerta específica.
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Banned user. Please contact the administrator.",
+        color: "white",
+        background: "#1e1e1e",
+        showConfirmButton: false,
+        timer: 2500,
+      });
+    } else {
+      // Si las credenciales son incorrectas, mostrar la alerta predeterminada.
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Incorrect Credentials",
+        color: "white",
+        background: "#1e1e1e",
+        showConfirmButton: false,
+        timer: 2500,
+      });
+    }
   }
 };
-
 // -------------------------------------FAVORITOS-----------------------------------------------------//
 export const addToFav = (product) => {
   return { type: ADD_TO_FAV, payload: product };
