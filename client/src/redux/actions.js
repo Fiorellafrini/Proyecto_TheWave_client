@@ -27,7 +27,6 @@ export const STOCKS_PRODUCTS = "STOCKS_PRODUCTS";
 export const GET_USERS = "GET_USERS";
 export const PUT_PRODUCT = "PUT_PRODUCT";
 
-
 export const LOGIN = "LOGIN";
 export const REGISTRO = "REGISTRO";
 export const LOGINGOOGLE = "LOGINGOOGLE";
@@ -240,7 +239,7 @@ export const paymentMercadoPago = (body) => {
         .post("/payment", body)
         .then((res) => {
           window.location.href = res.data.response.body.init_point;
-        console.log('data', res.data);
+          console.log("data", res.data);
         })
         .catch((error) => {});
       return dispatch({
@@ -400,21 +399,18 @@ export function users() {
     } catch (error) {}
   };
 }
-
 //----------------------------------------------GET BRANDS----------------------------------//
-
 export function brands() {
   return async function (dispatch) {
     try {
       var json = await axios.get("/brand");
       console.log(json);
-      dispatch({ type: "GET_ALL_BRANDS", payload: json.data });
+      dispatch({ type: GET_ALL_BRANDS, payload: json.data });
     } catch (error) {
       console.log(error);
     }
   };
 }
-
 
 export const cleanUser = () => {
   return {
@@ -422,7 +418,7 @@ export const cleanUser = () => {
   };
 };
 
-export const editarProduct = (id,body) => async (dipatch) => {
+export const editarProduct = (id, body) => async (dipatch) => {
   const { data } = await axios.put(`/product/${id}`, body);
   return dipatch({
     type: "PUT_PRODUCT",

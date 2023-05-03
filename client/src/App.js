@@ -27,6 +27,7 @@ import Estadisticas from "./components/Dashboard/Estadisticas/Estadisticas";
 //import UserDash from "./components/Dashboard/UsersDash";
 // import Users from "./components/Dashboard/UsersDash";
 import Sidebar from "./components/Dashboard/Sidebar";
+import FeedBack from "./components/FeedBack/FeedBack";
 
 function App() {
   new Cloudinary({
@@ -37,28 +38,40 @@ function App() {
   const location = useLocation();
   return (
     <div className="App">
-      {["/SectionHome","/SectionCategories","/Favorites", "/ShopDetail"].includes(
-        location.pathname
-      ) ? <NavVertical /> : null}
-      {["/form","/stats","/admin"].includes(
-        location.pathname
-      ) ? <Sidebar /> : null}
+      {[
+        "/SectionHome",
+        "/SectionCategories",
+        "/Favorites",
+        "/ShopDetail",
+      ].includes(location.pathname) ? (
+        <NavVertical />
+      ) : null}
+      {["/form", "/stats", "/admin"].includes(location.pathname) ? (
+        <Sidebar />
+      ) : null}
       <Routes>
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="/SectionHome" element={<SectionHome />}></Route>
         <Route path="/SectionLogIn" element={<Login />}></Route>
         <Route path="/SectionRegister" element={<Register />}></Route>
-        <Route path="/SectionCategories"  element={<SectionCategories />}></Route>
+        <Route
+          path="/SectionCategories"
+          element={<SectionCategories />}
+        ></Route>
         <Route path="/SectionCarrito" element={<SectionCarrito />}></Route>
         <Route path="/detail/:id" element={<Detail />}></Route>
         <Route path="*" element={<Error404 />}></Route>
         <Route path="/forgot-password/" element={<ForgotPassword />}></Route>
-        <Route path="/reset-Password/:id/:token" element={<ResetPassword/>}></Route>
-        <Route element={<ProteccionRutas />}/>
-          <Route path="/Favorites" element={<Favorites />}></Route>
-          <Route path="/MyProfile" element={<Perfil />}></Route>
+        <Route
+          path="/reset-Password/:id/:token"
+          element={<ResetPassword />}
+        ></Route>
+        <Route element={<ProteccionRutas />} />
+        <Route path="/Favorites" element={<Favorites />}></Route>
+        <Route path="/MyProfile" element={<Perfil />}></Route>
         <Route path="/SectionRegister" element={<Register />}></Route>
-          <Route path="/ShopDetail" element={<ShopDetail />}></Route>
+        <Route path="/ShopDetail" element={<ShopDetail />}></Route>
+        <Route path="/FeedBack" element={<FeedBack />}></Route>
         <Route
           path="/SectionCategories"
           element={<SectionCategories />}
