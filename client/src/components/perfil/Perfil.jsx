@@ -240,9 +240,7 @@ function Perfil() {
                       className="btn-submit"
                       type="submit"
                       disabled={
-                        editar && editarDireccion === true
-                          ? true
-                          : false
+                        editar && editarDireccion === true ? true : false
                       }
                     >
                       Confirm

@@ -73,7 +73,7 @@ function Login({ isOpen, onClose }) {
               }
               navigate("/SectionHome");
               setSendForm(true);
-              setTimeout(() => setSendForm(false), 5000);
+              setTimeout(() => setSendForm(false), 1000);
               resetForm();
               setSubmitting(false);
             }}
