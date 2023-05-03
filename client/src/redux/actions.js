@@ -394,6 +394,12 @@ export const getFav = (userId) => async (dispatch) => {
   }
 };
 
+export const setFavorites = (favorites) => ({
+  type: "SET_FAVORITES",
+  payload: favorites,
+});
+
+
 // --------------------------PARA CONECTAR CON EL BACK QUE SI FUNCIONA----------------
 // export const addToFav = (userId, id_product) => async (dispatch) => {
 //   try {

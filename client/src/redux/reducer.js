@@ -28,6 +28,7 @@ import {
   CLEAR_CART,
   REMOVE_ALL_FAV,
   EDITAR_PRODUCT,
+  SET_FAVORITES,
 } from "./actions";
 
 const initialState = {
@@ -210,6 +211,11 @@ const reducer = (state = initialState, action) => {
         favorites: [],
       };
 
+      case SET_FAVORITES:
+      return {
+        ...state,
+        favorites: action.payload,
+      };
     //--------------------------------PAYMENT------------------------------------------------------\\
     case PAYMENT:
       return {
