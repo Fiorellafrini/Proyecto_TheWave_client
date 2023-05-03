@@ -7,6 +7,7 @@ import Estadisticas from "./components/Dashboard/Estadisticas/Estadisticas";
 import HomeDashboard from "./components/Dashboard/HomeDashboard";
 import Sidebar from "./components/Dashboard/Sidebar";
 import Detail from "./components/Detail/Detail.jsx";
+import Error404 from "./components/Error404/Error404";
 import Favorites from "./components/Favoritos/Favoritos";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import FormProduct from "./components/FormProduct/FromProduct.jsx";
@@ -47,15 +48,7 @@ function App() {
   const location = useLocation();
   return (
     <div className="App">
-      {[
-        "/SectionHome",
-        "/SectionCategories",
-        "/Favorites",
-        "/ShopDetail",
-      ].includes(location.pathname) ? (
-        <NavVertical />
-      ) : null}
-      {["/form", "/stats", "/admin"].includes(
+      {["/SectionHome","/SectionCategories","/Favorites", "/ShopDetail"].includes(
         location.pathname
       ) ? <NavVertical /> : null}
       {["/form","/stats","/admin"].includes(
@@ -67,12 +60,10 @@ function App() {
         <Route path="/SectionHome" element={<SectionHome />}></Route>
         <Route path="/SectionLogIn" element={<Login />}></Route>
         <Route path="/SectionRegister" element={<Register />}></Route>
-        <Route
-          path="/SectionCategories"
-          element={<SectionCategories />}
-        ></Route>
+        <Route path="/SectionCategories"  element={<SectionCategories />}></Route>
         <Route path="/SectionCarrito" element={<SectionCarrito />}></Route>
         <Route path="/detail/:id" element={<Detail />}></Route>
+        <Route path="*" element={<Error404 />}></Route>
         <Route path="/forgot-password/" element={<ForgotPassword />}></Route>
         <Route path="/reset-Password/:id/:token" element={<ResetPassword/>}></Route>
        
@@ -87,8 +78,6 @@ function App() {
         <Route element={<ProteccionRutaAdmin />}>
           <Route path="/form" element={<FormProduct />}></Route>
           <Route path="/admin" element={<HomeDashboard />}></Route>
-          {/* <Route path="/admin" element={<Users />}></Route> */}
-          {/* <Route path="/admin" element={<CardsDash />}></Route> */}
           <Route path="/stats" element={<Estadisticas />}></Route>
         </Route>
       </Routes>
