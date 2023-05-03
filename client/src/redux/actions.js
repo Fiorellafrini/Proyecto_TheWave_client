@@ -1,7 +1,6 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 export const POST_PRODUCT = "POST_PRODUCT";
-export const UPDATE_STOCK_PRODUCT_INC = "UPDATE_STOCK_PRODUCT_INC";
 export const UPDATE_STOCK_PRODUCT_DEC = "UPDATE_STOCK_PRODUCT_DEC";
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const GET_All_TYPES = "GET_ALL_TYPES";
@@ -20,16 +19,32 @@ export const EMPTY_CART = "EMPTY CART";
 export const INCREMENT_QUANTITY = "INCREMENT_QUANTITY";
 export const DECREMENT_QUANTITY = "DECREMENT_QUANTITY";
 export const PAYMENT = "PAYMENT";
+export const CREATE_SHOP_SUCCESS = "CREATE_SHOP_SUCCESS";
+export const CREATE_SHOP_DETAIL_SUCCESS = "CREATE_SHOP_DETAIL_SUCCESS";
 export const ADD_TO_FAV = "ADD_TO_FAV";
 export const DELETE_TO_FAV = "DELETE_TO_FAV";
+export const STOCKS_PRODUCTS = "STOCKS_PRODUCTS";
+export const GET_USERS = "GET_USERS";
+export const PUT_PRODUCT = "PUT_PRODUCT";
+export const SAVE_FILTERS_AND_PAGE = "SAVE_FILTERS_AND_PAGE";
+export const CLEAR_FILTERS = "CLEAR_FILTERS";
+export const CLEAR_CART = "CLEAR_CART";
+export const EDITAR_PRODUCT = "EDITAR_PRODUCT";
+export const GET_FAV = "GET_FAV";
 export const LOGIN = "LOGIN";
 export const REGISTRO = "REGISTRO";
 export const LOGINGOOGLE = "LOGINGOOGLE";
 export const LOGINFACEBOOK = "LOGINFACEBOOK";
+export const GET_ALL_DETAILS = "GET_ALL_DETAILS";
 export const RGOOGLE = "RGOOGLE";
 export const PUTUSER = "PUTUSER";
+export const GET_BY_ID = "GET_BY_ID";
+export const SET_FAVORITES = "SET_FAVORITES";
+export const CLEAN_USER = "CLEAN_USER";
+export const REMOVE_ALL_FAV = "REMOVE_ALL_FAV";
 
 //-------------------------------------------CREATE PRODUCT---------------------------------------------------------//
+
 export const createProduct = (body) => async (dipatch) => {
   const { data } = await axios.post("/product", body);
   return dipatch({
@@ -37,20 +52,31 @@ export const createProduct = (body) => async (dipatch) => {
     payload: data,
   });
 };
-// -----------------------------------LIST-PRODUCT-----------------------------------------------------//
-export function listProducts() {
+
+
+
+export function listProducts(filters, page) {
   return async function (dispatch) {
     try {
-      var json = await axios.get("/product");
+      const params = { filters, page };
+      const json = await axios.get(`/product`, { params });
       return dispatch({
         type: "GET_ALL_PRODUCTS",
         payload: json.data,
       });
-    } catch (error) {
-      
-    }
+    } catch (error) {}
   };
 }
+
+export function saveFiltersAndPage(filters, page) {
+  return {
+    type: SAVE_FILTERS_AND_PAGE,
+    payload: { filters, page },
+  };
+}
+
+
+
 // -----------------------------------FILTER_BY_NAME---------------------------------------------------//
 export function filterByName(payload) {
   return async function (dispatch) {
@@ -70,22 +96,30 @@ export function filterByName(payload) {
         // position: "top-end",color: "white",
         showConfirmButton: false,
         // confirmButtonColor: '#224145',
-        timer: 2000,
+        timer: 1000,
         timerProgressBar: true,
       });
     }
   };
 }
+
 // -----------------------------------ORDER_BY_NAME-----------------------------------------------------//
 export const orderByName = (criteria) => {
   return { type: ORDER_BY_NAME, payload: criteria };
 };
+
 // -----------------------------------ORDER_BY_PRICE----------------------------------------------------//
 export const orderByPrice = (criteria) => {
   return { type: ORDER_BY_PRICE, payload: criteria };
 };
 
-// -------------------DETAIL----------------------------------------------------------------------------//
+//--------------------------------CLEAR FILTER------------------------------------------------------------//
+
+export const clearFilters = () => ({
+  type: CLEAR_FILTERS,
+});
+
+// -----------------------------------DETAIL-----------------------------------//
 export function productsById(id) {
   return async function (dispatch) {
     try {
@@ -99,6 +133,7 @@ export function productsById(id) {
     }
   };
 }
+
 // -------------------PAGE-----------------------------------------------------------------//
 export function productsData(page) {
   return async function (dispatch) {
@@ -113,6 +148,7 @@ export function productsData(page) {
     }
   };
 }
+
 export const setCurrentPage = (payload) => {
   return {
     type: SET_CURRENTPAGE,
@@ -121,7 +157,6 @@ export const setCurrentPage = (payload) => {
 };
 
 // -------------------FILTER-BRAND---------------------------------------------------------------//
-
 export function filterBrand(id) {
   return async function (dispatch) {
     try {
@@ -136,6 +171,7 @@ export function filterBrand(id) {
     }
   };
 }
+
 // -----------------------------------FILTER-BY-TYPE-----------------------------------------//
 export function filterType(id) {
   return async function (dispatch) {
@@ -151,6 +187,7 @@ export function filterType(id) {
     }
   };
 }
+
 //---------------------LOGIN---------------------------------------------//
 export const registro = (body) => async (dipatch) => {
   const { data } = await axios.post("/user", body);
@@ -164,7 +201,7 @@ export const registro = (body) => async (dipatch) => {
       title: "Register Successful",
       color: "white",
       background: "#1e1e1e",
-      confirmButtonColor: '#224145',
+      confirmButtonColor: "#224145",
     }).then((result) => {
       if (result.isConfirmed) {
         // Redireccionar a la ruta deseada
@@ -172,17 +209,28 @@ export const registro = (body) => async (dipatch) => {
       }
     });
   } catch (error) {
-    
+    Swal.fire({
+      icon: "error",
+      title: "Failed Register",
+      color: "white",
+      background: "#1e1e1e",
+      confirmButtonColor: "#224145",
+    });
   }
 };
-// ----------------------------------ADD TO CART-----------------------------------------------//
+
+// ----------------------------------CART-----------------------------------------------//
 export const addToCart = (product) => {
   return { type: ADD_TO_CART, payload: product };
 };
-// ----------------------------------DELETE TO CART----------------------------------
+
 export const deleteToCart = (id) => {
   return { type: DELETE_TO_CART, payload: id };
 };
+export const clearCart = () => ({
+  type: CLEAR_CART,
+});
+
 // ----------------------------------PAYMENT----------------------------------------------------//
 export const paymentMercadoPago = (body) => {
   return async (dispatch) => {
@@ -191,6 +239,7 @@ export const paymentMercadoPago = (body) => {
         .post("/payment", body)
         .then((res) => {
           window.location.href = res.data.response.body.init_point;
+          console.log("data", res.data);
         })
         .catch((error) => {});
       return dispatch({
@@ -202,30 +251,70 @@ export const paymentMercadoPago = (body) => {
     }
   };
 };
-// -----------------------------------UPDATE_STOCK_PRODUCT_DEC-----------------------------------//
-export const updateStockDecrement = (id) => async (dispatch) => {
+// ----------------------------------SHOP----------------------------------------------------//
+export const createShop = (date, userId) => async (dispatch) => {
   try {
-    const response = await axios.get(`/product/${id}`);
-    const currentStockValue = response.data.stock;
-
-    const newStockValue = currentStockValue - 1;
-
-    const updateResponse = await axios.put(`/product/${id}`, {
-      stock: newStockValue,
+    const response = await axios.post("/shop", {
+      date,
+      user_id: userId,
     });
-
-    dispatch({ type: UPDATE_STOCK_PRODUCT_INC, payload: updateResponse.data });
+    const newShop = response.data.order;
+    dispatch({ type: CREATE_SHOP_SUCCESS, payload: newShop });
+    return newShop;
   } catch (error) {
     console.log(error);
   }
 };
-// -----------------------------------UPDATE_STOCK_PRODUCT_INC-----------------------------------
-export const updateStockIncrement = (id) => async (dispatch) => {
+
+// ----------------------------------SHOP_DETAIL----------------------------------------------------//
+export const createShopDetail =
+  (quantity, price, productId, shopId) => async (dispatch) => {
+    console.log(productId);
+    try {
+      const response = await axios.post("/shop_detail", {
+        quantity,
+        price,
+        id_product: productId,
+        shop_id: shopId,
+      });
+      dispatch({ type: CREATE_SHOP_DETAIL_SUCCESS, payload: response.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+// ----------------------------------ALL_SHOP_DETAIL----------------------------------------------------//
+export function listDetail() {
+  return async function (dispatch) {
+    try {
+      var json = await axios.get("/shop");
+      return dispatch({
+        type: "GET_ALL_DETAILS",
+        payload: json.data,
+      });
+    } catch (error) {}
+  };
+}
+
+// -----------------------------------QUANTITY--------------------------------------------------//
+export const incrementQuantity = (id) => {
+  return { type: INCREMENT_QUANTITY, payload: id };
+};
+
+export const decrementQuantity = (id) => {
+  return { type: DECREMENT_QUANTITY, payload: id };
+};
+
+export const empty_cart = (product) => {
+  return { type: EMPTY_CART, payload: product };
+};
+
+// -----------------------------------UPDATE_STOCK_PRODUCT_DEC-----------------------------------//
+export const updateStockDecrement = (id, quantity) => async (dispatch) => {
   try {
     const response = await axios.get(`/product/${id}`);
     const currentStockValue = response.data.stock;
 
-    const newStockValue = currentStockValue + 1;
+    const newStockValue = currentStockValue - quantity;
 
     const updateResponse = await axios.put(`/product/${id}`, {
       stock: newStockValue,
@@ -235,17 +324,6 @@ export const updateStockIncrement = (id) => async (dispatch) => {
   } catch (error) {
     console.log(error);
   }
-};
-// -----------------------------------QUANTITY--------------------------------------------------//
-export const incrementQuantity = (id) => {
-  return { type: INCREMENT_QUANTITY, payload: id };
-};
-export const decrementQuantity = (id) => {
-  return { type: DECREMENT_QUANTITY, payload: id };
-};
-
-export const empty_cart = (product) => {
-  return { type: EMPTY_CART, payload: product };
 };
 
 export const login = (body) => async (dipatch) => {
@@ -257,38 +335,86 @@ export const login = (body) => async (dipatch) => {
     });
     Swal.fire({
       icon: "success",
-      title: "Login Successful",
+      title: "Login successful",
       color: "white",
       background: "#1e1e1e",
       showConfirmButton: false,
-      timer: 1500,
+      timer: 3000,
     });
   } catch (error) {
-    // alert(error.message);
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "Incorrect Credentials",
-      color: "white",
-      background: "#1e1e1e",
-      showConfirmButton: false,
-      timer: 1500,
-    });
+    if (
+      error.response &&
+      error.response.status === 401 &&
+      error.response.data.error === "El usuario ha sido dado de baja."
+    ) {
+      // Si el usuario no está activo, mostrar una alerta específica.
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Banned user. Please contact the administrator.",
+        color: "white",
+        background: "#1e1e1e",
+        showConfirmButton: false,
+        timer: 2500,
+      });
+    } else {
+      // Si las credenciales son incorrectas, mostrar la alerta predeterminada.
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Incorrect Credentials",
+        color: "white",
+        background: "#1e1e1e",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    }
   }
 };
-
-//-------------------------------------FAVORITOS-----------------------------------------------------//
+// -------------------------------------FAVORITOS-----------------------------------------------------//
 export const addToFav = (product) => {
   return { type: ADD_TO_FAV, payload: product };
 };
-// ----------------------------------DELETE TO CART----------------------------------
+
 export const deleteToFav = (id) => {
   return { type: DELETE_TO_FAV, payload: id };
 };
 
+export const removeAllFav = () => ({
+  type: REMOVE_ALL_FAV,
+});
+
+
+export const getFav = (userId) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/favorites/${userId}`);
+    dispatch({ type: GET_FAV, payload: res.data });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// --------------------------PARA CONECTAR CON EL BACK QUE SI FUNCIONA----------------
+// export const addToFav = (userId, id_product) => async (dispatch) => {
+//   try {
+//     const res = await axios.post(`/favorites/${userId}/${id_product}`);
+//     console.log(res);
+//     dispatch({ type: ADD_TO_FAV, payload: res.data });
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
+
+// export const deleteToFav = (userId, id_product) => async (dispatch) => {
+//   try {
+//     const res = await axios.delete(`/favorites/${userId}/${id_product}`);
+//     dispatch({ type: DELETE_TO_FAV, payload: id_product });
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
 
 //---------------------------------------PUT USER --------------------------------------------------//
-
 export const putUser = (id, body, token) => async (dispatch) => {
   // const authToken =  window.localStorage.getItem("login");
   const { data } = await axios.put(`/user/${id}`, body);
@@ -297,3 +423,81 @@ export const putUser = (id, body, token) => async (dispatch) => {
     payload: data,
   });
 };
+
+export function userById(id) {
+  return async function (dispatch) {
+    try {
+      var json = await axios.get(`/user/${id}`);
+      return dispatch({
+        type: "GET_BY_ID",
+        payload: json.data,
+      });
+    } catch (error) {}
+  };
+}
+
+//----------------------------------------------GET USERS----------------------------------//
+
+export function users() {
+  return async function (dispatch) {
+    try {
+      var json = await axios.get("/user");
+      return dispatch({
+        type: "GET_USERS",
+        payload: json.data,
+      });
+    } catch (error) {}
+  };
+}
+//----------------------------------------------GET BRANDS----------------------------------//
+
+export function listBrands() {
+  return async function (dispatch) {
+    try {
+      const json = await axios.get("http://localhost:3001/brand");
+      const brands = json.data
+      dispatch({ type: GET_ALL_BRANDS, payload: brands });
+    } catch (error) {
+      return "Something went wrong" +  error.message
+    }
+  };
+}
+
+export const cleanUser = () => {
+  return {
+    type: CLEAN_USER,
+  };
+};
+
+export const editarProduct = (id,  body) => async (dipatch) => {
+  const { data } = await axios.put(`/product/${id}`, body);
+  return dipatch({
+    type: "PUT_PRODUCT",
+    payload: data,
+  });
+};
+
+export function productsByIdEditar(id) {
+  return async function (dispatch) {
+    try {
+      var json = await axios.get(`/Product/${id}`);
+      return dispatch({
+        type: "EDITAR_PRODUCT",
+        payload: json.data,
+      });
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+}
+export function listTypes() {
+  return async function (dispatch) {
+    try {
+      const json = await axios.get("http://localhost:3001/type");
+      const types = json.data
+      dispatch({ type: GET_All_TYPES, payload: types });
+    } catch (error) {
+      return "Something went wrong" +  error.message
+    }
+  };
+}

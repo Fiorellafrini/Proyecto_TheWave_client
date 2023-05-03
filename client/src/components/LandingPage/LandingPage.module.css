@@ -38,7 +38,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 2rem;
+    margin-left: 10px;
 }
 
 .col img {
@@ -65,13 +65,13 @@
 
 .dropdownMenu {
     position: absolute;
+    padding: 10px;
     top: 100%;
     right: 0;
-    min-width: 300px;
+    min-width: 250px;
     max-height: 500px;
     background-color: #d5d8d8da;
-    border-bottom-left-radius: 10px;
-    border-top-left-radius: 10px;
+    border-radius: 10px;
     color: #161819;
 }
 
@@ -86,16 +86,11 @@
     color: #161819;
 }
 
-.dropdownMenu button:hover{
-    background-color: rgb(94, 168, 198);
-    border-radius: 10px;
-}
-
 .menuList {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    text-align: center;
+    text-align: end;
     cursor: pointer;
 }
 
@@ -106,8 +101,7 @@
 
 .menuList li:hover {
     background-color: rgb(94, 168, 198);
-    border-bottom-left-radius: 10px;
-    border-top-left-radius: 10px;
+    border-radius: 10px;
 }
 
 .menuList li:last-child {

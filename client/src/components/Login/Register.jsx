@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { registro } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
 import style from "./Register.module.css";
-import { Link } from "react-router-dom";
 
 function Register({ Open, onClose }) {
   const dispatch = useDispatch();
@@ -58,15 +57,14 @@ function Register({ Open, onClose }) {
               // validacion de password
               if (!values.password) {
                 errors.password = "Enter your password";
-              } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.password)) {
+              } else if (
+                !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
+                  values.password
+                )
+              ) {
                 errors.password =
-                  "The password must contain at least one uppercase letter, one lowercase letter, one number and one special character and must be at least 8 characters long.";
+                  " The password must be at least one lowercase letter, one uppercase letter, one number, and one special character, and be at least 8 characters long.";
               }
-              // if (!values.confirmar_password) {
-              //   errors.confirmar_password = "Ingrese contraseña";
-              // } else if (values.password !== values.confirmar_password) {
-              //   errors.confirmar_password = "la contraseña no coinciden";
-              // }
               if (!values.address) {
                 errors.address = "enter an address";
               }
@@ -176,9 +174,6 @@ function Register({ Open, onClose }) {
                 />
               </div> */}
                 </div>
-                <div className={style.link}>
-                  <Link to="/SectionLogIn">Already registered?</Link>
-                </div>
                 <div>
                   <button
                     className={style.btnsubmit}
@@ -187,8 +182,8 @@ function Register({ Open, onClose }) {
                   >
                     Register
                   </button>
-                  {/* {sendForm && <p>"User successfully added"</p>} */}
                 </div>
+                {sendForm && <p>"User successfully added"</p>}
               </Form>
             )}
           </Formik>

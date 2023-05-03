@@ -11,7 +11,9 @@
 }
 
 .containerNav:hover {
-    backdrop-filter: blur(5px);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    backdrop-filter: blur(10px);
     position: relative;
     z-index: 2;
 }
@@ -78,9 +80,11 @@ a:visited {
 
 .dropdownMenu {
     position: absolute;
+    padding: 10px;
     top: 100%;
     right: 0;
-    min-width: 250px;
+    min-width: 300px;
+    max-height: 500px;
     background-color: #d5d8d8da;
     border-radius: 10px;
     color: #161819;
@@ -88,7 +92,7 @@ a:visited {
 
 .dropdownMenu button{
     width: 100%;
-    padding: 20px 20px;
+    padding: 10px 20px;
     border: none;
     outline: none;
     background: transparent;
@@ -109,6 +113,7 @@ a:visited {
     padding: 0;
     text-align: end;
     cursor: pointer;
+    text-align: end;
 }
 
 .menuList li {

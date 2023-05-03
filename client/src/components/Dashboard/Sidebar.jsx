@@ -1,40 +1,35 @@
 import React from "react";
-import styled from "styled-components";
-import { variables } from "./ItemSidebar";
+// import { variables } from "./ItemSidebar";
 import {
   AiFillHome,
-  AiOutlineForm,
   AiOutlineUpload,
-  AiOutlineShoppingCart,
+  // AiOutlineShoppingCart,
 } from "react-icons/ai";
-import { ImStatsBars } from "react-icons/im";
+// import { ImStatsBars } from "react-icons/im";
+import { MdSpaceDashboard } from "react-icons/md";
+import { BiLogOut } from "react-icons/bi";
+import { FaCommentAlt } from "react-icons/fa";
+import { IoStatsChartSharp, IoAddCircle } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 import style from "./Sidebar.module.css";
+
 export default function Sidebar({ sidebarOpen, setsidebarOpen }) {
-  // const open = () => {
-  //   setsidebarOpen(!sidebarOpen);
-  // };
   return (
     <div className={style.sidebar}>
-      <Container isOpen={!sidebarOpen}>
-        {/* <button className="Sidebarbutton" onClick={open}>
-        <AiOutlineArrowsAlt />
-      </button> */}
-        {/* <div className="LogoInmobate">
-        <div className="imgcontent">
-
-        </div>
-      </div> */}
+      <div>
         {linksArray.map(({ icon, label, to }) => (
-          <div className="me-2" key={label}>
-            <NavLink to={to} activeClassName="active" className="Links">
-              <div className="Linkicon">{icon}</div>
-
+          <div key={label}>
+            <NavLink
+              to={to}
+              activeclassname={style.active}
+              className={style.Links}
+            >
+              <div className={style.Linkicon}>{icon}</div>
               <span>{label}</span>
             </NavLink>
           </div>
         ))}
-      </Container>
+      </div>
     </div>
   );
 }
@@ -43,78 +38,31 @@ const linksArray = [
   {
     label: "Home",
     icon: <AiFillHome />,
-    to: "/SectionHome",
-  },
-  {
-    label: "Stats",
-    icon: <ImStatsBars />,
-    to: "/stats",
+    to: "/SectionCategories",
   },
   {
     label: "General",
-    icon: <AiOutlineForm />,
-    to: "/general",
+    icon: <MdSpaceDashboard />,
+    to: "/admin",
+  },
+  {
+    label: "Stats",
+    icon: <IoStatsChartSharp />,
+    to: "/stats",
   },
   {
     label: "Comments",
-    icon: <AiOutlineForm />,
+    icon: <FaCommentAlt />,
     to: "/comments",
   },
   {
-    label: "Add",
-    icon: <AiOutlineUpload />,
+    label: "Add Products",
+    icon: <IoAddCircle />,
     to: "/form",
   },
+  {
+    label: "Sign Out",
+    icon: <BiLogOut />,
+    to: "/",
+  },
 ];
-
-//////////////////styledcomponents//////////////
-
-const Container = styled.div`
-  .LogoInmobate {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-  }
-  .Links {
-    display: flex;
-    align-items: center;
-    color: white;
-    text-decoration: none;
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-  }
-  .Links:hover {
-    background-color: #333;
-    color: #fba2e7;
-  }
-  .Linkicon {
-    with: 14rem;
-    align-items: center;
-    justify-content: center;
-    margin-right: 10px;
-    font-size: 1.5rem;
-  }
-  .active {
-    background-color: #333;
-    color: #ff94e8;
-  }
-  @media screen and (max-width: 768px) {
-    .LogoInmobate {
-      margin-top: 10px;
-    }
-
-    .Links {
-      padding: 5px;
-      margin: 3px 0;
-      font-size: 0.8rem;
-    }
-
-    .Linkicon {
-      margin-right: 5px;
-      font-size: 1.2rem;
-    }
-  }
-`;

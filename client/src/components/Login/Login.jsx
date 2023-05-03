@@ -4,7 +4,9 @@ import { BiX } from "react-icons/bi";
 import { SiGoogle } from "react-icons/si";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { login } from "../../redux/actions";
+import {
+  login,
+} from "../../redux/actions";
 import style from "./login.module.css";
 
 function Login({ isOpen, onClose }) {
@@ -43,12 +45,13 @@ function Login({ isOpen, onClose }) {
               // Validación de Password
               if (!values.password) {
                 errors.password = "Enter your password";
-              } else if (!/^[a-zA-Z]+$/.test(values.password)) {
+              } else if (
+                !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
+                  values.password
+                )
+              ) {
                 errors.password =
-                  "The password can only contain lower or upper case letters.";
-              } else if (!/^.{5,10}$/.test(values.password)) {
-                errors.password =
-                  "Password Must be between 5 and 10 characters";
+                  " The password must be at least one lowercase letter, one uppercase letter, one number, and one special character, and be at least 8 characters long.";
               }
               // Validación de email
               if (!values.email) {
@@ -70,7 +73,7 @@ function Login({ isOpen, onClose }) {
               }
               navigate("/SectionHome");
               setSendForm(true);
-              setTimeout(() => setSendForm(false), 5000);
+              setTimeout(() => setSendForm(false), 1000);
               resetForm();
               setSubmitting(false);
             }}
@@ -111,9 +114,9 @@ function Login({ isOpen, onClose }) {
                 </div>
                 <div className={style.link}>
                   <Link to="/SectionRegister">You are not registered?</Link>
+                  <Link to={"/forgot-password"}>Forgot password?</Link>
                 </div>
                 <div>
-                  <Link to={"/forgot-password"}>Forgot password?</Link>
                   <br />
                   <button
                     className={style.btnsubmit}
@@ -137,8 +140,8 @@ function Login({ isOpen, onClose }) {
                 const top = window.screen.height / 2 - height / 2;
 
                 const popup = window.open(
-                  // "http://localhost:3001/auth/google",
-                  "https://proyectothewaveapi-production.up.railway.app/auth/google",
+                  "http://localhost:3001/auth/google",
+                  // "https://proyectothewaveapi-production.up.railway.app/auth/google",
                   "targetWindow",
                   `toolbar=no,
                   location=no,
@@ -150,11 +153,11 @@ function Login({ isOpen, onClose }) {
                   height=${height},
                   left=${left},
                   top=${top}`
-                  );
+                );
 
                 window.addEventListener("message", (event) => {
-                  // if (event.origin === "http://localhost:3001") {
-                    if (event.origin === "https://proyectothewaveapi-production.up.railway.app") {
+                  if (event.origin === "http://localhost:3001") {
+                    // if (event.origin === "https://proyectothewaveapi-production.up.railway.app") {
                     if (event.data) {
                       window.localStorage.setItem("login", event.data);
                       popup?.close();

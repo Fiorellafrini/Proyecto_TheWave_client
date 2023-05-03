@@ -47,6 +47,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    transform: rotate(180deg);
+    cursor: pointer;
 }
 
 .item3 img {
@@ -60,8 +62,6 @@
     border-radius: 30px;
     display: flex;
     justify-content: center;
-    transform: translateY(10px) rotate(180deg);
-    cursor: pointer;
 }
 
 .scrollDown span {

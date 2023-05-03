@@ -1,0 +1,46 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  background-image: url(../../assets/fondoHome.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.dash {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  display: flex;
+  justify-content: center;
+}
+
+.Cards{
+  width: 100%;
+}
+
+.cardDash {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+}
+
+@media only screen and (min-width: 481px) and (max-width: 1024px) {
+  /* Estilos para tabletas */
+  .cardDash {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1280px) {
+  /* Estilos para Laptos */
+  .cardDash {
+
+  }
+}

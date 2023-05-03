@@ -14,14 +14,20 @@ import {
   ADD_TO_CART,
   DELETE_TO_CART,
   PAYMENT,
-  UPDATE_STOCK_PRODUCT_INC,
-  UPDATE_STOCK_PRODUCT_DEC,
   INCREMENT_QUANTITY,
   DECREMENT_QUANTITY,
+  GET_ALL_DETAILS,
+  UPDATE_STOCK_PRODUCT_DEC,
   EMPTY_CART,
   ADD_TO_FAV,
   DELETE_TO_FAV,
-  // LOGIN,
+  GET_FAV,
+  GET_USERS,
+  PUT_PRODUCT,
+  CLEAR_FILTERS,
+  CLEAR_CART,
+  REMOVE_ALL_FAV,
+  EDITAR_PRODUCT,
 } from "./actions";
 
 const initialState = {
@@ -35,6 +41,9 @@ const initialState = {
   setPage: 0,
   filters: {},
   favorites: [],
+  shop: [],
+  users: [],
+  editarProduct:[]
 };
 
 const reducer = (state = initialState, action) => {
@@ -52,6 +61,9 @@ const reducer = (state = initialState, action) => {
         products: action.payload,
         allProduct: action.payload.slice(),
       };
+    //--------------------------------GET_ALL_BRANDS-----------------------------------------\\
+
+
     //--------------------------------FILTROS--------------------------------------------------\\
     case FILTER_BY_NAME:
       return {
@@ -103,6 +115,7 @@ const reducer = (state = initialState, action) => {
         types: action.payload,
       };
     case GET_ALL_BRANDS:
+      console.log('hola', action.payload);
       return {
         ...state,
         brands: action.payload,
@@ -122,6 +135,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         setPage: action.payload,
       };
+
     case FILTER_BRAND:
       return {
         ...state,
@@ -132,13 +146,20 @@ const reducer = (state = initialState, action) => {
         ...state,
         products: action.payload,
       };
-    //--------------------------------ADD_TO_CART--------------------------------\\
+
+    case CLEAR_FILTERS:
+      return {
+        ...state,
+        filters: {},
+        setPage: 1,
+      };
+
+    //--------------------------------CART--------------------------------\\
     case ADD_TO_CART:
       return {
         ...state,
         shoppingCart: [...state.shoppingCart, action.payload],
       };
-    //--------------------------------DELETE_TO_CART--------------------------------\\
     case DELETE_TO_CART:
       const deleteCar = state.shoppingCart.filter(
         (product) => product.id !== action.payload
@@ -148,6 +169,13 @@ const reducer = (state = initialState, action) => {
         shoppingCart: deleteCar,
       };
 
+    case CLEAR_CART:
+      return {
+        ...state,
+        shoppingCart: [], // Reinicia el carrito
+      };
+
+    //--------------------------------EMPTY_CART--------------------------------\\
     case EMPTY_CART:
       return {
         ...state,
@@ -155,21 +183,31 @@ const reducer = (state = initialState, action) => {
           (product) => product !== action.payload
         ),
       };
-    //--------------------------------ADD_TO_FAV-------------------------------\\
+    //--------------------------------FAV-------------------------------\\
     case ADD_TO_FAV:
       return {
         ...state,
         favorites: [...state.favorites, action.payload],
       };
-    //--------------------------------DELETE_TO_FAV-------------------------------\\
+
     case DELETE_TO_FAV:
       const newFavorites = state.favorites.filter(
         (product) => product.id !== action.payload
       );
-      console.log(newFavorites);
       return {
         ...state,
         favorites: newFavorites,
+      };
+    case GET_FAV:
+      return {
+        ...state,
+        favorites: action.payload,
+      };
+
+    case REMOVE_ALL_FAV:
+      return {
+        ...state,
+        favorites: [],
       };
 
     //--------------------------------PAYMENT------------------------------------------------------\\
@@ -178,33 +216,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         shoppingCart: action.payload,
       };
-    //--------------------------------UPDATE_STOCK_PRODUCT_DEC----------------------------------------\\
-    case UPDATE_STOCK_PRODUCT_DEC:
-      const updatedProductDec = action.payload;
-      const updatedProductsDec = state.products.map((product) => {
-        if (product.id === updatedProductDec.id) {
-          return updatedProductDec;
-        } else {
-          return product;
-        }
-      });
+    //--------------------------------GET_ALL_DETAILS------------------------------------------------------\\
+    case GET_ALL_DETAILS:
       return {
         ...state,
-        products: updatedProductsDec,
-      };
-    //--------------------------------UPDATE_STOCK_PRODUCT_INC---------------------------------------\\
-    case UPDATE_STOCK_PRODUCT_INC:
-      const updatedProductInc = action.payload;
-      const updatedProductsInc = state.products.map((product) => {
-        if (product.id === updatedProductInc.id) {
-          return updatedProductInc;
-        } else {
-          return product;
-        }
-      });
-      return {
-        ...state,
-        products: updatedProductsInc,
+        shop: action.payload,
       };
     //--------------------------------INCREMENT_QUANTITY------------------------------------------------\\
     case INCREMENT_QUANTITY:
@@ -223,7 +239,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         shoppingCart: updatedCart,
       };
-
     //--------------------------------DECREMENT_QUANTITY-----------------------------------------------\\
     case DECREMENT_QUANTITY:
       const idLess = action.payload;
@@ -244,48 +259,40 @@ const reducer = (state = initialState, action) => {
         ...state,
         shoppingCart: updatedCartLess,
       };
+    //--------------------------------UPDATE_STOCK_PRODUCT_DEC----------------------------------------\\
+    case UPDATE_STOCK_PRODUCT_DEC:
+      const updatedProductDec = action.payload;
+      const updatedProductsDec = state.products.map((product) => {
+        if (product.id === updatedProductDec.id) {
+          return updatedProductDec;
+        } else {
+          return product;
+        }
+      });
+      return {
+        ...state,
+        products: updatedProductsDec,
+      };
+    case GET_USERS:
+      return {
+        ...state,
+        users: action.payload,
+      };
+    case PUT_PRODUCT:
+      console.log(action.payload);
+      return {
+        ...state,
+        products: action.payload,
+      };
+    case EDITAR_PRODUCT:{
+      return{
+        ...state,
+        editarProduct: action.payload
+      }
+    }
     default:
       return state;
   }
 };
 
 export default reducer;
-
-//----------------------------------------FILTROS PARA HACERLOS DESDE EL BACK-------------------------//
-
-//--------------------------------FILTER_BY_NAME_ASC--------------------------------------------------\\
-// case FILTER_BY_ASC:
-//   return {
-//     ...state,
-//     products: action.payload,
-//   };
-//--------------------------------FILTER_BY_NAME_DESC--------------------------------------------------\\
-// case FILTER_BY_DESC:
-//   return {
-//     ...state,
-//     products: action.payload,
-//   };
-//--------------------------------ORDER_BY_NAME--------------------------------------------------------\\
-// case ORDER_BY_NAME:
-//   return {
-//     ...state,
-//     products: action.payload,
-//   };
-//--------------------------------FILTER_BY_PRICE_ASC----------------------------------------------------\\
-// case FILTER_BY_PRICE_ASC:
-//   return {
-//     ...state,
-//     products: action.payload,
-//   };
-//--------------------------------FILTER_BY_PRICE_DESC--------------------------------------------------\\
-// case FILTER_BY_PRICE_DESC:
-//   return {
-//     ...state,
-//     products: action.payload,
-//   };
-//--------------------------------ORDER_BY_PRICE-----------------------------------------------------\\
-// case ORDER_BY_PRICE:
-//   return {
-//     ...state,
-//     products: action.payload,
-//   };

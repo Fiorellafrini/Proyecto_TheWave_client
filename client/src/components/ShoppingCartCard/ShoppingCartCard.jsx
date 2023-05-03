@@ -2,8 +2,6 @@ import styles from "../ShoppingCartCard/ShoppingCartCard.module.css";
 import {
   incrementQuantity,
   decrementQuantity,
-  updateStockDecrement,
-  updateStockIncrement,
 } from "../../redux/actions";
 import { ImBin } from "react-icons/im";
 import { useDispatch } from "react-redux";
@@ -24,13 +22,9 @@ const ShoppingCartCard = ({
 
   const handleIncrement = () => {
     dispatch(incrementQuantity(id));
-    dispatch(updateStockDecrement(id));
   };
   const handleDecrement = () => {
     dispatch(decrementQuantity(id));
-    if (quantity > 1) {
-      dispatch(updateStockIncrement(id));
-    }
   };
 
   const priceQuantity = price * quantity;

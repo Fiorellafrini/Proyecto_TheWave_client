@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "../SectionCategories/SectionCategories.module.css";
 import SearchBar from "../SearchBar/SearchBar";
-
 import { useDispatch } from "react-redux";
 import { orderByName, orderByPrice } from "../../redux/actions";
 import Infinite from "../InfiniteScroll/InfiniteScroll";
@@ -13,6 +12,7 @@ import Publicidad from "../Publicidad/Publicidad";
 const SectionCategories = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
+  
 
   useEffect(() => {
     setTimeout(() => {
