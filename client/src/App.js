@@ -1,35 +1,29 @@
-import { Route, Routes, useLocation } from "react-router-dom";
-import "./App.css";
-import Detail from "./components/Detail/Detail.jsx";
-import Error404 from "./components/Error404/Error404";
-import FormProduct from "./components/FormProduct/FromProduct.jsx";
-import LandingPage from "./components/LandingPage/LandingPage";
-import NavVertical from "./components/NavVertical/NavVertical";
-import SectionCategories from "./components/SectionCategories/SectionCategories";
-import SectionHome from "./components/SectionHome/SectionHome";
-// import SectionLogIn from "./components/SectionLogIn/SectionLogIn";
-import Favorites from "./components/Favoritos/Favoritos";
-import SectionCarrito from "./components/SectionCarrito/SectionCarrito";
-// import SectionRegister from "./components/SectionRegister/SectionRegister";
 import { Cloudinary } from "@cloudinary/url-gen";
 import React, { useEffect, useState } from "react";
-// import CardsDash from "./components/Dashboard/CardsDash";
+import { useDispatch } from "react-redux";
+import { Route, Routes, useLocation } from "react-router-dom";
+import "./App.css";
 import Estadisticas from "./components/Dashboard/Estadisticas/Estadisticas";
 import HomeDashboard from "./components/Dashboard/HomeDashboard";
+import Sidebar from "./components/Dashboard/Sidebar";
+import Detail from "./components/Detail/Detail.jsx";
+import Favorites from "./components/Favoritos/Favoritos";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
+import FormProduct from "./components/FormProduct/FromProduct.jsx";
+import LandingPage from "./components/LandingPage/LandingPage";
 import Login from "./components/Login/Login";
 import Register from "./components/Login/Register";
+import NavVertical from "./components/NavVertical/NavVertical";
 import ResetPassword from "./components/ResetPasword/ResetPassword.jsx";
 import ProteccionRutaAdmin from "./components/Routers/ProteccionRutaAdmin";
 import ProteccionRutas from "./components/Routers/ProteccionRutas";
+import SectionCarrito from "./components/SectionCarrito/SectionCarrito";
+import SectionCategories from "./components/SectionCategories/SectionCategories";
+import SectionHome from "./components/SectionHome/SectionHome";
 import ShopDetail from "./components/ShopDetail/ShopDetail";
 import Perfil from "./components/perfil/Perfil";
-//import UserDash from "./components/Dashboard/UsersDash";
-// import Users from "./components/Dashboard/UsersDash";
-import { useDispatch } from "react-redux";
-import Sidebar from "./components/Dashboard/Sidebar";
 import { listProducts, setCurrentPage } from "./redux/actions";
-// import CardDashEdit from "./components/Dashboard/CardDashEdit";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -63,10 +57,11 @@ function App() {
       ) : null}
       {["/form", "/stats", "/admin"].includes(
         location.pathname
-      ) ? (
-        <Sidebar />
-      ) : null}
-
+      ) ? <NavVertical /> : null}
+      {["/form","/stats","/admin"].includes(
+        location.pathname
+      ) ? <Sidebar /> : null}
+      
       <Routes>
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="/SectionHome" element={<SectionHome />}></Route>
@@ -79,22 +74,20 @@ function App() {
         <Route path="/SectionCarrito" element={<SectionCarrito />}></Route>
         <Route path="/detail/:id" element={<Detail />}></Route>
         <Route path="/forgot-password/" element={<ForgotPassword />}></Route>
-        <Route
-          path="/reset-Password/:id/:token"
-          element={<ResetPassword />}
-        ></Route>
-        <Route path="*" element={<Error404 />}></Route>
+        <Route path="/reset-Password/:id/:token" element={<ResetPassword/>}></Route>
+       
+        
 
         <Route element={<ProteccionRutas />}>
           <Route path="/MyProfile" element={<Perfil />}></Route>
           <Route path="/ShopDetail" element={<ShopDetail />}></Route>
-          <Route path="/Favorites" element={<Favorites />}></Route>
+           <Route path="/Favorites" element={<Favorites />}></Route>
         </Route>
 
         <Route element={<ProteccionRutaAdmin />}>
           <Route path="/form" element={<FormProduct />}></Route>
           <Route path="/admin" element={<HomeDashboard />}></Route>
-          {/* <Route path="/editarProducto/:id" element={<CardDashEdit />}></Route> */}
+          {/* <Route path="/admin" element={<Users />}></Route> */}
           {/* <Route path="/admin" element={<CardsDash />}></Route> */}
           <Route path="/stats" element={<Estadisticas />}></Route>
         </Route>
