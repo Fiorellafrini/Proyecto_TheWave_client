@@ -37,12 +37,12 @@ const SectionCarrito = () => {
         );
       }
     });
-    // dispatch(paymentMercadoPago(userCartShopping)).then((response) => {
-    //   for (let i = 0; i < userCartShopping.length; i++) {
-    //     const product = userCartShopping[i];
-    //     dispatch(updateStockDecrement(product.id, product.quantity));
-    //   }
-    // });
+    dispatch(paymentMercadoPago(userCartShopping)).then((response) => {
+      for (let i = 0; i < userCartShopping.length; i++) {
+        const product = userCartShopping[i];
+        dispatch(updateStockDecrement(product.id, product.quantity));
+      }
+    });
   };
 
   const handleDelete = (product) => {

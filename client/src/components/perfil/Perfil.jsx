@@ -9,6 +9,7 @@ import { putUser, cleanUser } from "../../redux/actions.js";
 import { useDispatch, useSelector } from "react-redux";
 import { FiEdit } from "react-icons/fi";
 
+
 function Perfil() {
   const navigate = useNavigate();
   const handleNavigate = () => navigate("/SectionHome");
@@ -20,15 +21,10 @@ function Perfil() {
   const [editar, setEditar] = useState(true);
   const [editarDireccion, setEditarDireccion] = useState(true);
 //<<<<<<< HEAD
-  const [editarPassword, setEditarPassword] = useState(true);
+  // const [editarPassword, setEditarPassword] = useState(true);
   const [imagePreview, setImagePreview] = useState(""); // Agrego para la vista previa
   const [imagenSeleccionada, setImagenSeleccionada] = useState(null);
-//=======
-  // const [editarPassword, setEditarPassword] = useState(true);
 
-
-
-//>>>>>>> 8a340a1441b0dfe9e35c5d97ebfaaa9958f37ff2
 
   const handleEditar = () => {
     setEditar(!editar);
@@ -75,7 +71,6 @@ function Perfil() {
             <h2>{datosUser.email}</h2>
             <h2>{datosUser.address}</h2>
           </div>
-
           <div className={styles.editar}>
             <h1>Edit Profile</h1>
             <hr />

@@ -29,6 +29,7 @@ import Estadisticas from "./components/Dashboard/Estadisticas/Estadisticas";
 import { listProducts, setCurrentPage } from "./redux/actions";
 import { useDispatch } from "react-redux";
 import Sidebar from "./components/Dashboard/Sidebar";
+import FeedBack from "./components/FeedBack/FeedBack";
 import CardDashEdit from "./components/Dashboard/CardDashEdit";
 
 function App() {
@@ -72,9 +73,23 @@ function App() {
           path="/SectionCategories"
           element={<SectionCategories />}
         ></Route>
+        <Route
+          path="/SectionCategories"
+          element={<SectionCategories />}
+        ></Route>
         <Route path="/SectionCarrito" element={<SectionCarrito />}></Route>
         <Route path="/detail/:id" element={<Detail />}></Route>
         <Route path="/forgot-password/" element={<ForgotPassword />}></Route>
+        <Route
+          path="/reset-Password/:id/:token"
+          element={<ResetPassword />}
+        ></Route>
+        <Route element={<ProteccionRutas />} />
+        <Route path="/Favorites" element={<Favorites />}></Route>
+        <Route path="/MyProfile" element={<Perfil />}></Route>
+        <Route path="/SectionRegister" element={<Register />}></Route>
+        <Route path="/ShopDetail" element={<ShopDetail />}></Route>
+        <Route path="/FeedBack" element={<FeedBack />}></Route>
         <Route
           path="/reset-Password/:id/:token"
           element={<ResetPassword />}

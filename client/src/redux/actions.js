@@ -428,7 +428,6 @@ export function users() {
     } catch (error) {}
   };
 }
-
 //----------------------------------------------GET BRANDS----------------------------------//
 
 export function listBrands() {
@@ -443,14 +442,13 @@ export function listBrands() {
   };
 }
 
-
 export const cleanUser = () => {
   return {
     type: CLEAN_USER,
   };
 };
 
-export const editarProduct = (id, body) => async (dipatch) => {
+export const editarProduct = (id,  body) => async (dipatch) => {
   const { data } = await axios.put(`/product/${id}`, body);
   return dipatch({
     type: "PUT_PRODUCT",

@@ -64,6 +64,8 @@ const reducer = (state = initialState, action) => {
         products: action.payload,
         allProduct: action.payload.slice(),
       };
+    //--------------------------------GET_ALL_BRANDS-----------------------------------------\\
+
 
     // case STOCKS_PRODUCTS:
     //   return {
@@ -123,6 +125,7 @@ const reducer = (state = initialState, action) => {
         types: action.payload,
       };
     case GET_ALL_BRANDS:
+      console.log('hola', action.payload);
       return {
         ...state,
         brands: action.payload,
