@@ -19,16 +19,16 @@ function Perfil() {
 
   const [editar, setEditar] = useState(true);
   const [editarDireccion, setEditarDireccion] = useState(true);
-<<<<<<< HEAD
+//<<<<<<< HEAD
   const [editarPassword, setEditarPassword] = useState(true);
   const [imagePreview, setImagePreview] = useState(""); // Agrego para la vista previa
   const [imagenSeleccionada, setImagenSeleccionada] = useState(null);
-=======
+//=======
   // const [editarPassword, setEditarPassword] = useState(true);
 
 
 
->>>>>>> 8a340a1441b0dfe9e35c5d97ebfaaa9958f37ff2
+//>>>>>>> 8a340a1441b0dfe9e35c5d97ebfaaa9958f37ff2
 
   const handleEditar = () => {
     setEditar(!editar);
