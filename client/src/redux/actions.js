@@ -29,6 +29,7 @@ export const PUT_PRODUCT = "PUT_PRODUCT";
 export const SAVE_FILTERS_AND_PAGE = "SAVE_FILTERS_AND_PAGE";
 export const CLEAR_FILTERS = "CLEAR_FILTERS";
 export const CLEAR_CART = "CLEAR_CART";
+export const EDITAR_PRODUCT = "EDITAR_PRODUCT";
 export const GET_FAV = "GET_FAV";
 export const LOGIN = "LOGIN";
 export const REGISTRO = "REGISTRO";
@@ -52,18 +53,7 @@ export const createProduct = (body) => async (dipatch) => {
   });
 };
 
-// -----------------------------------LIST-PRODUCT-----------------------------------------------------//
-// export function listProducts() {
-//   return async function (dispatch) {
-//     try {
-//       var json = await axios.get("/product");
-//       return dispatch({
-//         type: "GET_ALL_PRODUCTS",
-//         payload: json.data,
-//       });
-//     } catch (error) {}
-//   };
-// }
+
 
 export function listProducts(filters, page) {
   return async function (dispatch) {
@@ -85,33 +75,7 @@ export function saveFiltersAndPage(filters, page) {
   };
 }
 
-//-------------------------------------LIST IN STOCK - OUT STOCK-------------------
-// export function stocksProducts(id) {
-//   return async function (dispatch) {
-//     const response = await axios.put(`/product/${id}`);
-//     return dispatch({
-//       type: "STOCKS_PRODUCTS",
-//       payload: response.data
-//     })
-//   }
-// }
 
-// export const updateStockIncrement = (id) => async (dispatch) => {
-//   try {
-//     const response = await axios.get(`/product/${id}`);
-//     const currentStockValue = response.data.stock;
-
-//     const newStockValue = currentStockValue + 1;
-
-//     const updateResponse = await axios.put(`/product/${id}`, {
-//       stock: newStockValue,
-//     });
-
-//     dispatch({ type: UPDATE_STOCK_PRODUCT_DEC, payload: updateResponse.data });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
 
 // -----------------------------------FILTER_BY_NAME---------------------------------------------------//
 export function filterByName(payload) {
@@ -421,6 +385,7 @@ export const removeAllFav = () => ({
   type: REMOVE_ALL_FAV,
 });
 
+
 export const getFav = (userId) => async (dispatch) => {
   try {
     const res = await axios.get(`/favorites/${userId}`);
@@ -431,19 +396,20 @@ export const getFav = (userId) => async (dispatch) => {
 };
 
 // --------------------------PARA CONECTAR CON EL BACK QUE SI FUNCIONA----------------
-// export const addToFav = (userId, productId) => async (dispatch) => {
+// export const addToFav = (userId, id_product) => async (dispatch) => {
 //   try {
-//     const res = await axios.post(`/favorites`, { userId, productId });
+//     const res = await axios.post(`/favorites/${userId}/${id_product}`);
+//     console.log(res);
 //     dispatch({ type: ADD_TO_FAV, payload: res.data });
 //   } catch (error) {
 //     console.error(error);
 //   }
 // };
 
-// export const deleteToFav = (userId, productId) => async (dispatch) => {
+// export const deleteToFav = (userId, id_product) => async (dispatch) => {
 //   try {
-//     const res = await axios.delete(`/favorites/${userId}/${productId}`);
-//     dispatch({ type: DELETE_TO_FAV, payload: productId });
+//     const res = await axios.delete(`/favorites/${userId}/${id_product}`);
+//     dispatch({ type: DELETE_TO_FAV, payload: id_product });
 //   } catch (error) {
 //     console.error(error);
 //   }
@@ -512,3 +478,17 @@ export const editarProduct = (id, body) => async (dipatch) => {
     payload: data,
   });
 };
+
+export function productsByIdEditar(id) {
+  return async function (dispatch) {
+    try {
+      var json = await axios.get(`/Product/${id}`);
+      return dispatch({
+        type: "EDITAR_PRODUCT",
+        payload: json.data,
+      });
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+}

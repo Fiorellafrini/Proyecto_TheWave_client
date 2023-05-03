@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteToFav } from "../../redux/actions";
+import { deleteToFav, setFavorites } from "../../redux/actions";
 import { useEffect } from "react";
 import styles from "./Favorites.module.css";
 import tablaWhite from "../../assets/products6.png";
@@ -17,9 +17,14 @@ const Favorites = () => {
 
   const handleDelete = (productId) => {
     dispatch(deleteToFav(productId));
+    // localStorage.setItem('favorites', JSON.stringify(fav));
   };
 
   useEffect(() => {
+    // const storedFavorites = localStorage.getItem('favorites');
+    // if (storedFavorites) {
+    //   dispatch(setFavorites(JSON.parse(storedFavorites)));
+    // }
     setTimeout(() => {
       setLoading(false);
     }, 2000);
