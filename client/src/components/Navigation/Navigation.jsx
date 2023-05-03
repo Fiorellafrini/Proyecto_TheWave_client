@@ -5,7 +5,13 @@ import { Link } from "react-router-dom";
 import { TfiMenu } from "react-icons/tfi";
 import { AiOutlineUserSwitch } from "react-icons/ai";
 import { HiShoppingCart } from "react-icons/hi";
-import { cleanUser, userById } from "../../redux/actions.js";
+import {
+  cleanUser,
+  clearCart,
+  clearFilters,
+  removeAllFav,
+  userById,
+} from "../../redux/actions.js";
 import { useNavigate } from "react-router-dom";
 import jwt from "jwt-decode";
 import { useDispatch } from "react-redux";
@@ -16,6 +22,14 @@ const Navigation = () => {
   const dispatch = useDispatch();
   const datosUser = useSelector((state) => state.user.userID);
   const userCartShopping = useSelector((state) => state.products.shoppingCart);
+  const navegar = useNavigate();
+  let isLoguin = window.localStorage.getItem("login");
+  let user = "";
+  if (isLoguin) user = jwt(isLoguin);
+
+  useEffect(() => {
+    dispatch(userById(user.id));
+  }, [dispatch, user.id]);
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -28,14 +42,7 @@ const Navigation = () => {
     if (event.target.closest(`.${styles.dropdownMenu}`)) return;
     setIsOpen(false);
   };
-  const navegar = useNavigate();
-  let isLoguin = window.localStorage.getItem("login");
-  let user = "";
-  if (isLoguin) user = jwt(isLoguin);
 
-  useEffect(() => {
-    dispatch(userById(user.id));
-  }, [dispatch, user.id]);
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
@@ -43,6 +50,9 @@ const Navigation = () => {
   const handleLogout = () => {
     window.localStorage.removeItem("login");
     dispatch(cleanUser());
+    dispatch(removeAllFav());
+    dispatch(clearCart());
+    dispatch(clearFilters());
     navegar("/");
   };
 
@@ -76,7 +86,7 @@ const Navigation = () => {
                 className={styles.dropdownToggle}
                 onClick={toggleDropdown}
               >
-                <img src={datosUser.photo} alt="#" />
+                <img src={datosUser?.photo} alt="#" />
               </button>
               {isOpen &&
                 (!isLoguin ? (

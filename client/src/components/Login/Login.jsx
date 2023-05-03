@@ -5,9 +5,6 @@ import { SiGoogle } from "react-icons/si";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import {
-  clearFilters,
-  deleteToCart,
-  deleteToFav,
   login,
 } from "../../redux/actions";
 import style from "./login.module.css";
@@ -76,14 +73,9 @@ function Login({ isOpen, onClose }) {
               }
               navigate("/SectionHome");
               setSendForm(true);
-              setTimeout(() => setSendForm(false), 5000);
+              setTimeout(() => setSendForm(false), 1000);
               resetForm();
               setSubmitting(false);
-
-              //--------------------------Agregue para que cuando un usuario cierre sesion se borro todo------------------------//
-              deleteToFav();
-              // deleteToCart();
-              clearFilters();
             }}
           >
             {({ errors }) => (

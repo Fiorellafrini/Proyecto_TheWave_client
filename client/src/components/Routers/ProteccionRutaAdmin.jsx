@@ -1,6 +1,7 @@
 import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import jwt from "jwt-decode";
+import Swal from "sweetalert2";
 
 function RutasAdmin() {
   let isLoguin = window.localStorage.getItem("login");
@@ -20,7 +21,17 @@ function RutasAdmin() {
   if (isLoguin) {
     const user = jwt(isLoguin);
     if (!arrayCorreos.includes(user.email)) {
-      return <Navigate to="/" />;
+      return (
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "You are not an administrator",
+          color: "white",
+          background: "#1e1e1e",
+          confirmButtonColor: "#224145"
+        }),
+        (<Navigate to="/" />)
+      );
     }
     return <Outlet />;
   }

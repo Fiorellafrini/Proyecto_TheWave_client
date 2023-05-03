@@ -1,0 +1,14 @@
+.star{
+    margin:0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}.star label{
+    margin: 0px ;
+    font-size: 4rem;
+    cursor: pointer;
+}
+.star input{
+    display: none;
+}

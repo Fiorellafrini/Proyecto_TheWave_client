@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 // import perfil from "./perfil.png";
 import jwt from "jwt-decode";
 import styles from "./Perfil.module.css";
@@ -6,10 +6,8 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import "animate.css";
 import { putUser, cleanUser } from "../../redux/actions.js";
-import {useDispatch, useSelector} from 'react-redux'
-import {FiEdit} from "react-icons/fi"
-
-
+import { useDispatch, useSelector } from "react-redux";
+import { FiEdit } from "react-icons/fi";
 
 
 function Perfil() {
@@ -22,9 +20,10 @@ function Perfil() {
 
   const [editar, setEditar] = useState(true);
   const [editarDireccion, setEditarDireccion] = useState(true);
-  const [editarPassword, setEditarPassword] = useState(true);
-
-
+//<<<<<<< HEAD
+  // const [editarPassword, setEditarPassword] = useState(true);
+  const [imagePreview, setImagePreview] = useState(""); // Agrego para la vista previa
+  const [imagenSeleccionada, setImagenSeleccionada] = useState(null);
 
 
   const handleEditar = () => {
@@ -34,9 +33,9 @@ function Perfil() {
     setEditarDireccion(!editarDireccion);
   };
 
-  const handleEditarpassword = () => {
-    setEditarPassword(!editarPassword);
-  };
+  // const handleEditarpassword = () => {
+  //   setEditarPassword(!editarPassword);
+  // };
 
   // Función para manejar la carga de imágenes
   const handleImageUpload = async (e, setFieldValue) => {
@@ -58,6 +57,8 @@ function Perfil() {
     // Actualizar los valores de imagen en el formulario
     setFieldValue("photo", data.secure_url);
     // setFieldValue("imagen[1]", data.secure_url);
+    setImagePreview(data.secure_url); // Agrego para la vista previa
+    setImagenSeleccionada(data.secure_url);
   };
 
   return (
@@ -65,15 +66,11 @@ function Perfil() {
       <div className="animate__animated animate__fadeIn">
         <div className={styles.contenedor}>
           <div className={styles.contenedor2}>
-            <img
-              src={datosUser.photo}
-              alt="#"
-            />
+            <img src={imagenSeleccionada || datosUser.photo} alt="#" />
             <h2>{datosUser.name + "  " + datosUser.lastName}</h2>
             <h2>{datosUser.email}</h2>
             <h2>{datosUser.address}</h2>
           </div>
-
           <div className={styles.editar}>
             <h1>Edit Profile</h1>
             <hr />
@@ -90,18 +87,18 @@ function Perfil() {
               validate={(values) => {
                 let errors = {};
                 // validacion de password
-                if (editarPassword !== true) {
-                  if (!values.password) {
-                    errors.password = "Enter your password";
-                  } else if (
-                    !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
-                      values.password
-                    )
-                  ) {
-                    errors.password =
-                      " The password must be at least one lowercase letter, one uppercase letter, one number, and one special character, and be at least 8 characters long.";
-                  }
-                }
+                // if (editarPassword !== true) {
+                //   if (!values.password) {
+                //     errors.password = "Enter your password";
+                //   } else if (
+                //     !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
+                //       values.password
+                //     )
+                //   ) {
+                //     errors.password =
+                //       " The password must be at least one lowercase letter, one uppercase letter, one number, and one special character, and be at least 8 characters long.";
+                //   }
+                // }
                 if (editarDireccion !== true) {
                   if (!values.address) {
                     errors.address = "Please enter an address";
@@ -153,10 +150,12 @@ function Perfil() {
                         disabled={editar}
                         onChange={(e) => handleImageUpload(e, setFieldValue)}
                       />
+
                       <button type="button" onClick={handleEditar}>
                         <FiEdit />
                       </button>
                     </label>
+
                     <ErrorMessage
                       name="photo"
                       component={() => (
@@ -195,7 +194,7 @@ function Perfil() {
                       disabled={true}
                     />
                   </div>
-                  <div>
+                  {/* <div>
                     <label>
                       <Field
                         className="inputs"
@@ -215,8 +214,8 @@ function Perfil() {
                         <div className={styles.error}>{errors.password}</div>
                       )}
                     />
-                  </div>
-                  <div>
+                  </div> */}
+                  {/* <div>
                     <label>
                       <Field
                         className="inputs"
@@ -235,15 +234,13 @@ function Perfil() {
                         </div>
                       )}
                     />
-                  </div>
+                  </div> */}
                   <div className={styles.botones}>
                     <button
                       className="btn-submit"
                       type="submit"
                       disabled={
-                        editar && editarDireccion && editarPassword === true
-                          ? true
-                          : false
+                        editar && editarDireccion === true ? true : false
                       }
                     >
                       Confirm

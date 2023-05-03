@@ -10,6 +10,7 @@ import CardDashDelete from "./CardDashDelete";
 import { FiEdit } from "react-icons/fi";
 import PaginadoDash from "./PaginadoDash";
 import SearchBarDash from "./SearchBarDash";
+import {Link} from "react-router-dom";
 
 const CardsDash = () => {
   const dispatch = useDispatch();
@@ -38,18 +39,19 @@ const CardsDash = () => {
           <table>
             <thead>
               <tr>
-                {/* <td>ID</td> */}
+                <td>ID</td>
                 <td>Name</td>
                 <td>Price</td>
                 <td>Size</td>
                 <td colSpan={2}>Status</td>
               </tr>
             </thead>
+            <tbody>
             {productos.length
               ? productos
                   .map((product) => (
-                    <tbody key={product.id}>
-                      <tr>
+                    <tr key={product.id}>
+                      
                         {/* <td>{product.id}</td> */}
                         <td>{product.name}</td>
                         <td>${product.price}</td>
@@ -58,16 +60,19 @@ const CardsDash = () => {
                           <CardDashDelete id={product.id} />
                         </td>
                         <td>
+                          <Link to={`/editarProducto/${product.id}`}>
                           <button className={styles.editar}>
                             <FiEdit />
                           </button>
+                          </Link>
                         </td>
-                      </tr>
-                    </tbody>
+                      
+                    </tr>
                   ))
                   .slice(firstIndex, lastIndex)
               : // <Error404 />
                 null}
+                </tbody>
           </table>
         </div>
       </div>
