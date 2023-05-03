@@ -23,13 +23,14 @@ import {
   DELETE_TO_FAV,
   GET_FAV,
   // LOGIN,
-  STOCKS_PRODUCTS,
+  // STOCKS_PRODUCTS,
   // STOCKS_PRODUCTS,
   GET_USERS,
   PUT_PRODUCT,
   SAVE_FILTERS_AND_PAGE,
   CLEAR_FILTERS,
   SET_FAVORITES,
+  EDITAR_PRODUCT,
 } from "./actions";
 
 const initialState = {
@@ -45,6 +46,7 @@ const initialState = {
   favorites: [],
   shop: [],
   users: [],
+  editarProduct:[]
 };
 
 const reducer = (state = initialState, action) => {
@@ -287,10 +289,17 @@ const reducer = (state = initialState, action) => {
         users: action.payload,
       };
     case PUT_PRODUCT:
+      console.log(action.payload);
       return {
         ...state,
-        product: action.payload,
+        products: action.payload,
       };
+    case EDITAR_PRODUCT:{
+      return{
+        ...state,
+        editarProduct: action.payload
+      }
+    }
     default:
       return state;
   }

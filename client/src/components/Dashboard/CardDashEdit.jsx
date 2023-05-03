@@ -2,7 +2,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { editarProduct, productsById} from "../../redux/actions";
+import { editarProduct, productsByIdEditar } from "../../redux/actions";
 // import Navigation from "../Navigation/Navigation";
 import styles from "../FormProduct/FromProduct.module.css";
 // import Sidebar from "../Dashboard/Sidebar";
@@ -15,8 +15,7 @@ const CardDashEdit = () => {
   const dispatch = useDispatch();
   const navegate = useNavigate();
   const { id } = useParams();
-  const detalle = useSelector((state) => state.products.detail);
-
+  
   const [namem, setName] = useState(true);
   const [barand, setBarand] = useState(true);
   const [type, setType] = useState(true);
@@ -28,9 +27,10 @@ const CardDashEdit = () => {
 
 
     useEffect(() => {
-      dispatch(productsById(id));
+      dispatch(productsByIdEditar(id));
     }, [dispatch, id]);
-
+    const detalle = useSelector((state) => state.products.editarProduct);
+    
 const handleName=()=>{
   setName(!namem)
 }
@@ -136,6 +136,7 @@ const handlePrice = () => {
             return errors;
           }}
           onSubmit={(values, { setSubmitting, resetForm }) => {
+            console.log(values)
             dispatch(editarProduct(id, values));
             setIsSent(true);
             setSubmitting(false);

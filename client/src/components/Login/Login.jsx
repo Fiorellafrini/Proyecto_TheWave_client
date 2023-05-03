@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import {
   clearFilters,
-  deleteToCart,
   deleteToFav,
   login,
 } from "../../redux/actions";

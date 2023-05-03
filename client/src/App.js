@@ -29,21 +29,19 @@ import Estadisticas from "./components/Dashboard/Estadisticas/Estadisticas";
 import { listProducts, setCurrentPage } from "./redux/actions";
 import { useDispatch } from "react-redux";
 import Sidebar from "./components/Dashboard/Sidebar";
-// import CardDashEdit from "./components/Dashboard/CardDashEdit";
+import CardDashEdit from "./components/Dashboard/CardDashEdit";
 
 function App() {
   const dispatch = useDispatch();
   const [isFirstLoad, setIsFirstLoad] = useState(true);
 
-
   useEffect(() => {
     if (isFirstLoad) {
-        dispatch(listProducts());
-        dispatch(setCurrentPage(1));
-        setIsFirstLoad(false);
+      dispatch(listProducts());
+      dispatch(setCurrentPage(1));
+      setIsFirstLoad(false);
     }
-}, [dispatch, isFirstLoad]);
-
+  }, [dispatch, isFirstLoad]);
 
   new Cloudinary({
     cloud: {
@@ -61,9 +59,7 @@ function App() {
       ].includes(location.pathname) ? (
         <NavVertical />
       ) : null}
-      {["/form", "/stats", "/admin"].includes(
-        location.pathname
-      ) ? (
+      {["/form", "/stats", "/admin"].includes(location.pathname) ? (
         <Sidebar />
       ) : null}
 
@@ -94,7 +90,7 @@ function App() {
         <Route element={<ProteccionRutaAdmin />}>
           <Route path="/form" element={<FormProduct />}></Route>
           <Route path="/admin" element={<HomeDashboard />}></Route>
-          {/* <Route path="/editarProducto/:id" element={<CardDashEdit />}></Route> */}
+          <Route path="/editarProducto/:id" element={<CardDashEdit />}></Route>
           {/* <Route path="/admin" element={<CardsDash />}></Route> */}
           <Route path="/stats" element={<Estadisticas />}></Route>
         </Route>
