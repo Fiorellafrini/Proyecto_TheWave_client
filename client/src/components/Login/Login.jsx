@@ -4,7 +4,11 @@ import { BiX } from "react-icons/bi";
 import { SiGoogle } from "react-icons/si";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { login } from "../../redux/actions";
+import {
+  clearFilters,
+  deleteToFav,
+  login,
+} from "../../redux/actions";
 import style from "./login.module.css";
 
 function Login({ isOpen, onClose }) {
@@ -43,7 +47,11 @@ function Login({ isOpen, onClose }) {
               // Validación de Password
               if (!values.password) {
                 errors.password = "Enter your password";
-              } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(values.password)) {
+              } else if (
+                !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
+                  values.password
+                )
+              ) {
                 errors.password =
                   " The password must be at least one lowercase letter, one uppercase letter, one number, and one special character, and be at least 8 characters long.";
               }
@@ -70,6 +78,11 @@ function Login({ isOpen, onClose }) {
               setTimeout(() => setSendForm(false), 5000);
               resetForm();
               setSubmitting(false);
+
+              //--------------------------Agregue para que cuando un usuario cierre sesion se borro todo------------------------//
+              deleteToFav();
+              // deleteToCart();
+              clearFilters();
             }}
           >
             {({ errors }) => (
@@ -147,7 +160,7 @@ function Login({ isOpen, onClose }) {
                   height=${height},
                   left=${left},
                   top=${top}`
-                  );
+                );
 
                 window.addEventListener("message", (event) => {
                   if (event.origin === "http://localhost:3001") {

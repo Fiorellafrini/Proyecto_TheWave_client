@@ -12,6 +12,7 @@ import {
 import { useDispatch } from "react-redux";
 import { BsBagHeart, BsBagHeartFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 const ProductCard = ({
   name,
   size,
@@ -29,9 +30,14 @@ const ProductCard = ({
   const [isSelected, setIsSelected] = useState(false);
   const navigate = useNavigate();
   let token = window.localStorage.getItem("login");
+  
+
+
   const handleFav = () => {
     const product = { name, size, price, imagen, id };
+  // console.log(product);
     if (isFav === false) {
+      // console.log(product);
       dispatch(addToFav(product));
       setIsFav(true);
     } else if (isFav === true) {
@@ -51,16 +57,32 @@ const ProductCard = ({
     }
   };
 
-    const handleSinPermisos = () => {
-      alert("You need to be logged in to be able to add to favorites");
-      navigate("/SectionRegister");
-    };
-    const handleSinPermisosAñadir = () => {
-      alert(
-        "You need to be logged in to be able to add products to the shopping cart"
-      );
-      navigate("/SectionRegister");
-    };
+  const handleSinPermisos = () => {
+    // alert("You need to be logged in to be able to add to favorites");
+    Swal.fire({
+      icon: "info",
+      title: "You need to be logged in to be able to add to favorites",
+      color: "white",
+      background: "#1e1e1e",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    navigate("/SectionRegister");
+  };
+  const handleSinPermisosAñadir = () => {
+    // alert(
+    //   "You need to be logged in to be able to add products to the shopping cart"
+    // );
+    Swal.fire({
+      icon: "info",
+      title: "You need to be logged in to be able to add products to the shopping cart",
+      color: "white",
+      background: "#1e1e1e",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    navigate("/SectionRegister");
+  };
   return (
     <div className="animate__animated animate__fadeIn">
       <div className={styles.containerCard}>

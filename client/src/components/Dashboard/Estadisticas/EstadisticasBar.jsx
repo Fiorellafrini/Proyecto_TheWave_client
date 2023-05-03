@@ -53,9 +53,23 @@ export default function EstadisticasBar() {
     borderWidth: 1,
   };
 
+  const options = {
+    responsive: true,
+    scales: {
+      xAxes: [
+        {
+          display: false,
+        },
+      ],
+    },
+  };
+
   return (
-    <div>
-      <Bar data={midata}></Bar>
+    <div className="header">
+      <h1 className="title">Bar Chart</h1>
+      <div>
+        <Bar data={midata} options={options}></Bar>
+      </div>
     </div>
   );
 }

@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { registro } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
 import style from "./Register.module.css";
-import { Link } from "react-router-dom";
 
 function Register({ Open, onClose }) {
   const dispatch = useDispatch();
@@ -175,9 +174,6 @@ function Register({ Open, onClose }) {
                 />
               </div> */}
                 </div>
-                <div className={style.link}>
-                  <Link to="/SectionLogIn">Already registered?</Link>
-                </div>
                 <div>
                   <button
                     className={style.btnsubmit}
@@ -186,8 +182,8 @@ function Register({ Open, onClose }) {
                   >
                     Register
                   </button>
-                  {sendForm && <p>"User successfully added"</p>}
                 </div>
+                {sendForm && <p>"User successfully added"</p>}
               </Form>
             )}
           </Formik>

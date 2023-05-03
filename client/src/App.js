@@ -12,7 +12,7 @@ import Favorites from "./components/Favoritos/Favoritos";
 import SectionCarrito from "./components/SectionCarrito/SectionCarrito";
 // import SectionRegister from "./components/SectionRegister/SectionRegister";
 import { Cloudinary } from "@cloudinary/url-gen";
-import React from "react";
+import React, { useEffect, useState } from "react";
 // import CardsDash from "./components/Dashboard/CardsDash";
 import HomeDashboard from "./components/Dashboard/HomeDashboard";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
@@ -26,10 +26,24 @@ import ShopDetail from "./components/ShopDetail/ShopDetail";
 import Estadisticas from "./components/Dashboard/Estadisticas/Estadisticas";
 //import UserDash from "./components/Dashboard/UsersDash";
 // import Users from "./components/Dashboard/UsersDash";
+import { listProducts, setCurrentPage } from "./redux/actions";
+import { useDispatch } from "react-redux";
 import Sidebar from "./components/Dashboard/Sidebar";
 import FeedBack from "./components/FeedBack/FeedBack";
+import CardDashEdit from "./components/Dashboard/CardDashEdit";
 
 function App() {
+  const dispatch = useDispatch();
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
+
+  useEffect(() => {
+    if (isFirstLoad) {
+      dispatch(listProducts());
+      dispatch(setCurrentPage(1));
+      setIsFirstLoad(false);
+    }
+  }, [dispatch, isFirstLoad]);
+
   new Cloudinary({
     cloud: {
       cloudName: "djngalumm",
@@ -49,6 +63,7 @@ function App() {
       {["/form", "/stats", "/admin"].includes(location.pathname) ? (
         <Sidebar />
       ) : null}
+
       <Routes>
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="/SectionHome" element={<SectionHome />}></Route>
@@ -58,9 +73,12 @@ function App() {
           path="/SectionCategories"
           element={<SectionCategories />}
         ></Route>
+        <Route
+          path="/SectionCategories"
+          element={<SectionCategories />}
+        ></Route>
         <Route path="/SectionCarrito" element={<SectionCarrito />}></Route>
         <Route path="/detail/:id" element={<Detail />}></Route>
-        <Route path="*" element={<Error404 />}></Route>
         <Route path="/forgot-password/" element={<ForgotPassword />}></Route>
         <Route
           path="/reset-Password/:id/:token"
@@ -73,21 +91,21 @@ function App() {
         <Route path="/ShopDetail" element={<ShopDetail />}></Route>
         <Route path="/FeedBack" element={<FeedBack />}></Route>
         <Route
-          path="/SectionCategories"
-          element={<SectionCategories />}
+          path="/reset-Password/:id/:token"
+          element={<ResetPassword />}
         ></Route>
+        <Route path="*" element={<Error404 />}></Route>
 
         <Route element={<ProteccionRutas />}>
-          <Route path="/SectionCarrito" element={<SectionCarrito />}></Route>
-          <Route path="/form" element={<FormProduct />}></Route>
-          <Route path="/detail/:id" element={<Detail />}></Route>
+          <Route path="/MyProfile" element={<Perfil />}></Route>
+          <Route path="/ShopDetail" element={<ShopDetail />}></Route>
           <Route path="/Favorites" element={<Favorites />}></Route>
         </Route>
 
         <Route element={<ProteccionRutaAdmin />}>
           <Route path="/form" element={<FormProduct />}></Route>
           <Route path="/admin" element={<HomeDashboard />}></Route>
-          {/* <Route path="/admin" element={<Users />}></Route> */}
+          <Route path="/editarProducto/:id" element={<CardDashEdit />}></Route>
           {/* <Route path="/admin" element={<CardsDash />}></Route> */}
           <Route path="/stats" element={<Estadisticas />}></Route>
         </Route>

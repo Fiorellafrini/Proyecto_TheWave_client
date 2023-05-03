@@ -21,9 +21,16 @@ import {
   EMPTY_CART,
   ADD_TO_FAV,
   DELETE_TO_FAV,
+  GET_FAV,
+  // LOGIN,
+  // STOCKS_PRODUCTS,
   // STOCKS_PRODUCTS,
   GET_USERS,
-  PUT_PRODUCT
+  PUT_PRODUCT,
+  SAVE_FILTERS_AND_PAGE,
+  CLEAR_FILTERS,
+  SET_FAVORITES,
+  EDITAR_PRODUCT,
 } from "./actions";
 
 const initialState = {
@@ -38,7 +45,8 @@ const initialState = {
   filters: {},
   favorites: [],
   shop: [],
-  users:[],
+  users: [],
+  editarProduct:[]
 };
 
 const reducer = (state = initialState, action) => {
@@ -137,6 +145,14 @@ const reducer = (state = initialState, action) => {
         ...state,
         setPage: action.payload,
       };
+
+    case SAVE_FILTERS_AND_PAGE:
+      return {
+        ...state,
+        filters: action.payload.filters,
+        setPage: action.payload.page,
+      };
+
     case FILTER_BRAND:
       return {
         ...state,
@@ -146,6 +162,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         products: action.payload,
+      };
+
+    case CLEAR_FILTERS:
+      return {
+        ...state,
+        filters: {},
+        setPage: 1,
       };
     //--------------------------------ADD_TO_CART--------------------------------\\
     case ADD_TO_CART:
@@ -176,6 +199,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         favorites: [...state.favorites, action.payload],
       };
+
     //--------------------------------DELETE_TO_FAV-------------------------------\\
     case DELETE_TO_FAV:
       const newFavorites = state.favorites.filter(
@@ -185,6 +209,20 @@ const reducer = (state = initialState, action) => {
         ...state,
         favorites: newFavorites,
       };
+    // //--------------------------------GET FAV------------------------------------------//
+    case GET_FAV:
+      return {
+        ...state,
+        favorites: action.payload,
+      };
+    // //--------------------------------SET FAV------------------------------------------//
+
+    case SET_FAVORITES:
+      return {
+        ...state,
+        favorites: action.payload,
+      };
+
     //--------------------------------PAYMENT------------------------------------------------------\\
     case PAYMENT:
       return {
@@ -254,14 +292,20 @@ const reducer = (state = initialState, action) => {
         users: action.payload,
       };
     case PUT_PRODUCT:
+      console.log(action.payload);
+      return {
+        ...state,
+        products: action.payload,
+      };
+    case EDITAR_PRODUCT:{
       return{
         ...state,
-        product:action.payload
+        editarProduct: action.payload
       }
+    }
     default:
       return state;
   }
 };
 
 export default reducer;
-

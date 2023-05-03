@@ -1,19 +1,61 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { editarProduct} from "../../redux/actions";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { editarProduct, productsByIdEditar } from "../../redux/actions";
 // import Navigation from "../Navigation/Navigation";
 import styles from "../FormProduct/FromProduct.module.css";
-import Sidebar from "../Dashboard/Sidebar";
+// import Sidebar from "../Dashboard/Sidebar";
+import { FiEdit } from "react-icons/fi";
 
 
 
-const CardDashEdit = ({id}) => {
+const CardDashEdit = () => {
   const [isSent, setIsSent] = useState(false);
   const dispatch = useDispatch();
   const navegate = useNavigate();
+  const { id } = useParams();
+  
+  const [namem, setName] = useState(true);
+  const [barand, setBarand] = useState(true);
+  const [type, setType] = useState(true);
+  const [size, setSize] = useState(true);
+  const [imagen,setImagen] = useState(true);
+  const [description, setDescription] = useState(true);
+  const [stock, setStock] = useState(true);
+  const [price,setPrice] = useState(true);
 
+
+    useEffect(() => {
+      dispatch(productsByIdEditar(id));
+    }, [dispatch, id]);
+    const detalle = useSelector((state) => state.products.editarProduct);
+    
+const handleName=()=>{
+  setName(!namem)
+}
+const handlebarand = () => {
+  setBarand(!barand);
+};
+const handleType = () => {
+  setType(!type);
+};
+const handleSize = () => {
+  setSize(!size);
+};
+const handleImagen = () => {
+  setImagen(!imagen)
+}
+const handleDescription = () => {
+  setDescription(!description);
+};
+const handleStock = () => {
+  setStock(!stock);
+};
+const handlePrice = () => {
+  setPrice(!price);
+};
+     
   // Función para manejar la carga de imágenes
   const handleImageUpload = async (e, setFieldValue) => {
     const files = e.target.files;
@@ -39,49 +81,63 @@ const CardDashEdit = ({id}) => {
   return (
     <div className={styles.container}>
       {/* <Navigation /> */}
-      <Sidebar />
       <div>
         <Formik
           initialValues={{
-            name: "",
-            id_brand: 0,
-            id_type: 0,
-            size: "",
-            price: 0,
-            stock: 0,
+            name: `${detalle.name}`,
+            id_brand: `${detalle.id_brand}`,
+            id_type: `${detalle.id_type}`,
+            size: `${detalle.size}`,
+            price: `${detalle.price}`,
+            stock: `${detalle.stock}`,
+            description: `${detalle.description}`,
+            imagen: `${detalle.imagen}`,
           }}
           validate={(values) => {
             const errors = {};
-            if (!values.name) {
-              errors.name = "Please enter a name for this product";
-            } /*  else if (!products.includes(values.name)){
-                    errors.name = "this name has been used";
-                } */
-            if (values.imagen.length === 0) {
-              errors.imagen = "Please enter a imagen for this product";
+            if (namem !== true) {
+              if (!values.name) {
+                errors.name = "Please enter a name for this product";
+              }
             }
-            if (values.id_type === 0) {
-              errors.id_type = "Required";
+            if (imagen !== true) {
+              if (values.imagen.length === 0) {
+                errors.imagen = "Please enter a imagen for this product";
+              }
             }
-            if (!values.size) {
-              errors.size = "Required";
+            if (type !== true) {
+              if (values.id_type === 0) {
+                errors.id_type = "Required";
+              }
             }
-            if (values.id_brand === 0) {
-              errors.id_brand = "Required";
+            if (size !== true) {
+              if (!values.size) {
+                errors.size = "Required";
+              }
             }
-            if (values.price === 0) {
-              errors.price = "Please enter a price for this product";
-            } else if (values.price > 999999999) {
-              errors.price = "Please enter a price  valid for this product";
+            if (barand !== true) {
+              if (values.id_brand === 0) {
+                errors.id_brand = "Required";
+              }
             }
-            if (values.stock === 0) {
-              errors.stock = "Please enter the quantity of products in stock";
+            if (price !== true) {
+              if (values.price === 0) {
+                errors.price = "Please enter a price for this product";
+              } else if (values.price > 999999999) {
+                errors.price = "Please enter a price  valid for this product";
+              }
             }
+            if (stock !== true) {
+              if (values.stock === 0) {
+                errors.stock = "Please enter the quantity of products in stock";
+              }
+            }
+
             return errors;
           }}
           onSubmit={(values, { setSubmitting, resetForm }) => {
-            dispatch(editarProduct(id,values));
-
+            console.log(values)
+            dispatch(editarProduct(id, values));
             setIsSent(true);
             setSubmitting(false);
             resetForm();
@@ -94,13 +150,16 @@ const CardDashEdit = ({id}) => {
                 <Form className={styles.formulario}>
                   <label>
                     Name
-                    <Field type="text" name="name" />
+                    <Field type="text" name="name" disabled={namem} />
                     <ErrorMessage
                       name="name"
                       component={() => (
                         <div className={styles.error}>{errors.name}</div>
                       )}
                     />
+                    <button type="button" onClick={handleName}>
+                      <FiEdit />
+                    </button>
                   </label>
 
                   <label>
@@ -108,6 +167,7 @@ const CardDashEdit = ({id}) => {
                     <input
                       type="file"
                       accept="image/*"
+                      disabled={imagen}
                       onChange={(e) => handleImageUpload(e, setFieldValue)}
                     />
                     {/* Mostrar error si lo hay */}
@@ -117,37 +177,53 @@ const CardDashEdit = ({id}) => {
                         <div className={styles.error}>{errors.imagen}</div>
                       )}
                     />
+                    <button type="button" onClick={handleImagen}>
+                      <FiEdit />
+                    </button>
                   </label>
                   <label>
                     Price
-                    <Field type="number" name="price" />
+                    <Field type="number" name="price" disabled={price} />
                     <ErrorMessage
                       name="price"
                       component={() => (
                         <div className={styles.error}>{errors.price}</div>
                       )}
                     />
+                    <button type="button" onClick={handlePrice}>
+                      <FiEdit />
+                    </button>
                   </label>
 
                   <label>
                     Available stock
-                    <Field type="number" name="stock" />
+                    <Field type="number" name="stock" disabled={stock} />
                     <ErrorMessage
                       name="stock"
                       component={() => (
                         <div className={styles.error}>{errors.stock}</div>
                       )}
                     />
+                    <button type="button" onClick={handleStock}>
+                      <FiEdit />
+                    </button>
                   </label>
                   <label>
                     Description
-                    <Field name="description" as="textarea" />
+                    <Field
+                      name="description"
+                      as="textarea"
+                      disabled={description}
+                    />
                     <ErrorMessage name="description" component="div" />
+                    <button type="button" onClick={handleDescription}>
+                      <FiEdit />
+                    </button>
                   </label>
                   <div className={styles.selets}>
                     <label htmlFor="id_brand">
                       Brand
-                      <Field name="id_brand" as="select">
+                      <Field name="id_brand" as="select" disabled={barand}>
                         <option value={0}></option>
                         <option value={1}>Hurley</option>
                         <option value={2}>Rip Curl</option>
@@ -170,10 +246,13 @@ const CardDashEdit = ({id}) => {
                           <div className={styles.error}>{errors.id_brand}</div>
                         )}
                       />
+                      <button type="button" onClick={handlebarand}>
+                        <FiEdit />
+                      </button>
                     </label>
                     <label htmlFor="id_type">
                       Type
-                      <Field name="id_type" as="select">
+                      <Field name="id_type" as="select" disabled={type}>
                         <option value={0}></option>
                         <option value={1}>Diving fins</option>
                         <option value={2}>Wetsuit</option>
@@ -187,11 +266,14 @@ const CardDashEdit = ({id}) => {
                           <div className={styles.error}>{errors.id_type}</div>
                         )}
                       />
+                      <button type="button" onClick={handleType}>
+                        <FiEdit />
+                      </button>
                     </label>
 
                     <label htmlFor="size">
                       Size
-                      <Field name="size" as="select">
+                      <Field name="size" as="select" disabled={size}>
                         <option value="none"></option>
                         <option value="S">S</option>
                         <option value="M">M</option>
@@ -206,9 +288,26 @@ const CardDashEdit = ({id}) => {
                           <div className={styles.error}>{errors.size}</div>
                         )}
                       />
+                      <button type="button" onClick={handleSize}>
+                        <FiEdit />
+                      </button>
                     </label>
                   </div>
-                  <button type="submit" disabled={isSubmitting}>
+                  <button
+                    type="submit"
+                    disabled={
+                      namem &&
+                      price &&
+                      stock &&
+                      description &&
+                      imagen &&
+                      size &&
+                      type &&
+                      barand === true
+                        ? true
+                        : false
+                    }
+                  >
                     Submit
                   </button>
                   {isSent && (
