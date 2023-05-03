@@ -19,16 +19,24 @@
 
 .bar {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  justify-content: center;
+  padding: 1rem;
 }
 
-.stats {
+.statsLine {
   padding: 1rem;
   box-shadow: 8px 8px 5px rgb(38, 37, 36);
   background: #fff;
   border-radius: 15px;
-  width: 50rem;
+  width: 40rem;
+}
+
+.statsBar {
+  padding: 1rem;
+  box-shadow: 8px 8px 5px rgb(38, 37, 36);
+  background: #fff;
+  border-radius: 15px;
+  width: 60rem;
 }
 
 .pie {
@@ -36,7 +44,7 @@
   box-shadow: 8px 8px 5px rgb(38, 37, 36);
   background: #fff;
   border-radius: 15px;
-  width: 30rem;
+  width: 20rem;
 }
 
 @media only screen and (min-width: 481px) and (max-width: 1024px) {

@@ -495,3 +495,15 @@ export const editarProduct = (id, body) => async (dipatch) => {
     payload: data,
   });
 };
+
+export function listTypes() {
+  return async function (dispatch) {
+    try {
+      const json = await axios.get("http://localhost:3001/type");
+      const types = json.data
+      dispatch({ type: GET_All_TYPES, payload: types });
+    } catch (error) {
+      return "Something went wrong" +  error.message
+    }
+  };
+}

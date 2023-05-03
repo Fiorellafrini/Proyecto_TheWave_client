@@ -55,6 +55,13 @@ export default function EstadisticasBar() {
 
   const options = {
     responsive: true,
+    scales: {
+      xAxes: [
+        {
+          display: false,
+        },
+      ],
+    },
   };
 
   return (

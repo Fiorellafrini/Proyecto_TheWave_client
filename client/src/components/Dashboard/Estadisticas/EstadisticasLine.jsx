@@ -31,20 +31,17 @@ export default function EstadisticasLine() {
   // const users = user.length ? user.map((user) => user.name) : null;
   // const active = user.length ? user.map((user) => user.active) : null;
 
+  const fechaActual = new Date();
+  
+
   var midata = {
-    labels: name,
+    labels: price,
     datasets: [
       {
-        // label: "Users Active",
-        data: price,
+        label: "Ventas",
+        data: fechaActual,
         backgroundColor: ["rgb(255, 99, 132)"],
         borderColor: ["rgba(255, 99, 132, 0.5)"],
-      },
-      {
-        // label: "Users No Active",
-        data: price,
-        backgroundColor: ["rgb(53, 162, 235)"],
-        borderColor: ["rgba(53, 162, 235, 0.5)"],
       },
     ],
   };
