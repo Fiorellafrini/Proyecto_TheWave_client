@@ -44,11 +44,12 @@ const CardsDash = () => {
                 <td colSpan={2}>Status</td>
               </tr>
             </thead>
+            <tbody>
             {productos.length
               ? productos
                   .map((product) => (
-                    <tbody key={product.id}>
-                      <tr>
+                    <tr key={product.id}>
+                      
                         {/* <td>{product.id}</td> */}
                         <td>{product.name}</td>
                         <td>${product.price}</td>
@@ -61,12 +62,13 @@ const CardsDash = () => {
                             <FiEdit />
                           </button>
                         </td>
-                      </tr>
-                    </tbody>
+                      
+                    </tr>
                   ))
                   .slice(firstIndex, lastIndex)
               : // <Error404 />
                 null}
+                </tbody>
           </table>
         </div>
       </div>

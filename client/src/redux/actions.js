@@ -469,14 +469,14 @@ export function users() {
 
 //----------------------------------------------GET BRANDS----------------------------------//
 
-export function brands() {
+export function listBrands() {
   return async function (dispatch) {
     try {
-      var json = await axios.get("/brand");
-      console.log(json);
-      dispatch({ type: "GET_ALL_BRANDS", payload: json.data });
+      const json = await axios.get("http://localhost:3001/brand");
+      const brands = json.data
+      dispatch({ type: GET_ALL_BRANDS, payload: brands });
     } catch (error) {
-      console.log(error);
+      return "Something went wrong" +  error.message
     }
   };
 }

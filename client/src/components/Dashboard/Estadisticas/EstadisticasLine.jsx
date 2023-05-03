@@ -32,7 +32,7 @@ export default function EstadisticasLine() {
   // const active = user.length ? user.map((user) => user.active) : null;
 
   var midata = {
-    labels : name,
+    labels: name,
     datasets: [
       {
         // label: "Users Active",
@@ -49,9 +49,16 @@ export default function EstadisticasLine() {
     ],
   };
 
+  const options = {
+    responsive: true,
+  };
+
   return (
-    <div>
-      <Line data={midata}/>
+    <div className="header">
+      <h1 className="title">Line Chart</h1>
+      <div>
+        <Line data={midata} options={options} />
+      </div>
     </div>
   );
 }
