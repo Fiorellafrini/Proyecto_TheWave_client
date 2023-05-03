@@ -76,7 +76,6 @@ function Login({ isOpen, onClose }) {
               setTimeout(() => setSendForm(false), 1000);
               resetForm();
               setSubmitting(false);
-
             }}
           >
             {({ errors }) => (
