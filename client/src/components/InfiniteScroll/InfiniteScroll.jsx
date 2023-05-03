@@ -12,7 +12,6 @@ import styles from "./InfiniteScroll.module.css";
 const Infinite = () => {
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.products.products);
-  // const setPage = useSelector((state) => state.products.page);
   const filters = useSelector((state) => state.products.filters);
   const page = useSelector((state) => state.products.setPage);
   const [loaded, setLoaded] = useState(false); // agregar estado local
@@ -30,30 +29,12 @@ const Infinite = () => {
     }
   }, [dispatch, filters, page, loaded]);
 
+
   const activeProductos = productos.filter((product) => product.active);
 
   const lastIndex = page * 8;
   const firstIndex = lastIndex - 8;
 
-
-
-// const Infinite = () => {
-//   const dispatch = useDispatch();
-//   const productos = useSelector((state) => state.products.products);
-//   const setPage = useSelector((state) => state.products.setPage);
-
-//   const lastIndex = setPage * 8;
-//   const firstIndex = lastIndex - 8;
-
-//   useEffect(() => {
-//     dispatch(listProducts());
-//     dispatch(setCurrentPage(1));
-//     // console.log(currentPage);
-//   }, [dispatch]);
-
-
-
-//   const activeProductos = productos.filter((product) => product.active);
 
   return (
     <>
