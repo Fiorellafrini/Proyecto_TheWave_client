@@ -6,6 +6,7 @@ import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
 import styles from "./AddReview.module.css";
 import StarRating from "./StarRating";
+import Swal from "sweetalert2";
 
 const AddReview = ({ setIsOpen}) => {
   const [isSent, setIsSent] = useState(false);
@@ -43,7 +44,15 @@ const AddReview = ({ setIsOpen}) => {
         }
         if (rating === 0) {
           setIsSent(false);
-          alert("Please insert a new rating");
+          // alert("Please insert a new rating");
+          Swal.fire({
+            icon: "info",
+            title: "Please insert a new rating",
+            color: "white",
+            background: "#1e1e1e",
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
       }}
     >
