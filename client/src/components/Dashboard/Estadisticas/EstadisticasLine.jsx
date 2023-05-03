@@ -23,25 +23,39 @@ ChartJS.register(
 
 export default function EstadisticasLine() {
   const productos = useSelector((state) => state.products.products);
+  // const user = useSelector((state) => state.products.users);
 
   const name = productos.length ? productos.map((prod) => prod.name) : null;
   const price = productos.length ? productos.map((prod) => prod.price) : null;
 
+  // const users = user.length ? user.map((user) => user.name) : null;
+  // const active = user.length ? user.map((user) => user.active) : null;
+
+  const fechaActual = new Date();
+  
+
   var midata = {
-    labels: name,
+    labels: price,
     datasets: [
       {
-        label: "Stock",
-        data: price,
-        backgroundColor: ["rgba(255, 99, 132, 0.2)"],
-        borderColor: ["rgba(255, 99, 132, 1)"],
+        label: "Ventas",
+        data: fechaActual,
+        backgroundColor: ["rgb(255, 99, 132)"],
+        borderColor: ["rgba(255, 99, 132, 0.5)"],
       },
     ],
   };
 
+  const options = {
+    responsive: true,
+  };
+
   return (
-    <div>
-      <Line data={midata} />
+    <div className="header">
+      <h1 className="title">Line Chart</h1>
+      <div>
+        <Line data={midata} options={options} />
+      </div>
     </div>
   );
 }

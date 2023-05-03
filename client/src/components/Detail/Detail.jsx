@@ -3,32 +3,29 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import billabong from "../../assets/billabong.png";
 import hurley from "../../assets/hurley.png";
 import russel from "../../assets/russel.png";
 
+import talleL from "../../assets/talleL.png";
 import talleM from "../../assets/talleM.png";
 import talleS from "../../assets/talleS.png";
+import talleXL from "../../assets/talleXL.png";
+import vesl from "../../assets/vesl.png";
 import {
   createShop,
   createShopDetail,
   paymentMercadoPago,
 } from "../../redux/actions";
 import { addToCart, deleteToCart, productsById } from "../../redux/actions.js";
-import Navigation from "../Navigation/Navigation.jsx";
-import styles from "./Detail.module.css";
-
-import talleL from "../../assets/talleL.png";
-import talleXL from "../../assets/talleXL.png";
-import vesl from "../../assets/vesl.png";
 import target1 from "../Detail/iconos/master.png";
 import target2 from "../Detail/iconos/visa.png";
-
+import Navigation from "../Navigation/Navigation.jsx";
 import AddReview from "../Review/AddReview";
 import ReviewCard from "../Review/ReviewCard";
 import StarRender from "../Review/StartRender";
-
-
+import styles from "./Detail.module.css";
 function Detail() {
   const dispatch = useDispatch();
   const detalle = useSelector((state) => state.products.detail);
@@ -39,8 +36,8 @@ function Detail() {
   const [loading, setLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const handleOpen = () => {
-    setIsOpen(!isOpen);
-  }
+    setIsOpen(true);
+  };
 
   //user
   let isLoguin = window.localStorage.getItem("login");
@@ -84,31 +81,41 @@ function Detail() {
 
   const nombreEnMayusculas = detalle?.name?.toUpperCase();
 
-  const handleSinPermisos =()=>{
-    alert("You need to be logged in to be able to buy");
+  const handleSinPermisos = () => {
+    // alert("You need to be logged in to be able to buy");
+    Swal.fire({
+      icon: "info",
+      title: "You need to be logged in to be able to buy",
+      color: "white",
+      background: "#1e1e1e",
+      showConfirmButton: false,
+      timer: 1500,
+    });
     navigate("/SectionRegister");
-  }
+  };
   const handleSinPermisosAñadir = () => {
-    alert(
-      "You need to be logged in to be able to add products to the shopping cart"
-    );
+    // alert(
+    //   "You need to be logged in to be able to add products to the shopping cart"
+    // );
+    Swal.fire({
+      icon: "info",
+      title: "You need to be logged in to be able to add products to the shopping cart",
+      color: "white",
+      background: "#1e1e1e",
+      showConfirmButton: false,
+      timer: 1500,
+    });
     navigate("/SectionRegister");
   };
-  const handleSinPermisosReview= () => {
-    alert(
-      "You need to be logged in to be able to add Reviews to this product"
-    );
-    navigate("/SectionRegister");
-  };
+
   const reviews = detalle.Reviews;
   const reviewCount = reviews && reviews.length ? reviews.length : 0;
-
 
   let total = 0;
   for (let i = 0; i < reviewCount; i++) {
     total += reviews[i].rating;
   }
-  const promedio = total / reviewCount; 
+  const promedio = total / reviewCount;
   return (
     <>
       {loading ? (
@@ -138,13 +145,17 @@ function Detail() {
                 )}
                 <div className={styles.containerInfo}>
                   <h2>{nombreEnMayusculas}</h2>
-                { detalle.Reviews && reviewCount !== 0 ?
-                  <div className={styles.qualification}>
-                    <p>{promedio.toFixed(1)}</p>
-                    <StarRender rating={promedio}/>
-                    <h2>({reviewCount})</h2>
-                  </div>: <div><p>No reviews</p>
-                  </div>}
+                  {detalle.Reviews && reviewCount !== 0 ? (
+                    <div className={styles.qualification}>
+                      <p>{promedio.toFixed(1)}</p>
+                      <StarRender rating={promedio} />
+                      <h2>({reviewCount})</h2>
+                    </div>
+                  ) : (
+                    <div>
+                      <p>No reviews</p>
+                    </div>
+                  )}
                   <h2>${detalle.price}</h2>
                   <p>{detalle.description}</p>
                 </div>
@@ -165,13 +176,17 @@ function Detail() {
 
                   {isSelected ? (
                     <button
-                      onClick={!token ? handleSinPermisosAñadir : addToShoppingCart}
+                      onClick={
+                        !token ? handleSinPermisosAñadir : addToShoppingCart
+                      }
                     >
                       REMOVE
                     </button>
                   ) : (
                     <button
-                      onClick={!token ? handleSinPermisosAñadir : addToShoppingCart}
+                      onClick={
+                        !token ? handleSinPermisosAñadir : addToShoppingCart
+                      }
                     >
                       ADD TO CART
                     </button>
@@ -200,19 +215,24 @@ function Detail() {
               </div>
             </div>
           </div>
-      {reviewCount === 0 ?
-        <div className={styles.commentContainer}> 
-        <p>Be the first to add a review</p>
-        <div>
-      <button onClick={!token ? handleSinPermisosReview :handleOpen}>Add Review</button>
-      { isOpen && <AddReview isOpen={isOpen} setOpen={setIsOpen}/> }
-    </div>
-        
-        </div>:
-        detalle.Reviews.map(
-        review =>( <ReviewCard idUser={review.id_user} updatedAt={review.updatedAt} rating={review.rating} comment={review.comment}/>)
-      )}
-  
+          {reviewCount === 0 ? (
+            <div className={styles.commentContainer}>
+              <p>Be the first to add a review</p>
+              <div>
+                <button onClick={handleOpen}>Add Review</button>
+                {isOpen && <AddReview setOpen={setIsOpen} />}
+              </div>
+            </div>
+          ) : (
+            detalle.Reviews.map((review) => (
+              <ReviewCard
+                idUser={review.id_user}
+                updatedAt={review.updatedAt}
+                rating={review.rating}
+                comment={review.comment}
+              />
+            ))
+          )}
         </div>
       )}
     </>

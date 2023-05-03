@@ -28,7 +28,7 @@ export const GET_USERS = "GET_USERS";
 export const PUT_PRODUCT = "PUT_PRODUCT";
 export const SAVE_FILTERS_AND_PAGE = "SAVE_FILTERS_AND_PAGE";
 export const CLEAR_FILTERS = "CLEAR_FILTERS";
-
+export const EDITAR_PRODUCT = "EDITAR_PRODUCT";
 export const GET_FAV = "GET_FAV";
 export const LOGIN = "LOGIN";
 export const REGISTRO = "REGISTRO";
@@ -50,18 +50,7 @@ export const createProduct = (body) => async (dipatch) => {
   });
 };
 
-// -----------------------------------LIST-PRODUCT-----------------------------------------------------//
-// export function listProducts() {
-//   return async function (dispatch) {
-//     try {
-//       var json = await axios.get("/product");
-//       return dispatch({
-//         type: "GET_ALL_PRODUCTS",
-//         payload: json.data,
-//       });
-//     } catch (error) {}
-//   };
-// }
+
 
 export function listProducts(filters, page) {
   return async function (dispatch) {
@@ -83,33 +72,7 @@ export function saveFiltersAndPage(filters, page) {
   };
 }
 
-//-------------------------------------LIST IN STOCK - OUT STOCK-------------------
-// export function stocksProducts(id) {
-//   return async function (dispatch) {
-//     const response = await axios.put(`/product/${id}`);
-//     return dispatch({
-//       type: "STOCKS_PRODUCTS",
-//       payload: response.data
-//     })
-//   }
-// }
 
-// export const updateStockIncrement = (id) => async (dispatch) => {
-//   try {
-//     const response = await axios.get(`/product/${id}`);
-//     const currentStockValue = response.data.stock;
-
-//     const newStockValue = currentStockValue + 1;
-
-//     const updateResponse = await axios.put(`/product/${id}`, {
-//       stock: newStockValue,
-//     });
-
-//     dispatch({ type: UPDATE_STOCK_PRODUCT_DEC, payload: updateResponse.data });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
 
 // -----------------------------------FILTER_BY_NAME---------------------------------------------------//
 export function filterByName(payload) {
@@ -130,7 +93,7 @@ export function filterByName(payload) {
         // position: "top-end",color: "white",
         showConfirmButton: false,
         // confirmButtonColor: '#224145',
-        timer: 2000,
+        timer: 1000,
         timerProgressBar: true,
       });
     }
@@ -398,24 +361,7 @@ export const deleteToFav = (id) => {
 };
 //--------------------------PARA CONECTAR CON EL BACK QUE SI FUNCIONA----------------
 
-// export const addToFav = (userId, productId) => async (dispatch) => {
-//   try {
-//     const res = await axios.post(`/favorites/${userId}/${productId}`);
-//     // (`/favorites`, { userId, productId });
-//     dispatch({ type: ADD_TO_FAV, payload: res.data });
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
 
-// export const deleteToFav = (userId, productId) => async (dispatch) => {
-//   try {
-//     await axios.delete(`/favorites/${userId}/${productId}`);
-//     dispatch({ type: DELETE_TO_FAV, payload: productId });
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
 
 export const getFav = (userId) => async (dispatch) => {
   try {
@@ -469,14 +415,14 @@ export function users() {
 
 //----------------------------------------------GET BRANDS----------------------------------//
 
-export function brands() {
+export function listBrands() {
   return async function (dispatch) {
     try {
-      var json = await axios.get("/brand");
-      console.log(json);
-      dispatch({ type: "GET_ALL_BRANDS", payload: json.data });
+      const json = await axios.get("http://localhost:3001/brand");
+      const brands = json.data
+      dispatch({ type: GET_ALL_BRANDS, payload: brands });
     } catch (error) {
-      console.log(error);
+      return "Something went wrong" +  error.message
     }
   };
 }
@@ -495,3 +441,28 @@ export const editarProduct = (id, body) => async (dipatch) => {
     payload: data,
   });
 };
+
+export function productsByIdEditar(id) {
+  return async function (dispatch) {
+    try {
+      var json = await axios.get(`/Product/${id}`);
+      return dispatch({
+        type: "EDITAR_PRODUCT",
+        payload: json.data,
+      });
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+}
+export function listTypes() {
+  return async function (dispatch) {
+    try {
+      const json = await axios.get("http://localhost:3001/type");
+      const types = json.data
+      dispatch({ type: GET_All_TYPES, payload: types });
+    } catch (error) {
+      return "Something went wrong" +  error.message
+    }
+  };
+}
