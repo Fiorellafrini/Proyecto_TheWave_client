@@ -5,9 +5,6 @@ import { SiGoogle } from "react-icons/si";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import {
-  clearFilters,
-  // deleteToCart,
-  deleteToFav,
   login,
 } from "../../redux/actions";
 import style from "./login.module.css";
@@ -80,10 +77,6 @@ function Login({ isOpen, onClose }) {
               resetForm();
               setSubmitting(false);
 
-              //--------------------------Agregue para que cuando un usuario cierre sesion se borra todo------------------------//
-              deleteToFav();
-              // deleteToCart();
-              clearFilters();
             }}
           >
             {({ errors }) => (

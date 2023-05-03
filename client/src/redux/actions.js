@@ -28,7 +28,7 @@ export const GET_USERS = "GET_USERS";
 export const PUT_PRODUCT = "PUT_PRODUCT";
 export const SAVE_FILTERS_AND_PAGE = "SAVE_FILTERS_AND_PAGE";
 export const CLEAR_FILTERS = "CLEAR_FILTERS";
-
+export const CLEAR_CART = "CLEAR_CART";
 export const GET_FAV = "GET_FAV";
 export const LOGIN = "LOGIN";
 export const REGISTRO = "REGISTRO";
@@ -40,6 +40,8 @@ export const PUTUSER = "PUTUSER";
 export const GET_BY_ID = "GET_BY_ID";
 export const SET_FAVORITES = "SET_FAVORITES";
 export const CLEAN_USER = "CLEAN_USER";
+export const REMOVE_ALL_FAV = "REMOVE_ALL_FAV";
+
 //-------------------------------------------CREATE PRODUCT---------------------------------------------------------//
 
 export const createProduct = (body) => async (dipatch) => {
@@ -253,15 +255,17 @@ export const registro = (body) => async (dipatch) => {
   }
 };
 
-// ----------------------------------ADD TO CART-----------------------------------------------//
+// ----------------------------------CART-----------------------------------------------//
 export const addToCart = (product) => {
   return { type: ADD_TO_CART, payload: product };
 };
 
-// ----------------------------------DELETE TO CART----------------------------------
 export const deleteToCart = (id) => {
   return { type: DELETE_TO_CART, payload: id };
 };
+export const clearCart = () => ({
+  type: CLEAR_CART,
+});
 
 // ----------------------------------PAYMENT----------------------------------------------------//
 export const paymentMercadoPago = (body) => {
@@ -389,17 +393,6 @@ export const login = (body) => async (dipatch) => {
         showConfirmButton: false,
         timer: 3000,
       });
-    // } else if (error.response && error.response.status === 404) {
-    //   // Si el usuario no está registrado.
-    //   Swal.fire({
-    //     icon: "error",
-    //     title: "Oops...",
-    //     text: "El usuario no está registrado.",
-    //     color: "white",
-    //     background: "#1e1e1e",
-    //     showConfirmButton: false,
-    //     timer: 1500,
-    //   });
     } else {
       // Si las credenciales son incorrectas.
       Swal.fire({
@@ -420,10 +413,23 @@ export const addToFav = (product) => {
   return { type: ADD_TO_FAV, payload: product };
 };
 
-// ----------------------------------DELETE TO CART----------------------------------
 export const deleteToFav = (id) => {
   return { type: DELETE_TO_FAV, payload: id };
 };
+
+export const removeAllFav = () => ({
+  type: REMOVE_ALL_FAV,
+});
+
+export const getFav = (userId) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/favorites/${userId}`);
+    dispatch({ type: GET_FAV, payload: res.data });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 // --------------------------PARA CONECTAR CON EL BACK QUE SI FUNCIONA----------------
 // export const addToFav = (userId, productId) => async (dispatch) => {
 //   try {
@@ -442,20 +448,6 @@ export const deleteToFav = (id) => {
 //     console.error(error);
 //   }
 // };
-
-export const getFav = (userId) => async (dispatch) => {
-  try {
-    const res = await axios.get(`/favorites/${userId}`);
-    dispatch({ type: GET_FAV, payload: res.data });
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-// export const setFavorites = (favorites) => ({
-//   type: SET_FAVORITES,
-//   payload: favorites,
-// });
 
 //---------------------------------------PUT USER --------------------------------------------------//
 export const putUser = (id, body, token) => async (dispatch) => {

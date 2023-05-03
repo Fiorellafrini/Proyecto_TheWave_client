@@ -5,7 +5,13 @@ import { Link } from "react-router-dom";
 import { TfiMenu } from "react-icons/tfi";
 import { AiOutlineUserSwitch } from "react-icons/ai";
 import { HiShoppingCart } from "react-icons/hi";
-import { cleanUser, userById } from "../../redux/actions.js";
+import {
+  cleanUser,
+  clearCart,
+  clearFilters,
+  removeAllFav,
+  userById,
+} from "../../redux/actions.js";
 import { useNavigate } from "react-router-dom";
 import jwt from "jwt-decode";
 import { useDispatch } from "react-redux";
@@ -40,9 +46,13 @@ const Navigation = () => {
     setIsOpen(!isOpen);
   };
 
+
   const handleLogout = () => {
     window.localStorage.removeItem("login");
     dispatch(cleanUser());
+    dispatch(clearFilters());
+    dispatch(removeAllFav());
+    dispatch(clearCart());
     navegar("/");
   };
 
