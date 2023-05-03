@@ -371,19 +371,47 @@ export const login = (body) => async (dipatch) => {
       color: "white",
       background: "#1e1e1e",
       showConfirmButton: false,
-      timer: 1500,
+      timer: 3000,
     });
   } catch (error) {
-    // alert(error.message);
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "Incorrect Credentials",
-      color: "white",
-      background: "#1e1e1e",
-      showConfirmButton: false,
-      timer: 1500,
-    });
+    if (
+      error.response &&
+      error.response.status === 400 &&
+      error.response.data.error === "The user has been terminated."
+    ) {
+      // Si el usuario no está activo.
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "The user has been terminated.",
+        color: "white",
+        background: "#1e1e1e",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    // } else if (error.response && error.response.status === 404) {
+    //   // Si el usuario no está registrado.
+    //   Swal.fire({
+    //     icon: "error",
+    //     title: "Oops...",
+    //     text: "El usuario no está registrado.",
+    //     color: "white",
+    //     background: "#1e1e1e",
+    //     showConfirmButton: false,
+    //     timer: 1500,
+    //   });
+    } else {
+      // Si las credenciales son incorrectas.
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Incorrect Credentials",
+        color: "white",
+        background: "#1e1e1e",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    }
   }
 };
 
@@ -396,12 +424,10 @@ export const addToFav = (product) => {
 export const deleteToFav = (id) => {
   return { type: DELETE_TO_FAV, payload: id };
 };
-//--------------------------PARA CONECTAR CON EL BACK QUE SI FUNCIONA----------------
-
+// --------------------------PARA CONECTAR CON EL BACK QUE SI FUNCIONA----------------
 // export const addToFav = (userId, productId) => async (dispatch) => {
 //   try {
-//     const res = await axios.post(`/favorites/${userId}/${productId}`);
-//     // (`/favorites`, { userId, productId });
+//     const res = await axios.post(`/favorites`, { userId, productId });
 //     dispatch({ type: ADD_TO_FAV, payload: res.data });
 //   } catch (error) {
 //     console.error(error);
@@ -410,7 +436,7 @@ export const deleteToFav = (id) => {
 
 // export const deleteToFav = (userId, productId) => async (dispatch) => {
 //   try {
-//     await axios.delete(`/favorites/${userId}/${productId}`);
+//     const res = await axios.delete(`/favorites/${userId}/${productId}`);
 //     dispatch({ type: DELETE_TO_FAV, payload: productId });
 //   } catch (error) {
 //     console.error(error);
@@ -426,10 +452,10 @@ export const getFav = (userId) => async (dispatch) => {
   }
 };
 
-export const setFavorites = (favorites) => ({
-  type: SET_FAVORITES,
-  payload: favorites,
-});
+// export const setFavorites = (favorites) => ({
+//   type: SET_FAVORITES,
+//   payload: favorites,
+// });
 
 //---------------------------------------PUT USER --------------------------------------------------//
 export const putUser = (id, body, token) => async (dispatch) => {
@@ -480,7 +506,6 @@ export function brands() {
     }
   };
 }
-
 
 export const cleanUser = () => {
   return {
