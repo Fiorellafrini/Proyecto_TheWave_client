@@ -1,36 +1,37 @@
 import {
-  GET_ALL_PRODUCTS,
-  POST_PRODUCT,
-  GET_All_TYPES,
-  GET_ALL_BRANDS,
-  FILTER_BY_NAME,
-  ORDER_BY_NAME,
-  ORDER_BY_PRICE,
-  FILTER_BRAND,
-  FILTER_TYPE,
-  DETAIL_PRODUCT,
-  INFINITY,
-  SET_CURRENTPAGE,
   ADD_TO_CART,
-  DELETE_TO_CART,
-  PAYMENT,
-  INCREMENT_QUANTITY,
-  DECREMENT_QUANTITY,
-  GET_ALL_DETAILS,
-  UPDATE_STOCK_PRODUCT_DEC,
-  EMPTY_CART,
   ADD_TO_FAV,
+  CLEAN_PRODUCT,
+  CLEAR_FILTERS,
+  DECREMENT_QUANTITY,
+  DELETE_TO_CART,
   DELETE_TO_FAV,
+  DETAIL_PRODUCT,
+  EDITAR_PRODUCT,
+  EMPTY_CART,
+  FILTER_BRAND,
+  FILTER_BY_NAME,
+  FILTER_TYPE,
+  GET_ALL_BRANDS,
+  GET_ALL_DETAILS,
+  GET_ALL_PRODUCTS,
+  GET_All_TYPES,
   GET_FAV,
   // LOGIN,
   // STOCKS_PRODUCTS,
   // STOCKS_PRODUCTS,
   GET_USERS,
+  INCREMENT_QUANTITY,
+  INFINITY,
+  ORDER_BY_NAME,
+  ORDER_BY_PRICE,
+  PAYMENT,
+  POST_PRODUCT,
   PUT_PRODUCT,
   SAVE_FILTERS_AND_PAGE,
-  CLEAR_FILTERS,
+  SET_CURRENTPAGE,
   SET_FAVORITES,
-  EDITAR_PRODUCT,
+  UPDATE_STOCK_PRODUCT_DEC
 } from "./actions";
 
 const initialState = {
@@ -289,10 +290,10 @@ const reducer = (state = initialState, action) => {
         users: action.payload,
       };
     case PUT_PRODUCT:
-      console.log(action.payload);
+    
       return {
         ...state,
-        products: action.payload,
+        products: [...state.products, action.payload],
       };
     case EDITAR_PRODUCT:{
       return{
@@ -300,6 +301,11 @@ const reducer = (state = initialState, action) => {
         editarProduct: action.payload
       }
     }
+    case CLEAN_PRODUCT:
+      return{
+        ...state,
+        editarProduct:[]
+      }
     default:
       return state;
   }

@@ -40,6 +40,8 @@ export const PUTUSER = "PUTUSER";
 export const GET_BY_ID = "GET_BY_ID";
 export const SET_FAVORITES = "SET_FAVORITES";
 export const CLEAN_USER = "CLEAN_USER";
+export const CLEAN_PRODUCT = "CLEAN_PRODUCT";
+
 //-------------------------------------------CREATE PRODUCT---------------------------------------------------------//
 
 export const createProduct = (body) => async (dipatch) => {
@@ -439,16 +441,18 @@ export const editarProduct = (id, body) => async (dipatch) => {
   return dipatch({
     type: "PUT_PRODUCT",
     payload: data,
+    
   });
 };
 
 export function productsByIdEditar(id) {
   return async function (dispatch) {
     try {
-      var json = await axios.get(`/Product/${id}`);
+      var {data} = await axios.get(`/product/${id}`);
+    
       return dispatch({
         type: "EDITAR_PRODUCT",
-        payload: json.data,
+        payload: data,
       });
     } catch (error) {
       alert(error.message);
@@ -466,3 +470,9 @@ export function listTypes() {
     }
   };
 }
+
+export const cleanProduct = () => {
+  return {
+    type: CLEAN_PRODUCT,
+  };
+};

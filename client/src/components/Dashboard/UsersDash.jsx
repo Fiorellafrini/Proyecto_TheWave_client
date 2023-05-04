@@ -12,8 +12,6 @@ function Users() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.products.users);
 
-  console.log(user);
-
   useEffect(() => {
     dispatch(users());
   }, [dispatch]);

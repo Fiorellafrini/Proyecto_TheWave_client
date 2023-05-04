@@ -18,7 +18,6 @@ import SectionHome from "./components/SectionHome/SectionHome";
 // import SectionLogIn from "./components/SectionLogIn/SectionLogIn";
 import SectionCarrito from "./components/SectionCarrito/SectionCarrito";
 // import SectionRegister from "./components/SectionRegister/SectionRegister";
-import React from "react";
 // import CardsDash from "./components/Dashboard/CardsDash";
 import Login from "./components/Login/Login";
 import Register from "./components/Login/Register";
