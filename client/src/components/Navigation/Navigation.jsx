@@ -53,6 +53,7 @@ const Navigation = () => {
     dispatch(removeAllFav());
     dispatch(clearCart());
     dispatch(clearFilters());
+    window.localStorage.removeItem("favorites");
     navegar("/");
   };
 

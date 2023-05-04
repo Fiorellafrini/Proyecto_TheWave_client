@@ -104,7 +104,10 @@
 }
 
 .error {
-  color: red;
+  /* color: red; */
+  color: rgb(255, 57, 57);
+  background-color: #333333;
+  border-radius: 5px;
 }
 
 .icons {
@@ -119,4 +122,29 @@
   border: none;
   cursor: pointer;
   color: #db4437;
+}
+
+/* ----------------------------------------Spinner---------------------------------------- */
+.containerSpinner {
+  height: 1500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 9px solid;
+  border-color: #dbdcef37;
+  border-right-color: #224145;
+  text-align: center;
+  animation: spinner-d3wgkg 1s infinite linear;
+}
+
+@keyframes spinner-d3wgkg {
+  to {
+    transform: rotate(1turn);
+  }
 }

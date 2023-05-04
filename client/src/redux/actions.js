@@ -394,6 +394,12 @@ export const getFav = (userId) => async (dispatch) => {
   }
 };
 
+export const setFavorites = (favorites) => ({
+  type: "SET_FAVORITES",
+  payload: favorites,
+});
+
+
 // --------------------------PARA CONECTAR CON EL BACK QUE SI FUNCIONA----------------
 // export const addToFav = (userId, id_product) => async (dispatch) => {
 //   try {
@@ -454,7 +460,7 @@ export function users() {
 export function listBrands() {
   return async function (dispatch) {
     try {
-      const json = await axios.get("http://localhost:3001/brand");
+      const json = await axios.get("/brand");
       const brands = json.data
       dispatch({ type: GET_ALL_BRANDS, payload: brands });
     } catch (error) {
@@ -493,7 +499,7 @@ export function productsByIdEditar(id) {
 export function listTypes() {
   return async function (dispatch) {
     try {
-      const json = await axios.get("http://localhost:3001/type");
+      const json = await axios.get("/type");
       const types = json.data
       dispatch({ type: GET_All_TYPES, payload: types });
     } catch (error) {

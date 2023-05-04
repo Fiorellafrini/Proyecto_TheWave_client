@@ -13,7 +13,7 @@
     padding: 10px 20px;
     display: flex;
     justify-content: center;
-    -webkit-backdrop-filter: blur(10px);
+    /* -webkit-backdrop-filter: blur(10px); */
     background-color: rgba(0, 128, 255, 0.5)
 }
 
@@ -113,6 +113,31 @@
     display: block;
 }
 
-.formulario__register{
-    /* display: none; */
-}
+/* .formulario__register{
+    /* display: none; */ 
+
+
+/* ----------------------------------------Spinner---------------------------------------- */
+.containerSpinner {
+    height: 1500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .spinner {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 9px solid;
+    border-color: #dbdcef37;
+    border-right-color: #224145;
+    text-align: center;
+    animation: spinner-d3wgkg 1s infinite linear;
+  }
+  
+  @keyframes spinner-d3wgkg {
+    to {
+      transform: rotate(1turn);
+    }
+  }
