@@ -21,6 +21,7 @@ const ProductCard = ({
   quantity,
   stock,
   deletePropInFav = true,
+  addToCartInFav = true,
 }) => {
   const [imageSrc] = useState(imagen[0]);
   const dispatch = useDispatch();
@@ -53,10 +54,10 @@ const ProductCard = ({
   };
 
   const handleAddToShoppingCart = () => {
-    const product = { name, size, price, imagen, id, quantity, stock }; 
+    const product = { name, size, price, imagen, id, quantity, stock };
     const storedCart = JSON.parse(localStorage.getItem("shoppingCart")) || [];
     const productInCart = storedCart.find((cartItem) => cartItem.id === id);
-    
+
     if (isSelected === false && !productInCart) {
       dispatch(addToCart(product));
       setIsSelected(true);
@@ -77,8 +78,6 @@ const ProductCard = ({
       localStorage.setItem("shoppingCart", JSON.stringify(updatedCart));
     }
   };
-
-  
 
   const handleSinPermisos = () => {
     Swal.fire({
@@ -153,23 +152,24 @@ const ProductCard = ({
               </div>
             )}
             <div className={styles.fila3}>
-              {isSelected ? (
-                <button
-                  onClick={
-                    !token ? handleSinPermisosAñadir : handleAddToShoppingCart
-                  }
-                >
-                  REMOVE FROM CART
-                </button>
-              ) : (
-                <button
-                  onClick={
-                    !token ? handleSinPermisosAñadir : handleAddToShoppingCart
-                  }
-                >
-                  ADD TO CART
-                </button>
-              )}
+              {addToCartInFav &&
+                (isSelected ? (
+                  <button
+                    onClick={
+                      !token ? handleSinPermisosAñadir : handleAddToShoppingCart
+                    }
+                  >
+                    REMOVE FROM CART
+                  </button>
+                ) : (
+                  <button
+                    onClick={
+                      !token ? handleSinPermisosAñadir : handleAddToShoppingCart
+                    }
+                  >
+                    ADD TO CART
+                  </button>
+                ))}
             </div>
           </div>
         </div>
