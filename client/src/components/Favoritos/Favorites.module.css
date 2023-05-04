@@ -89,15 +89,15 @@
   display: flex;
   justify-content: flex-end;
   position: relative;
-  top: 13rem;
-  right: 5rem;
+  top: 22rem;
+  right: 7rem;
   z-index: 1;
 }
 .button {
   border: none;
   background-color: transparent;
   color: #224145;
-  font-size: 2em;
+  font-size: 4em;
   cursor: pointer;
 }
 

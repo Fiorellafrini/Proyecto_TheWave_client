@@ -17,6 +17,12 @@ const AddReview = ({ setIsOpen }) => {
   let token = window.localStorage.getItem("login");
   const idUser = jwt(token).id;
 
+  const handleSubmit = () => {
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+  };
+
   return (
     <Formik
       initialValues={{
@@ -67,7 +73,7 @@ const AddReview = ({ setIsOpen }) => {
               <StarRating rating={rating} setRating={setRating} />
               <br />
               <div className={styles.btnrws}>
-                <button type="submit" disabled={isSubmitting}>
+                <button onClick={handleSubmit} type="submit" disabled={isSubmitting}>
                   send
                 </button>
               </div>

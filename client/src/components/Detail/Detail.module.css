@@ -45,12 +45,30 @@
 }
 
 .col1 {
-  width: 40%;
-  height: 950px;
+  width: 30%;
   padding: 20px;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  gap: 20px;
+}
+
+.col1 button {
+  width: 100%;
+  height: 60px;
+  border: none;
+  border-radius: 10px;
+  background-color: #224145;
+  color: white;
+  padding: 10px;
+  font-family: "Work Sans";
+  font-size: 1.1em;
+  outline: none;
+  text-decoration: none;
+  margin-left: 5px;
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .col1 h2 {
@@ -59,7 +77,7 @@
 }
 
 .col1 img {
-  width: 200px;
+  width: 15vh;
 }
 
 .containerInfo {
@@ -102,14 +120,14 @@
 }
 
 .containerPago {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 .containerPago button {
-  width: 180px;
+  width: 50%;
   height: 60px;
   border: none;
   border-radius: 15px;
@@ -138,45 +156,42 @@
 }
 
 .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(30px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(30px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
 }
 
-
-
 .buttonClose button {
-    width: 70px;
-    height: 70px;
-    font-size: 2em;
-    border: none;
-    border-radius: 15px;
-    background-color: #224145;
-    color: white;
-    padding: 10px;
-    font-family: 'Work Sans';
-    outline: none;
-    text-decoration: none;
-    margin-left: 5px;
-    cursor: pointer;
-    text-align: center;
+  width: 70px;
+  height: 70px;
+  font-size: 2em;
+  border: none;
+  border-radius: 15px;
+  background-color: #224145;
+  color: white;
+  padding: 10px;
+  font-family: "Work Sans";
+  outline: none;
+  text-decoration: none;
+  margin-left: 5px;
+  cursor: pointer;
+  text-align: center;
 }
 
 .modalcontent {
-    position: relative;
-    padding: 20px;
-    width: 100%;
+  position: relative;
+  padding: 20px;
+  width: 100%;
 }
-
 
 /* ----------------------------------------Spinner---------------------------------------- */
 .containerSpinner {
@@ -197,28 +212,29 @@
   text-align: center;
   animation: spinner-d3wgkg 1s infinite linear;
 }
+
 .qualification {
   display: flex;
   text-align: center;
 }
-/* .commentContainer {
+
+.commentContainer {
   margin-left: 24px;
 
-    width: 50%;
+  width: 50%;
 
-    background: #ffff;
-    border-radius: 15px 15px 15px 0px;
-    height: 20%;
-
+  background: #ffff;
+  border-radius: 15px 15px 15px 0px;
+  height: 20%;
 }
 
 .commentContainer p {
-    color: #181818;
-    font-size: 22px;
-    margin: 30px;
-    margin-top: 30px;
-
+  color: #181818;
+  font-size: 22px;
+  margin: 30px;
+  margin-top: 30px;
 }
+
 .commentContainer button {
   width: 180px;
   height: 60px;
@@ -230,20 +246,15 @@
   font-family: "Work Sans";
   font-size: 1.1em;
   outline: none;
-  /* text-decoration: none; */
-  /* margin-left: 5px; */
+  text-decoration: none;
+  margin-left: 5px;
   cursor: pointer;
-  /* text-align: center; */
+  text-align: center;
   font-size: 22px;
-  /* margin: 30px; */
-  /* margin-top: 30px; */
+  margin: 30px;
+  margin-top: 30px;
 }
-.comentario {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  gap: 1rem;
-}
+
 @keyframes spinner-d3wgkg {
   to {
     transform: rotate(1turn);
