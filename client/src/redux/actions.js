@@ -28,6 +28,7 @@ export const GET_USERS = "GET_USERS";
 export const PUT_PRODUCT = "PUT_PRODUCT";
 export const SAVE_FILTERS_AND_PAGE = "SAVE_FILTERS_AND_PAGE";
 export const CLEAR_FILTERS = "CLEAR_FILTERS";
+export const CLEAR_CART = "CLEAR_CART";
 export const EDITAR_PRODUCT = "EDITAR_PRODUCT";
 export const GET_FAV = "GET_FAV";
 export const LOGIN = "LOGIN";
@@ -40,8 +41,9 @@ export const PUTUSER = "PUTUSER";
 export const GET_BY_ID = "GET_BY_ID";
 export const SET_FAVORITES = "SET_FAVORITES";
 export const CLEAN_USER = "CLEAN_USER";
+export const REMOVE_ALL_FAV = "REMOVE_ALL_FAV";
+export const SET_CART = "SET_CART"
 //-------------------------------------------CREATE PRODUCT---------------------------------------------------------//
-
 export const createProduct = (body) => async (dipatch) => {
   const { data } = await axios.post("/product", body);
   return dipatch({
@@ -49,8 +51,6 @@ export const createProduct = (body) => async (dipatch) => {
     payload: data,
   });
 };
-
-
 
 export function listProducts(filters, page) {
   return async function (dispatch) {
@@ -71,8 +71,6 @@ export function saveFiltersAndPage(filters, page) {
     payload: { filters, page },
   };
 }
-
-
 
 // -----------------------------------FILTER_BY_NAME---------------------------------------------------//
 export function filterByName(payload) {
@@ -99,23 +97,18 @@ export function filterByName(payload) {
     }
   };
 }
-
 // -----------------------------------ORDER_BY_NAME-----------------------------------------------------//
 export const orderByName = (criteria) => {
   return { type: ORDER_BY_NAME, payload: criteria };
 };
-
 // -----------------------------------ORDER_BY_PRICE----------------------------------------------------//
 export const orderByPrice = (criteria) => {
   return { type: ORDER_BY_PRICE, payload: criteria };
 };
-
 //--------------------------------CLEAR FILTER------------------------------------------------------------//
-
 export const clearFilters = () => ({
   type: CLEAR_FILTERS,
 });
-
 // -----------------------------------DETAIL-----------------------------------//
 export function productsById(id) {
   return async function (dispatch) {
@@ -130,7 +123,6 @@ export function productsById(id) {
     }
   };
 }
-
 // -------------------PAGE-----------------------------------------------------------------//
 export function productsData(page) {
   return async function (dispatch) {
@@ -145,14 +137,12 @@ export function productsData(page) {
     }
   };
 }
-
 export const setCurrentPage = (payload) => {
   return {
     type: SET_CURRENTPAGE,
     payload,
   };
 };
-
 // -------------------FILTER-BRAND---------------------------------------------------------------//
 export function filterBrand(id) {
   return async function (dispatch) {
@@ -168,7 +158,6 @@ export function filterBrand(id) {
     }
   };
 }
-
 // -----------------------------------FILTER-BY-TYPE-----------------------------------------//
 export function filterType(id) {
   return async function (dispatch) {
@@ -184,7 +173,6 @@ export function filterType(id) {
     }
   };
 }
-
 //---------------------LOGIN---------------------------------------------//
 export const registro = (body) => async (dipatch) => {
   const { data } = await axios.post("/user", body);
@@ -215,16 +203,21 @@ export const registro = (body) => async (dipatch) => {
     });
   }
 };
-
-// ----------------------------------ADD TO CART-----------------------------------------------//
+//----------------------------------ADD TO CART-----------------------------------------------//
 export const addToCart = (product) => {
   return { type: ADD_TO_CART, payload: product };
 };
 
-// ----------------------------------DELETE TO CART----------------------------------
 export const deleteToCart = (id) => {
   return { type: DELETE_TO_CART, payload: id };
 };
+export const clearCart = () => ({
+  type: CLEAR_CART,
+});
+export const setCart = (shoppingCart) => ({
+  type: "SET_CART",
+  payload: shoppingCart,
+});
 
 // ----------------------------------PAYMENT----------------------------------------------------//
 export const paymentMercadoPago = (body) => {
@@ -260,7 +253,6 @@ export const createShop = (date, userId) => async (dispatch) => {
     console.log(error);
   }
 };
-
 // ----------------------------------SHOP_DETAIL----------------------------------------------------//
 export const createShopDetail =
   (quantity, price, productId, shopId) => async (dispatch) => {
@@ -289,20 +281,16 @@ export function listDetail() {
     } catch (error) {}
   };
 }
-
 // -----------------------------------QUANTITY--------------------------------------------------//
 export const incrementQuantity = (id) => {
   return { type: INCREMENT_QUANTITY, payload: id };
 };
-
 export const decrementQuantity = (id) => {
   return { type: DECREMENT_QUANTITY, payload: id };
 };
-
 export const empty_cart = (product) => {
   return { type: EMPTY_CART, payload: product };
 };
-
 // -----------------------------------UPDATE_STOCK_PRODUCT_DEC-----------------------------------//
 export const updateStockDecrement = (id, quantity) => async (dispatch) => {
   try {
@@ -320,7 +308,6 @@ export const updateStockDecrement = (id, quantity) => async (dispatch) => {
     console.log(error);
   }
 };
-
 export const login = (body) => async (dipatch) => {
   try {
     const { data } = await axios.post("/auth", body);
@@ -334,33 +321,50 @@ export const login = (body) => async (dipatch) => {
       color: "white",
       background: "#1e1e1e",
       showConfirmButton: false,
-      timer: 1500,
+      timer: 3000,
     });
   } catch (error) {
-    // alert(error.message);
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "Incorrect Credentials",
-      color: "white",
-      background: "#1e1e1e",
-      showConfirmButton: false,
-      timer: 1500,
-    });
+    if (
+      error.response &&
+      error.response.status === 401 &&
+      error.response.data.error === "El usuario ha sido dado de baja."
+    ) {
+      // Si el usuario no está activo, mostrar una alerta específica.
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Banned user. Please contact the administrator.",
+        color: "white",
+        background: "#1e1e1e",
+        showConfirmButton: false,
+        timer: 2500,
+      });
+    } else {
+      // Si las credenciales son incorrectas, mostrar la alerta predeterminada.
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Incorrect Credentials",
+        color: "white",
+        background: "#1e1e1e",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    }
   }
 };
-
 // -------------------------------------FAVORITOS-----------------------------------------------------//
 export const addToFav = (product) => {
   return { type: ADD_TO_FAV, payload: product };
 };
 
-// ----------------------------------DELETE TO CART----------------------------------
 export const deleteToFav = (id) => {
   return { type: DELETE_TO_FAV, payload: id };
 };
-//--------------------------PARA CONECTAR CON EL BACK QUE SI FUNCIONA----------------
 
+export const removeAllFav = () => ({
+  type: REMOVE_ALL_FAV,
+});
 
 
 export const getFav = (userId) => async (dispatch) => {
@@ -371,11 +375,31 @@ export const getFav = (userId) => async (dispatch) => {
     console.error(error);
   }
 };
-
 export const setFavorites = (favorites) => ({
-  type: SET_FAVORITES,
+  type: "SET_FAVORITES",
   payload: favorites,
 });
+
+
+// --------------------------PARA CONECTAR CON EL BACK QUE SI FUNCIONA----------------
+// export const addToFav = (userId, id_product) => async (dispatch) => {
+//   try {
+//     const res = await axios.post(`/favorites/${userId}/${id_product}`);
+//     console.log(res);
+//     dispatch({ type: ADD_TO_FAV, payload: res.data });
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
+
+// export const deleteToFav = (userId, id_product) => async (dispatch) => {
+//   try {
+//     const res = await axios.delete(`/favorites/${userId}/${id_product}`);
+//     dispatch({ type: DELETE_TO_FAV, payload: id_product });
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
 
 //---------------------------------------PUT USER --------------------------------------------------//
 export const putUser = (id, body, token) => async (dispatch) => {
@@ -386,7 +410,6 @@ export const putUser = (id, body, token) => async (dispatch) => {
     payload: data,
   });
 };
-
 export function userById(id) {
   return async function (dispatch) {
     try {
@@ -398,9 +421,7 @@ export function userById(id) {
     } catch (error) {}
   };
 }
-
 //----------------------------------------------GET USERS----------------------------------//
-
 export function users() {
   return async function (dispatch) {
     try {
@@ -412,21 +433,18 @@ export function users() {
     } catch (error) {}
   };
 }
-
 //----------------------------------------------GET BRANDS----------------------------------//
-
 export function listBrands() {
   return async function (dispatch) {
     try {
-      const json = await axios.get("http://localhost:3001/brand");
+      const json = await axios.get("/brand");
       const brands = json.data
       dispatch({ type: GET_ALL_BRANDS, payload: brands });
     } catch (error) {
-      return "Something went wrong" +  error.message
+      return "Something went wrong" + error.message;
     }
   };
 }
-
 
 export const cleanUser = () => {
   return {
@@ -458,11 +476,11 @@ export function productsByIdEditar(id) {
 export function listTypes() {
   return async function (dispatch) {
     try {
-      const json = await axios.get("http://localhost:3001/type");
+      const json = await axios.get("/type");
       const types = json.data
       dispatch({ type: GET_All_TYPES, payload: types });
     } catch (error) {
-      return "Something went wrong" +  error.message
+      return "Something went wrong" + error.message;
     }
   };
 }

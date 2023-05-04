@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import durability from "../../assets/durability.png";
 import styles from "../ProductCard/ProductCard.module.css";
 import hurleyCard from "../../assets/hurleyCard.png";
 import { Link } from "react-router-dom";
@@ -22,7 +21,6 @@ const ProductCard = ({
   quantity,
   stock,
   deletePropInFav = true,
-  // handleDelete,
 }) => {
   const [imageSrc] = useState(imagen[0]);
   const dispatch = useDispatch();
@@ -30,35 +28,51 @@ const ProductCard = ({
   const [isSelected, setIsSelected] = useState(false);
   const navigate = useNavigate();
   let token = window.localStorage.getItem("login");
-  
-
 
   const handleFav = () => {
     const product = { name, size, price, imagen, id };
-  // console.log(product);
     if (isFav === false) {
-      // console.log(product);
       dispatch(addToFav(product));
       setIsFav(true);
+      // Guardar en localStorage
+      const storedFavorites = JSON.parse(localStorage.getItem("favorites"));
+      localStorage.setItem(
+        "favorites",
+        JSON.stringify([...storedFavorites, product])
+      );
     } else if (isFav === true) {
       dispatch(deleteToFav(id));
       setIsFav(false);
+      // Actualizar localStorage
+      const storedFavorites = JSON.parse(localStorage.getItem("favorites"));
+      const updatedFavorites = storedFavorites.filter((fav) => fav.id !== id);
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
     }
   };
 
+;
   const handleAddToShoppingCart = () => {
     const product = { name, size, price, imagen, id, quantity, stock };
     if (isSelected === false) {
       dispatch(addToCart(product));
       setIsSelected(true);
+      // Guardar en localStorage
+      const storedCart = JSON.parse(localStorage.getItem("shoppingCart"));
+      localStorage.setItem(
+        "shoppingCart",
+        JSON.stringify([...storedCart, product])
+      );
     } else if (isSelected === true) {
       dispatch(deleteToCart(id));
       setIsSelected(false);
+      // Actualizar localStorage
+      const storedCart = JSON.parse(localStorage.getItem("shoppingCart"));
+      const updatedCart = storedCart.filter((cart) => cart.id !== id);
+      localStorage.setItem("shoppingCart", JSON.stringify(updatedCart));
     }
   };
 
   const handleSinPermisos = () => {
-    // alert("You need to be logged in to be able to add to favorites");
     Swal.fire({
       icon: "info",
       title: "You need to be logged in to be able to add to favorites",
@@ -70,12 +84,10 @@ const ProductCard = ({
     navigate("/SectionRegister");
   };
   const handleSinPermisosAñadir = () => {
-    // alert(
-    //   "You need to be logged in to be able to add products to the shopping cart"
-    // );
     Swal.fire({
       icon: "info",
-      title: "You need to be logged in to be able to add products to the shopping cart",
+      title:
+        "You need to be logged in to be able to add products to the shopping cart",
       color: "white",
       background: "#1e1e1e",
       showConfirmButton: false,
@@ -102,13 +114,11 @@ const ProductCard = ({
             </div>
             <div className={styles.fila2}>
               <div className={styles.size}>
-                <h1>WEIST</h1>
+                <h1>SIZE</h1>
                 <p>{size}</p>
               </div>
               <hr />
               <div>
-                <img src={durability} alt="" />
-              </div>
               {deletePropInFav &&
                 (isFav ? (
                   <button
@@ -125,6 +135,7 @@ const ProductCard = ({
                     <BsBagHeart />
                   </button>
                 ))}
+              </div>
             </div>
             {deletePropInFav && (
               <div className={styles.fila3}>

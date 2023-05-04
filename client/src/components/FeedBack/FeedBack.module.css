@@ -1,0 +1,131 @@
+.container {
+    width: 100%;
+    min-height: 100vh;
+    background-image: url(../../assets/hoal.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    border-radius: 15px;
+    padding-bottom: 20px;
+}
+
+.containerPayments {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 30px;
+}
+
+.payment {
+    width: 50%;
+    padding: 30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0px -2px 31px -5px rgba(0, 0, 0, 0.438);
+    -webkit-box-shadow: 0px -2px 31px -5px rgba(0, 0, 0, 0.445);
+    -moz-box-shadow: 0px -2px 31px -5px rgba(0, 0, 0, 0.404);
+    backdrop-filter: blur(30px);
+}
+
+.logoPage {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logoPage img {
+    width: 100px;
+}
+
+.logoPage hr {
+    width: 95%;
+    height: 2px;
+}
+
+.paymentSucces {
+    margin-top: 50px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.paymentSucces h1 {
+    font-family: 'Work Sans';
+    font-size: 3vw;
+    text-align: center;
+    font-weight: 300;
+    color: aliceblue;
+}
+
+.paymentSucces button {
+    width: 15vw;
+    height: 70px;
+    border-radius: 10px;
+    color: white;
+    border: none;
+    background-color: #21a88bdc;
+    font-size: 1.3vw;
+    cursor: pointer;
+}
+
+table {
+    width: 70%;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+td {
+    padding: 20px;
+    border: none;
+}
+
+.label {
+    font-weight: bold;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.value {
+    font-size: 1.2em;
+}
+
+
+
+
+
+/* ----------------------------------------Spinner---------------------------------------- */
+.containerSpinner {
+    width: 100%;
+    height: 1500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 9px solid;
+    border-color: #dbdcef37;
+    border-right-color: #224145;
+    text-align: center;
+    animation: spinner-d3wgkg 1s infinite linear;
+}
+
+@keyframes spinner-d3wgkg {
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+/* ----------------------------------------Spinner---------------------------------------- */

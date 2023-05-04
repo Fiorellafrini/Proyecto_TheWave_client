@@ -1,6 +1,6 @@
 import EstadisticasBar from "./EstadisticasBar";
 import EstadisticasTorta from "./EstadisticasTorta";
-import EstadisticasLine from "./EstadisticasLine";
+// import EstadisticasLine from "./EstadisticasLine";
 import styles from "./Estadisticas.module.css";
 
 function Estadisticas() {
@@ -15,9 +15,9 @@ function Estadisticas() {
         <div className={styles.pie}>
           <EstadisticasTorta />
         </div>
-        <div className={styles.statsLine}>
+        {/* <div className={styles.statsLine}>
           <EstadisticasLine />
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -29,6 +29,7 @@ import Estadisticas from "./components/Dashboard/Estadisticas/Estadisticas";
 import { listProducts, setCurrentPage } from "./redux/actions";
 import { useDispatch } from "react-redux";
 import Sidebar from "./components/Dashboard/Sidebar";
+import FeedBack from "./components/FeedBack/FeedBack";
 import CardDashEdit from "./components/Dashboard/CardDashEdit";
 
 function App() {
@@ -63,12 +64,15 @@ function App() {
       location.pathname.includes("/editarProducto") ? (
         <Sidebar />
       ) : null}
-
       <Routes>
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="/SectionHome" element={<SectionHome />}></Route>
         <Route path="/SectionLogIn" element={<Login />}></Route>
         <Route path="/SectionRegister" element={<Register />}></Route>
+        <Route
+          path="/SectionCategories"
+          element={<SectionCategories />}
+        ></Route>
         <Route
           path="/SectionCategories"
           element={<SectionCategories />}
@@ -80,14 +84,21 @@ function App() {
           path="/reset-Password/:id/:token"
           element={<ResetPassword />}
         ></Route>
+        <Route element={<ProteccionRutas />} />
+        <Route path="/Favorites" element={<Favorites />}></Route>
+        <Route path="/MyProfile" element={<Perfil />}></Route>
+        <Route path="/SectionRegister" element={<Register />}></Route>
+        <Route
+          path="/reset-Password/:id/:token"
+          element={<ResetPassword />}
+        ></Route>
         <Route path="*" element={<Error404 />}></Route>
-
         <Route element={<ProteccionRutas />}>
           <Route path="/MyProfile" element={<Perfil />}></Route>
           <Route path="/ShopDetail" element={<ShopDetail />}></Route>
           <Route path="/Favorites" element={<Favorites />}></Route>
+          <Route path="/FeedBack" element={<FeedBack />}></Route>
         </Route>
-
         <Route element={<ProteccionRutaAdmin />}>
           <Route path="/form" element={<FormProduct />}></Route>
           <Route path="/admin" element={<HomeDashboard />}></Route>

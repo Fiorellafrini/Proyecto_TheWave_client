@@ -1,12 +1,21 @@
+.container {
+  padding: 20px;
+}
+.container h1 {
+  font-size: 4.5vw;
+  font-family: 'Poppins', sans-serif;
+  color: #224145;
+  line-height: 80px;
+}
 .commentContainer {
-  margin-top: 21px;
-  margin-left: 24px;
   display: grid;
   width: 50%;
   height: auto;
   grid-template-rows: 33% 30% 37%;
   background: #ffff;
-  border-radius: 15px 15px 15px 0px;
+  border-radius: 15px;
+  margin-top: 10px;
+  padding: 10px;
 }
 .userInfo {
   display: flex;
@@ -55,7 +64,7 @@ h1::first-letter {
     display: flex;
     height: 100%;
   }
-  .comment h1{
+  .comment h2{
    font-family: 'Roboto', sans-serif;
     margin-left: 30px;
     

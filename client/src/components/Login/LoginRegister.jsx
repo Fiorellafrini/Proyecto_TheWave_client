@@ -15,11 +15,23 @@ function LoginRegister() {
     const dispatch = useDispatch();
     const navegar = useNavigate();
     const [sendForm, setSendForm] = useState(false);
+  const [loading, setLoading] = useState(true);
     let isLoguin = window.localStorage.getItem("login");
     const [sendForm2, setSendForm2] = useState(false);
 
+    useEffect(() => {
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+    }, [])
+
   return (
     <div className={style.contenedor__todo}>
+         {loading ? (
+        <div className={style.containerSpinner}>
+          <div className={style.spinner}></div>
+        </div>
+      ) : (
       <div className={style.caja__trasera}>
         <div className={style.caja__trasera_login}>
           <h3>¿Ya tienes una cuenta?</h3>
@@ -265,6 +277,7 @@ function LoginRegister() {
           </Formik>
         </div>
       </div>
+      )}
     </div>
   );
 }
