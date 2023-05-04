@@ -21,6 +21,7 @@ const ProductCard = ({
   quantity,
   stock,
   deletePropInFav = true,
+  addToCartInFav = true,
 }) => {
   const [imageSrc] = useState(imagen[0]);
   const dispatch = useDispatch();
@@ -159,23 +160,24 @@ const ProductCard = ({
               </div>
             )}
             <div className={styles.fila3}>
-              {isSelected ? (
-                <button
-                  onClick={
-                    !token ? handleSinPermisosAñadir : handleAddToShoppingCart
-                  }
-                >
-                  REMOVE FROM CART
-                </button>
-              ) : (
-                <button
-                  onClick={
-                    !token ? handleSinPermisosAñadir : handleAddToShoppingCart
-                  }
-                >
-                  ADD TO CART
-                </button>
-              )}
+              {addToCartInFav &&
+                (isSelected ? (
+                  <button
+                    onClick={
+                      !token ? handleSinPermisosAñadir : handleAddToShoppingCart
+                    }
+                  >
+                    REMOVE FROM CART
+                  </button>
+                ) : (
+                  <button
+                    onClick={
+                      !token ? handleSinPermisosAñadir : handleAddToShoppingCart
+                    }
+                  >
+                    ADD TO CART
+                  </button>
+                ))}
             </div>
           </div>
         </div>
