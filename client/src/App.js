@@ -60,7 +60,8 @@ function App() {
       ].includes(location.pathname) ? (
         <NavVertical />
       ) : null}
-      {["/form", "/stats", "/admin"].includes(location.pathname) ? (
+      {["/form", "/stats", "/admin"].includes(location.pathname) ||
+      location.pathname.includes("/editarProducto") ? (
         <Sidebar />
       ) : null}
       <Routes>
