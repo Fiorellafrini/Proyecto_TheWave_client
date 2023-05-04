@@ -53,10 +53,9 @@
 
 .tituloPage h1 {
   font-size: 7vw;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: rgba(255, 140, 0, 0.493);
 }
-
 
 .paymentColor {
   background-color: rgba(240, 248, 255, 0.774);
@@ -77,6 +76,22 @@
   border-radius: 15px;
   background-color: #1e1e1ed0;
   padding: 20px;
+}
+
+.delete {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  top: 13rem;
+  right: 5rem;
+  z-index: 1;
+}
+.button {
+  border: none;
+  background-color: transparent;
+  color: #224145;
+  font-size: 2em;
+  cursor: pointer;
 }
 
 /* ----------------------------------------Spinner---------------------------------------- */
@@ -100,19 +115,7 @@
 }
 
 @keyframes spinner-d3wgkg {
-    to {
-        transform: rotate(1turn);
-    }
-}
-
-/* ----------------------------------------Spinner---------------------------------------- */
-.name{
-    color: rgb(255, 255, 255);
-    font-size:5em;
-}
-
-/* ----------------------------------------Spinner---------------------------------------- */
-.name {
-  color: rgb(255, 255, 255);
-  font-size: 5em;
+  to {
+    transform: rotate(1turn);
+  }
 }

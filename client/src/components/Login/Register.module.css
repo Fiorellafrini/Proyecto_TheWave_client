@@ -92,3 +92,13 @@
 .error {
   color: red;
 }
+
+.link{
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.link a{
+  color: #5edad2;
+  margin-left: 1rem;
+}

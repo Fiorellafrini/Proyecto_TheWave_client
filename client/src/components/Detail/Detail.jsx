@@ -218,7 +218,7 @@ function Detail() {
           {reviewCount === 0 ? (
             <div className={styles.commentContainer}>
               <p>Be the first to add a review</p>
-              <div>
+              <div className={styles.comentario}>
                 <button onClick={handleOpen}>Add Review</button>
                 {isOpen && <AddReview setOpen={setIsOpen} />}
               </div>

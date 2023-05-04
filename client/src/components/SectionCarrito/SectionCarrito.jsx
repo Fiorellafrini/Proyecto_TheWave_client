@@ -4,11 +4,11 @@ import styles from "../SectionCarrito/SectionCarrito.module.css";
 import ShoppingCartCard from "../ShoppingCartCard/ShoppingCartCard";
 import { useSelector } from "react-redux";
 import {
-  paymentMercadoPago,
+  // paymentMercadoPago,
   deleteToCart,
   createShop,
   createShopDetail,
-  updateStockDecrement,
+  // updateStockDecrement,
 } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import jwt from "jwt-decode";
