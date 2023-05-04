@@ -5,7 +5,7 @@ import { SiGoogle } from "react-icons/si";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import {
-  login,
+  login
 } from "../../redux/actions";
 import style from "./login.module.css";
 

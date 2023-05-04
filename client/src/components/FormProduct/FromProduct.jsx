@@ -39,6 +39,7 @@ const FormProduct = () => {
         <Formik
           initialValues={{
             name: "",
+            description: "",
             id_brand: 0,
             id_type: 0,
             size: "",

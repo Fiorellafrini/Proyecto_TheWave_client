@@ -4,9 +4,9 @@ import jwt from "jwt-decode";
 import { React, useState } from "react";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import styles from "./AddReview.module.css";
 import StarRating from "./StarRating";
-import Swal from "sweetalert2";
 
 const AddReview = ({ setIsOpen }) => {
   const [isSent, setIsSent] = useState(false);

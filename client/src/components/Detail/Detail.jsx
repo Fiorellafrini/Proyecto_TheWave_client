@@ -1,31 +1,30 @@
+import jwt from "jwt-decode";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import billabong from "../../assets/billabong.png";
 import hurley from "../../assets/hurley.png";
 import russel from "../../assets/russel.png";
-import Swal from "sweetalert2";
 
+import talleL from "../../assets/talleL.png";
+import talleM from "../../assets/talleM.png";
+import talleS from "../../assets/talleS.png";
+import talleXL from "../../assets/talleXL.png";
 import {
-  paymentMercadoPago,
   createShop,
   createShopDetail,
+  paymentMercadoPago,
 } from "../../redux/actions";
 import { addToCart, deleteToCart, productsById } from "../../redux/actions.js";
-import Navigation from "../Navigation/Navigation.jsx";
-import styles from "./Detail.module.css";
-import talleS from "../../assets/talleS.png";
-import talleM from "../../assets/talleM.png";
-import talleL from "../../assets/talleL.png";
-import talleXL from "../../assets/talleXL.png";
-import vesl from "../../assets/vesl.png";
 import target1 from "../Detail/iconos/master.png";
 import target2 from "../Detail/iconos/visa.png";
+import Navigation from "../Navigation/Navigation.jsx";
 import AddReview from "../Review/AddReview";
 import ReviewCard from "../Review/ReviewCard";
 import StarRender from "../Review/StartRender";
-import jwt from "jwt-decode";
+import styles from "./Detail.module.css";
 function Detail() {
   const dispatch = useDispatch();
   const detalle = useSelector((state) => state.products.detail);
@@ -205,7 +204,7 @@ function Detail() {
                 </div>
                 <div>
                   <div>
-                    <button onClick={handleOpen}>ADD REVIEW</button>
+                  { !token ? handleSinPermisos: <button onClick={handleOpen}>ADD REVIEW</button>}
                     <button onClick={handleOpenReview}>SEE COMENTS</button>
                   </div>
                 </div>
