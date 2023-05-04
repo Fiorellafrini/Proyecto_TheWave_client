@@ -83,33 +83,30 @@ function Detail() {
     dispatch(productsById(id));
   }, [dispatch, id]);
 
-  //------------------------------addToCart------------------------------\\
-  // const addToShoppingCart = () => {
-  //   if (isSelected === false) {
-  //     dispatch(addToCart(detalle));
-  //     setIsSelected(true);
-  //   } else if (isSelected === true) {
-  //     dispatch(deleteToCart(detalle.id));
-  //     setIsSelected(false);
-  //   }
-  // };
   const addToShoppingCart = () => {
     // const product = { name, size, price, imagen, id, quantity, stock };
-if (isSelected === false) {
-  dispatch(addToCart(detalle));
-  setIsSelected(true);
-  // Guardar en localStorage
-  const storedCart = JSON.parse(localStorage.getItem('shoppingCart'));
-  localStorage.setItem('shoppingCart', JSON.stringify([...storedCart, detalle]));
-} else if (isSelected === true) {
-  dispatch(deleteToCart(id));
-  setIsSelected(false);
-  // Actualizar localStorage
-  const storedCart = JSON.parse(localStorage.getItem('shoppingCart'));
-  const updatedCart = storedCart.filter(cart => cart.id !== id);
-  localStorage.setItem('shoppingCart', JSON.stringify(updatedCart));
-}
-};
+    if (isSelected === false) {
+      const storedCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+      const productInCart = storedCart.find(cart => cart.id === detalle.id);
+  
+      if (productInCart) {
+        alert("This product already exists in the cart");
+      } else {
+        dispatch(addToCart(detalle));
+        setIsSelected(true);
+        // Guardar en localStorage
+        localStorage.setItem('shoppingCart', JSON.stringify([...storedCart, detalle]));
+      }
+    } else if (isSelected === true) {
+      dispatch(deleteToCart(detalle.id));
+      setIsSelected(false);
+      // Actualizar localStorage
+      const storedCart = JSON.parse(localStorage.getItem('shoppingCart'));
+      const updatedCart = storedCart.filter(cart => cart.id !== detalle.id);
+      localStorage.setItem('shoppingCart', JSON.stringify(updatedCart));
+    }
+  };
+  
 
 
   const nombreEnMayusculas = detalle?.name?.toUpperCase();
