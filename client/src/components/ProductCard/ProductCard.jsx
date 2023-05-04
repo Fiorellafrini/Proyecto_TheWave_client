@@ -30,8 +30,6 @@ const ProductCard = ({
   const [isSelected, setIsSelected] = useState(false);
   const navigate = useNavigate();
   let token = window.localStorage.getItem("login");
-  
-
 
   const handleFav = () => {
     const product = { name, size, price, imagen, id };
@@ -39,48 +37,42 @@ const ProductCard = ({
       dispatch(addToFav(product));
       setIsFav(true);
       // Guardar en localStorage
-      const storedFavorites = JSON.parse(localStorage.getItem('favorites'));
-      localStorage.setItem('favorites', JSON.stringify([...storedFavorites, product]));
+      const storedFavorites = JSON.parse(localStorage.getItem("favorites"));
+      localStorage.setItem(
+        "favorites",
+        JSON.stringify([...storedFavorites, product])
+      );
     } else if (isFav === true) {
       dispatch(deleteToFav(id));
       setIsFav(false);
       // Actualizar localStorage
-      const storedFavorites = JSON.parse(localStorage.getItem('favorites'));
-      const updatedFavorites = storedFavorites.filter(fav => fav.id !== id);
-      localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+      const storedFavorites = JSON.parse(localStorage.getItem("favorites"));
+      const updatedFavorites = storedFavorites.filter((fav) => fav.id !== id);
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
     }
   };
-  
 
-  // const handleAddToShoppingCart = () => {
-  //   const product = { name, size, price, imagen, id, quantity, stock };
-  //   if (isSelected === false) {
-  //     dispatch(addToCart(product));
-  //     setIsSelected(true);
-  //   } else if (isSelected === true) {
-  //     dispatch(deleteToCart(id));
-  //     setIsSelected(false);
-  //   }
-  // };
+;
   const handleAddToShoppingCart = () => {
     const product = { name, size, price, imagen, id, quantity, stock };
-if (isSelected === false) {
-  dispatch(addToCart(product));
-  setIsSelected(true);
-  // Guardar en localStorage
-  const storedCart = JSON.parse(localStorage.getItem('shoppingCart'));
-  localStorage.setItem('shoppingCart', JSON.stringify([...storedCart, product]));
-} else if (isSelected === true) {
-  dispatch(deleteToCart(id));
-  setIsSelected(false);
-  // Actualizar localStorage
-  const storedCart = JSON.parse(localStorage.getItem('shoppingCart'));
-  const updatedCart = storedCart.filter(cart => cart.id !== id);
-  localStorage.setItem('shoppingCart', JSON.stringify(updatedCart));
-}
-};
-
-
+    if (isSelected === false) {
+      dispatch(addToCart(product));
+      setIsSelected(true);
+      // Guardar en localStorage
+      const storedCart = JSON.parse(localStorage.getItem("shoppingCart"));
+      localStorage.setItem(
+        "shoppingCart",
+        JSON.stringify([...storedCart, product])
+      );
+    } else if (isSelected === true) {
+      dispatch(deleteToCart(id));
+      setIsSelected(false);
+      // Actualizar localStorage
+      const storedCart = JSON.parse(localStorage.getItem("shoppingCart"));
+      const updatedCart = storedCart.filter((cart) => cart.id !== id);
+      localStorage.setItem("shoppingCart", JSON.stringify(updatedCart));
+    }
+  };
 
   const handleSinPermisos = () => {
     // alert("You need to be logged in to be able to add to favorites");
@@ -100,7 +92,8 @@ if (isSelected === false) {
     // );
     Swal.fire({
       icon: "info",
-      title: "You need to be logged in to be able to add products to the shopping cart",
+      title:
+        "You need to be logged in to be able to add products to the shopping cart",
       color: "white",
       background: "#1e1e1e",
       showConfirmButton: false,

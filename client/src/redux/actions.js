@@ -42,7 +42,7 @@ export const GET_BY_ID = "GET_BY_ID";
 export const SET_FAVORITES = "SET_FAVORITES";
 export const CLEAN_USER = "CLEAN_USER";
 export const REMOVE_ALL_FAV = "REMOVE_ALL_FAV";
-
+export const SET_CART = "SET_CART"
 //-------------------------------------------CREATE PRODUCT---------------------------------------------------------//
 
 export const createProduct = (body) => async (dipatch) => {
@@ -229,6 +229,10 @@ export const deleteToCart = (id) => {
 };
 export const clearCart = () => ({
   type: CLEAR_CART,
+});
+export const setCart = (shoppingCart) => ({
+  type: "SET_CART",
+  payload: shoppingCart,
 });
 
 // ----------------------------------PAYMENT----------------------------------------------------//
