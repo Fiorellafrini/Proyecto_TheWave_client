@@ -12,7 +12,6 @@ import talleL from "../../assets/talleL.png";
 import talleM from "../../assets/talleM.png";
 import talleS from "../../assets/talleS.png";
 import talleXL from "../../assets/talleXL.png";
-import vesl from "../../assets/vesl.png";
 import {
   createShop,
   createShopDetail,
@@ -205,7 +204,7 @@ function Detail() {
                 </div>
                 <div>
                   <div>
-                    <button onClick={handleOpen}>ADD REVIEW</button>
+                  { !token ? handleSinPermisos: <button onClick={handleOpen}>ADD REVIEW</button>}
                     <button onClick={handleOpenReview}>SEE COMENTS</button>
                   </div>
                 </div>

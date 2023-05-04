@@ -1,15 +1,12 @@
 import React from "react";
 // import { variables } from "./ItemSidebar";
 import {
-  AiFillHome,
-  AiOutlineUpload,
-  // AiOutlineShoppingCart,
+  AiFillHome
 } from "react-icons/ai";
 // import { ImStatsBars } from "react-icons/im";
-import { MdSpaceDashboard } from "react-icons/md";
 import { BiLogOut } from "react-icons/bi";
-import { FaCommentAlt } from "react-icons/fa";
-import { IoStatsChartSharp, IoAddCircle } from "react-icons/io5";
+import { IoAddCircle, IoStatsChartSharp } from "react-icons/io5";
+import { MdSpaceDashboard } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import style from "./Sidebar.module.css";
 
@@ -51,9 +48,9 @@ const linksArray = [
     to: "/stats",
   },
   {
-    label: "Comments",
+   /*  label: "Comments",
     icon: <FaCommentAlt />,
-    to: "/comments",
+    to: "/comments", */
   },
   {
     label: "Add Products",
