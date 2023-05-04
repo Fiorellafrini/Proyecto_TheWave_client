@@ -68,7 +68,15 @@ const ProductCard = ({
         JSON.stringify([...storedCart, product])
       );
     } else if (isSelected === false && productInCart) {
-      alert("This product already exists in the cart");
+      // alert("This product already exists in the cart");
+      Swal.fire({
+        icon: "info",
+        title: "This product already exists in the cart",
+        color: "white",
+        background: "#1e1e1e",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } else if (isSelected === true || productInCart) {
       dispatch(deleteToCart(id));
       setIsSelected(false);
