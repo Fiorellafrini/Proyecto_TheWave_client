@@ -81,8 +81,8 @@ function Perfil() {
                 lastName: `${datosUser.lastName}`,
                 address: `${datosUser.address}`,
                 email: `${datosUser.email}`,
-                password: "",
-                confirmar_password: "",
+               // password: "",
+               // confirmar_password: "",
                 photo: `${datosUser.photo}`,
               }}
               validate={(values) => {
