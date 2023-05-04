@@ -44,7 +44,6 @@ export const CLEAN_USER = "CLEAN_USER";
 export const REMOVE_ALL_FAV = "REMOVE_ALL_FAV";
 export const SET_CART = "SET_CART"
 //-------------------------------------------CREATE PRODUCT---------------------------------------------------------//
-
 export const createProduct = (body) => async (dipatch) => {
   const { data } = await axios.post("/product", body);
   return dipatch({
@@ -52,8 +51,6 @@ export const createProduct = (body) => async (dipatch) => {
     payload: data,
   });
 };
-
-
 
 export function listProducts(filters, page) {
   return async function (dispatch) {
@@ -74,8 +71,6 @@ export function saveFiltersAndPage(filters, page) {
     payload: { filters, page },
   };
 }
-
-
 
 // -----------------------------------FILTER_BY_NAME---------------------------------------------------//
 export function filterByName(payload) {
@@ -102,23 +97,18 @@ export function filterByName(payload) {
     }
   };
 }
-
 // -----------------------------------ORDER_BY_NAME-----------------------------------------------------//
 export const orderByName = (criteria) => {
   return { type: ORDER_BY_NAME, payload: criteria };
 };
-
 // -----------------------------------ORDER_BY_PRICE----------------------------------------------------//
 export const orderByPrice = (criteria) => {
   return { type: ORDER_BY_PRICE, payload: criteria };
 };
-
 //--------------------------------CLEAR FILTER------------------------------------------------------------//
-
 export const clearFilters = () => ({
   type: CLEAR_FILTERS,
 });
-
 // -----------------------------------DETAIL-----------------------------------//
 export function productsById(id) {
   return async function (dispatch) {
@@ -133,7 +123,6 @@ export function productsById(id) {
     }
   };
 }
-
 // -------------------PAGE-----------------------------------------------------------------//
 export function productsData(page) {
   return async function (dispatch) {
@@ -148,14 +137,12 @@ export function productsData(page) {
     }
   };
 }
-
 export const setCurrentPage = (payload) => {
   return {
     type: SET_CURRENTPAGE,
     payload,
   };
 };
-
 // -------------------FILTER-BRAND---------------------------------------------------------------//
 export function filterBrand(id) {
   return async function (dispatch) {
@@ -171,7 +158,6 @@ export function filterBrand(id) {
     }
   };
 }
-
 // -----------------------------------FILTER-BY-TYPE-----------------------------------------//
 export function filterType(id) {
   return async function (dispatch) {
@@ -187,7 +173,6 @@ export function filterType(id) {
     }
   };
 }
-
 //---------------------LOGIN---------------------------------------------//
 export const registro = (body) => async (dipatch) => {
   const { data } = await axios.post("/user", body);
@@ -218,8 +203,7 @@ export const registro = (body) => async (dipatch) => {
     });
   }
 };
-
-// ----------------------------------CART-----------------------------------------------//
+//----------------------------------ADD TO CART-----------------------------------------------//
 export const addToCart = (product) => {
   return { type: ADD_TO_CART, payload: product };
 };
@@ -269,7 +253,6 @@ export const createShop = (date, userId) => async (dispatch) => {
     console.log(error);
   }
 };
-
 // ----------------------------------SHOP_DETAIL----------------------------------------------------//
 export const createShopDetail =
   (quantity, price, productId, shopId) => async (dispatch) => {
@@ -298,20 +281,16 @@ export function listDetail() {
     } catch (error) {}
   };
 }
-
 // -----------------------------------QUANTITY--------------------------------------------------//
 export const incrementQuantity = (id) => {
   return { type: INCREMENT_QUANTITY, payload: id };
 };
-
 export const decrementQuantity = (id) => {
   return { type: DECREMENT_QUANTITY, payload: id };
 };
-
 export const empty_cart = (product) => {
   return { type: EMPTY_CART, payload: product };
 };
-
 // -----------------------------------UPDATE_STOCK_PRODUCT_DEC-----------------------------------//
 export const updateStockDecrement = (id, quantity) => async (dispatch) => {
   try {
@@ -329,7 +308,6 @@ export const updateStockDecrement = (id, quantity) => async (dispatch) => {
     console.log(error);
   }
 };
-
 export const login = (body) => async (dipatch) => {
   try {
     const { data } = await axios.post("/auth", body);
@@ -397,7 +375,6 @@ export const getFav = (userId) => async (dispatch) => {
     console.error(error);
   }
 };
-
 export const setFavorites = (favorites) => ({
   type: "SET_FAVORITES",
   payload: favorites,
@@ -433,7 +410,6 @@ export const putUser = (id, body, token) => async (dispatch) => {
     payload: data,
   });
 };
-
 export function userById(id) {
   return async function (dispatch) {
     try {
@@ -445,9 +421,7 @@ export function userById(id) {
     } catch (error) {}
   };
 }
-
 //----------------------------------------------GET USERS----------------------------------//
-
 export function users() {
   return async function (dispatch) {
     try {
@@ -460,7 +434,6 @@ export function users() {
   };
 }
 //----------------------------------------------GET BRANDS----------------------------------//
-
 export function listBrands() {
   return async function (dispatch) {
     try {
@@ -468,7 +441,7 @@ export function listBrands() {
       const brands = json.data
       dispatch({ type: GET_ALL_BRANDS, payload: brands });
     } catch (error) {
-      return "Something went wrong" +  error.message
+      return "Something went wrong" + error.message;
     }
   };
 }
@@ -479,7 +452,7 @@ export const cleanUser = () => {
   };
 };
 
-export const editarProduct = (id,  body) => async (dipatch) => {
+export const editarProduct = (id, body) => async (dipatch) => {
   const { data } = await axios.put(`/product/${id}`, body);
   return dipatch({
     type: "PUT_PRODUCT",
@@ -507,7 +480,7 @@ export function listTypes() {
       const types = json.data
       dispatch({ type: GET_All_TYPES, payload: types });
     } catch (error) {
-      return "Something went wrong" +  error.message
+      return "Something went wrong" + error.message;
     }
   };
 }

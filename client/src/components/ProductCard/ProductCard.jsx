@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import durability from "../../assets/durability.png";
 import styles from "../ProductCard/ProductCard.module.css";
 import hurleyCard from "../../assets/hurleyCard.png";
 import { Link } from "react-router-dom";
@@ -22,7 +21,6 @@ const ProductCard = ({
   quantity,
   stock,
   deletePropInFav = true,
-  // handleDelete,
 }) => {
   const [imageSrc] = useState(imagen[0]);
   const dispatch = useDispatch();
@@ -75,7 +73,6 @@ const ProductCard = ({
   };
 
   const handleSinPermisos = () => {
-    // alert("You need to be logged in to be able to add to favorites");
     Swal.fire({
       icon: "info",
       title: "You need to be logged in to be able to add to favorites",
@@ -87,9 +84,6 @@ const ProductCard = ({
     navigate("/SectionRegister");
   };
   const handleSinPermisosAñadir = () => {
-    // alert(
-    //   "You need to be logged in to be able to add products to the shopping cart"
-    // );
     Swal.fire({
       icon: "info",
       title:
@@ -120,13 +114,11 @@ const ProductCard = ({
             </div>
             <div className={styles.fila2}>
               <div className={styles.size}>
-                <h1>WEIST</h1>
+                <h1>SIZE</h1>
                 <p>{size}</p>
               </div>
               <hr />
               <div>
-                <img src={durability} alt="" />
-              </div>
               {deletePropInFav &&
                 (isFav ? (
                   <button
@@ -143,6 +135,7 @@ const ProductCard = ({
                     <BsBagHeart />
                   </button>
                 ))}
+              </div>
             </div>
             {deletePropInFav && (
               <div className={styles.fila3}>

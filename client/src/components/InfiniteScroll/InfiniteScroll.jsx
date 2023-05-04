@@ -35,7 +35,6 @@ const Infinite = () => {
   const lastIndex = page * 8;
   const firstIndex = lastIndex - 8;
 
-
   return (
     <>
       <Paginado total={activeProductos.length} />

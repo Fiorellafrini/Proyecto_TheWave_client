@@ -53,7 +53,6 @@ const FeedBack = () => {
                     </tr>
                   </tbody>
                 </table>
-
                 <Link to={"/ShopDetail"}>
                   <button>View My Payments</button>
                 </Link>

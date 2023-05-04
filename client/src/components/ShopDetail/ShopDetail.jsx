@@ -4,11 +4,17 @@ import logoPage from "../../assets/logoPage.png";
 import tablaWhite from "../../assets/products7-2.png";
 import styles from "../ShopDetail/ShopDetail.module.css";
 import Navigation from "../Navigation/Navigation";
+import jwt from "jwt-decode";
 import { listDetail } from "../../redux/actions";
 
 const ShopDetail = () => {
+  let isLoguin = window.localStorage.getItem("login");
+  let user = "";
+  if (isLoguin) user = jwt(isLoguin);
   const dispatch = useDispatch();
-  const shop = useSelector((state) => state.products.shop);
+  const shop = useSelector((state) =>
+    state.products.shop.filter((s) => s.User.id === user.id)
+  );
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -54,7 +60,7 @@ const ShopDetail = () => {
                       <h3>PRODUCTS</h3>
                       {pay.ShopDetails?.map((detail, i) => (
                         <div className={styles.products} key={i}>
-                          <p>Product ID: {detail.product_id}</p>
+                          <p>Product ID: {detail.id_product}</p>
                           <p>Name : {detail.Product.name}</p>
                           <p>Size : {detail.Product.size}</p>
                           <p>Quantity: {detail.quantity}</p>

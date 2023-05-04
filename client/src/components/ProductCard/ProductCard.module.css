@@ -102,9 +102,9 @@
 
 .fila3 button {
   width: 300px;
-  height: 40px;
-  margin: 10px;
-  border-radius: 40px;
+  height: 60px;
+  margin: 6px;
+  border-radius: 20px;
   background-color: #224145;
   border: none;
   color: aliceblue;
@@ -119,7 +119,7 @@
   border: none;
   background-color: transparent;
   color: #224145;
-  font-size: 2em;
+  font-size: 4em;
 }
 
 @media only screen and (min-width: 481px) and (max-width: 1024px) {
