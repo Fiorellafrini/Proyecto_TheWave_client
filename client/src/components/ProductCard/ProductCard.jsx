@@ -52,16 +52,7 @@ const ProductCard = ({
     }
   };
 
-  // const handleAddToShoppingCart = () => {
-  //   const product = { name, size, price, imagen, id, quantity, stock };
-  //   if (isSelected === false) {
-  //     dispatch(addToCart(product));
-  //     setIsSelected(true);
-  //   } else if (isSelected === true) {
-  //     dispatch(deleteToCart(id));
-  //     setIsSelected(false);
-  //   }
-  // };
+;
   const handleAddToShoppingCart = () => {
     const product = { name, size, price, imagen, id, quantity, stock };
     if (isSelected === false) {
