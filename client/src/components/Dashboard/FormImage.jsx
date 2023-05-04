@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { editarProduct } from "../../redux/actions";
-import styles from "../FormProduct/FromProduct.module.css";
+import styles from "./Form.module.css";
 
 const FormImage = () => {
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const FormImage = () => {
     // setFieldValue("imagen[1]", data.secure_url);
   };
   return (
-    <div className={styles.container}>
+    <div>
       <Formik
       initialValues={{
         

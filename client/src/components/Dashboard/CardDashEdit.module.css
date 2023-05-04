@@ -1,0 +1,27 @@
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background-image: url(../../assets/fondoHome.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.form {
+  display: grid;
+  place-content: center;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 3rem;
+  gap: 1rem;
+}
+
+.formulario {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.16);
+  padding: 1rem;
+  transition: 0.3s ease all;
+  border-radius: 5px;
+}

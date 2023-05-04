@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { editarProduct } from "../../redux/actions";
-import styles from "../FormProduct/FromProduct.module.css";
+import styles from "./Form.module.css";
 
 
 const FormName = () => {
@@ -12,7 +12,7 @@ const FormName = () => {
   const [isSent, setIsSent] = useState(false);
   const { id } = useParams();
   return (
-    <div className={styles.container}>
+    <div>
       <Formik
         initialValues={{
           name: "",
@@ -34,7 +34,7 @@ const FormName = () => {
         }}
       >
         {({ isSubmitting, errors }) => (
-          <div className="animateanimated animatefadeIn">
+          <div className="animate__animated animate__fadeIn">
             <div className={styles.cntd}>
               <Form className={styles.formulario}>
                 <label>

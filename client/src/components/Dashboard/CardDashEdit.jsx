@@ -1,6 +1,6 @@
 import React from "react";
 // import Navigation from "../Navigation/Navigation";
-import styles from "../FormProduct/FromProduct.module.css";
+// import styles from "../FormProduct/FromProduct.module.css";
 // import Sidebar from "../Dashboard/Sidebar";
 import FormBrand from "./FormBrand";
 import FormDescription from "./FormDescription";
@@ -10,21 +10,36 @@ import FormPrice from "./FormPrice";
 import FormSize from "./FormSize";
 import FormStock from "./FormStock";
 import FormType from "./FormType";
+import styles from "./CardDashEdit.module.css";
 
 const CardDashEdit = () => {
-
   return (
     <div className={styles.container}>
-      {/* <Navigation /> */}
-      <div>
-        <FormName />
-        <FormPrice />
-        <FormDescription />
-        <FormImage />
-        <FormStock />
-        <FormBrand />
-        <FormType />
-        <FormSize />
+      <div className={styles.form}>
+        <div className={styles.formulario}>
+          <FormName />
+        </div>
+        <div className={styles.formulario}>
+          <FormImage />
+        </div>
+        <div className={styles.formulario}>
+          <FormPrice />
+        </div>
+        <div className={styles.formulario}>
+          <FormStock />
+        </div>
+        <div className={styles.formulario}>
+          <FormBrand />
+        </div>
+        <div className={styles.formulario}>
+          <FormDescription />
+        </div>
+        <div className={styles.formulario}>
+          <FormType />
+        </div>
+        <div className={styles.formulario}>
+          <FormSize />
+        </div>
       </div>
     </div>
   );

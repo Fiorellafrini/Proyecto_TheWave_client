@@ -4,14 +4,14 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { editarProduct } from "../../redux/actions";
-import styles from "../FormProduct/FromProduct.module.css";
+import styles from "./Form.module.css";
 const FormType = () => {
     const dispatch = useDispatch();
   const navegate = useNavigate();
   const [isSent, setIsSent] = useState(false);
   const { id } = useParams();
   return (
-    <div className={styles.container}>
+    <div>
       <Formik
         initialValues={{
           id_type: 0,
