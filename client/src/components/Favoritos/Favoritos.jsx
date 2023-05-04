@@ -80,6 +80,7 @@ const Favorites = () => {
                             stock={product.stock}
                             onDelete={() => handleDelete(product.id)}
                             deletePropInFav={false}
+                            addToCartInFav={false}
                           />
                         </div>
                       )
