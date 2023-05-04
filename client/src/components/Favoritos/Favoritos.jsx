@@ -19,20 +19,17 @@ const Favorites = () => {
     dispatch(deleteToFav(productId));
   };
 
-
   useEffect(() => {
-    const storedFavorites = localStorage.getItem('favorites');
+    const storedFavorites = localStorage.getItem("favorites");
     if (storedFavorites) {
       dispatch(setFavorites(JSON.parse(storedFavorites)));
     }
     setLoading(false);
   }, []);
 
-  
   useEffect(() => {
-    localStorage.setItem('favorites', JSON.stringify(fav));
+    localStorage.setItem("favorites", JSON.stringify(fav));
   }, [fav]);
-
 
   useEffect(() => {
     setTimeout(() => {
@@ -73,13 +70,17 @@ const Favorites = () => {
                             </button>
                           </div>
                           <ProductCard
-                            name={product.name}
-                            id={product.id}
-                            size={product.size}
-                            price={product.price}
-                            imagen={product.imagen ? product.imagen : []}
-                            deletePropInFav={false}
                             key={product.id}
+                            id={product.id}
+                            name={product.name}
+                            price={product.price}
+                            size={product.size}
+                            imagen={product.imagen}
+                            quantity={product.quantity}
+                            stock={product.stock}
+                            onDelete={() => handleDelete(product.id)}
+                            deletePropInFav={false}
+                            addToCartInFav={false}
                           />
                         </div>
                       )

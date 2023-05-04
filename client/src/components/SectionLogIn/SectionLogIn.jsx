@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Login from "../Login/Login";
 // import Register from "../Login/Register";
-import style from "./SectionLogIn.module.css"
+import style from "./SectionLogIn.module.css";
 
 const SectionLogIn = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setLoading] = useState(true);
   // const [Open, setOpen] = useState(false);
   let isLoguin = window.localStorage.getItem("login");
   const navegar = useNavigate();
@@ -29,14 +30,29 @@ const SectionLogIn = () => {
       </div>
     );
   }
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
+
   return (
-    <div onBlur={(e) => {}} className={style.Form}>
-      <button onClick={toggleModal}>Login</button>
-      {isOpen && <Login isOpen={isOpen} onClose={toggleModal} />}
-      {/* <div>
+    <div>
+      {isLoading ? (
+        <div className={style.containerSpinner}>
+          <div className={style.spinner}></div>
+        </div>
+      ) : (
+        <div onBlur={(e) => {}} className={style.Form}>
+          <button onClick={toggleModal}>Login</button>
+          {isOpen && <Login isOpen={isOpen} onClose={toggleModal} />}
+          {/* <div>
         <button onClick={toggleMo}>Register</button>
         {Open && <Register isOpen={Open} onClose={toggleMo} />}
       </div> */}
+        </div>
+      )}
     </div>
   );
 };

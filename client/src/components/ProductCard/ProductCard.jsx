@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import durability from "../../assets/durability.png";
 import styles from "../ProductCard/ProductCard.module.css";
 import hurleyCard from "../../assets/hurleyCard.png";
 import { Link } from "react-router-dom";
@@ -22,7 +21,7 @@ const ProductCard = ({
   quantity,
   stock,
   deletePropInFav = true,
-  // handleDelete,
+  addToCartInFav = true,
 }) => {
   const [imageSrc] = useState(imagen[0]);
   const dispatch = useDispatch();
@@ -30,35 +29,65 @@ const ProductCard = ({
   const [isSelected, setIsSelected] = useState(false);
   const navigate = useNavigate();
   let token = window.localStorage.getItem("login");
-  
-
 
   const handleFav = () => {
     const product = { name, size, price, imagen, id };
-  // console.log(product);
     if (isFav === false) {
-      // console.log(product);
       dispatch(addToFav(product));
       setIsFav(true);
+      // Guardar en localStorage
+      const storedFavorites =
+        JSON.parse(localStorage.getItem("favorites")) || [];
+      localStorage.setItem(
+        "favorites",
+        JSON.stringify([...storedFavorites, product])
+      );
     } else if (isFav === true) {
       dispatch(deleteToFav(id));
       setIsFav(false);
+      // Actualizar localStorage
+      const storedFavorites =
+        JSON.parse(localStorage.getItem("favorites")) || [];
+      const updatedFavorites = storedFavorites.filter((fav) => fav.id !== id);
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
     }
   };
 
   const handleAddToShoppingCart = () => {
     const product = { name, size, price, imagen, id, quantity, stock };
-    if (isSelected === false) {
+    const storedCart = JSON.parse(localStorage.getItem("shoppingCart")) || [];
+    const productInCart = storedCart.find((cartItem) => cartItem.id === id);
+
+    if (isSelected === false && !productInCart) {
       dispatch(addToCart(product));
       setIsSelected(true);
-    } else if (isSelected === true) {
+      // Guardar en localStorage
+      const storedCart = JSON.parse(localStorage.getItem("shoppingCart")) || [];
+      localStorage.setItem(
+        "shoppingCart",
+        JSON.stringify([...storedCart, product])
+      );
+    } else if (isSelected === false && productInCart) {
+      // alert("This product already exists in the cart");
+      Swal.fire({
+        icon: "info",
+        title: "This product already exists in the cart",
+        color: "white",
+        background: "#1e1e1e",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else if (isSelected === true || productInCart) {
       dispatch(deleteToCart(id));
       setIsSelected(false);
+      // Actualizar localStorage
+      const storedCart = JSON.parse(localStorage.getItem("shoppingCart")) || [];
+      const updatedCart = storedCart.filter((cart) => cart.id !== id);
+      localStorage.setItem("shoppingCart", JSON.stringify(updatedCart));
     }
   };
 
   const handleSinPermisos = () => {
-    // alert("You need to be logged in to be able to add to favorites");
     Swal.fire({
       icon: "info",
       title: "You need to be logged in to be able to add to favorites",
@@ -70,12 +99,10 @@ const ProductCard = ({
     navigate("/SectionRegister");
   };
   const handleSinPermisosAñadir = () => {
-    // alert(
-    //   "You need to be logged in to be able to add products to the shopping cart"
-    // );
     Swal.fire({
       icon: "info",
-      title: "You need to be logged in to be able to add products to the shopping cart",
+      title:
+        "You need to be logged in to be able to add products to the shopping cart",
       color: "white",
       background: "#1e1e1e",
       showConfirmButton: false,
@@ -102,29 +129,28 @@ const ProductCard = ({
             </div>
             <div className={styles.fila2}>
               <div className={styles.size}>
-                <h1>WEIST</h1>
+                <h1>SIZE</h1>
                 <p>{size}</p>
               </div>
               <hr />
               <div>
-                <img src={durability} alt="" />
+                {deletePropInFav &&
+                  (isFav ? (
+                    <button
+                      id={styles.carrito}
+                      onClick={!token ? handleSinPermisos : handleFav}
+                    >
+                      <BsBagHeartFill />
+                    </button>
+                  ) : (
+                    <button
+                      id={styles.carrito}
+                      onClick={!token ? handleSinPermisos : handleFav}
+                    >
+                      <BsBagHeart />
+                    </button>
+                  ))}
               </div>
-              {deletePropInFav &&
-                (isFav ? (
-                  <button
-                    id={styles.carrito}
-                    onClick={!token ? handleSinPermisos : handleFav}
-                  >
-                    <BsBagHeartFill />
-                  </button>
-                ) : (
-                  <button
-                    id={styles.carrito}
-                    onClick={!token ? handleSinPermisos : handleFav}
-                  >
-                    <BsBagHeart />
-                  </button>
-                ))}
             </div>
             {deletePropInFav && (
               <div className={styles.fila3}>
@@ -134,23 +160,24 @@ const ProductCard = ({
               </div>
             )}
             <div className={styles.fila3}>
-              {isSelected ? (
-                <button
-                  onClick={
-                    !token ? handleSinPermisosAñadir : handleAddToShoppingCart
-                  }
-                >
-                  REMOVE FROM CART
-                </button>
-              ) : (
-                <button
-                  onClick={
-                    !token ? handleSinPermisosAñadir : handleAddToShoppingCart
-                  }
-                >
-                  ADD TO CART
-                </button>
-              )}
+              {addToCartInFav &&
+                (isSelected ? (
+                  <button
+                    onClick={
+                      !token ? handleSinPermisosAñadir : handleAddToShoppingCart
+                    }
+                  >
+                    REMOVE FROM CART
+                  </button>
+                ) : (
+                  <button
+                    onClick={
+                      !token ? handleSinPermisosAñadir : handleAddToShoppingCart
+                    }
+                  >
+                    ADD TO CART
+                  </button>
+                ))}
             </div>
           </div>
         </div>

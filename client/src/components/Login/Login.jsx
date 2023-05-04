@@ -1,11 +1,11 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BiX } from "react-icons/bi";
 import { SiGoogle } from "react-icons/si";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import {
-  login,
+  login
 } from "../../redux/actions";
 import style from "./login.module.css";
 
@@ -14,6 +14,8 @@ function Login({ isOpen, onClose }) {
   const navigate = useNavigate();
   const handleNavigate = () => navigate("/SectionHome");
   const [sendForm, setSendForm] = useState(false);
+  const [isLoading, setLoading] = useState(true);
+
   let isLoguin = window.localStorage.getItem("login");
 
   // const handlefacebook = () => {
@@ -24,9 +26,23 @@ function Login({ isOpen, onClose }) {
   //   navegar("/SectionHome");
   // };
 
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
+
+
   return (
     <div className={style.container}>
       <div className="animate__animated animate__fadeIn">
+      {isLoading ? ( 
+           <div className={style.containerSpinner}>
+           <div className={style.spinner}></div>
+         </div>
+      ):(
+
         <div className={style.Form}>
           <div className={style.close}>
             <button onClick={handleNavigate}>
@@ -173,7 +189,9 @@ function Login({ isOpen, onClose }) {
             {/* <p>Facebook</p> */}
           </div>
         </div>
-      </div>
+      )}
+
+</div>
     </div>
   );
 }

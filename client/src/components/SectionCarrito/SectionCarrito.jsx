@@ -9,6 +9,7 @@ import {
   createShop,
   createShopDetail,
   updateStockDecrement,
+  setCart,
 } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import jwt from "jwt-decode";
@@ -17,6 +18,7 @@ const SectionCarrito = () => {
   const [loading, setLoading] = useState(true);
   const userCartShopping = useSelector((state) => state.products.shoppingCart);
   const dispatch = useDispatch();
+  const cart = useSelector((state) => state.products.shoppingCart);
 
   //user
   let isLoguin = window.localStorage.getItem("login");
@@ -48,6 +50,20 @@ const SectionCarrito = () => {
   const handleDelete = (product) => {
     dispatch(deleteToCart(product));
   };
+
+
+
+  useEffect(() => {
+    const storedCart = localStorage.getItem('shoppingCart');
+    if (storedCart) {
+      dispatch(setCart(JSON.parse(storedCart)));
+    }
+    setLoading(false);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('shoppingCart', JSON.stringify(cart));
+  }, [cart]);
 
   useEffect(() => {
     setTimeout(() => {

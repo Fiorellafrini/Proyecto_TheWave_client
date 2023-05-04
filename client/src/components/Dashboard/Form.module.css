@@ -1,0 +1,55 @@
+.formulario label {
+  display: block;
+  font-weight: 600;
+  font-size: 18px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+.formulario input,
+.formulario textarea {
+  font-family: "Open Sans", sans-serif;
+  width: 100%;
+  border-radius: 5px;
+  font-size: 18px;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+.formulario input:focus,
+.formulario textarea:focus {
+  outline: none;
+}
+
+.formulario button[type="submit"]:hover {
+  background: #104243;
+}
+
+.formulario select {
+  margin: 1rem;
+  text-align: center;
+  outline: none;
+}
+.selets {
+  display: flex;
+}
+
+.formulario button[type="submit"] {
+  display: block;
+  background: #5edad2;
+  font-weight: 600;
+  font-family: "Open Sans", sans-serif;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  transition: 0.3s ease all;
+}
+
+.formulario button[type="submit"]:hover {
+  background: #104243;
+}
