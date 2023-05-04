@@ -34,7 +34,7 @@ const AddReview = ({ setIsOpen }) => {
         if (rating !== 0) {
           setIsSent(true);
           setSubmitting(false);
-          axios.post(`http://localhost:3001/review`, {
+          axios.post(`/review`, {
             comment: values.comment,
             rating,
             idProduct: id,

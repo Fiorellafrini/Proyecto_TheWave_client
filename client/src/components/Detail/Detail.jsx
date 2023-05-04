@@ -147,7 +147,6 @@ function Detail() {
             <div className={styles.detailInfo}>
               <div className={styles.col1}>
                 {detalle.id_brand === 1 && <img src={hurley} alt="hurley" />}
-                {detalle.id_brand === 3 && <img src={vesl} alt="vesl" />}
                 {detalle.id_brand === 4 && (
                   <img style={{ width: "100px" }} src={russel} alt="russel" />
                 )}

@@ -24,11 +24,11 @@ import {
   GET_FAV,
   GET_USERS,
   PUT_PRODUCT,
-  SAVE_FILTERS_AND_PAGE,
   CLEAR_FILTERS,
-  SET_FAVORITES,
+  CLEAR_CART,
+  REMOVE_ALL_FAV,
   EDITAR_PRODUCT,
-  FETCH_PAYMENT_STATUS_SUCCESS,
+  SET_FAVORITES,
 } from "./actions";
 
 const initialState = {
@@ -65,13 +65,6 @@ const reducer = (state = initialState, action) => {
     //--------------------------------GET_ALL_BRANDS-----------------------------------------\\
 
 
-    // case STOCKS_PRODUCTS:
-    //   return {
-    //     ...state,
-    //     products: action.payload,
-    //     allProduct: action.payload,
-
-    //   }
     //--------------------------------FILTROS--------------------------------------------------\\
     case FILTER_BY_NAME:
       return {
@@ -144,13 +137,6 @@ const reducer = (state = initialState, action) => {
         setPage: action.payload,
       };
 
-    case SAVE_FILTERS_AND_PAGE:
-      return {
-        ...state,
-        filters: action.payload.filters,
-        setPage: action.payload.page,
-      };
-
     case FILTER_BRAND:
       return {
         ...state,
@@ -168,13 +154,13 @@ const reducer = (state = initialState, action) => {
         filters: {},
         setPage: 1,
       };
-    //--------------------------------ADD_TO_CART--------------------------------\\
+
+    //--------------------------------CART--------------------------------\\
     case ADD_TO_CART:
       return {
         ...state,
         shoppingCart: [...state.shoppingCart, action.payload],
       };
-    //--------------------------------DELETE_TO_CART--------------------------------\\
     case DELETE_TO_CART:
       const deleteCar = state.shoppingCart.filter(
         (product) => product.id !== action.payload
@@ -183,6 +169,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         shoppingCart: deleteCar,
       };
+
+    case CLEAR_CART:
+      return {
+        ...state,
+        shoppingCart: [], // Reinicia el carrito
+      };
+
     //--------------------------------EMPTY_CART--------------------------------\\
     case EMPTY_CART:
       return {
@@ -191,14 +184,13 @@ const reducer = (state = initialState, action) => {
           (product) => product !== action.payload
         ),
       };
-    //--------------------------------ADD_TO_FAV-------------------------------\\
+    //--------------------------------FAV-------------------------------\\
     case ADD_TO_FAV:
       return {
         ...state,
         favorites: [...state.favorites, action.payload],
       };
 
-    //--------------------------------DELETE_TO_FAV-------------------------------\\
     case DELETE_TO_FAV:
       const newFavorites = state.favorites.filter(
         (product) => product.id !== action.payload
@@ -207,20 +199,23 @@ const reducer = (state = initialState, action) => {
         ...state,
         favorites: newFavorites,
       };
-    // //--------------------------------GET FAV------------------------------------------//
     case GET_FAV:
       return {
         ...state,
         favorites: action.payload,
       };
-    // //--------------------------------SET FAV------------------------------------------//
 
-    case SET_FAVORITES:
+    case REMOVE_ALL_FAV:
+      return {
+        ...state,
+        favorites: [],
+      };
+
+      case SET_FAVORITES:
       return {
         ...state,
         favorites: action.payload,
       };
-
     //--------------------------------PAYMENT------------------------------------------------------\\
     case PAYMENT:
       return {

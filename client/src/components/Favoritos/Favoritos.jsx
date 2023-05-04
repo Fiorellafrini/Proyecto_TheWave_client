@@ -17,14 +17,24 @@ const Favorites = () => {
 
   const handleDelete = (productId) => {
     dispatch(deleteToFav(productId));
-    localStorage.setItem('favorites', JSON.stringify(fav));
   };
+
 
   useEffect(() => {
     const storedFavorites = localStorage.getItem('favorites');
     if (storedFavorites) {
       dispatch(setFavorites(JSON.parse(storedFavorites)));
     }
+    setLoading(false);
+  }, []);
+
+  
+  useEffect(() => {
+    localStorage.setItem('favorites', JSON.stringify(fav));
+  }, [fav]);
+
+
+  useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 2000);

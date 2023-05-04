@@ -28,6 +28,7 @@ export const GET_USERS = "GET_USERS";
 export const PUT_PRODUCT = "PUT_PRODUCT";
 export const SAVE_FILTERS_AND_PAGE = "SAVE_FILTERS_AND_PAGE";
 export const CLEAR_FILTERS = "CLEAR_FILTERS";
+export const CLEAR_CART = "CLEAR_CART";
 export const EDITAR_PRODUCT = "EDITAR_PRODUCT";
 export const GET_FAV = "GET_FAV";
 export const LOGIN = "LOGIN";
@@ -40,6 +41,7 @@ export const PUTUSER = "PUTUSER";
 export const GET_BY_ID = "GET_BY_ID";
 export const SET_FAVORITES = "SET_FAVORITES";
 export const CLEAN_USER = "CLEAN_USER";
+export const REMOVE_ALL_FAV = "REMOVE_ALL_FAV";
 
 //-------------------------------------------CREATE PRODUCT---------------------------------------------------------//
 export const createProduct = (body) => async (dipatch) => {
@@ -205,10 +207,13 @@ export const registro = (body) => async (dipatch) => {
 export const addToCart = (product) => {
   return { type: ADD_TO_CART, payload: product };
 };
-//----------------------------------DELETE TO CART----------------------------------
+
 export const deleteToCart = (id) => {
   return { type: DELETE_TO_CART, payload: id };
 };
+export const clearCart = () => ({
+  type: CLEAR_CART,
+});
 // ----------------------------------PAYMENT----------------------------------------------------//
 export const paymentMercadoPago = (body) => {
   return async (dispatch) => {
@@ -311,30 +316,52 @@ export const login = (body) => async (dipatch) => {
       color: "white",
       background: "#1e1e1e",
       showConfirmButton: false,
-      timer: 1500,
+      timer: 3000,
     });
   } catch (error) {
-    // alert(error.message);
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "Incorrect Credentials",
-      color: "white",
-      background: "#1e1e1e",
-      showConfirmButton: false,
-      timer: 1500,
-    });
+    if (
+      error.response &&
+      error.response.status === 401 &&
+      error.response.data.error === "El usuario ha sido dado de baja."
+    ) {
+      // Si el usuario no está activo, mostrar una alerta específica.
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Banned user. Please contact the administrator.",
+        color: "white",
+        background: "#1e1e1e",
+        showConfirmButton: false,
+        timer: 2500,
+      });
+    } else {
+      // Si las credenciales son incorrectas, mostrar la alerta predeterminada.
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Incorrect Credentials",
+        color: "white",
+        background: "#1e1e1e",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    }
   }
 };
 // -------------------------------------FAVORITOS-----------------------------------------------------//
 export const addToFav = (product) => {
   return { type: ADD_TO_FAV, payload: product };
 };
-// ----------------------------------DELETE TO CART----------------------------------
+
 export const deleteToFav = (id) => {
   return { type: DELETE_TO_FAV, payload: id };
 };
-//--------------------------PARA CONECTAR CON EL BACK QUE SI FUNCIONA----------------
+
+export const removeAllFav = () => ({
+  type: REMOVE_ALL_FAV,
+});
+
+
 export const getFav = (userId) => async (dispatch) => {
   try {
     const res = await axios.get(`/favorites/${userId}`);
@@ -344,9 +371,31 @@ export const getFav = (userId) => async (dispatch) => {
   }
 };
 export const setFavorites = (favorites) => ({
-  type: SET_FAVORITES,
+  type: "SET_FAVORITES",
   payload: favorites,
 });
+
+
+// --------------------------PARA CONECTAR CON EL BACK QUE SI FUNCIONA----------------
+// export const addToFav = (userId, id_product) => async (dispatch) => {
+//   try {
+//     const res = await axios.post(`/favorites/${userId}/${id_product}`);
+//     console.log(res);
+//     dispatch({ type: ADD_TO_FAV, payload: res.data });
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
+
+// export const deleteToFav = (userId, id_product) => async (dispatch) => {
+//   try {
+//     const res = await axios.delete(`/favorites/${userId}/${id_product}`);
+//     dispatch({ type: DELETE_TO_FAV, payload: id_product });
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
+
 //---------------------------------------PUT USER --------------------------------------------------//
 export const putUser = (id, body, token) => async (dispatch) => {
   // const authToken =  window.localStorage.getItem("login");
@@ -383,8 +432,8 @@ export function users() {
 export function listBrands() {
   return async function (dispatch) {
     try {
-      const json = await axios.get("http://localhost:3001/brand");
-      const brands = json.data;
+      const json = await axios.get("/brand");
+      const brands = json.data
       dispatch({ type: GET_ALL_BRANDS, payload: brands });
     } catch (error) {
       return "Something went wrong" + error.message;
@@ -422,8 +471,8 @@ export function productsByIdEditar(id) {
 export function listTypes() {
   return async function (dispatch) {
     try {
-      const json = await axios.get("http://localhost:3001/type");
-      const types = json.data;
+      const json = await axios.get("/type");
+      const types = json.data
       dispatch({ type: GET_All_TYPES, payload: types });
     } catch (error) {
       return "Something went wrong" + error.message;
