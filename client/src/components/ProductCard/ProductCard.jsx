@@ -53,8 +53,11 @@ const ProductCard = ({
   };
 
   const handleAddToShoppingCart = () => {
-    const product = { name, size, price, imagen, id, quantity, stock };
-    if (isSelected === false) {
+    const product = { name, size, price, imagen, id, quantity, stock }; 
+    const storedCart = JSON.parse(localStorage.getItem("shoppingCart")) || [];
+    const productInCart = storedCart.find((cartItem) => cartItem.id === id);
+    
+    if (isSelected === false && !productInCart) {
       dispatch(addToCart(product));
       setIsSelected(true);
       // Guardar en localStorage
@@ -63,7 +66,9 @@ const ProductCard = ({
         "shoppingCart",
         JSON.stringify([...storedCart, product])
       );
-    } else if (isSelected === true) {
+    } else if (isSelected === false && productInCart) {
+      alert("This product already exists in the cart");
+    } else if (isSelected === true || productInCart) {
       dispatch(deleteToCart(id));
       setIsSelected(false);
       // Actualizar localStorage
@@ -72,6 +77,8 @@ const ProductCard = ({
       localStorage.setItem("shoppingCart", JSON.stringify(updatedCart));
     }
   };
+
+  
 
   const handleSinPermisos = () => {
     Swal.fire({
