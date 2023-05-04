@@ -90,7 +90,15 @@ function Detail() {
       const productInCart = storedCart.find(cart => cart.id === detalle.id);
   
       if (productInCart) {
-        alert("This product already exists in the cart");
+        // alert("This product already exists in the cart");
+        Swal.fire({
+          icon: "info",
+          title: "This product already exists in the cart",
+          color: "white",
+          background: "#1e1e1e",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       } else {
         dispatch(addToCart(detalle));
         setIsSelected(true);

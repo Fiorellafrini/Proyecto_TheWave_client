@@ -6,7 +6,7 @@
 
 .formulario h1 {
   font-size: 4.5vw;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #224145;
   line-height: 80px;
 }
@@ -18,7 +18,7 @@
   border-radius: 20px;
   padding: 30px;
   font-size: 2rem;
-  font-family: 'Work Sans';
+  font-family: "Work Sans";
 }
 
 .btnrws {
@@ -36,7 +36,7 @@
   background-color: #224145;
   color: white;
   padding: 10px;
-  font-family: 'Work Sans';
+  font-family: "Work Sans";
   outline: none;
   text-decoration: none;
   margin-left: 5px;

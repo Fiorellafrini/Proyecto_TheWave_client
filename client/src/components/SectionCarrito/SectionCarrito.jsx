@@ -4,7 +4,7 @@ import styles from "../SectionCarrito/SectionCarrito.module.css";
 import ShoppingCartCard from "../ShoppingCartCard/ShoppingCartCard";
 import { useSelector } from "react-redux";
 import {
-  paymentMercadoPago,
+  // paymentMercadoPago,
   deleteToCart,
   createShop,
   createShopDetail,

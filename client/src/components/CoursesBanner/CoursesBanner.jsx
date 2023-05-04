@@ -20,7 +20,7 @@ const CoursesBanner = () => {
         style={{ display: currentImage === 1 ? "block" : "none" }}
       >
         <img src={bannerCourses} alt="" />
-        <button className={styles.buttonCourses}>COMING SOON...</button>
+        {/* <button className={styles.buttonCourses}>COMING SOON...</button> */}
       </div>
       <div
         className={styles.containerCoursesBanner}
