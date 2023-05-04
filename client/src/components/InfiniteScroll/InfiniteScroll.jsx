@@ -35,26 +35,6 @@ const Infinite = () => {
   const lastIndex = page * 8;
   const firstIndex = lastIndex - 8;
 
-
-
-// const Infinite = () => {
-//   const dispatch = useDispatch();
-//   const productos = useSelector((state) => state.products.products);
-//   const setPage = useSelector((state) => state.products.setPage);
-
-//   const lastIndex = setPage * 8;
-//   const firstIndex = lastIndex - 8;
-
-//   useEffect(() => {
-//     dispatch(listProducts());
-//     dispatch(setCurrentPage(1));
-//     // console.log(currentPage);
-//   }, [dispatch]);
-
-
-
-//   const activeProductos = productos.filter((product) => product.active);
-
   return (
     <>
       <Paginado total={activeProductos.length} />

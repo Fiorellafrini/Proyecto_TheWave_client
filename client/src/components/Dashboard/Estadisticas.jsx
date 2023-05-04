@@ -22,7 +22,7 @@ function Estadisticas() {
             <AiOutlineUser />
           </div>
         </div>
-        <div className={styles.card}>
+        {/* <div className={styles.card}>
           <div>
             <div className={styles.numbers}>309</div>
             <div className={styles.cardName}>Daily Views</div>
@@ -30,7 +30,7 @@ function Estadisticas() {
           <div className={styles.iconBox}>
             <AiOutlineEye />
           </div>
-        </div>
+        </div> */}
         <div className={styles.card}>
           <div>
             <div className={styles.numbers}>{productos.length}</div>
@@ -40,7 +40,7 @@ function Estadisticas() {
             <MdOutlineShoppingBasket />
           </div>
         </div>
-        <div className={styles.card}>
+        {/* <div className={styles.card}>
           <div>
             <div className={styles.numbers}>2227</div>
             <div className={styles.cardName}>Comments</div>
@@ -48,7 +48,7 @@ function Estadisticas() {
           <div className={styles.iconBox}>
             <GoCommentDiscussion />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

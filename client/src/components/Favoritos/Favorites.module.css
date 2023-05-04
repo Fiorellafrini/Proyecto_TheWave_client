@@ -9,6 +9,13 @@
   border-bottom-right-radius: 15px;
   padding-bottom: 20px;
 }
+.containerPayments {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 100px;
+}
 
 .cards {
   display: flex;

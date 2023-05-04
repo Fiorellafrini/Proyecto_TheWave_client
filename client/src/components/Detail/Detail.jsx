@@ -35,8 +35,22 @@ function Detail() {
   let token = window.localStorage.getItem("login");
   const [loading, setLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
+  const [reviewVisible, setReviewVisible] = useState(false);
+
+  const handleOpenReview = () => {
+    setReviewVisible(true);
+  };
+
+  const handleCloseReview = () => {
+    setReviewVisible(false);
+  };
+
   const handleOpen = () => {
     setIsOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
   };
 
   //user
@@ -65,6 +79,7 @@ function Detail() {
   }, []);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(productsById(id));
   }, [dispatch, id]);
 
@@ -82,7 +97,6 @@ function Detail() {
   const nombreEnMayusculas = detalle?.name?.toUpperCase();
 
   const handleSinPermisos = () => {
-    // alert("You need to be logged in to be able to buy");
     Swal.fire({
       icon: "info",
       title: "You need to be logged in to be able to buy",
@@ -94,12 +108,10 @@ function Detail() {
     navigate("/SectionRegister");
   };
   const handleSinPermisosAñadir = () => {
-    // alert(
-    //   "You need to be logged in to be able to add products to the shopping cart"
-    // );
     Swal.fire({
       icon: "info",
-      title: "You need to be logged in to be able to add products to the shopping cart",
+      title:
+        "You need to be logged in to be able to add products to the shopping cart",
       color: "white",
       background: "#1e1e1e",
       showConfirmButton: false,
@@ -169,11 +181,16 @@ function Detail() {
                   <img src={target1} alt="" />
                   <img src={target2} alt="" />
                 </div>
+                <div>
+                  <div>
+                    <button onClick={handleOpen}>ADD REVIEW</button>
+                    <button onClick={handleOpenReview}>SEE COMENTS</button>
+                  </div>
+                </div>
                 <div className={styles.containerPago}>
                   <button onClick={!token ? handleSinPermisos : handlePayment}>
                     PAY
                   </button>
-
                   {isSelected ? (
                     <button
                       onClick={
@@ -216,22 +233,36 @@ function Detail() {
             </div>
           </div>
           {reviewCount === 0 ? (
-            <div className={styles.commentContainer}>
-              <p>Be the first to add a review</p>
-              <div>
-                <button onClick={handleOpen}>Add Review</button>
-                {isOpen && <AddReview setOpen={setIsOpen} />}
+            isOpen && (
+              <div className={styles.modal}>
+                <div className={styles.buttonClose}>
+                  <button onClick={handleClose}>x</button>
+                </div>
+                <div className={styles.modalcontent}>
+                  <AddReview handleClose={handleClose} />
+                </div>
               </div>
-            </div>
+            )
           ) : (
-            detalle.Reviews.map((review) => (
-              <ReviewCard
-                idUser={review.id_user}
-                updatedAt={review.updatedAt}
-                rating={review.rating}
-                comment={review.comment}
-              />
-            ))
+            <>
+              {reviewVisible && (
+                <div className={styles.modal}>
+                  <div className={styles.buttonClose}>
+                    <button onClick={handleCloseReview}>x</button>
+                  </div>
+                  <div className={styles.modalcontent}>
+                    {detalle.Reviews.map((review) => (
+                      <ReviewCard
+                        idUser={review.id_user}
+                        updatedAt={review.updatedAt}
+                        rating={review.rating}
+                        comment={review.comment}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+            </>
           )}
         </div>
       )}
