@@ -20,6 +20,7 @@ const Favorites = () => {
   };
 
 
+
   useEffect(() => {
     const storedFavorites = localStorage.getItem('favorites');
     if (storedFavorites) {
@@ -33,6 +34,7 @@ const Favorites = () => {
     localStorage.setItem('favorites', JSON.stringify(fav));
   }, [fav]);
 
+  
 
   useEffect(() => {
     setTimeout(() => {

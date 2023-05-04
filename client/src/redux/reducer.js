@@ -29,6 +29,7 @@ import {
   REMOVE_ALL_FAV,
   EDITAR_PRODUCT,
   SET_FAVORITES,
+  SET_CART
 } from "./actions";
 
 const initialState = {
@@ -184,6 +185,13 @@ const reducer = (state = initialState, action) => {
           (product) => product !== action.payload
         ),
       };
+
+      case SET_CART:
+        return {
+          ...state,
+          shoppingCart: action.payload,
+        };
+        
     //--------------------------------FAV-------------------------------\\
     case ADD_TO_FAV:
       return {
@@ -216,6 +224,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         favorites: action.payload,
       };
+      
     //--------------------------------PAYMENT------------------------------------------------------\\
     case PAYMENT:
       return {
