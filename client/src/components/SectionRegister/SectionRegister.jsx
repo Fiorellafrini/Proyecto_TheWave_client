@@ -7,6 +7,7 @@ import style from './SectionRegister.module.css'
 const SectionRegister = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [Open, setOpen] = useState(false);
+  const [isLoading, setLoading] = useState(true);
   const navegar = useNavigate();
 
   let isLoguin = window.localStorage.getItem("login");
@@ -34,11 +35,29 @@ const SectionRegister = () => {
       </div>
     );
   }
+
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
+  
   return (
+    <div>
+    {isLoading ? (
+      <div className={style.containerSpinner}>
+        <div className={style.spinner}></div>
+      </div>
+    ) : (
     <div className={style.container}>
       <button onClick={handleLogout}>Cerrar sesion</button>
     </div>
+   )}
+    </div>
+      
   );
+  
 };
 export default SectionRegister;
 

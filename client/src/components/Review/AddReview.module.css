@@ -1,53 +1,51 @@
-.cntd{
-    display: flex;
-    justify-content: center;
-    z-index: 5;
-    flex-wrap: wrap column;
-    width:100%;
-    height: 50%;
-    background-color: white;
-    border-radius: 21px 21px 21px 0px;
-    
+.formulario {
+  width: 100%;
+  padding: 20px;
+  border-radius: 20px;
 }
-.formulario{
-   
-    width: 100%;
+
+.formulario h1 {
+  font-size: 4.5vw;
+  font-family: "Poppins", sans-serif;
+  color: #224145;
+  line-height: 80px;
 }
+
 .formulario textarea {
-    display: flex;
-    
-    font-family: "Open Sans", sans-serif;
-    width: 100%;
-    height: 150px;
-    border-radius: 5px;
-    font-size: 18px;
-    padding: 10px;
-    margin-bottom: 5px;
-  }
-  .btnrws  {
-    width: 100%;
-    display: flex;
-
-
+  display: flex;
+  width: 100%;
+  height: 400px;
+  border-radius: 20px;
+  padding: 30px;
+  font-size: 2rem;
+  font-family: "Work Sans";
 }
-.formulario .exito {
-    text-align: center;
-    font-size: 22px;
-    color: #02a802;
-  }
+
+.btnrws {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .btnrws button {
-    display: flex;
-    background-color: #224145;
-    color: white;
-    font-size: 22px;
-    width: 99px;
-    height: 36px;
-    justify-content: center;
-    
-
-
+  width: 400px;
+  height: 70px;
+  font-size: 2em;
+  border: none;
+  border-radius: 15px;
+  background-color: #224145;
+  color: white;
+  padding: 10px;
+  font-family: "Work Sans";
+  outline: none;
+  text-decoration: none;
+  margin-left: 5px;
+  cursor: pointer;
+  text-align: center;
 }
 
-
-
+.formulario .exito {
+  text-align: center;
+  font-size: 22px;
+  color: #02a802;
+}

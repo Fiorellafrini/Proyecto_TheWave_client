@@ -29,6 +29,7 @@ import Perfil from "./components/perfil/Perfil";
 //import UserDash from "./components/Dashboard/UsersDash";
 // import Users from "./components/Dashboard/UsersDash";
 import CardDashEdit from "./components/Dashboard/CardDashEdit";
+import FeedBack from "./components/FeedBack/FeedBack";
 import { listProducts, setCurrentPage } from "./redux/actions";
 
 function App() {
@@ -59,15 +60,19 @@ function App() {
       ].includes(location.pathname) ? (
         <NavVertical />
       ) : null}
-      {["/form", "/stats", "/admin"].includes(location.pathname) ? (
+      {["/form", "/stats", "/admin"].includes(location.pathname) ||
+      location.pathname.includes("/editarProducto") ? (
         <Sidebar />
       ) : null}
-
       <Routes>
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="/SectionHome" element={<SectionHome />}></Route>
         <Route path="/SectionLogIn" element={<Login />}></Route>
         <Route path="/SectionRegister" element={<Register />}></Route>
+        <Route
+          path="/SectionCategories"
+          element={<SectionCategories />}
+        ></Route>
         <Route
           path="/SectionCategories"
           element={<SectionCategories />}
@@ -79,14 +84,21 @@ function App() {
           path="/reset-Password/:id/:token"
           element={<ResetPassword />}
         ></Route>
+        <Route element={<ProteccionRutas />} />
+        <Route path="/Favorites" element={<Favorites />}></Route>
+        <Route path="/MyProfile" element={<Perfil />}></Route>
+        <Route path="/SectionRegister" element={<Register />}></Route>
+        <Route
+          path="/reset-Password/:id/:token"
+          element={<ResetPassword />}
+        ></Route>
         <Route path="*" element={<Error404 />}></Route>
-
         <Route element={<ProteccionRutas />}>
           <Route path="/MyProfile" element={<Perfil />}></Route>
           <Route path="/ShopDetail" element={<ShopDetail />}></Route>
           <Route path="/Favorites" element={<Favorites />}></Route>
+          <Route path="/FeedBack" element={<FeedBack />}></Route>
         </Route>
-
         <Route element={<ProteccionRutaAdmin />}>
           <Route path="/form" element={<FormProduct />}></Route>
           <Route path="/admin" element={<HomeDashboard />}></Route>

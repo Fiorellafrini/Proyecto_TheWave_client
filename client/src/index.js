@@ -11,6 +11,7 @@ import { persistor, store } from "./redux/store";
 axios.defaults.baseURL = 'http://localhost:3001'; //para trabajar local
 // axios.defaults.baseURL = 'https://proyectothewaveapi-production.up.railway.app'; //si guardo con esta activado se actualiza el deploy
 
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
