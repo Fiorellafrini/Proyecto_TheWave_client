@@ -35,7 +35,8 @@ const ProductCard = ({
       dispatch(addToFav(product));
       setIsFav(true);
       // Guardar en localStorage
-      const storedFavorites = JSON.parse(localStorage.getItem("favorites"));
+      const storedFavorites =
+        JSON.parse(localStorage.getItem("favorites")) || [];
       localStorage.setItem(
         "favorites",
         JSON.stringify([...storedFavorites, product])
@@ -44,20 +45,20 @@ const ProductCard = ({
       dispatch(deleteToFav(id));
       setIsFav(false);
       // Actualizar localStorage
-      const storedFavorites = JSON.parse(localStorage.getItem("favorites"));
+      const storedFavorites =
+        JSON.parse(localStorage.getItem("favorites")) || [];
       const updatedFavorites = storedFavorites.filter((fav) => fav.id !== id);
       localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
     }
   };
 
-;
   const handleAddToShoppingCart = () => {
     const product = { name, size, price, imagen, id, quantity, stock };
     if (isSelected === false) {
       dispatch(addToCart(product));
       setIsSelected(true);
       // Guardar en localStorage
-      const storedCart = JSON.parse(localStorage.getItem("shoppingCart"));
+      const storedCart = JSON.parse(localStorage.getItem("shoppingCart")) || [];
       localStorage.setItem(
         "shoppingCart",
         JSON.stringify([...storedCart, product])
@@ -66,7 +67,7 @@ const ProductCard = ({
       dispatch(deleteToCart(id));
       setIsSelected(false);
       // Actualizar localStorage
-      const storedCart = JSON.parse(localStorage.getItem("shoppingCart"));
+      const storedCart = JSON.parse(localStorage.getItem("shoppingCart")) || [];
       const updatedCart = storedCart.filter((cart) => cart.id !== id);
       localStorage.setItem("shoppingCart", JSON.stringify(updatedCart));
     }
@@ -119,22 +120,22 @@ const ProductCard = ({
               </div>
               <hr />
               <div>
-              {deletePropInFav &&
-                (isFav ? (
-                  <button
-                    id={styles.carrito}
-                    onClick={!token ? handleSinPermisos : handleFav}
-                  >
-                    <BsBagHeartFill />
-                  </button>
-                ) : (
-                  <button
-                    id={styles.carrito}
-                    onClick={!token ? handleSinPermisos : handleFav}
-                  >
-                    <BsBagHeart />
-                  </button>
-                ))}
+                {deletePropInFav &&
+                  (isFav ? (
+                    <button
+                      id={styles.carrito}
+                      onClick={!token ? handleSinPermisos : handleFav}
+                    >
+                      <BsBagHeartFill />
+                    </button>
+                  ) : (
+                    <button
+                      id={styles.carrito}
+                      onClick={!token ? handleSinPermisos : handleFav}
+                    >
+                      <BsBagHeart />
+                    </button>
+                  ))}
               </div>
             </div>
             {deletePropInFav && (
