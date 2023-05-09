@@ -8,8 +8,8 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 export default function EstadisticasTorta() {
   const dispatch = useDispatch();
 
-  const productos = useSelector((state) => state.products.products);
-  const brand = useSelector((state) => state.products.brands);
+  // const productos = useSelector((state) => state.products.products);
+  // const brand = useSelector((state) => state.products.brands);
   const type = useSelector((state) => state.products.types)
 
   useEffect(() => {
@@ -17,13 +17,13 @@ export default function EstadisticasTorta() {
     dispatch(listTypes())
   }, [dispatch]);
 
- // const brands = brand.length ? brand.map((prod) => prod.name) : null;
+  // const brands = brand.length ? brand.map((prod) => prod.name) : null;
 
   const types = type.length ? type.map((prod) => prod.name.length) : null
 
   const types2 = type.length ? type.map((prod) => prod.name) : null
 
-  //const stock = productos.length ? productos.map((prod) => prod.stock) : null;
+  // const stock = productos.length ? productos.map((prod) => prod.stock) : null;
 
   var midata = {
     responsive: true,

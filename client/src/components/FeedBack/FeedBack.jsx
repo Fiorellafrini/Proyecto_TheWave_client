@@ -33,7 +33,7 @@ const FeedBack = () => {
               <div className={styles.paymentSucces}>
                 <FaRegCheckCircle fontSize={"100px"} color="#21a88bdc" />
                 <h1>THANK YOUR FOR THE PURCHASE!</h1>
-                <table>
+                {/* <table>
                   <tbody>
                     <tr>
                       <td className="label">ID de Pago</td>
@@ -52,8 +52,7 @@ const FeedBack = () => {
                       <td className="value">$9.99</td>
                     </tr>
                   </tbody>
-                </table>
-
+                </table> */}
                 <Link to={"/ShopDetail"}>
                   <button>View My Payments</button>
                 </Link>

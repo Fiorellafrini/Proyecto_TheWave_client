@@ -39,8 +39,8 @@ const CardsDash = () => {
           <table>
             <thead>
               <tr>
-                <td>ID</td>
                 <td>Name</td>
+                <td>Stock</td>
                 <td>Price</td>
                 <td>Size</td>
                 <td colSpan={2}>Status</td>
@@ -54,6 +54,7 @@ const CardsDash = () => {
                       
                         {/* <td>{product.id}</td> */}
                         <td>{product.name}</td>
+                        <td>{product.stock}</td>
                         <td>${product.price}</td>
                         <td>{product.size}</td>
                         <td>

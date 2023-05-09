@@ -38,32 +38,33 @@ const ReviewCard = ({ rating, idUser, comment, updatedAt }) => {
   for (const { unit, threshold, name } of thresholds) {
     const diff = currentDate.diff(createdDate, unit);
     if (diff < threshold) {
-      timeAgo =(`${diff} ${name}${diff === 1 ? "" : "s"} ago`);
+      timeAgo = `${diff} ${name}${diff === 1 ? "" : "s"} ago`;
       break;
     }
   }
   return (
-    <div className={styles.commentContainer}>
-      <div className={styles.userInfo}>
-      <div className={styles.personal}>
-      <img src={data?.photo} alt="#" />
-        <h2>
-          {data?.name} {data?.lastName}
-        </h2>
-      </div>
-        
-       
-   
-        <button  ><SlOptionsVertical /></button>
-        
-      </div>
-      <div className={styles.score}>
-        <h2>{rating.toFixed(1)} </h2>
-        <h2>{stars}</h2>
-        <h5>{timeAgo}</h5>
-      </div>
-      <div className={styles.comment}>
-        <h1>{comment}</h1>
+    <div className={styles.container}>
+      <h1>#COMMENTS</h1>
+      <div className={styles.commentContainer}>
+        <div className={styles.userInfo}>
+          <div className={styles.personal}>
+            <img src={data?.photo} alt="#" />
+            <h2>
+              {data?.name} {data?.lastName}
+            </h2>
+          </div>
+          <button>
+            <SlOptionsVertical />
+          </button>
+        </div>
+        <div className={styles.score}>
+          <h2>{rating.toFixed(1)} </h2>
+          <h2>{stars}</h2>
+          <h5>{timeAgo}</h5>
+        </div>
+        <div className={styles.comment}>
+          <h2>{comment}</h2>
+        </div>
       </div>
     </div>
   );

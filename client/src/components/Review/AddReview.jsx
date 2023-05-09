@@ -4,11 +4,11 @@ import jwt from "jwt-decode";
 import { React, useState } from "react";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import styles from "./AddReview.module.css";
 import StarRating from "./StarRating";
-import Swal from "sweetalert2";
 
-const AddReview = ({ setIsOpen}) => {
+const AddReview = ({ setIsOpen }) => {
   const [isSent, setIsSent] = useState(false);
   const [rating, setRating] = useState(0);
   const navegate = useNavigate();
@@ -16,6 +16,12 @@ const AddReview = ({ setIsOpen}) => {
   const { id } = useParams();
   let token = window.localStorage.getItem("login");
   const idUser = jwt(token).id;
+
+  const handleSubmit = () => {
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+  };
 
   return (
     <Formik
@@ -34,7 +40,7 @@ const AddReview = ({ setIsOpen}) => {
         if (rating !== 0) {
           setIsSent(true);
           setSubmitting(false);
-          axios.post(`http://localhost:3001/review`, {
+          axios.post(`/review`, {
             comment: values.comment,
             rating,
             idProduct: id,
@@ -60,18 +66,15 @@ const AddReview = ({ setIsOpen}) => {
         <div className="animate__animated animate__fadeIn">
           <div className={styles.cntd}>
             <Form className={styles.formulario}>
-              <StarRating rating={rating} setRating={setRating} />
+              <h1>#REVIEW</h1>
               <label htmlFor="comment"></label>
               <br />
               <Field name="comment" as="textarea" />
+              <StarRating rating={rating} setRating={setRating} />
               <br />
               <div className={styles.btnrws}>
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                
-                >
-                  Send
+                <button onClick={handleSubmit} type="submit" disabled={isSubmitting}>
+                  send
                 </button>
               </div>
               {isSent && <p className={styles.exito}>Sent successfully </p>}

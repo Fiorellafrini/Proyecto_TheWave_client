@@ -1,31 +1,30 @@
+import jwt from "jwt-decode";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import billabong from "../../assets/billabong.png";
 import hurley from "../../assets/hurley.png";
 import russel from "../../assets/russel.png";
-import Swal from "sweetalert2";
 
+import talleL from "../../assets/talleL.png";
+import talleM from "../../assets/talleM.png";
+import talleS from "../../assets/talleS.png";
+import talleXL from "../../assets/talleXL.png";
 import {
-  paymentMercadoPago,
   createShop,
   createShopDetail,
+  paymentMercadoPago,
 } from "../../redux/actions";
 import { addToCart, deleteToCart, productsById } from "../../redux/actions.js";
-import Navigation from "../Navigation/Navigation.jsx";
-import styles from "./Detail.module.css";
-import talleS from "../../assets/talleS.png";
-import talleM from "../../assets/talleM.png";
-import talleL from "../../assets/talleL.png";
-import talleXL from "../../assets/talleXL.png";
-import vesl from "../../assets/vesl.png";
 import target1 from "../Detail/iconos/master.png";
 import target2 from "../Detail/iconos/visa.png";
+import Navigation from "../Navigation/Navigation.jsx";
 import AddReview from "../Review/AddReview";
 import ReviewCard from "../Review/ReviewCard";
 import StarRender from "../Review/StartRender";
-import jwt from "jwt-decode";
+import styles from "./Detail.module.css";
 function Detail() {
   const dispatch = useDispatch();
   const detalle = useSelector((state) => state.products.detail);
@@ -35,8 +34,22 @@ function Detail() {
   let token = window.localStorage.getItem("login");
   const [loading, setLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
+  const [reviewVisible, setReviewVisible] = useState(false);
+
+  const handleOpenReview = () => {
+    setReviewVisible(true);
+  };
+
+  const handleCloseReview = () => {
+    setReviewVisible(false);
+  };
+
   const handleOpen = () => {
     setIsOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
   };
 
   //user
@@ -65,24 +78,47 @@ function Detail() {
   }, []);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(productsById(id));
   }, [dispatch, id]);
 
-  //------------------------------addToCart------------------------------\\
   const addToShoppingCart = () => {
+    // const product = { name, size, price, imagen, id, quantity, stock };
     if (isSelected === false) {
-      dispatch(addToCart(detalle));
-      setIsSelected(true);
+      const storedCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+      const productInCart = storedCart.find(cart => cart.id === detalle.id);
+  
+      if (productInCart) {
+        // alert("This product already exists in the cart");
+        Swal.fire({
+          icon: "info",
+          title: "This product already exists in the cart",
+          color: "white",
+          background: "#1e1e1e",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        dispatch(addToCart(detalle));
+        setIsSelected(true);
+        // Guardar en localStorage
+        localStorage.setItem('shoppingCart', JSON.stringify([...storedCart, detalle]));
+      }
     } else if (isSelected === true) {
       dispatch(deleteToCart(detalle.id));
       setIsSelected(false);
+      // Actualizar localStorage
+      const storedCart = JSON.parse(localStorage.getItem('shoppingCart'));
+      const updatedCart = storedCart.filter(cart => cart.id !== detalle.id);
+      localStorage.setItem('shoppingCart', JSON.stringify(updatedCart));
     }
   };
+  
+
 
   const nombreEnMayusculas = detalle?.name?.toUpperCase();
 
   const handleSinPermisos = () => {
-    // alert("You need to be logged in to be able to buy");
     Swal.fire({
       icon: "info",
       title: "You need to be logged in to be able to buy",
@@ -94,12 +130,10 @@ function Detail() {
     navigate("/SectionRegister");
   };
   const handleSinPermisosAñadir = () => {
-    // alert(
-    //   "You need to be logged in to be able to add products to the shopping cart"
-    // );
     Swal.fire({
       icon: "info",
-      title: "You need to be logged in to be able to add products to the shopping cart",
+      title:
+        "You need to be logged in to be able to add products to the shopping cart",
       color: "white",
       background: "#1e1e1e",
       showConfirmButton: false,
@@ -135,7 +169,6 @@ function Detail() {
             <div className={styles.detailInfo}>
               <div className={styles.col1}>
                 {detalle.id_brand === 1 && <img src={hurley} alt="hurley" />}
-                {detalle.id_brand === 3 && <img src={vesl} alt="vesl" />}
                 {detalle.id_brand === 4 && (
                   <img style={{ width: "100px" }} src={russel} alt="russel" />
                 )}
@@ -169,11 +202,16 @@ function Detail() {
                   <img src={target1} alt="" />
                   <img src={target2} alt="" />
                 </div>
+                <div>
+                  <div>
+                  { !token ? handleSinPermisos: <button onClick={handleOpen}>ADD REVIEW</button>}
+                    <button onClick={handleOpenReview}>SEE COMENTS</button>
+                  </div>
+                </div>
                 <div className={styles.containerPago}>
                   <button onClick={!token ? handleSinPermisos : handlePayment}>
                     PAY
                   </button>
-
                   {isSelected ? (
                     <button
                       onClick={
@@ -216,22 +254,36 @@ function Detail() {
             </div>
           </div>
           {reviewCount === 0 ? (
-            <div className={styles.commentContainer}>
-              <p>Be the first to add a review</p>
-              <div>
-                <button onClick={handleOpen}>Add Review</button>
-                {isOpen && <AddReview setOpen={setIsOpen} />}
+            isOpen && (
+              <div className={styles.modal}>
+                <div className={styles.buttonClose}>
+                  <button onClick={handleClose}>x</button>
+                </div>
+                <div className={styles.modalcontent}>
+                  <AddReview handleClose={handleClose} />
+                </div>
               </div>
-            </div>
+            )
           ) : (
-            detalle.Reviews.map((review) => (
-              <ReviewCard
-                idUser={review.id_user}
-                updatedAt={review.updatedAt}
-                rating={review.rating}
-                comment={review.comment}
-              />
-            ))
+            <>
+              {reviewVisible && (
+                <div className={styles.modal}>
+                  <div className={styles.buttonClose}>
+                    <button onClick={handleCloseReview}>x</button>
+                  </div>
+                  <div className={styles.modalcontent}>
+                    {detalle.Reviews.map((review) => (
+                      <ReviewCard
+                        idUser={review.id_user}
+                        updatedAt={review.updatedAt}
+                        rating={review.rating}
+                        comment={review.comment}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+            </>
           )}
         </div>
       )}

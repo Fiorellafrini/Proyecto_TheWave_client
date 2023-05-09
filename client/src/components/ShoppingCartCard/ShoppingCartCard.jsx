@@ -15,13 +15,19 @@ const ShoppingCartCard = ({
   price,
   imagen,
   quantity,
+  stock,
   onDelete,
 }) => {
   const [imageSrc] = useState(imagen[0]);
   const dispatch = useDispatch();
 
   const handleIncrement = () => {
-    dispatch(incrementQuantity(id));
+    if (quantity < stock) {
+      dispatch(incrementQuantity(id));
+    } else {
+      alert("I am sorry! We do not have enough stock to add more of this product to the cart")
+    }
+    
   };
   const handleDecrement = () => {
     dispatch(decrementQuantity(id));

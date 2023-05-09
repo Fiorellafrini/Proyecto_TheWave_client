@@ -53,6 +53,8 @@ const Navigation = () => {
     dispatch(removeAllFav());
     dispatch(clearCart());
     dispatch(clearFilters());
+    window.localStorage.removeItem("shoppingCart");
+    window.localStorage.removeItem("favorites");
     navegar("/");
   };
 
@@ -183,7 +185,7 @@ const Navigation = () => {
                       <Link to={"/SectionCarrito"}>
                         <li>Shopping Cart</li>
                       </Link>
-                      <button onClick={handleLogout}>Log out</button>
+                      <li onClick={handleLogout}>Log out</li>
                     </ul>
                   </div>
                 ))}
@@ -245,7 +247,7 @@ const Navigation = () => {
                       <Link to={"/SectionCarrito"}>
                         <li>Shopping Cart</li>
                       </Link>
-                      <button onClick={handleLogout}>Log out</button>
+                      <li onClick={handleLogout}>Log out</li>
                     </ul>
                   </div>
                 ))}
